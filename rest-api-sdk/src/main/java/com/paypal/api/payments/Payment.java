@@ -21,7 +21,9 @@ import java.util.Map;
  * 
  */
 public class Payment extends Resource {
-
+	public enum Intent {
+		SALE
+	}
 
 	/**
 	 * 
@@ -191,6 +193,14 @@ public class Payment extends Resource {
 	public void setIntent(String intent) {
 		this.intent = intent;
 	}
+	
+	/**
+	 * Setter for intent;
+	 */
+	public void setIntent(Intent intent) {
+		this.intent = intent.toString().toLowerCase();
+	}
+	
 	/**
 	 * Getter for payer
 	 */
