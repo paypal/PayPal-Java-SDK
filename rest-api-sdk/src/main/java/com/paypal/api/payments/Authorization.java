@@ -243,6 +243,12 @@ public class Authorization  {
 
 	/**
 	 * Obtain the Authorization transaction resource for the given identifier.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @param authorizationId
+	 *            String
+	 * @return Authorization
+	 * @throws PayPalRESTException
 	 */
 	public static Authorization get(String accessToken, String authorizationId) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
@@ -251,6 +257,12 @@ public class Authorization  {
 	
 	/**
 	 * Obtain the Authorization transaction resource for the given identifier.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @param authorizationId
+	 *            String
+	 * @return Authorization
+	 * @throws PayPalRESTException
 	 */
 	public static Authorization get(APIContext apiContext, String authorizationId) throws PayPalRESTException {
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
@@ -269,6 +281,12 @@ public class Authorization  {
 
 	/**
 	 * Creates (and processes) a new Capture Transaction added as a related resource.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @param capture
+	 *            Capture
+	 * @return Capture
+	 * @throws PayPalRESTException
 	 */
 	public Capture capture(String accessToken, Capture capture) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
@@ -277,6 +295,12 @@ public class Authorization  {
 	
 	/**
 	 * Creates (and processes) a new Capture Transaction added as a related resource.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @param capture
+	 *            Capture
+	 * @return Capture
+	 * @throws PayPalRESTException
 	 */
 	public Capture capture(APIContext apiContext, Capture capture) throws PayPalRESTException {
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
@@ -298,6 +322,10 @@ public class Authorization  {
 
 	/**
 	 * Voids (cancels) an Authorization.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @return Authorization
+	 * @throws PayPalRESTException
 	 */
 	public Authorization doVoid(String accessToken) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
@@ -306,6 +334,10 @@ public class Authorization  {
 	
 	/**
 	 * Voids (cancels) an Authorization.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @return Authorization
+	 * @throws PayPalRESTException
 	 */
 	public Authorization doVoid(APIContext apiContext) throws PayPalRESTException {
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
@@ -318,6 +350,40 @@ public class Authorization  {
 		String pattern = "v1/payments/authorization/{0}/void";
 		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);
 		String payLoad = "";
+		return PayPalResource.configureAndExecute(apiContext, HttpMethod.POST, resourcePath, payLoad, Authorization.class);
+	}
+	
+
+	/**
+	 * Reauthorizes an expired Authorization.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @return Authorization
+	 * @throws PayPalRESTException
+	 */
+	public Authorization reauthorize(String accessToken) throws PayPalRESTException {
+		APIContext apiContext = new APIContext(accessToken);
+		return reauthorize(apiContext);
+	}
+	
+	/**
+	 * Reauthorizes an expired Authorization.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @return Authorization
+	 * @throws PayPalRESTException
+	 */
+	public Authorization reauthorize(APIContext apiContext) throws PayPalRESTException {
+		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
+			throw new IllegalArgumentException("AccessToken cannot be null or empty");
+		}
+		if (this.getId() == null) {
+			throw new IllegalArgumentException("Id cannot be null");
+		}
+		Object[] parameters = new Object[] {this.getId()};
+		String pattern = "v1/payments/authorization/{0}/reauthorize";
+		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);
+		String payLoad = this.toJSON();
 		return PayPalResource.configureAndExecute(apiContext, HttpMethod.POST, resourcePath, payLoad, Authorization.class);
 	}
 	

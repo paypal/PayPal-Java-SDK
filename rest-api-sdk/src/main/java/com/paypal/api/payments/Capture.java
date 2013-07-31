@@ -112,6 +112,13 @@ public class Capture  {
 	public Capture() {
 	}
 
+	/**
+	 * Parameterized Constructor
+	 */
+	public Capture(Amount amount) {
+		this.amount = amount;
+	}
+	
 
 	/**
 	 * Setter for id
@@ -243,6 +250,12 @@ public class Capture  {
 
 	/**
 	 * Obtain the Capture transaction resource for the given identifier.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @param captureId
+	 *            String
+	 * @return Capture
+	 * @throws PayPalRESTException
 	 */
 	public static Capture get(String accessToken, String captureId) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
@@ -251,6 +264,12 @@ public class Capture  {
 	
 	/**
 	 * Obtain the Capture transaction resource for the given identifier.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @param captureId
+	 *            String
+	 * @return Capture
+	 * @throws PayPalRESTException
 	 */
 	public static Capture get(APIContext apiContext, String captureId) throws PayPalRESTException {
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
@@ -269,6 +288,12 @@ public class Capture  {
 
 	/**
 	 * Creates (and processes) a new Refund Transaction added as a related resource.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @param refund
+	 *            Refund
+	 * @return Refund
+	 * @throws PayPalRESTException
 	 */
 	public Refund refund(String accessToken, Refund refund) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
@@ -277,6 +302,12 @@ public class Capture  {
 	
 	/**
 	 * Creates (and processes) a new Refund Transaction added as a related resource.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @param refund
+	 *            Refund
+	 * @return Refund
+	 * @throws PayPalRESTException
 	 */
 	public Refund refund(APIContext apiContext, Refund refund) throws PayPalRESTException {
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {

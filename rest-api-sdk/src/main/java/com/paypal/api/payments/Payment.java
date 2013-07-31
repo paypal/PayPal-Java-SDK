@@ -275,6 +275,10 @@ public class Payment  {
 
 	/**
 	 * Creates (and processes) a new Payment Resource.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @return Payment
+	 * @throws PayPalRESTException
 	 */
 	public Payment create(String accessToken) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
@@ -283,6 +287,10 @@ public class Payment  {
 	
 	/**
 	 * Creates (and processes) a new Payment Resource.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @return Payment
+	 * @throws PayPalRESTException
 	 */
 	public Payment create(APIContext apiContext) throws PayPalRESTException {
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
@@ -296,6 +304,12 @@ public class Payment  {
 
 	/**
 	 * Obtain the Payment resource for the given identifier.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @param paymentId
+	 *            String
+	 * @return Payment
+	 * @throws PayPalRESTException
 	 */
 	public static Payment get(String accessToken, String paymentId) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
@@ -304,6 +318,12 @@ public class Payment  {
 	
 	/**
 	 * Obtain the Payment resource for the given identifier.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @param paymentId
+	 *            String
+	 * @return Payment
+	 * @throws PayPalRESTException
 	 */
 	public static Payment get(APIContext apiContext, String paymentId) throws PayPalRESTException {
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
@@ -322,6 +342,12 @@ public class Payment  {
 
 	/**
 	 * Executes the payment (after approved by the Payer) associated with this resource when the payment method is PayPal.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @param paymentExecution
+	 *            PaymentExecution
+	 * @return Payment
+	 * @throws PayPalRESTException
 	 */
 	public Payment execute(String accessToken, PaymentExecution paymentExecution) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
@@ -330,6 +356,12 @@ public class Payment  {
 	
 	/**
 	 * Executes the payment (after approved by the Payer) associated with this resource when the payment method is PayPal.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @param paymentExecution
+	 *            PaymentExecution
+	 * @return Payment
+	 * @throws PayPalRESTException
 	 */
 	public Payment execute(APIContext apiContext, PaymentExecution paymentExecution) throws PayPalRESTException {
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
@@ -351,6 +383,8 @@ public class Payment  {
 
 	/**
 	 * Retrieves a list of Payment resources.
+	 * @param accessToken
+	 *            Access Token used for the API call.
 	 * @param containerMap
 	 *      Map containing the query strings with the 
 	 *      following values as keys:
@@ -363,6 +397,8 @@ public class Payment  {
 	 *      sort_by,
 	 *      sort_order,
 	 *      All other keys in the map are ignored by the SDK
+	 * @return PaymentHistory
+	 * @throws PayPalRESTException
 	 */
 	public static PaymentHistory list(String accessToken, Map<String, String> containerMap) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
@@ -371,6 +407,8 @@ public class Payment  {
 	
 	/**
 	 * Retrieves a list of Payment resources.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
 	 * @param containerMap
 	 *      Map containing the query strings with the 
 	 *      following values as keys:
@@ -383,6 +421,8 @@ public class Payment  {
 	 *      sort_by,
 	 *      sort_order,
 	 *      All other keys in the map are ignored by the SDK
+	 * @return PaymentHistory
+	 * @throws PayPalRESTException
 	 */
 	public static PaymentHistory list(APIContext apiContext, Map<String, String> containerMap) throws PayPalRESTException {
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {

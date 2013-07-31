@@ -231,6 +231,12 @@ public class Sale  {
 
 	/**
 	 * Obtain the Sale transaction resource for the given identifier.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @param saleId
+	 *            String
+	 * @return Sale
+	 * @throws PayPalRESTException
 	 */
 	public static Sale get(String accessToken, String saleId) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
@@ -239,6 +245,12 @@ public class Sale  {
 	
 	/**
 	 * Obtain the Sale transaction resource for the given identifier.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @param saleId
+	 *            String
+	 * @return Sale
+	 * @throws PayPalRESTException
 	 */
 	public static Sale get(APIContext apiContext, String saleId) throws PayPalRESTException {
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
@@ -257,6 +269,12 @@ public class Sale  {
 
 	/**
 	 * Creates (and processes) a new Refund Transaction added as a related resource.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @param refund
+	 *            Refund
+	 * @return Refund
+	 * @throws PayPalRESTException
 	 */
 	public Refund refund(String accessToken, Refund refund) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
@@ -265,6 +283,12 @@ public class Sale  {
 	
 	/**
 	 * Creates (and processes) a new Refund Transaction added as a related resource.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @param refund
+	 *            Refund
+	 * @return Refund
+	 * @throws PayPalRESTException
 	 */
 	public Refund refund(APIContext apiContext, Refund refund) throws PayPalRESTException {
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
