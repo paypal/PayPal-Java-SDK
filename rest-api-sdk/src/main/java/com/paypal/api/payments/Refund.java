@@ -243,6 +243,12 @@ public class Refund  {
 
 	/**
 	 * Obtain the Refund transaction resource for the given identifier.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @param refundId
+	 *            String
+	 * @return Refund
+	 * @throws PayPalRESTException
 	 */
 	public static Refund get(String accessToken, String refundId) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
@@ -251,6 +257,12 @@ public class Refund  {
 	
 	/**
 	 * Obtain the Refund transaction resource for the given identifier.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @param refundId
+	 *            String
+	 * @return Refund
+	 * @throws PayPalRESTException
 	 */
 	public static Refund get(APIContext apiContext, String refundId) throws PayPalRESTException {
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {

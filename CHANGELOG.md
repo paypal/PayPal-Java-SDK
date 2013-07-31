@@ -1,5 +1,9 @@
 CHANGELOG
 ========= 
+V0.7.1 (July 31, 2013)
+-----------------------
+   * Added support for Reauthorization
+
 V0.7.0 (May 30, 2013)
 -----------------------
    * Added support for Auth and Capture APIs

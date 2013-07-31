@@ -84,6 +84,21 @@ public class AuthorizationTestCase {
 		logger.info("Authorization State: " + authorization.getState());
 	}
 
+	@Test(dependsOnMethods = { "testGetAuthorization" }, expectedExceptions = { PayPalRESTException.class })
+	public void testGetReauthorization() throws PayPalRESTException{
+		logger.info("**** Reauthorization ****");
+		authorization = Authorization.get(TokenHolder.accessToken, "7GH53639GA425732B");
+		logger.info("Authorization ID: " + authorization.getId());
+		Amount amount = new Amount();
+		amount.setCurrency("USD").setTotal("1");
+		authorization.setAmount(amount);
+		Authorization reauthorization =	authorization.reauthorize(TokenHolder.accessToken);
+		logger.info("Request = " + Authorization.getLastRequest());
+		logger.info("Response = " + Authorization.getLastResponse());
+		logger.info("Reauthorization ID: " + reauthorization.getId());
+	}
+	
+	
 	@Test(dependsOnMethods = { "testGetAuthorization" })
 	public void testAuthorizationCapture() throws PayPalRESTException {
 		logger.info("**** Capture Authorization ****");
@@ -130,6 +145,8 @@ public class AuthorizationTestCase {
 		logger.info("**** Capture Authorization (Null Capture) ****");
 		Capture responsecapture = getAuthorization().capture(TokenHolder.accessToken, null);
 	}
+	
+	
 	
 	@Test
 	public void testTOJSON() {
@@ -190,5 +207,7 @@ public class AuthorizationTestCase {
 				.getRelatedResources().get(0).getAuthorization();
 		return authorization;
 	}
+	
+	
 
 }

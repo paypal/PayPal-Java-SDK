@@ -358,6 +358,10 @@ public class CreditCard  {
 
 	/**
 	 * Creates a new Credit Card Resource (aka Tokenize).
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @return CreditCard
+	 * @throws PayPalRESTException
 	 */
 	public CreditCard create(String accessToken) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
@@ -366,6 +370,10 @@ public class CreditCard  {
 	
 	/**
 	 * Creates a new Credit Card Resource (aka Tokenize).
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @return CreditCard
+	 * @throws PayPalRESTException
 	 */
 	public CreditCard create(APIContext apiContext) throws PayPalRESTException {
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
@@ -379,6 +387,12 @@ public class CreditCard  {
 
 	/**
 	 * Obtain the Credit Card resource for the given identifier.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @param creditCardId
+	 *            String
+	 * @return CreditCard
+	 * @throws PayPalRESTException
 	 */
 	public static CreditCard get(String accessToken, String creditCardId) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
@@ -387,6 +401,12 @@ public class CreditCard  {
 	
 	/**
 	 * Obtain the Credit Card resource for the given identifier.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @param creditCardId
+	 *            String
+	 * @return CreditCard
+	 * @throws PayPalRESTException
 	 */
 	public static CreditCard get(APIContext apiContext, String creditCardId) throws PayPalRESTException {
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
@@ -405,6 +425,10 @@ public class CreditCard  {
 
 	/**
 	 * Delete the Credit Card resource for the given identifier. Returns 204 No Content when the card is deleted successfully.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @return 
+	 * @throws PayPalRESTException
 	 */
 	public void delete(String accessToken) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
@@ -414,6 +438,10 @@ public class CreditCard  {
 	
 	/**
 	 * Delete the Credit Card resource for the given identifier. Returns 204 No Content when the card is deleted successfully.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @return 
+	 * @throws PayPalRESTException
 	 */
 	public void delete(APIContext apiContext) throws PayPalRESTException {
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {

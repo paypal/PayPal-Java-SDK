@@ -24,7 +24,7 @@ SDK Integration:
 		<dependency>
 			<groupId>com.paypal.sdk</groupId>
 			<artifactId>rest-api-sdk</artifactId>
-			<version>0.7.0</version>
+			<version>0.7.1</version>
 		</dependency>
 		
 		
