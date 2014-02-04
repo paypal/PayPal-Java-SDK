@@ -130,5 +130,20 @@
 		<servlet-name>GetCreditCardServlet</servlet-name>
 		<url-pattern>/getcreditcard</url-pattern>
 	</servlet-mapping>
-
+	<servlet>
+		<servlet-name>DeleteCreditCardServlet</servlet-name>
+		<servlet-class>com.paypal.api.payments.servlet.DeleteCreditCardServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteCreditCardServlet</servlet-name>
+		<url-pattern>/deletecreditcard</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>GetRefundServlet</servlet-name>
+		<servlet-class>com.paypal.api.payments.servlet.GetRefundServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetRefundServlet</servlet-name>
+		<url-pattern>/getrefund</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -1,4 +1,4 @@
-// #GetPaymentList Sample
+// #Get Payment History Sample
 // This sample code demonstrate how you can
 // retrieve a list of all Payment resources
 // you've created using the Payments API.
@@ -9,7 +9,7 @@
 package com.paypal.api.payments.servlet;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -21,9 +21,10 @@ import org.apache.log4j.Logger;
 
 import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.PaymentHistory;
-import com.paypal.api.payments.util.GenerateAccessToken;
+import com.paypal.api.payments.util.Configuration;
+import com.paypal.core.rest.APIContext;
+import com.paypal.core.rest.OAuthTokenCredential;
 import com.paypal.core.rest.PayPalRESTException;
-import com.paypal.core.rest.PayPalResource;
 import com.paypal.core.rest.QueryParameters;
 
 /**
@@ -36,18 +37,6 @@ public class GetPaymentHistoryServlet extends HttpServlet {
 			.getLogger(GetPaymentHistoryServlet.class);
 
 	public void init(ServletConfig servletConfig) throws ServletException {
-		// ##Load Configuration
-		// Load SDK configuration for
-		// the resource. This intialization code can be
-		// done as Init Servlet.
-		InputStream is = GetPaymentHistoryServlet.class
-				.getResourceAsStream("/sdk_config.properties");
-		try {
-			PayPalResource.initConfig(is);
-		} catch (PayPalRESTException e) {
-			LOGGER.fatal(e.getMessage());
-		}
-
 	}
 
 	@Override
@@ -61,15 +50,48 @@ public class GetPaymentHistoryServlet extends HttpServlet {
 			throws ServletException, IOException {
 		QueryParameters queryParameters = new QueryParameters();
 		queryParameters.setCount("10");
+		APIContext apiContext = null;
+		String accessToken = null;
 		try {
-			
+			// ###DynamicConfiguration
+			// Retrieve the dynamic configuration map
+			// containing only the mode parameter at
+			// the least
+			Map<String, String> configurationMap = Configuration
+					.getConfigurationMap();
+
+			// Retrieve the client credentials
+			// containing the clientID and
+			// clientSecret
+			Map<String, String> clientCredentials = Configuration
+					.getClientCredentials();
+
 			// ###AccessToken
 			// Retrieve the access token from
 			// OAuthTokenCredential by passing in
+			// ClientID and ClientSecret
 			// It is not mandatory to generate Access Token on a per call basis.
 			// Typically the access token can be generated once and
 			// reused within the expiry window
-			String accessToken = GenerateAccessToken.getAccessToken();
+			accessToken = new OAuthTokenCredential(
+					clientCredentials.get("clientID"),
+					clientCredentials.get("clientSecret"), configurationMap)
+					.getAccessToken();
+
+			// ### Api Context
+			// Pass in a `ApiContext` object to authenticate
+			// the call and to send a unique request id
+			// (that ensures idempotency). The SDK generates
+			// a request id if you do not pass one explicitly.
+			apiContext = new APIContext(accessToken);
+			apiContext.setConfigurationMap(configurationMap);
+			// Use this variant if you want to pass in a request id
+			// that is meaningful in your application, ideally
+			// a order id.
+			/*
+			 * String requestId = Long.toString(System.nanoTime());
+			 * APIContext apiContext = new APIContext(accessToken, requestId));
+			 */
 
 			// ###Retrieve
 			// Retrieve the PaymentHistory object by calling the
@@ -79,7 +101,7 @@ public class GetPaymentHistoryServlet extends HttpServlet {
 			// query parameters for paginations and filtering.
 			// Refer the API documentation
 			// for valid values for keys
-			PaymentHistory paymentHistory = Payment.get(accessToken,
+			PaymentHistory paymentHistory = Payment.list(apiContext,
 					queryParameters);
 			LOGGER.info("Payment History = " + paymentHistory.toString());
 			req.setAttribute("response", Payment.getLastResponse());

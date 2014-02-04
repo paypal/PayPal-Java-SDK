@@ -1,4 +1,4 @@
-// #CreatePayment using credit card Sample
+// #Create Payment using Credit Card Sample
 // This sample code demonstrate how you can process
 // a payment with a credit card.
 // API used: /v1/payments/payment
@@ -28,18 +28,6 @@ public class PaymentWithCreditCardServlet extends HttpServlet {
 			.getLogger(PaymentWithCreditCardServlet.class);
 
 	public void init(ServletConfig servletConfig) throws ServletException {
-		// ##Load Configuration
-		// Load SDK configuration for
-		// the resource. This intialization code can be
-		// done as Init Servlet.
-		InputStream is = PaymentWithCreditCardServlet.class
-				.getResourceAsStream("/sdk_config.properties");
-		try {
-			PayPalResource.initConfig(is);
-		} catch (PayPalRESTException e) {
-			LOGGER.fatal(e.getMessage());
-		}
-
 	}
 
 	@Override
@@ -84,6 +72,24 @@ public class PaymentWithCreditCardServlet extends HttpServlet {
 		details.setShipping("1");
 		details.setSubtotal("5");
 		details.setTax("1");
+		
+		// ###Item
+		// An item being paid for
+		Item item = new Item();
+		item.setName("Item Name");
+		// 3-letter Currency Code
+        item.setCurrency("USD");
+        item.setPrice("1");
+        item.setQuantity("5");
+        // Number or code to identify the item in your catalog/records
+        item.setSku("sku");
+        
+        // ###ItemList
+        // List of items being paid for
+        ItemList itemList = new ItemList();
+        List<Item> items = new ArrayList<Item>();
+        items.add(item);
+        itemList.setItems(items);
 
 		// ###Amount
 		// Let's you specify a payment amount.
@@ -102,6 +108,7 @@ public class PaymentWithCreditCardServlet extends HttpServlet {
 		transaction.setAmount(amount);
 		transaction
 				.setDescription("This is the payment transaction description.");
+		transaction.setItemList(itemList);
 
 		// The Payment creation API requires a list of
 		// Transaction; add the created `Transaction`
@@ -140,7 +147,22 @@ public class PaymentWithCreditCardServlet extends HttpServlet {
 		payment.setPayer(payer);
 		payment.setTransactions(transactions);
 
+		APIContext apiContext = null;
+		String accessToken = null;
 		try {
+			// ###DynamicConfiguration
+			// Retrieve the dynamic configuration map
+			// containing only the mode parameter at
+			// the least
+			Map<String, String> configurationMap = Configuration
+					.getConfigurationMap();
+
+			// Retrieve the client credentials
+			// containing the clientID and
+			// clientSecret
+			Map<String, String> clientCredentials = Configuration
+					.getClientCredentials();
+
 			// ###AccessToken
 			// Retrieve the access token from
 			// OAuthTokenCredential by passing in
@@ -148,20 +170,24 @@ public class PaymentWithCreditCardServlet extends HttpServlet {
 			// It is not mandatory to generate Access Token on a per call basis.
 			// Typically the access token can be generated once and
 			// reused within the expiry window
-			String accessToken = GenerateAccessToken.getAccessToken();
+			accessToken = new OAuthTokenCredential(
+					clientCredentials.get("clientID"),
+					clientCredentials.get("clientSecret"), configurationMap)
+					.getAccessToken();
 
 			// ### Api Context
-			// Pass in a `ApiContext` object to authenticate 
-			// the call and to send a unique request id 
+			// Pass in a `ApiContext` object to authenticate
+			// the call and to send a unique request id
 			// (that ensures idempotency). The SDK generates
-			// a request id if you do not pass one explicitly. 
-			APIContext apiContext = new APIContext(accessToken);
-			// Use this variant if you want to pass in a request id  
-			// that is meaningful in your application, ideally 
+			// a request id if you do not pass one explicitly.
+			apiContext = new APIContext(accessToken);
+			apiContext.setConfigurationMap(configurationMap);
+			// Use this variant if you want to pass in a request id
+			// that is meaningful in your application, ideally
 			// a order id.
-			/* 
-			 * String requestId = Long.toString(System.nanoTime();
-			 * APIContext apiContext = new APIContext(accessToken, requestId ));
+			/*
+			 * String requestId = Long.toString(System.nanoTime());
+			 * APIContext apiContext = new APIContext(accessToken, requestId));
 			 */
 			
 			// Create a payment by posting to the APIService

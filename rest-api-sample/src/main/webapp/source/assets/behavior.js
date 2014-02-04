@@ -25,20 +25,20 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 2,
-            "title": "Load Configuration",
-            "slug": "load-configuration"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
             "title": "AuthorizationCapture",
             "slug": "authorizationcapture"
           },
           "depth": 2,
           "children": [
             {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "DynamicConfiguration",
+                "slug": "dynamicconfiguration"
+              },
+              "depth": 3
+            }, {
               "type": "heading",
               "data": {
                 "level": 3,
@@ -177,14 +177,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 2,
-            "title": "Load Configuration",
-            "slug": "load-configuration"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
             "title": "Create",
             "slug": "create"
           },
@@ -196,6 +188,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "level": 3,
                 "title": "CreditCard",
                 "slug": "creditcard"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "DynamicConfiguration",
+                "slug": "dynamicconfiguration"
               },
               "depth": 3
             }, {
@@ -246,20 +246,20 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 2,
-            "title": "Load Configuration",
-            "slug": "load-configuration"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
             "title": "GetAuthorization",
             "slug": "getauthorization"
           },
           "depth": 2,
           "children": [
             {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "DynamicConfiguration",
+                "slug": "dynamicconfiguration"
+              },
+              "depth": 3
+            }, {
               "type": "heading",
               "data": {
                 "level": 3,
@@ -371,20 +371,20 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 2,
-            "title": "Load Configuration",
-            "slug": "load-configuration"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
             "title": "GetCapture",
             "slug": "getcapture"
           },
           "depth": 2,
           "children": [
             {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "DynamicConfiguration",
+                "slug": "dynamicconfiguration"
+              },
+              "depth": 3
+            }, {
               "type": "heading",
               "data": {
                 "level": 3,
@@ -523,14 +523,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 2,
-            "title": "Load Configuration",
-            "slug": "load-configuration"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
             "title": "GetCreditCardUsingId",
             "slug": "getcreditcardusingid"
           },
@@ -540,8 +532,24 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 3,
+                "title": "DynamicConfiguration",
+                "slug": "dynamicconfiguration"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
                 "title": "AccessToken",
                 "slug": "accesstoken"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Api Context",
+                "slug": "api-context"
               },
               "depth": 3
             }
@@ -567,30 +575,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         {
           "type": "heading",
           "data": {
-            "level": 2,
-            "title": "Load Configuration",
-            "slug": "load-configuration"
+            "level": 3,
+            "title": "DynamicConfiguration",
+            "slug": "dynamicconfiguration"
           },
-          "depth": 2,
-          "children": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "AccessToken",
-                "slug": "accesstoken"
-              },
-              "depth": 3
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Retrieve",
-                "slug": "retrieve"
-              },
-              "depth": 3
-            }
-          ]
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "AccessToken",
+            "slug": "accesstoken"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Api Context",
+            "slug": "api-context"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Retrieve",
+            "slug": "retrieve"
+          },
+          "depth": 3
         }
       ]
     }, {
@@ -613,14 +626,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 2,
-            "title": "Load Configuration",
-            "slug": "load-configuration"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
             "title": "GetPayment",
             "slug": "getpayment"
           },
@@ -630,8 +635,24 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 3,
+                "title": "DynamicConfiguration",
+                "slug": "dynamicconfiguration"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
                 "title": "AccessToken",
                 "slug": "accesstoken"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Api Context",
+                "slug": "api-context"
               },
               "depth": 3
             }
@@ -657,14 +678,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         {
           "type": "heading",
           "data": {
-            "level": 2,
-            "title": "Load Configuration",
-            "slug": "load-configuration"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
             "level": 1,
             "title": "Get Sale By SaleID Sample how to get details about a sale.",
             "slug": "get-sale-by-saleid-sample-how-to-get-details-about-a-sale"
@@ -675,8 +688,24 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 3,
+                "title": "DynamicConfiguration",
+                "slug": "dynamicconfiguration"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
                 "title": "AccessToken",
                 "slug": "accesstoken"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Api Context",
+                "slug": "api-context"
               },
               "depth": 3
             }
@@ -700,14 +729,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       "depth": 1,
       "outline": [
         {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "Load Configuration",
-            "slug": "load-configuration"
-          },
-          "depth": 2
-        }, {
           "type": "heading",
           "data": {
             "level": 2,
@@ -784,6 +805,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 3,
+                "title": "DynamicConfiguration",
+                "slug": "dynamicconfiguration"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
                 "title": "AccessToken",
                 "slug": "accesstoken"
               },
@@ -820,20 +849,28 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 2,
-            "title": "Load Configuration",
-            "slug": "load-configuration"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
             "title": "Create",
             "slug": "create"
           },
           "depth": 2,
           "children": [
             {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "AccessToken",
+                "slug": "accesstoken"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "DynamicConfiguration",
+                "slug": "dynamicconfiguration"
+              },
+              "depth": 3
+            }, {
               "type": "heading",
               "data": {
                 "level": 3,
@@ -929,14 +966,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 2,
-            "title": "Load Configuration",
-            "slug": "load-configuration"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
             "title": "Create",
             "slug": "create"
           },
@@ -1002,6 +1031,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 3,
+                "title": "DynamicConfiguration",
+                "slug": "dynamicconfiguration"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
                 "title": "AccessToken",
                 "slug": "accesstoken"
               },
@@ -1010,8 +1047,85 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 3,
-                "title": "APIContext",
-                "slug": "apicontext"
+                "title": "Api Context",
+                "slug": "api-context"
+              },
+              "depth": 3
+            }
+          ]
+        }
+      ]
+    }, {
+      "type": "file",
+      "data": {
+        "language": {
+          "nameMatchers": [".java"],
+          "pygmentsLexer": "java",
+          "singleLineComment": ["//"],
+          "name": "Java"
+        },
+        "sourcePath": "c:\\repos\\git-paypal\\groc\\sample-code\\ReauthorizationServlet.java",
+        "projectPath": "ReauthorizationServlet.java",
+        "targetPath": "ReauthorizationServlet",
+        "title": "ReauthorizationServlet"
+      },
+      "depth": 1,
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "Reauthorization",
+            "slug": "reauthorization"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "AccessToken",
+                "slug": "accesstoken"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "DynamicConfiguration",
+                "slug": "dynamicconfiguration"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "AccessToken",
+                "slug": "accesstoken"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Api Context",
+                "slug": "api-context"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Reauthorization",
+                "slug": "reauthorization"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Amount",
+                "slug": "amount"
               },
               "depth": 3
             }
@@ -1038,20 +1152,28 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 2,
-            "title": "Load Configuration",
-            "slug": "load-configuration"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
             "title": "RefundCapture",
             "slug": "refundcapture"
           },
           "depth": 2,
           "children": [
             {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "AccessToken",
+                "slug": "accesstoken"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "DynamicConfiguration",
+                "slug": "dynamicconfiguration"
+              },
+              "depth": 3
+            }, {
               "type": "heading",
               "data": {
                 "level": 3,
@@ -1198,14 +1320,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 2,
-            "title": "Load Configuration",
-            "slug": "load-configuration"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
             "title": "RefundSale",
             "slug": "refundsale"
           },
@@ -1233,6 +1347,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "level": 3,
                 "title": "Amount",
                 "slug": "amount"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "DynamicConfiguration",
+                "slug": "dynamicconfiguration"
               },
               "depth": 3
             }, {
@@ -1275,20 +1397,28 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 2,
-            "title": "Load Configuration",
-            "slug": "load-configuration"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
             "title": "VoidAuthorization",
             "slug": "voidauthorization"
           },
           "depth": 2,
           "children": [
             {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "AccessToken",
+                "slug": "accesstoken"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "DynamicConfiguration",
+                "slug": "dynamicconfiguration"
+              },
+              "depth": 3
+            }, {
               "type": "heading",
               "data": {
                 "level": 3,

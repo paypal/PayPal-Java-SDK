@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>GetCaptureServlet</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="GetCaptureServlet"><meta name="groc-project-path" content="GetCaptureServlet.java"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><body></body></html><a href="../">Back<div id="document"><div class="segment"><a id="segment-0" name="segment-0" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-0" class="pilcrow">¶</a></div><div class="wrapper"><h1 id="getcapture-sample">GetCapture Sample</h1>
+<!DOCTYPE html><html lang="en"><head><title>GetCaptureServlet</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="GetCaptureServlet"><meta name="groc-project-path" content="GetCaptureServlet.java"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><body></body></html><a href="../">Back<div id="document"><div class="segment"><a id="segment-0" name="segment-0" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-0" class="pilcrow">¶</a></div><div class="wrapper"><h1 id="get-capture-sample">Get Capture Sample</h1>
 
 <p>This sample code demonstrate how you
 can retrieve the details of a Capture
@@ -6,9 +6,9 @@ resource
 API used: /v1/payments/capture/{capture_id}</p></div></div><div class="code"><div class="wrapper"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">paypal</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">payments</span><span class="o">.</span><span class="na">servlet</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">javax.servlet.ServletConfig</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">javax.servlet.ServletException</span><span class="o">;</span>
@@ -28,10 +28,10 @@ API used: /v1/payments/capture/{capture_id}</p></div></div><div class="code"><di
 <span class="kn">import</span> <span class="nn">com.paypal.api.payments.Payer</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.paypal.api.payments.Payment</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.paypal.api.payments.Transaction</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.paypal.api.payments.util.GenerateAccessToken</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.paypal.api.payments.util.Configuration</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.paypal.core.rest.APIContext</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.paypal.core.rest.OAuthTokenCredential</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.paypal.core.rest.PayPalRESTException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.paypal.core.rest.PayPalResource</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">GetCaptureServlet</span> <span class="kd">extends</span> <span class="n">HttpServlet</span> <span class="o">{</span>
 
@@ -40,17 +40,7 @@ API used: /v1/payments/capture/{capture_id}</p></div></div><div class="code"><di
   <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">Logger</span>
       <span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">GetAuthorizationServlet</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
 
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="n">ServletConfig</span> <span class="n">servletConfig</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span> <span class="o">{</span></div></div></div><div class="segment"><a id="segment-1" name="segment-1" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-1" class="pilcrow">¶</a></div><div class="wrapper"><h2 id="load-configuration">Load Configuration</h2>
-
-<p>Load SDK configuration for
-the resource. This intialization code can be
-done as Init Servlet.</p></div></div><div class="code"><div class="wrapper">    <span class="n">InputStream</span> <span class="n">is</span> <span class="o">=</span> <span class="n">GetCaptureServlet</span><span class="o">.</span><span class="na">class</span>
-        <span class="o">.</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">&quot;/sdk_config.properties&quot;</span><span class="o">);</span>
-    <span class="k">try</span> <span class="o">{</span>
-      <span class="n">PayPalResource</span><span class="o">.</span><span class="na">initConfig</span><span class="o">(</span><span class="n">is</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">PayPalRESTException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">LOGGER</span><span class="o">.</span><span class="na">fatal</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
-    <span class="o">}</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="n">ServletConfig</span> <span class="n">servletConfig</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span> <span class="o">{</span>
   <span class="o">}</span>
   
   <span class="nd">@Override</span>
@@ -58,39 +48,54 @@ done as Init Servlet.</p></div></div><div class="code"><div class="wrapper">    
       <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
     <span class="n">doPost</span><span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="n">resp</span><span class="o">);</span>
   <span class="o">}</span>
-  </div></div></div><div class="segment"><a id="segment-2" name="segment-2" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-2" class="pilcrow">¶</a></div><div class="wrapper"><h2 id="getcapture">GetCapture</h2>
+  </div></div></div><div class="segment"><a id="segment-1" name="segment-1" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-1" class="pilcrow">¶</a></div><div class="wrapper"><h2 id="getcapture">GetCapture</h2>
 
 <p>Sample showing how to Get a Capture using
 CaptureId</p></div></div><div class="code"><div class="wrapper">  <span class="nd">@Override</span>
   <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">resp</span><span class="o">)</span>
-      <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span></div></div></div><div class="segment"><a id="segment-3" name="segment-3" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-3" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="accesstoken">AccessToken</h3>
+      <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+    <span class="n">APIContext</span> <span class="n">apiContext</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="n">String</span> <span class="n">accessToken</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="k">try</span> <span class="o">{</span></div></div></div><div class="segment"><a id="segment-2" name="segment-2" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-2" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="dynamicconfiguration">DynamicConfiguration</h3>
+
+<p>Retrieve the dynamic configuration map
+containing only the mode parameter at
+the least</p></div></div><div class="code"><div class="wrapper">      <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">configurationMap</span> <span class="o">=</span> <span class="n">Configuration</span>
+          <span class="o">.</span><span class="na">getConfigurationMap</span><span class="o">();</span></div></div></div><div class="segment"><a id="segment-3" name="segment-3" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-3" class="pilcrow">¶</a></div><div class="wrapper"><p>Retrieve the client credentials
+containing the clientID and
+clientSecret</p></div></div><div class="code"><div class="wrapper">      <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">clientCredentials</span> <span class="o">=</span> <span class="n">Configuration</span>
+          <span class="o">.</span><span class="na">getClientCredentials</span><span class="o">();</span></div></div></div><div class="segment"><a id="segment-4" name="segment-4" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-4" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="accesstoken">AccessToken</h3>
 
 <p>Retrieve the access token from
 OAuthTokenCredential by passing in
-ClientID and ClientSecret</p></div></div><div class="code"><div class="wrapper">    <span class="n">APIContext</span> <span class="n">apiContext</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="n">String</span> <span class="n">accessToken</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="k">try</span> <span class="o">{</span>
-      <span class="n">accessToken</span> <span class="o">=</span> <span class="n">GenerateAccessToken</span><span class="o">.</span><span class="na">getAccessToken</span><span class="o">();</span></div></div></div><div class="segment"><a id="segment-4" name="segment-4" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-4" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="api-context">Api Context</h3>
+ClientID and ClientSecret
+It is not mandatory to generate Access Token on a per call basis.
+Typically the access token can be generated once and
+reused within the expiry window</p></div></div><div class="code"><div class="wrapper">      <span class="n">accessToken</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OAuthTokenCredential</span><span class="o">(</span>
+          <span class="n">clientCredentials</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;clientID&quot;</span><span class="o">),</span>
+          <span class="n">clientCredentials</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;clientSecret&quot;</span><span class="o">),</span> <span class="n">configurationMap</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">getAccessToken</span><span class="o">();</span></div></div></div><div class="segment"><a id="segment-5" name="segment-5" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-5" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="api-context">Api Context</h3>
 
 <p>Pass in a <code>ApiContext</code> object to authenticate
 the call and to send a unique request id
 (that ensures idempotency). The SDK generates
-a request id if you do not pass one explicitly.</p></div></div><div class="code"><div class="wrapper">      <span class="n">apiContext</span> <span class="o">=</span> <span class="k">new</span> <span class="n">APIContext</span><span class="o">(</span><span class="n">accessToken</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-5" name="segment-5" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-5" class="pilcrow">¶</a></div><div class="wrapper"><p>Use this variant if you want to pass in a request id
+a request id if you do not pass one explicitly.</p></div></div><div class="code"><div class="wrapper">      <span class="n">apiContext</span> <span class="o">=</span> <span class="k">new</span> <span class="n">APIContext</span><span class="o">(</span><span class="n">accessToken</span><span class="o">);</span>
+      <span class="n">apiContext</span><span class="o">.</span><span class="na">setConfigurationMap</span><span class="o">(</span><span class="n">configurationMap</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-6" name="segment-6" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-6" class="pilcrow">¶</a></div><div class="wrapper"><p>Use this variant if you want to pass in a request id
 that is meaningful in your application, ideally
 a order id.</p></div></div><div class="code"><div class="wrapper">      <span class="cm">/*</span>
-<span class="cm">       * String requestId = Long.toString(System.nanoTime(); APIContext</span>
-<span class="cm">       * apiContext = new APIContext(accessToken, requestId ));</span>
-<span class="cm">       */</span></div></div></div><div class="segment"><a id="segment-6" name="segment-6" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-6" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="authorization">Authorization</h3>
+<span class="cm">       * String requestId = Long.toString(System.nanoTime());</span>
+<span class="cm">       * APIContext apiContext = new APIContext(accessToken, requestId));</span>
+<span class="cm">       */</span></div></div></div><div class="segment"><a id="segment-7" name="segment-7" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-7" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="authorization">Authorization</h3>
 
 <p>Retrieve a Authorization object
 by making a Payment with intent
 as 'authorize'</p></div></div><div class="code"><div class="wrapper">      <span class="n">Authorization</span> <span class="n">authorization</span> <span class="o">=</span> <span class="n">getAuthorization</span><span class="o">(</span><span class="n">apiContext</span><span class="o">);</span>
       
-      <span class="c1">/// ###Capture</span></div></div></div><div class="segment"><a id="segment-7" name="segment-7" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-7" class="pilcrow">¶</a></div><div class="wrapper"><p>Create a Capture object
+      <span class="c1">/// ###Capture</span></div></div></div><div class="segment"><a id="segment-8" name="segment-8" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-8" class="pilcrow">¶</a></div><div class="wrapper"><p>Create a Capture object
 by doing a capture on
 Authorization object
 and retrieve the Id</p></div></div><div class="code"><div class="wrapper">      <span class="n">String</span> <span class="n">captureId</span> <span class="o">=</span> <span class="n">getCaptureId</span><span class="o">(</span><span class="n">apiContext</span><span class="o">,</span> <span class="n">authorization</span><span class="o">);</span>
-      </div></div></div><div class="segment"><a id="segment-8" name="segment-8" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-8" class="pilcrow">¶</a></div><div class="wrapper"><p>Retrieve the Capture object by
+      </div></div></div><div class="segment"><a id="segment-9" name="segment-9" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-9" class="pilcrow">¶</a></div><div class="wrapper"><p>Retrieve the Capture object by
 doing a GET call to 
 URI v1/payments/capture/{capture_id}</p></div></div><div class="code"><div class="wrapper">      <span class="n">Capture</span> <span class="n">capture</span> <span class="o">=</span> <span class="n">Capture</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">apiContext</span><span class="o">,</span> <span class="n">captureId</span><span class="o">);</span>
       
@@ -106,18 +111,18 @@ URI v1/payments/capture/{capture_id}</p></div></div><div class="code"><div class
   
   <span class="kd">private</span> <span class="n">String</span> <span class="nf">getCaptureId</span><span class="o">(</span><span class="n">APIContext</span> <span class="n">apiContext</span><span class="o">,</span> <span class="n">Authorization</span> <span class="n">authorization</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">PayPalRESTException</span><span class="o">{</span>
     <span class="n">String</span> <span class="n">captureId</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    </div></div></div><div class="segment"><a id="segment-9" name="segment-9" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-9" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="amount">Amount</h3>
+    </div></div></div><div class="segment"><a id="segment-10" name="segment-10" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-10" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="amount">Amount</h3>
 
 <p>Let's you specify a capture amount.</p></div></div><div class="code"><div class="wrapper">    <span class="n">Amount</span> <span class="n">amount</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Amount</span><span class="o">();</span>
     <span class="n">amount</span><span class="o">.</span><span class="na">setCurrency</span><span class="o">(</span><span class="s">&quot;USD&quot;</span><span class="o">);</span>
-    <span class="n">amount</span><span class="o">.</span><span class="na">setTotal</span><span class="o">(</span><span class="s">&quot;4.54&quot;</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-10" name="segment-10" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-10" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="capture">Capture</h3></div></div></div><div class="segment"><a id="segment-11" name="segment-11" class="section_anchor"></a><div class="code"><div class="wrapper">    <span class="n">Capture</span> <span class="n">capture</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Capture</span><span class="o">();</span>
+    <span class="n">amount</span><span class="o">.</span><span class="na">setTotal</span><span class="o">(</span><span class="s">&quot;4.54&quot;</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-11" name="segment-11" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-11" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="capture">Capture</h3></div></div></div><div class="segment"><a id="segment-12" name="segment-12" class="section_anchor"></a><div class="code"><div class="wrapper">    <span class="n">Capture</span> <span class="n">capture</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Capture</span><span class="o">();</span>
     <span class="n">capture</span><span class="o">.</span><span class="na">setAmount</span><span class="o">(</span><span class="n">amount</span><span class="o">);</span>
-    </div></div></div><div class="segment"><a id="segment-12" name="segment-12" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-12" class="pilcrow">¶</a></div><div class="wrapper"><h2 id="isfinalcapture">IsFinalCapture</h2>
+    </div></div></div><div class="segment"><a id="segment-13" name="segment-13" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-13" class="pilcrow">¶</a></div><div class="wrapper"><h2 id="isfinalcapture">IsFinalCapture</h2>
 
 <p>If set to true, all remaining 
 funds held by the authorization 
 will be released in the funding 
-instrument. Default is �false�.</p></div></div><div class="code"><div class="wrapper">    <span class="n">capture</span><span class="o">.</span><span class="na">setIsFinalCapture</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-13" name="segment-13" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-13" class="pilcrow">¶</a></div><div class="wrapper"><p>Capture by POSTing to
+instrument. Default is �false�.</p></div></div><div class="code"><div class="wrapper">    <span class="n">capture</span><span class="o">.</span><span class="na">setIsFinalCapture</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-14" name="segment-14" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-14" class="pilcrow">¶</a></div><div class="wrapper"><p>Capture by POSTing to
 URI v1/payments/authorization/{authorization_id}/capture</p></div></div><div class="code"><div class="wrapper">    <span class="n">Capture</span> <span class="n">responseCapture</span> <span class="o">=</span> <span class="n">authorization</span><span class="o">.</span><span class="na">capture</span><span class="o">(</span><span class="n">apiContext</span><span class="o">,</span> <span class="n">capture</span><span class="o">);</span>
     <span class="n">captureId</span> <span class="o">=</span> <span class="n">responseCapture</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
     
@@ -125,17 +130,17 @@ URI v1/payments/authorization/{authorization_id}/capture</p></div></div><div cla
   <span class="o">}</span>
 
   <span class="kd">private</span> <span class="n">Authorization</span> <span class="nf">getAuthorization</span><span class="o">(</span><span class="n">APIContext</span> <span class="n">apiContext</span><span class="o">)</span>
-      <span class="kd">throws</span> <span class="n">PayPalRESTException</span> <span class="o">{</span></div></div></div><div class="segment"><a id="segment-14" name="segment-14" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-14" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="details">Details</h3>
+      <span class="kd">throws</span> <span class="n">PayPalRESTException</span> <span class="o">{</span></div></div></div><div class="segment"><a id="segment-15" name="segment-15" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-15" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="details">Details</h3>
 
 <p>Let's you specify details of a payment amount.</p></div></div><div class="code"><div class="wrapper">    <span class="n">Details</span> <span class="n">details</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Details</span><span class="o">();</span>
     <span class="n">details</span><span class="o">.</span><span class="na">setShipping</span><span class="o">(</span><span class="s">&quot;0.03&quot;</span><span class="o">);</span>
     <span class="n">details</span><span class="o">.</span><span class="na">setSubtotal</span><span class="o">(</span><span class="s">&quot;107.41&quot;</span><span class="o">);</span>
-    <span class="n">details</span><span class="o">.</span><span class="na">setTax</span><span class="o">(</span><span class="s">&quot;0.03&quot;</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-15" name="segment-15" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-15" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="amount">Amount</h3>
+    <span class="n">details</span><span class="o">.</span><span class="na">setTax</span><span class="o">(</span><span class="s">&quot;0.03&quot;</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-16" name="segment-16" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-16" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="amount">Amount</h3>
 
 <p>Let's you specify a payment amount.</p></div></div><div class="code"><div class="wrapper">    <span class="n">Amount</span> <span class="n">amount</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Amount</span><span class="o">();</span>
     <span class="n">amount</span><span class="o">.</span><span class="na">setCurrency</span><span class="o">(</span><span class="s">&quot;USD&quot;</span><span class="o">);</span>
     <span class="n">amount</span><span class="o">.</span><span class="na">setTotal</span><span class="o">(</span><span class="s">&quot;107.47&quot;</span><span class="o">);</span>
-    <span class="n">amount</span><span class="o">.</span><span class="na">setDetails</span><span class="o">(</span><span class="n">details</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-16" name="segment-16" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-16" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="transaction">Transaction</h3>
+    <span class="n">amount</span><span class="o">.</span><span class="na">setDetails</span><span class="o">(</span><span class="n">details</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-17" name="segment-17" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-17" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="transaction">Transaction</h3>
 
 <p>A transaction defines the contract of a
 payment - what is the payment for and who
@@ -143,10 +148,10 @@ is fulfilling it. Transaction is created with
 a <code>Payee</code> and <code>Amount</code> types</p></div></div><div class="code"><div class="wrapper">    <span class="n">Transaction</span> <span class="n">transaction</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Transaction</span><span class="o">();</span>
     <span class="n">transaction</span><span class="o">.</span><span class="na">setAmount</span><span class="o">(</span><span class="n">amount</span><span class="o">);</span>
     <span class="n">transaction</span>
-        <span class="o">.</span><span class="na">setDescription</span><span class="o">(</span><span class="s">&quot;This is the payment transaction description.&quot;</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-17" name="segment-17" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-17" class="pilcrow">¶</a></div><div class="wrapper"><p>The Payment creation API requires a list of
+        <span class="o">.</span><span class="na">setDescription</span><span class="o">(</span><span class="s">&quot;This is the payment transaction description.&quot;</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-18" name="segment-18" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-18" class="pilcrow">¶</a></div><div class="wrapper"><p>The Payment creation API requires a list of
 Transaction; add the created <code>Transaction</code>
 to a List</p></div></div><div class="code"><div class="wrapper">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Transaction</span><span class="o">&gt;</span> <span class="n">transactions</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Transaction</span><span class="o">&gt;();</span>
-    <span class="n">transactions</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">transaction</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-18" name="segment-18" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-18" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="address">Address</h3>
+    <span class="n">transactions</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">transaction</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-19" name="segment-19" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-19" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="address">Address</h3>
 
 <p>Base Address object used as shipping or billing
 address in a payment. [Optional]</p></div></div><div class="code"><div class="wrapper">    <span class="n">Address</span> <span class="n">billingAddress</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Address</span><span class="o">();</span>
@@ -154,7 +159,7 @@ address in a payment. [Optional]</p></div></div><div class="code"><div class="wr
     <span class="n">billingAddress</span><span class="o">.</span><span class="na">setCountryCode</span><span class="o">(</span><span class="s">&quot;US&quot;</span><span class="o">);</span>
     <span class="n">billingAddress</span><span class="o">.</span><span class="na">setLine1</span><span class="o">(</span><span class="s">&quot;52 N Main ST&quot;</span><span class="o">);</span>
     <span class="n">billingAddress</span><span class="o">.</span><span class="na">setPostalCode</span><span class="o">(</span><span class="s">&quot;43210&quot;</span><span class="o">);</span>
-    <span class="n">billingAddress</span><span class="o">.</span><span class="na">setState</span><span class="o">(</span><span class="s">&quot;OH&quot;</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-19" name="segment-19" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-19" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="creditcard">CreditCard</h3>
+    <span class="n">billingAddress</span><span class="o">.</span><span class="na">setState</span><span class="o">(</span><span class="s">&quot;OH&quot;</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-20" name="segment-20" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-20" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="creditcard">CreditCard</h3>
 
 <p>A resource representing a credit card that can be
 used to fund a payment.</p></div></div><div class="code"><div class="wrapper">    <span class="n">CreditCard</span> <span class="n">creditCard</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CreditCard</span><span class="o">();</span>
@@ -165,23 +170,23 @@ used to fund a payment.</p></div></div><div class="code"><div class="wrapper">  
     <span class="n">creditCard</span><span class="o">.</span><span class="na">setFirstName</span><span class="o">(</span><span class="s">&quot;Joe&quot;</span><span class="o">);</span>
     <span class="n">creditCard</span><span class="o">.</span><span class="na">setLastName</span><span class="o">(</span><span class="s">&quot;Shopper&quot;</span><span class="o">);</span>
     <span class="n">creditCard</span><span class="o">.</span><span class="na">setNumber</span><span class="o">(</span><span class="s">&quot;4417119669820331&quot;</span><span class="o">);</span>
-    <span class="n">creditCard</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="s">&quot;visa&quot;</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-20" name="segment-20" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-20" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="fundinginstrument">FundingInstrument</h3>
+    <span class="n">creditCard</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="s">&quot;visa&quot;</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-21" name="segment-21" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-21" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="fundinginstrument">FundingInstrument</h3>
 
 <p>A resource representing a Payeer's funding instrument.
 Use a Payer ID (A unique identifier of the payer generated
 and provided by the facilitator. This is required when
 creating or using a tokenized funding instrument)
 and the <code>CreditCardDetails</code></p></div></div><div class="code"><div class="wrapper">    <span class="n">FundingInstrument</span> <span class="n">fundingInstrument</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FundingInstrument</span><span class="o">();</span>
-    <span class="n">fundingInstrument</span><span class="o">.</span><span class="na">setCreditCard</span><span class="o">(</span><span class="n">creditCard</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-21" name="segment-21" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-21" class="pilcrow">¶</a></div><div class="wrapper"><p>The Payment creation API requires a list of
+    <span class="n">fundingInstrument</span><span class="o">.</span><span class="na">setCreditCard</span><span class="o">(</span><span class="n">creditCard</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-22" name="segment-22" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-22" class="pilcrow">¶</a></div><div class="wrapper"><p>The Payment creation API requires a list of
 FundingInstrument; add the created <code>FundingInstrument</code>
 to a List</p></div></div><div class="code"><div class="wrapper">    <span class="n">List</span><span class="o">&lt;</span><span class="n">FundingInstrument</span><span class="o">&gt;</span> <span class="n">fundingInstruments</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">FundingInstrument</span><span class="o">&gt;();</span>
-    <span class="n">fundingInstruments</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">fundingInstrument</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-22" name="segment-22" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-22" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="payer">Payer</h3>
+    <span class="n">fundingInstruments</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">fundingInstrument</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-23" name="segment-23" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-23" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="payer">Payer</h3>
 
 <p>A resource representing a Payer that funds a payment
 Use the List of <code>FundingInstrument</code> and the Payment Method
 as 'credit_card'</p></div></div><div class="code"><div class="wrapper">    <span class="n">Payer</span> <span class="n">payer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Payer</span><span class="o">();</span>
     <span class="n">payer</span><span class="o">.</span><span class="na">setFundingInstruments</span><span class="o">(</span><span class="n">fundingInstruments</span><span class="o">);</span>
-    <span class="n">payer</span><span class="o">.</span><span class="na">setPaymentMethod</span><span class="o">(</span><span class="s">&quot;credit_card&quot;</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-23" name="segment-23" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-23" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="payment">Payment</h3>
+    <span class="n">payer</span><span class="o">.</span><span class="na">setPaymentMethod</span><span class="o">(</span><span class="s">&quot;credit_card&quot;</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-24" name="segment-24" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-24" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="payment">Payment</h3>
 
 <p>A Payment Resource; create one using
 the above types and intent as 'authorize'</p></div></div><div class="code"><div class="wrapper">    <span class="n">Payment</span> <span class="n">payment</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Payment</span><span class="o">();</span>

@@ -1,8 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><title>GetPaymentServlet</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="GetPaymentServlet"><meta name="groc-project-path" content="GetPaymentServlet.java"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><body></body></html><a href="../">Back<div id="document"><div class="segment"><a id="segment-0" name="segment-0" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-0" class="pilcrow">¶</a></div><div class="wrapper"><h1 id="get-payment-sample">Get Payment Sample</h1>
+<!DOCTYPE html><html lang="en"><head><title>DeleteCreditCardServlet</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="DeleteCreditCardServlet"><meta name="groc-project-path" content="DeleteCreditCardServlet.java"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><body></body></html><a href="../">Back<div id="document"><div class="segment"><a id="segment-0" name="segment-0" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-0" class="pilcrow">¶</a></div><div class="wrapper"><h1 id="delete-credit-card-sample">Delete Credit Card Sample</h1>
 
-<p>This sample code demonstrates how you can retrieve
-the details of a payment resource.
-API used: /v1/payments/payment/{payment-id}</p></div></div><div class="code"><div class="wrapper"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">paypal</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">payments</span><span class="o">.</span><span class="na">servlet</span><span class="o">;</span>
+<p>This sample code demonstrate how you can
+delete a saved credit card.
+API used: /v1/vault/credit-card/{<creditCardId>}
+NOTE: HTTP method used here is DELETE</p></div></div><div class="code"><div class="wrapper"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">paypal</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">payments</span><span class="o">.</span><span class="na">servlet</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
@@ -15,21 +16,18 @@ API used: /v1/payments/payment/{payment-id}</p></div></div><div class="code"><di
 
 <span class="kn">import</span> <span class="nn">org.apache.log4j.Logger</span><span class="o">;</span>
 
-<span class="kn">import</span> <span class="nn">com.paypal.api.payments.Payment</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.paypal.api.payments.CreditCard</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.paypal.api.payments.util.Configuration</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.paypal.core.rest.APIContext</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.paypal.core.rest.OAuthTokenCredential</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.paypal.core.rest.PayPalRESTException</span><span class="o">;</span>
 
-<span class="cm">/**</span>
-<span class="cm"> * @author lvairamani</span>
-<span class="cm"> * </span>
-<span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GetPaymentServlet</span> <span class="kd">extends</span> <span class="n">HttpServlet</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeleteCreditCardServlet</span> <span class="kd">extends</span> <span class="n">HttpServlet</span> <span class="o">{</span>
 
   <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
+
   <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">Logger</span>
-      <span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">GetPaymentServlet</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+      <span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">DeleteCreditCardServlet</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
 
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="n">ServletConfig</span> <span class="n">servletConfig</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span> <span class="o">{</span>
   <span class="o">}</span>
@@ -38,10 +36,9 @@ API used: /v1/payments/payment/{payment-id}</p></div></div><div class="code"><di
   <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">resp</span><span class="o">)</span>
       <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
     <span class="n">doPost</span><span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="n">resp</span><span class="o">);</span>
+  <span class="o">}</span></div></div></div><div class="segment"><a id="segment-1" name="segment-1" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-1" class="pilcrow">¶</a></div><div class="wrapper"><h2 id="deletecreditcard">DeleteCreditCard</h2>
 
-  <span class="o">}</span></div></div></div><div class="segment"><a id="segment-1" name="segment-1" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-1" class="pilcrow">¶</a></div><div class="wrapper"><h2 id="getpayment">GetPayment</h2>
-
-<p>Call the method with a valid Payment ID</p></div></div><div class="code"><div class="wrapper">  <span class="nd">@Override</span>
+<p>Sample showing how to delete a stored Credit Card</p></div></div><div class="code"><div class="wrapper">  <span class="nd">@Override</span>
   <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">resp</span><span class="o">)</span>
       <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
     <span class="n">APIContext</span> <span class="n">apiContext</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
@@ -73,20 +70,42 @@ a request id if you do not pass one explicitly.</p></div></div><div class="code"
       <span class="n">apiContext</span><span class="o">.</span><span class="na">setConfigurationMap</span><span class="o">(</span><span class="n">configurationMap</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-6" name="segment-6" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-6" class="pilcrow">¶</a></div><div class="wrapper"><p>Use this variant if you want to pass in a request id
 that is meaningful in your application, ideally
 a order id.</p></div></div><div class="code"><div class="wrapper">      <span class="cm">/*</span>
-<span class="cm">       * String requestId = Long.toString(System.nanoTime());</span>
-<span class="cm">       * APIContext apiContext = new APIContext(accessToken, requestId));</span>
-<span class="cm">       */</span></div></div></div><div class="segment"><a id="segment-7" name="segment-7" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-7" class="pilcrow">¶</a></div><div class="wrapper"><p>Retrieve the payment object by calling the
-static <code>get</code> method
-on the Payment class by passing a 
-APIContext and Payment ID</p></div></div><div class="code"><div class="wrapper">      <span class="n">Payment</span> <span class="n">payment</span> <span class="o">=</span> <span class="n">Payment</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">apiContext</span><span class="o">,</span>
-          <span class="s">&quot;PAY-0XL713371A312273YKE2GCNI&quot;</span><span class="o">);</span>
-      <span class="n">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&quot;Payment retrieved ID = &quot;</span> <span class="o">+</span> <span class="n">payment</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span>
-          <span class="o">+</span> <span class="s">&quot;, status = &quot;</span> <span class="o">+</span> <span class="n">payment</span><span class="o">.</span><span class="na">getState</span><span class="o">());</span>
-      <span class="n">req</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&quot;response&quot;</span><span class="o">,</span> <span class="n">Payment</span><span class="o">.</span><span class="na">getLastResponse</span><span class="o">());</span>
+<span class="cm">       * String requestId = Long.toString(System.nanoTime()); APIContext</span>
+<span class="cm">       * apiContext = new APIContext(accessToken, requestId));</span>
+<span class="cm">       */</span></div></div></div><div class="segment"><a id="segment-7" name="segment-7" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-7" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="save-credit-card">Save Credit Card</h3>
+
+<p>Save a Credit Card and retrieve the Credit
+Card Id from the saved Credit Card</p></div></div><div class="code"><div class="wrapper">      <span class="n">String</span> <span class="n">creditCardId</span> <span class="o">=</span> <span class="n">getCreditCardId</span><span class="o">(</span><span class="n">apiContext</span><span class="o">);</span>
+      </div></div></div><div class="segment"><a id="segment-8" name="segment-8" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-8" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="get-credit-card">Get Credit Card</h3>
+
+<p>static <code>get</code> method on the CreditCard class,
+and pass the APIContext and CreditCard ID</p></div></div><div class="code"><div class="wrapper">      <span class="n">CreditCard</span> <span class="n">creditCard</span> <span class="o">=</span> <span class="n">CreditCard</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">apiContext</span><span class="o">,</span>
+          <span class="n">creditCardId</span><span class="o">);</span>
+      </div></div></div><div class="segment"><a id="segment-9" name="segment-9" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-9" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="delete-credit-card">Delete Credit Card</h3></div></div></div><div class="segment"><a id="segment-10" name="segment-10" class="section_anchor"></a><div class="code"><div class="wrapper">      <span class="n">creditCard</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">apiContext</span><span class="o">);</span>
+      
+      <span class="n">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&quot;Credit Card Deleted ID = &quot;</span> <span class="o">+</span> <span class="n">creditCardId</span><span class="o">);</span>
+      <span class="n">req</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&quot;response&quot;</span><span class="o">,</span> <span class="s">&quot;CreditCard deleted successfully&quot;</span><span class="o">);</span>
     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">PayPalRESTException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
       <span class="n">req</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&quot;error&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
     <span class="o">}</span>
     <span class="n">req</span><span class="o">.</span><span class="na">getRequestDispatcher</span><span class="o">(</span><span class="s">&quot;response.jsp&quot;</span><span class="o">).</span><span class="na">forward</span><span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="n">resp</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="n">String</span> <span class="nf">getCreditCardId</span><span class="o">(</span><span class="n">APIContext</span> <span class="n">apiContext</span><span class="o">)</span>
+      <span class="kd">throws</span> <span class="n">PayPalRESTException</span> <span class="o">{</span></div></div></div><div class="segment"><a id="segment-11" name="segment-11" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-11" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="creditcard">CreditCard</h3>
+
+<p>A resource representing a credit card that can be
+used to fund a payment.</p></div></div><div class="code"><div class="wrapper">    <span class="n">CreditCard</span> <span class="n">creditCard</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CreditCard</span><span class="o">();</span>
+    <span class="n">creditCard</span><span class="o">.</span><span class="na">setExpireMonth</span><span class="o">(</span><span class="mi">11</span><span class="o">);</span>
+    <span class="n">creditCard</span><span class="o">.</span><span class="na">setExpireYear</span><span class="o">(</span><span class="mi">2018</span><span class="o">);</span>
+    <span class="n">creditCard</span><span class="o">.</span><span class="na">setNumber</span><span class="o">(</span><span class="s">&quot;4417119669820331&quot;</span><span class="o">);</span>
+    <span class="n">creditCard</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="s">&quot;visa&quot;</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-12" name="segment-12" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-12" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="save">Save</h3>
+
+<p>Creates the credit card as a resource
+in the PayPal vault. The response contains
+an 'id' that you can use to refer to it
+in the future payments.</p></div></div><div class="code"><div class="wrapper">    <span class="n">CreditCard</span> <span class="n">createdCreditCard</span> <span class="o">=</span> <span class="n">creditCard</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">apiContext</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">createdCreditCard</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
   <span class="o">}</span>
 
 <span class="o">}</span></div></div></div><div class="segment"><div class="comments"><a href="../">Back</a></div></div></div><script type="text/javascript" src="assets/jquery.min.js"></script><script type="text/javascript" src="assets/docs.js"></script></a>

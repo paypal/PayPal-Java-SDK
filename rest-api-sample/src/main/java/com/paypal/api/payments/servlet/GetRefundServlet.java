@@ -1,7 +1,7 @@
-// #Get Details of a Sale Transaction Sample
-// This sample code demonstrates how you can retrieve 
-// details of completed Sale Transaction.
-// API used: /v1/payments/sale/{sale-id}
+// # Get Details of a Refund
+// This sample code demonstrates how you can retrieve
+// details of refund.
+// API used: /v1/refund/{id}
 package com.paypal.api.payments.servlet;
 
 import java.io.IOException;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import com.paypal.api.payments.Refund;
 import com.paypal.api.payments.Sale;
 import com.paypal.api.payments.util.Configuration;
 import com.paypal.core.rest.APIContext;
@@ -25,10 +26,11 @@ import com.paypal.core.rest.PayPalRESTException;
  * @author lvairamani
  * 
  */
-public class GetSaleServlet extends HttpServlet {
+public class GetRefundServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger LOGGER = Logger.getLogger(GetSaleServlet.class);
+	private static final Logger LOGGER = Logger.getLogger(GetRefundServlet.class);
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 	}
@@ -39,7 +41,7 @@ public class GetSaleServlet extends HttpServlet {
 		doPost(req, resp);
 	}
 
-	// # Get Sale By SaleID Sample how to get details about a sale.
+	// # Get Refund By RefundID Sample how to get details about a refund.
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -86,12 +88,12 @@ public class GetSaleServlet extends HttpServlet {
 			 * APIContext apiContext = new APIContext(accessToken, requestId));
 			 */
 
-			// Pass an APIContext and the ID of the sale
-			// transaction from your payment resource.
-			Sale sale = Sale.get(apiContext, "03W403310B593121A");
-			LOGGER.info("Sale amount : " + sale.getAmount() + " for saleID : "
-					+ sale.getId());
-			req.setAttribute("response", Sale.getLastResponse());
+			// ### Refund
+            // Pass an APIContext and the ID of the refunded
+            // transaction 
+			Refund refund = Refund.get(apiContext, "7B165985YD577493B");
+			LOGGER.info("Retrieved Refund ID : " + refund.getId());
+			req.setAttribute("response", Refund.getLastResponse());
 		} catch (PayPalRESTException e) {
 			req.setAttribute("error", e.getMessage());
 		}

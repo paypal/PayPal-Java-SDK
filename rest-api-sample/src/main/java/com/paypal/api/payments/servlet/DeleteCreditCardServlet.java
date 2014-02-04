@@ -1,7 +1,8 @@
-// #Get Details of a Sale Transaction Sample
-// This sample code demonstrates how you can retrieve 
-// details of completed Sale Transaction.
-// API used: /v1/payments/sale/{sale-id}
+// #Delete Credit Card Sample
+// This sample code demonstrate how you can
+// delete a saved credit card.
+// API used: /v1/vault/credit-card/{<creditCardId>}
+// NOTE: HTTP method used here is DELETE
 package com.paypal.api.payments.servlet;
 
 import java.io.IOException;
@@ -15,20 +16,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.paypal.api.payments.Sale;
+import com.paypal.api.payments.CreditCard;
 import com.paypal.api.payments.util.Configuration;
 import com.paypal.core.rest.APIContext;
 import com.paypal.core.rest.OAuthTokenCredential;
 import com.paypal.core.rest.PayPalRESTException;
 
-/**
- * @author lvairamani
- * 
- */
-public class GetSaleServlet extends HttpServlet {
+public class DeleteCreditCardServlet extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger LOGGER = Logger.getLogger(GetSaleServlet.class);
+	private static final Logger LOGGER = Logger
+			.getLogger(DeleteCreditCardServlet.class);
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 	}
@@ -39,7 +38,8 @@ public class GetSaleServlet extends HttpServlet {
 		doPost(req, resp);
 	}
 
-	// # Get Sale By SaleID Sample how to get details about a sale.
+	// ##DeleteCreditCard
+	// Sample showing how to delete a stored Credit Card
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -82,20 +82,51 @@ public class GetSaleServlet extends HttpServlet {
 			// that is meaningful in your application, ideally
 			// a order id.
 			/*
-			 * String requestId = Long.toString(System.nanoTime());
-			 * APIContext apiContext = new APIContext(accessToken, requestId));
+			 * String requestId = Long.toString(System.nanoTime()); APIContext
+			 * apiContext = new APIContext(accessToken, requestId));
 			 */
 
-			// Pass an APIContext and the ID of the sale
-			// transaction from your payment resource.
-			Sale sale = Sale.get(apiContext, "03W403310B593121A");
-			LOGGER.info("Sale amount : " + sale.getAmount() + " for saleID : "
-					+ sale.getId());
-			req.setAttribute("response", Sale.getLastResponse());
+			// ### Save Credit Card
+			// Save a Credit Card and retrieve the Credit
+			// Card Id from the saved Credit Card
+			String creditCardId = getCreditCardId(apiContext);
+			
+			// ### Get Credit Card
+			// static `get` method on the CreditCard class,
+			// and pass the APIContext and CreditCard ID
+			CreditCard creditCard = CreditCard.get(apiContext,
+					creditCardId);
+			
+			// ### Delete Credit Card
+			creditCard.delete(apiContext);
+			
+			LOGGER.info("Credit Card Deleted ID = " + creditCardId);
+			req.setAttribute("response", "CreditCard deleted successfully");
 		} catch (PayPalRESTException e) {
 			req.setAttribute("error", e.getMessage());
 		}
 		req.getRequestDispatcher("response.jsp").forward(req, resp);
+	}
+
+	private String getCreditCardId(APIContext apiContext)
+			throws PayPalRESTException {
+
+		// ###CreditCard
+		// A resource representing a credit card that can be
+		// used to fund a payment.
+		CreditCard creditCard = new CreditCard();
+		creditCard.setExpireMonth(11);
+		creditCard.setExpireYear(2018);
+		creditCard.setNumber("4417119669820331");
+		creditCard.setType("visa");
+
+		// ###Save
+		// Creates the credit card as a resource
+		// in the PayPal vault. The response contains
+		// an 'id' that you can use to refer to it
+		// in the future payments.
+		CreditCard createdCreditCard = creditCard.create(apiContext);
+		return createdCreditCard.getId();
 	}
 
 }

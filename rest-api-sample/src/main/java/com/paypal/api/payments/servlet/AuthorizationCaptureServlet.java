@@ -1,13 +1,11 @@
-// #AuthorizationCapture Sample
+// #Authorization Capture Sample
 // This sample code demonstrate how you 
-// do a Capture on an Authorization
+// can Capture a previously authorized
 // API used: /v1/payments/authorization/{authorization_id}/capture
 package com.paypal.api.payments.servlet;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,10 +27,10 @@ import com.paypal.api.payments.FundingInstrument;
 import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.Transaction;
-import com.paypal.api.payments.util.GenerateAccessToken;
+import com.paypal.api.payments.util.Configuration;
 import com.paypal.core.rest.APIContext;
+import com.paypal.core.rest.OAuthTokenCredential;
 import com.paypal.core.rest.PayPalRESTException;
-import com.paypal.core.rest.PayPalResource;
 
 public class AuthorizationCaptureServlet extends HttpServlet {
 
@@ -42,17 +40,6 @@ public class AuthorizationCaptureServlet extends HttpServlet {
 			.getLogger(AuthorizationCaptureServlet.class);
 
 	public void init(ServletConfig servletConfig) throws ServletException {
-		// ##Load Configuration
-		// Load SDK configuration for
-		// the resource. This intialization code can be
-		// done as Init Servlet.
-		InputStream is = AuthorizationCaptureServlet.class
-				.getResourceAsStream("/sdk_config.properties");
-		try {
-			PayPalResource.initConfig(is);
-		} catch (PayPalRESTException e) {
-			LOGGER.fatal(e.getMessage());
-		}
 	}
 
 	@Override
@@ -66,14 +53,33 @@ public class AuthorizationCaptureServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// ###AccessToken
-		// Retrieve the access token from
-		// OAuthTokenCredential by passing in
-		// ClientID and ClientSecret
 		APIContext apiContext = null;
 		String accessToken = null;
 		try {
-			accessToken = GenerateAccessToken.getAccessToken();
+			// ###DynamicConfiguration
+			// Retrieve the dynamic configuration map
+			// containing only the mode parameter at
+			// the least
+			Map<String, String> configurationMap = Configuration
+					.getConfigurationMap();
+
+			// Retrieve the client credentials
+			// containing the clientID and
+			// clientSecret
+			Map<String, String> clientCredentials = Configuration
+					.getClientCredentials();
+
+			// ###AccessToken
+			// Retrieve the access token from
+			// OAuthTokenCredential by passing in
+			// ClientID and ClientSecret
+			// It is not mandatory to generate Access Token on a per call basis.
+			// Typically the access token can be generated once and
+			// reused within the expiry window
+			accessToken = new OAuthTokenCredential(
+					clientCredentials.get("clientID"),
+					clientCredentials.get("clientSecret"), configurationMap)
+					.getAccessToken();
 
 			// ### Api Context
 			// Pass in a `ApiContext` object to authenticate
@@ -81,12 +87,13 @@ public class AuthorizationCaptureServlet extends HttpServlet {
 			// (that ensures idempotency). The SDK generates
 			// a request id if you do not pass one explicitly.
 			apiContext = new APIContext(accessToken);
+			apiContext.setConfigurationMap(configurationMap);
 			// Use this variant if you want to pass in a request id
 			// that is meaningful in your application, ideally
 			// a order id.
 			/*
-			 * String requestId = Long.toString(System.nanoTime(); APIContext
-			 * apiContext = new APIContext(accessToken, requestId ));
+			 * String requestId = Long.toString(System.nanoTime());
+			 * APIContext apiContext = new APIContext(accessToken, requestId));
 			 */
 
 			// ###Authorization
@@ -105,17 +112,18 @@ public class AuthorizationCaptureServlet extends HttpServlet {
 			// A capture transaction
 			Capture capture = new Capture();
 			capture.setAmount(amount);
-			
+
 			// ##IsFinalCapture
-			// If set to true, all remaining 
-			// funds held by the authorization 
-			// will be released in the funding 
+			// If set to true, all remaining
+			// funds held by the authorization
+			// will be released in the funding
 			// instrument. Default is ‘false’.
 			capture.setIsFinalCapture(true);
 
 			// Capture by POSTing to
 			// URI v1/payments/authorization/{authorization_id}/capture
-			Capture responseCapture = authorization.capture(apiContext, capture);
+			Capture responseCapture = authorization
+					.capture(apiContext, capture);
 
 			req.setAttribute("response", Authorization.getLastResponse());
 			LOGGER.info("Capture id = " + responseCapture.getId()
@@ -153,7 +161,7 @@ public class AuthorizationCaptureServlet extends HttpServlet {
 		transaction.setAmount(amount);
 		transaction
 				.setDescription("This is the payment transaction description.");
-		
+
 		// The Payment creation API requires a list of
 		// Transaction; add the created `Transaction`
 		// to a List
@@ -182,7 +190,7 @@ public class AuthorizationCaptureServlet extends HttpServlet {
 		creditCard.setLastName("Shopper");
 		creditCard.setNumber("4417119669820331");
 		creditCard.setType("visa");
-		
+
 		// ###FundingInstrument
 		// A resource representing a Payeer's funding instrument.
 		// Use a Payer ID (A unique identifier of the payer generated
@@ -191,13 +199,13 @@ public class AuthorizationCaptureServlet extends HttpServlet {
 		// and the `CreditCardDetails`
 		FundingInstrument fundingInstrument = new FundingInstrument();
 		fundingInstrument.setCreditCard(creditCard);
-		
+
 		// The Payment creation API requires a list of
 		// FundingInstrument; add the created `FundingInstrument`
 		// to a List
 		List<FundingInstrument> fundingInstruments = new ArrayList<FundingInstrument>();
 		fundingInstruments.add(fundingInstrument);
-		
+
 		// ###Payer
 		// A resource representing a Payer that funds a payment
 		// Use the List of `FundingInstrument` and the Payment Method
@@ -215,8 +223,8 @@ public class AuthorizationCaptureServlet extends HttpServlet {
 		payment.setTransactions(transactions);
 
 		Payment responsePayment = payment.create(apiContext);
-		return responsePayment.getTransactions().get(0)
-				.getRelatedResources().get(0).getAuthorization();
+		return responsePayment.getTransactions().get(0).getRelatedResources()
+				.get(0).getAuthorization();
 	}
 
 }

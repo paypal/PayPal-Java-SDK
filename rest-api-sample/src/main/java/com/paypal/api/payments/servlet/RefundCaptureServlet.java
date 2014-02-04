@@ -1,4 +1,4 @@
-// #RefundCapture Sample
+// #Refund Capture Sample
 // This sample code demonstrate how you
 // can do a Refund on a Capture
 // resource
@@ -6,9 +6,9 @@
 package com.paypal.api.payments.servlet;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -29,10 +29,10 @@ import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.Refund;
 import com.paypal.api.payments.Transaction;
-import com.paypal.api.payments.util.GenerateAccessToken;
+import com.paypal.api.payments.util.Configuration;
 import com.paypal.core.rest.APIContext;
+import com.paypal.core.rest.OAuthTokenCredential;
 import com.paypal.core.rest.PayPalRESTException;
-import com.paypal.core.rest.PayPalResource;
 
 public class RefundCaptureServlet extends HttpServlet {
 
@@ -42,17 +42,6 @@ public class RefundCaptureServlet extends HttpServlet {
 			.getLogger(GetAuthorizationServlet.class);
 
 	public void init(ServletConfig servletConfig) throws ServletException {
-		// ##Load Configuration
-		// Load SDK configuration for
-		// the resource. This intialization code can be
-		// done as Init Servlet.
-		InputStream is = RefundCaptureServlet.class
-				.getResourceAsStream("/sdk_config.properties");
-		try {
-			PayPalResource.initConfig(is);
-		} catch (PayPalRESTException e) {
-			LOGGER.fatal(e.getMessage());
-		}
 	}
 	
 	@Override
@@ -74,7 +63,30 @@ public class RefundCaptureServlet extends HttpServlet {
 		APIContext apiContext = null;
 		String accessToken = null;
 		try {
-			accessToken = GenerateAccessToken.getAccessToken();
+			// ###DynamicConfiguration
+			// Retrieve the dynamic configuration map
+			// containing only the mode parameter at
+			// the least
+			Map<String, String> configurationMap = Configuration
+					.getConfigurationMap();
+
+			// Retrieve the client credentials
+			// containing the clientID and
+			// clientSecret
+			Map<String, String> clientCredentials = Configuration
+					.getClientCredentials();
+
+			// ###AccessToken
+			// Retrieve the access token from
+			// OAuthTokenCredential by passing in
+			// ClientID and ClientSecret
+			// It is not mandatory to generate Access Token on a per call basis.
+			// Typically the access token can be generated once and
+			// reused within the expiry window
+			accessToken = new OAuthTokenCredential(
+					clientCredentials.get("clientID"),
+					clientCredentials.get("clientSecret"), configurationMap)
+					.getAccessToken();
 
 			// ### Api Context
 			// Pass in a `ApiContext` object to authenticate
@@ -82,12 +94,13 @@ public class RefundCaptureServlet extends HttpServlet {
 			// (that ensures idempotency). The SDK generates
 			// a request id if you do not pass one explicitly.
 			apiContext = new APIContext(accessToken);
+			apiContext.setConfigurationMap(configurationMap);
 			// Use this variant if you want to pass in a request id
 			// that is meaningful in your application, ideally
 			// a order id.
 			/*
-			 * String requestId = Long.toString(System.nanoTime(); APIContext
-			 * apiContext = new APIContext(accessToken, requestId ));
+			 * String requestId = Long.toString(System.nanoTime());
+			 * APIContext apiContext = new APIContext(accessToken, requestId));
 			 */
 
 			// ###Authorization
@@ -116,6 +129,7 @@ public class RefundCaptureServlet extends HttpServlet {
 			// Create new APIContext for 
 			// Refund
 			apiContext = new APIContext(accessToken);
+			apiContext.setConfigurationMap(configurationMap);
 			// Do a Refund by
 			// POSTing to 
 			// URI v1/payments/capture/{capture_id}/refund

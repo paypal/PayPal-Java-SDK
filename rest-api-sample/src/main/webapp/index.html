@@ -26,157 +26,262 @@
 	<br />
 	<table cellspacing="5" width="85%">
 		<tbody>
-			<tr valign="top">
-				<td>Payment with a credit card</td>
-				<td></td>
-				<td width="30%"><a href="paymentwithcreditcard"
-					class="execute imagelink">Execute</a></td>
-				<td></td>
-				<td width="30%"><a
-					href="source/PaymentWithCreditCardServlet.html"
-					class="source imagelink">Source</a></td>
+            <tr valign="top" class="header">
+				<td>Payments</td>
 			</tr>
-			<tr>
-				<td>Payment with a PayPal Account</td>
-
+            <tr valign="top">
+                <td>
+                    Direct credit card payments
+                </td>
+                <td>
+                </td>
+                <td width="30%">
+					<a href="paymentwithcreditcard" class="execute imagelink">Execute</a>
+				</td>
 				<td></td>
-				<td><a href="
-					paymentwithpaypal"
-					class="execute imagelink">Execute</a></td>
-
+				<td width="30%">
+					<a href="source/PaymentWithCreditCardServlet.html" class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr>
+                <td>
+                   PayPal account payments
+                </td>
+                <td>
+                </td>
+                <td>
+					<a href="paymentwithpaypal" class="execute imagelink">Execute</a>
+				</td>
 				<td></td>
-				<td><a href="source/PaymentWithPayPalServlet.html"
-					class="source imagelink">Source</a></td>
+				<td>
+					<a href="source/PaymentWithPayPalServlet.html" class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr>
+                <td>
+                    Stored credit card payments
+                </td>
+                <td>
+                </td>
+                <td><a href="paymentwithsavedcard" class="execute imagelink">Execute</a>
+				</td>
+				<td></td>
+				<td>
+					<a href="source/PaymentWithSavedCardServlet.html" class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr>
+                <td>
+                    Get payment details
+                </td>
+                <td>
+                </td>
+                <td>
+					<a href="getpayment" class="execute imagelink">Execute</a>
+				</td>
+				<td></td>
+				<td>
+					<a href="source/GetPaymentServlet.html"	class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr>
+                <td>
+                    Get payment history
+                </td>
+                <td>
+                </td>
+                <td>
+					<a href="getpaymenthistory"	class="execute imagelink">Execute</a>
+				</td>
+				<td></td>
+				<td>
+					<a href="source/GetPaymentHistoryServlet.html" class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr valign="top" class="header">
+				<td>Sale</td>
 			</tr>
-			<tr>
-				<td>Get Payment Details</td>
+            <tr>
+                <td>
+                    Get sale payment details
+                </td>
+                <td>
+                </td>
+                <td>
+					<a href="getsale" class="execute imagelink">Execute</a>
+				</td>
 				<td></td>
-				<td><a href="
-					getpayment" class="execute imagelink">Execute</a></td>
-
+				<td>
+					<a href="source/GetSaleServlet.html" class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr>
+                <td>
+                    Refund a sale payment
+                </td>
+                <td>
+                </td>
+                <td>
+					<a href="salerefund" class="execute imagelink">Execute</a>
+				</td>
 				<td></td>
-				<td><a href="source/GetPaymentServlet.html"
-					class="source imagelink">Source</a></td>
+				<td>
+					<a href="source/SaleRefundServlet.html"	class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr valign="top" class="header">
+				<td>Refund</td>
 			</tr>
-			<tr>
-				<td>Get Payment History</td>
+            <tr>
+                <td>
+                    Get refund details
+                </td>
+                <td>
+                </td>
+                <td>
+					<a href="getrefund" class="execute imagelink">Execute</a>
+				</td>
 				<td></td>
-				<td><a href="
-					getpaymenthistory"
-					class="execute imagelink">Execute</a></td>
-				<td></td>
-				<td><a href="source/GetPaymentHistoryServlet.html"
-					class="source imagelink">Source</a></td>
+				<td>
+					<a href="source/GetRefundServlet.html"	class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr valign="top" class='header'>
+				<td>Vault</td>
 			</tr>
-			<tr>
-				<td>Get Sale Details</td>
+            <tr>
+                <td>
+                    Save a credit card
+                </td>
+                <td>
+                </td>
+                <td>
+					<a href="createcreditcard" class="execute imagelink">Execute</a>
+				</td>
 				<td></td>
-				<td><a href="
-					getsale" class="execute imagelink">Execute</a></td>
+				<td>
+					<a href="source/CreateCreditCardServlet.html" class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr>
+                <td>
+                    Get credit card details
+                </td>
+                <td>
+                </td>
+                <td>
+					<a href="getcreditcard" class="execute imagelink">Execute</a>
+				</td>
 				<td></td>
-				<td><a href="source/GetSaleServlet.html"
-					class="source imagelink">Source</a></td>
+				<td>
+					<a href="source/GetCreditCardServlet.html" class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr>
+                <td>
+                    Delete a credit card 
+                </td>
+                <td>
+                </td>
+                <td>
+					<a href="deletecreditcard" class="execute imagelink">Execute</a>
+				</td>
+				<td></td>
+				<td>
+					<a href="source/DeleteCreditCardServlet.html" class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr valign="top" class='header'>
+				<td>Authorization</td>
 			</tr>
-			<tr>
-				<td>Refund a Payment</td>
+            <tr>
+                <td>
+                    Get an authorized payment details
+                </td>
+                <td>
+                </td>
+                <td>
+					<a href="getauthorizationservlet" class="execute imagelink">Execute</a>
+				</td>
 				<td></td>
-				<td><a href="
-					salerefund" class="execute imagelink">Execute</a></td>
+				<td>
+					<a href="source/GetAuthorizationServlet.html" class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr>
+                <td>
+                    Capture an authorized payment
+                </td>
+                <td>
+                </td>
+                <td>
+					<a href="authorizationcaptureservlet" class="execute imagelink">Execute</a>
+				</td>
 				<td></td>
-				<td><a href="source/SaleRefundServlet.html"
-					class="source imagelink">Source</a></td>
+				<td>
+					<a href="source/AuthorizationCaptureServlet.html" class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr>
+                <td>
+                    Void an authorized payment
+                </td>
+                <td>
+                </td>
+                <td>
+					<a href="voidauthorizationservlet" class="execute imagelink">Execute</a>
+				</td>
+				<td></td>
+				<td>
+					<a href="source/VoidAuthorizationServlet.html" class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr valign="top">
+                <td>
+                    Reauthorize an authorized payment
+                </td>
+                <td>
+                </td>
+                <td>
+					<a href="reauthorization" class="execute imagelink">Execute</a>
+				</td>
+				<td></td>
+				<td>
+					<a href="source/ReauthorizationServlet.html" class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr valign="top" class="header">
+				<td>Capture</td>
 			</tr>
-			<tr>
-				<td>Save a credit card</td>
+            <tr>
+                <td>
+                    Get captured payment details
+                </td>
+                <td>
+                </td>
+                <td>
+					<a href="getcaptureservlet" class="execute imagelink">Execute</a>
+				</td>
 				<td></td>
-				<td><a href="
-					createcreditcard" class="execute imagelink">Execute</a></td>
+				<td>
+					<a href="source/GetCaptureServlet.html" class="source imagelink">Source</a>
+				</td>
+            </tr>
+            <tr>
+                <td>
+                    Refund captured payment
+                </td>
+                <td>
+                </td>
+                <td>
+					<a href="refundcaptureservlet" class="execute imagelink">Execute</a>
+				</td>
 				<td></td>
-				<td><a href="source/CreateCreditCardServlet.html"
-					class="source imagelink">Source</a></td>
-			</tr>
-			<tr>
-				<td>Get credit card Details</td>
-				<td></td>
-				<td><a href="
-					getcreditcard" class="execute imagelink">Execute</a></td>
-				<td></td>
-				<td><a href="source/GetCreditCardServlet.html"
-					class="source imagelink">Source</a></td>
-			</tr>
-			<tr>
-				<td>Payment with saved credit card</td>
-				<td></td>
-				<td><a href="
-					paymentwithsavedcard"
-					class="execute imagelink">Execute</a></td>
-				<td></td>
-				<td><a href="source/PaymentWithSavedCardServlet.html"
-					class="source imagelink">Source</a></td>
-			</tr>
-			
-			
-			<tr>
-				<td>Get Authorization</td>
-				<td></td>
-				<td><a href="
-					getauthorizationservlet"
-					class="execute imagelink">Execute</a></td>
-				<td></td>
-				<td><a href="source/GetAuthorizationServlet.html"
-					class="source imagelink">Source</a></td>
-			</tr>
-			<tr>
-				<td>Capture Authorization</td>
-				<td></td>
-				<td><a href="
-					authorizationcaptureservlet"
-					class="execute imagelink">Execute</a></td>
-				<td></td>
-				<td><a href="source/AuthorizationCaptureServlet.html"
-					class="source imagelink">Source</a></td>
-			</tr>
-			<tr>
-				<td>Void Authorization</td>
-				<td></td>
-				<td><a href="
-					voidauthorizationservlet"
-					class="execute imagelink">Execute</a></td>
-				<td></td>
-				<td><a href="source/VoidAuthorizationServlet.html"
-					class="source imagelink">Source</a></td>
-			</tr>
-			<tr>
-				<td>Reuthorization</td>
-				<td></td>
-				<td><a href="
-					reauthorization"
-					class="execute imagelink">Execute</a></td>
-				<td></td>
-				<td><a href="source/ReauthorizationServlet.html"
-					class="source imagelink">Source</a></td>
-			</tr>
-			<tr>
-				<td>Get Capture</td>
-				<td></td>
-				<td><a href="
-					getcaptureservlet"
-					class="execute imagelink">Execute</a></td>
-				<td></td>
-				<td><a href="source/GetCaptureServlet.html"
-					class="source imagelink">Source</a></td>
-			</tr>
-			<tr>
-				<td>Refund Capture</td>
-				<td></td>
-				<td><a href="
-					refundcaptureservlet"
-					class="execute imagelink">Execute</a></td>
-				<td></td>
-				<td><a href="source/RefundCaptureServlet.html"
-					class="source imagelink">Source</a></td>
-			</tr>
-		</tbody>
+				<td>
+					<a href="source/RefundCaptureServlet.html" class="source imagelink">Source</a>
+				</td>
+            </tr>
+        </tbody>
 	</table>
 </body>
 </html>

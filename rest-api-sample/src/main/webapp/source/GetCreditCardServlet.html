@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>GetCreditCardServlet</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="GetCreditCardServlet"><meta name="groc-project-path" content="GetCreditCardServlet.java"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><body></body></html><a href="../">Back<div id="document"><div class="segment"><a id="segment-0" name="segment-0" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-0" class="pilcrow">¶</a></div><div class="wrapper"><h1 id="getcreditcard-sample">GetCreditCard Sample</h1>
+<!DOCTYPE html><html lang="en"><head><title>GetCreditCardServlet</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="GetCreditCardServlet"><meta name="groc-project-path" content="GetCreditCardServlet.java"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><body></body></html><a href="../">Back<div id="document"><div class="segment"><a id="segment-0" name="segment-0" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-0" class="pilcrow">¶</a></div><div class="wrapper"><h1 id="get-credit-card-sample">Get Credit Card Sample</h1>
 
 <p>This sample code demonstrates how you 
 retrieve a previously saved 
@@ -6,7 +6,7 @@ Credit Card using the 'vault' API.
 API used: GET /v1/vault/credit-card/{id}</p></div></div><div class="code"><div class="wrapper"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">paypal</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">payments</span><span class="o">.</span><span class="na">servlet</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">javax.servlet.ServletConfig</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">javax.servlet.ServletException</span><span class="o">;</span>
@@ -17,9 +17,10 @@ API used: GET /v1/vault/credit-card/{id}</p></div></div><div class="code"><div c
 <span class="kn">import</span> <span class="nn">org.apache.log4j.Logger</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">com.paypal.api.payments.CreditCard</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.paypal.api.payments.util.GenerateAccessToken</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.paypal.api.payments.util.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.paypal.core.rest.APIContext</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.paypal.core.rest.OAuthTokenCredential</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.paypal.core.rest.PayPalRESTException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.paypal.core.rest.PayPalResource</span><span class="o">;</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * @author lvairamani</span>
@@ -31,41 +32,53 @@ API used: GET /v1/vault/credit-card/{id}</p></div></div><div class="code"><div c
   <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">Logger</span>
       <span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">GetCreditCardServlet</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
 
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="n">ServletConfig</span> <span class="n">servletConfig</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span> <span class="o">{</span></div></div></div><div class="segment"><a id="segment-1" name="segment-1" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-1" class="pilcrow">¶</a></div><div class="wrapper"><h2 id="load-configuration">Load Configuration</h2>
-
-<p>Load SDK configuration for
-the resource. This intialization code can be
-done as Init Servlet.</p></div></div><div class="code"><div class="wrapper">    <span class="n">InputStream</span> <span class="n">is</span> <span class="o">=</span> <span class="n">GetCreditCardServlet</span><span class="o">.</span><span class="na">class</span>
-        <span class="o">.</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">&quot;/sdk_config.properties&quot;</span><span class="o">);</span>
-    <span class="k">try</span> <span class="o">{</span>
-      <span class="n">PayPalResource</span><span class="o">.</span><span class="na">initConfig</span><span class="o">(</span><span class="n">is</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">PayPalRESTException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">LOGGER</span><span class="o">.</span><span class="na">fatal</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
-    <span class="o">}</span>
-
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="n">ServletConfig</span> <span class="n">servletConfig</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span> <span class="o">{</span>
   <span class="o">}</span>
 
   <span class="nd">@Override</span>
   <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">resp</span><span class="o">)</span>
       <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
     <span class="n">doPost</span><span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="n">resp</span><span class="o">);</span>
-  <span class="o">}</span></div></div></div><div class="segment"><a id="segment-2" name="segment-2" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-2" class="pilcrow">¶</a></div><div class="wrapper"><h2 id="getcreditcardusingid">GetCreditCardUsingId</h2>
+  <span class="o">}</span></div></div></div><div class="segment"><a id="segment-1" name="segment-1" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-1" class="pilcrow">¶</a></div><div class="wrapper"><h2 id="getcreditcardusingid">GetCreditCardUsingId</h2>
 
 <p>Call the method with a previously created Credit Card ID</p></div></div><div class="code"><div class="wrapper">  <span class="nd">@Override</span>
   <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">resp</span><span class="o">)</span>
       <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+    <span class="n">APIContext</span> <span class="n">apiContext</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="n">String</span> <span class="n">accessToken</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="k">try</span> <span class="o">{</span></div></div></div><div class="segment"><a id="segment-2" name="segment-2" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-2" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="dynamicconfiguration">DynamicConfiguration</h3>
 
-    <span class="k">try</span> <span class="o">{</span></div></div></div><div class="segment"><a id="segment-3" name="segment-3" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-3" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="accesstoken">AccessToken</h3>
+<p>Retrieve the dynamic configuration map
+containing only the mode parameter at
+the least</p></div></div><div class="code"><div class="wrapper">      <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">configurationMap</span> <span class="o">=</span> <span class="n">Configuration</span>
+          <span class="o">.</span><span class="na">getConfigurationMap</span><span class="o">();</span></div></div></div><div class="segment"><a id="segment-3" name="segment-3" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-3" class="pilcrow">¶</a></div><div class="wrapper"><p>Retrieve the client credentials
+containing the clientID and
+clientSecret</p></div></div><div class="code"><div class="wrapper">      <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">clientCredentials</span> <span class="o">=</span> <span class="n">Configuration</span>
+          <span class="o">.</span><span class="na">getClientCredentials</span><span class="o">();</span></div></div></div><div class="segment"><a id="segment-4" name="segment-4" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-4" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="accesstoken">AccessToken</h3>
 
 <p>Retrieve the access token from
 OAuthTokenCredential by passing in
 ClientID and ClientSecret
 It is not mandatory to generate Access Token on a per call basis.
 Typically the access token can be generated once and
-reused within the expiry window</p></div></div><div class="code"><div class="wrapper">      <span class="n">String</span> <span class="n">accessToken</span> <span class="o">=</span> <span class="n">GenerateAccessToken</span><span class="o">.</span><span class="na">getAccessToken</span><span class="o">();</span></div></div></div><div class="segment"><a id="segment-4" name="segment-4" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-4" class="pilcrow">¶</a></div><div class="wrapper"><p>Retrieve the CreditCard object by calling the
+reused within the expiry window</p></div></div><div class="code"><div class="wrapper">      <span class="n">accessToken</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OAuthTokenCredential</span><span class="o">(</span>
+          <span class="n">clientCredentials</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;clientID&quot;</span><span class="o">),</span>
+          <span class="n">clientCredentials</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;clientSecret&quot;</span><span class="o">),</span> <span class="n">configurationMap</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">getAccessToken</span><span class="o">();</span></div></div></div><div class="segment"><a id="segment-5" name="segment-5" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-5" class="pilcrow">¶</a></div><div class="wrapper"><h3 id="api-context">Api Context</h3>
+
+<p>Pass in a <code>ApiContext</code> object to authenticate
+the call and to send a unique request id
+(that ensures idempotency). The SDK generates
+a request id if you do not pass one explicitly.</p></div></div><div class="code"><div class="wrapper">      <span class="n">apiContext</span> <span class="o">=</span> <span class="k">new</span> <span class="n">APIContext</span><span class="o">(</span><span class="n">accessToken</span><span class="o">);</span>
+      <span class="n">apiContext</span><span class="o">.</span><span class="na">setConfigurationMap</span><span class="o">(</span><span class="n">configurationMap</span><span class="o">);</span></div></div></div><div class="segment"><a id="segment-6" name="segment-6" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-6" class="pilcrow">¶</a></div><div class="wrapper"><p>Use this variant if you want to pass in a request id
+that is meaningful in your application, ideally
+a order id.</p></div></div><div class="code"><div class="wrapper">      <span class="cm">/*</span>
+<span class="cm">       * String requestId = Long.toString(System.nanoTime());</span>
+<span class="cm">       * APIContext apiContext = new APIContext(accessToken, requestId));</span>
+<span class="cm">       */</span></div></div></div><div class="segment"><a id="segment-7" name="segment-7" class="section_anchor"></a><div class="comments"><div class="pilwrap"><a href="#segment-7" class="pilcrow">¶</a></div><div class="wrapper"><p>Retrieve the CreditCard object by calling the
 static <code>get</code> method on the CreditCard class,
-and pass the Access Token and CreditCard ID</p></div></div><div class="code"><div class="wrapper">      <span class="n">CreditCard</span> <span class="n">creditCard</span> <span class="o">=</span> <span class="n">CreditCard</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">accessToken</span><span class="o">,</span>
-          <span class="s">&quot;CARD-5BT058015C739554AKE2GCEI&quot;</span><span class="o">);</span>
+and pass the APIContext and CreditCard ID</p></div></div><div class="code"><div class="wrapper">      <span class="n">CreditCard</span> <span class="n">creditCard</span> <span class="o">=</span> <span class="n">CreditCard</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">apiContext</span><span class="o">,</span>
+          <span class="s">&quot;CARD-656164079W913814PKINRPFA&quot;</span><span class="o">);</span>
       <span class="n">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&quot;Credit Card retrieved ID = &quot;</span> <span class="o">+</span> <span class="n">creditCard</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span>
           <span class="o">+</span> <span class="s">&quot;, status = &quot;</span> <span class="o">+</span> <span class="n">creditCard</span><span class="o">.</span><span class="na">getState</span><span class="o">());</span>
       <span class="n">req</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&quot;response&quot;</span><span class="o">,</span> <span class="n">CreditCard</span><span class="o">.</span><span class="na">getLastResponse</span><span class="o">());</span>
