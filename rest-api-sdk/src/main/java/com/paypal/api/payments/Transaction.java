@@ -6,16 +6,6 @@ import com.paypal.api.payments.Payee;
 import com.paypal.api.payments.ItemList;
 import com.paypal.api.payments.RelatedResources;
 import java.util.List;
-import java.util.Map;
-import com.paypal.core.rest.PayPalRESTException;
-import com.paypal.core.rest.PayPalResource;
-import com.paypal.core.rest.HttpMethod;
-import com.paypal.core.rest.RESTUtil;
-import com.paypal.core.rest.QueryParameters;
-import com.paypal.core.rest.APIContext;
-import java.io.File;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class Transaction  {
 
@@ -23,32 +13,32 @@ public class Transaction  {
 	 * Amount being collected.
 	 */
 	private Amount amount;
-	
+
 	/**
 	 * Recepient of the funds in this transaction.
 	 */
 	private Payee payee;
-	
+
 	/**
 	 * Description of what is being paid for.
 	 */
 	private String description;
-	
+
 	/**
 	 * List of items being paid for.
 	 */
 	private ItemList itemList;
-	
+
 	/**
 	 * List of financial transactions (Sale, Authorization, Capture, Refund) related to the payment.
 	 */
 	private List<RelatedResources> relatedResources;
-	
+
 	/**
 	 * Additional transactions for complex payment (Parallel and Chained) scenarios.
 	 */
 	private List<Transaction> transactions;
-	
+
 	/**
 	 * Default Constructor
 	 */
@@ -61,7 +51,7 @@ public class Transaction  {
 	public Transaction(Amount amount) {
 		this.amount = amount;
 	}
-	
+
 
 	/**
 	 * Setter for amount
@@ -70,7 +60,7 @@ public class Transaction  {
 		this.amount = amount;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for amount
 	 */
@@ -86,7 +76,7 @@ public class Transaction  {
 		this.payee = payee;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for payee
 	 */
@@ -102,7 +92,7 @@ public class Transaction  {
 		this.description = description;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for description
 	 */
@@ -118,7 +108,7 @@ public class Transaction  {
 		this.itemList = itemList;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for itemList
 	 */
@@ -134,7 +124,7 @@ public class Transaction  {
 		this.relatedResources = relatedResources;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for relatedResources
 	 */
@@ -150,7 +140,7 @@ public class Transaction  {
 		this.transactions = transactions;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for transactions
 	 */
@@ -160,7 +150,7 @@ public class Transaction  {
 
 	/**
 	 * Returns a JSON string corresponding to object state
-	 * 
+	 *
 	 * @return JSON representation
 	 */
 	public String toJSON() {

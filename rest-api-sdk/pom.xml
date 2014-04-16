@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.paypal.sdk</groupId>
     <artifactId>rest-api-sdk</artifactId>
-    <version>0.7.1</version>
+    <version>0.8.0</version>
     <packaging>jar</packaging>
     <name>REST API SDK</name>
     <description>PayPal SDK for integrating with the REST APIs</description>
@@ -37,7 +37,7 @@
         <dependency>
             <groupId>com.paypal.sdk</groupId>
             <artifactId>paypal-core</artifactId>
-            <version>1.4.4</version>
+            <version>1.5.2</version>
         </dependency>
     </dependencies>
     <build>

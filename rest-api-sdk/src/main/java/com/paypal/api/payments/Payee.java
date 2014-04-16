@@ -1,16 +1,6 @@
 package com.paypal.api.payments;
 
 import com.paypal.core.rest.JSONFormatter;
-import java.util.Map;
-import com.paypal.core.rest.PayPalRESTException;
-import com.paypal.core.rest.PayPalResource;
-import com.paypal.core.rest.HttpMethod;
-import com.paypal.core.rest.RESTUtil;
-import com.paypal.core.rest.QueryParameters;
-import com.paypal.core.rest.APIContext;
-import java.io.File;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class Payee  {
 
@@ -18,17 +8,17 @@ public class Payee  {
 	 * Email Address associated with the Payee's PayPal Account. If the provided email address is not associated with any PayPal Account, the payee can only receiver PayPal Wallet Payments. Direct Credit Card Payments will be denied due to card compliance requirements.
 	 */
 	private String email;
-	
+
 	/**
 	 * Encrypted PayPal Account identifier for the Payee.
 	 */
 	private String merchantId;
-	
+
 	/**
 	 * Phone number (in E.123 format) associated with the Payee's PayPal Account. If the provided phont number is not associated with any PayPal Account, the payee can only receiver PayPal Wallet Payments. Direct Credit Card Payments will be denied due to card compliance requirements.
 	 */
 	private String phone;
-	
+
 	/**
 	 * Default Constructor
 	 */
@@ -43,7 +33,7 @@ public class Payee  {
 		this.merchantId = merchantId;
 		this.phone = phone;
 	}
-	
+
 
 	/**
 	 * Setter for email
@@ -52,7 +42,7 @@ public class Payee  {
 		this.email = email;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for email
 	 */
@@ -68,7 +58,7 @@ public class Payee  {
 		this.merchantId = merchantId;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for merchantId
 	 */
@@ -84,7 +74,7 @@ public class Payee  {
 		this.phone = phone;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for phone
 	 */
@@ -94,7 +84,7 @@ public class Payee  {
 
 	/**
 	 * Returns a JSON string corresponding to object state
-	 * 
+	 *
 	 * @return JSON representation
 	 */
 	public String toJSON() {

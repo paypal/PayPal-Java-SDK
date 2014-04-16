@@ -1,16 +1,6 @@
 package com.paypal.api.payments;
 
 import com.paypal.core.rest.JSONFormatter;
-import java.util.Map;
-import com.paypal.core.rest.PayPalRESTException;
-import com.paypal.core.rest.PayPalResource;
-import com.paypal.core.rest.HttpMethod;
-import com.paypal.core.rest.RESTUtil;
-import com.paypal.core.rest.QueryParameters;
-import com.paypal.core.rest.APIContext;
-import java.io.File;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class Item  {
 
@@ -18,27 +8,27 @@ public class Item  {
 	 * Number of items.
 	 */
 	private String quantity;
-	
+
 	/**
 	 * Name of the item.
 	 */
 	private String name;
-	
+
 	/**
 	 * Cost of the item.
 	 */
 	private String price;
-	
+
 	/**
 	 * 3-letter Currency Code
 	 */
 	private String currency;
-	
+
 	/**
 	 * Number or code to identify the item in your catalog/records.
 	 */
 	private String sku;
-	
+
 	/**
 	 * Default Constructor
 	 */
@@ -54,7 +44,7 @@ public class Item  {
 		this.price = price;
 		this.currency = currency;
 	}
-	
+
 
 	/**
 	 * Setter for quantity
@@ -63,7 +53,7 @@ public class Item  {
 		this.quantity = quantity;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for quantity
 	 */
@@ -79,7 +69,7 @@ public class Item  {
 		this.name = name;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for name
 	 */
@@ -95,7 +85,7 @@ public class Item  {
 		this.price = price;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for price
 	 */
@@ -111,7 +101,7 @@ public class Item  {
 		this.currency = currency;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for currency
 	 */
@@ -127,7 +117,7 @@ public class Item  {
 		this.sku = sku;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for sku
 	 */
@@ -137,7 +127,7 @@ public class Item  {
 
 	/**
 	 * Returns a JSON string corresponding to object state
-	 * 
+	 *
 	 * @return JSON representation
 	 */
 	public String toJSON() {

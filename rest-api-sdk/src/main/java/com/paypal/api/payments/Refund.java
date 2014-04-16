@@ -4,15 +4,18 @@ import com.paypal.core.rest.JSONFormatter;
 import com.paypal.api.payments.Amount;
 import com.paypal.api.payments.Links;
 import java.util.List;
-import java.util.Map;
 import com.paypal.core.rest.PayPalRESTException;
 import com.paypal.core.rest.PayPalResource;
 import com.paypal.core.rest.HttpMethod;
 import com.paypal.core.rest.RESTUtil;
 import com.paypal.core.rest.QueryParameters;
 import com.paypal.core.rest.APIContext;
+import com.paypal.core.Constants;
+import com.paypal.core.SDKVersion;
+import com.paypal.sdk.info.SDKVersionImpl;
 import java.io.File;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Properties;
 
 public class Refund  {
@@ -21,45 +24,50 @@ public class Refund  {
 	 * Identifier of the refund transaction.
 	 */
 	private String id;
-	
+
 	/**
 	 * Time the resource was created.
 	 */
 	private String createTime;
-	
+
+	/**
+	 * Time the resource was last updated.
+	 */
+	private String updateTime;
+
 	/**
 	 * Details including both refunded amount (to Payer) and refunded fee (to Payee).If amount is not specified, it's assumed to be full refund.
 	 */
 	private Amount amount;
-	
+
 	/**
 	 * State of the refund transaction.
 	 */
 	private String state;
-	
+
 	/**
 	 * ID of the Sale transaction being refunded. 
 	 */
 	private String saleId;
-	
+
 	/**
 	 * ID of the Capture transaction being refunded. 
 	 */
 	private String captureId;
-	
+
 	/**
 	 * ID of the Payment resource that this transaction is based on.
 	 */
 	private String parentPayment;
-	
+
 	/**
 	 * 
 	 */
 	private List<Links> links;
-	
+
 	/**
 	 * Returns the last request sent to the Service
-	 * 
+	 *
 	 * @return Last request sent to the server
 	 */
 	public static String getLastRequest() {
@@ -68,7 +76,7 @@ public class Refund  {
 
 	/**
 	 * Returns the last response returned by the Service
-	 * 
+	 *
 	 * @return Last response got from the Service
 	 */
 	public static String getLastResponse() {
@@ -77,7 +85,7 @@ public class Refund  {
 
 	/**
 	 * Initialize using InputStream(of a Properties file)
-	 * 
+	 *
 	 * @param is
 	 *            InputStream
 	 * @throws PayPalRESTException
@@ -88,7 +96,7 @@ public class Refund  {
 
 	/**
 	 * Initialize using a File(Properties file)
-	 * 
+	 *
 	 * @param file
 	 *            File object of a properties entity
 	 * @throws PayPalRESTException
@@ -99,7 +107,7 @@ public class Refund  {
 
 	/**
 	 * Initialize using Properties
-	 * 
+	 *
 	 * @param properties
 	 *            Properties object
 	 */
@@ -120,7 +128,7 @@ public class Refund  {
 		this.id = id;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for id
 	 */
@@ -136,12 +144,28 @@ public class Refund  {
 		this.createTime = createTime;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for createTime
 	 */
 	public String getCreateTime() {
 		return this.createTime;
+	}
+
+
+	/**
+	 * Setter for updateTime
+	 */
+	public Refund setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+		return this;
+	}
+
+	/**
+	 * Getter for updateTime
+	 */
+	public String getUpdateTime() {
+		return this.updateTime;
 	}
 
 
@@ -152,7 +176,7 @@ public class Refund  {
 		this.amount = amount;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for amount
 	 */
@@ -168,7 +192,7 @@ public class Refund  {
 		this.state = state;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for state
 	 */
@@ -184,7 +208,7 @@ public class Refund  {
 		this.saleId = saleId;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for saleId
 	 */
@@ -200,7 +224,7 @@ public class Refund  {
 		this.captureId = captureId;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for captureId
 	 */
@@ -216,7 +240,7 @@ public class Refund  {
 		this.parentPayment = parentPayment;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for parentPayment
 	 */
@@ -232,7 +256,7 @@ public class Refund  {
 		this.links = links;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for links
 	 */
@@ -254,7 +278,7 @@ public class Refund  {
 		APIContext apiContext = new APIContext(accessToken);
 		return get(apiContext, refundId);
 	}
-	
+
 	/**
 	 * Obtain the Refund transaction resource for the given identifier.
 	 * @param apiContext
@@ -265,9 +289,17 @@ public class Refund  {
 	 * @throws PayPalRESTException
 	 */
 	public static Refund get(APIContext apiContext, String refundId) throws PayPalRESTException {
+		if (apiContext == null) {
+			throw new IllegalArgumentException("APIContext cannot be null");
+		}
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
 			throw new IllegalArgumentException("AccessToken cannot be null or empty");
 		}
+		if (apiContext.getHTTPHeaders() == null) {
+			apiContext.setHTTPHeaders(new HashMap<String, String>());
+		}
+		apiContext.getHTTPHeaders().put(Constants.HTTP_CONTENT_TYPE_HEADER, Constants.HTTP_CONTENT_TYPE_JSON);
+		apiContext.setSdkVersion(new SDKVersionImpl());
 		if (refundId == null) {
 			throw new IllegalArgumentException("refundId cannot be null");
 		}
@@ -277,10 +309,10 @@ public class Refund  {
 		String payLoad = "";
 		return PayPalResource.configureAndExecute(apiContext, HttpMethod.GET, resourcePath, payLoad, Refund.class);
 	}
-	
+
 	/**
 	 * Returns a JSON string corresponding to object state
-	 * 
+	 *
 	 * @return JSON representation
 	 */
 	public String toJSON() {

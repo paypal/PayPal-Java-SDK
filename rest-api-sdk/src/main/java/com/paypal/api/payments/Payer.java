@@ -4,16 +4,6 @@ import com.paypal.core.rest.JSONFormatter;
 import com.paypal.api.payments.FundingInstrument;
 import java.util.List;
 import com.paypal.api.payments.PayerInfo;
-import java.util.Map;
-import com.paypal.core.rest.PayPalRESTException;
-import com.paypal.core.rest.PayPalResource;
-import com.paypal.core.rest.HttpMethod;
-import com.paypal.core.rest.RESTUtil;
-import com.paypal.core.rest.QueryParameters;
-import com.paypal.core.rest.APIContext;
-import java.io.File;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class Payer  {
 
@@ -21,17 +11,17 @@ public class Payer  {
 	 * Payment method being used - PayPal Wallet payment or Direct Credit card.
 	 */
 	private String paymentMethod;
-	
+
 	/**
 	 * List of funding instruments from where the funds of the current payment come from. Typically a credit card.
 	 */
 	private List<FundingInstrument> fundingInstruments;
-	
+
 	/**
 	 * Information related to the Payer. In case of PayPal Wallet payment, this information will be filled in by PayPal after the user approves the payment using their PayPal Wallet. 
 	 */
 	private PayerInfo payerInfo;
-	
+
 	/**
 	 * Default Constructor
 	 */
@@ -44,7 +34,7 @@ public class Payer  {
 	public Payer(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
-	
+
 
 	/**
 	 * Setter for paymentMethod
@@ -53,7 +43,7 @@ public class Payer  {
 		this.paymentMethod = paymentMethod;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for paymentMethod
 	 */
@@ -69,7 +59,7 @@ public class Payer  {
 		this.fundingInstruments = fundingInstruments;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for fundingInstruments
 	 */
@@ -85,7 +75,7 @@ public class Payer  {
 		this.payerInfo = payerInfo;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for payerInfo
 	 */
@@ -95,7 +85,7 @@ public class Payer  {
 
 	/**
 	 * Returns a JSON string corresponding to object state
-	 * 
+	 *
 	 * @return JSON representation
 	 */
 	public String toJSON() {

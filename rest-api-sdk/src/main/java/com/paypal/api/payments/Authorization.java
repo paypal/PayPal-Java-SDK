@@ -4,15 +4,18 @@ import com.paypal.core.rest.JSONFormatter;
 import com.paypal.api.payments.Amount;
 import com.paypal.api.payments.Links;
 import java.util.List;
-import java.util.Map;
 import com.paypal.core.rest.PayPalRESTException;
 import com.paypal.core.rest.PayPalResource;
 import com.paypal.core.rest.HttpMethod;
 import com.paypal.core.rest.RESTUtil;
 import com.paypal.core.rest.QueryParameters;
 import com.paypal.core.rest.APIContext;
+import com.paypal.core.Constants;
+import com.paypal.core.SDKVersion;
+import com.paypal.sdk.info.SDKVersionImpl;
 import java.io.File;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Properties;
 
 public class Authorization  {
@@ -21,45 +24,45 @@ public class Authorization  {
 	 * Identifier of the authorization transaction.
 	 */
 	private String id;
-	
+
 	/**
 	 * Time the resource was created.
 	 */
 	private String createTime;
-	
+
 	/**
 	 * Time the resource was last updated.
 	 */
 	private String updateTime;
-	
+
 	/**
 	 * Amount being authorized for.
 	 */
 	private Amount amount;
-	
+
 	/**
 	 * State of the authorization transaction.
 	 */
 	private String state;
-	
+
 	/**
 	 * ID of the Payment resource that this transaction is based on.
 	 */
 	private String parentPayment;
-	
+
 	/**
 	 * Date/Time until which funds may be captured against this resource.
 	 */
 	private String validUntil;
-	
+
 	/**
 	 * 
 	 */
 	private List<Links> links;
-	
+
 	/**
 	 * Returns the last request sent to the Service
-	 * 
+	 *
 	 * @return Last request sent to the server
 	 */
 	public static String getLastRequest() {
@@ -68,7 +71,7 @@ public class Authorization  {
 
 	/**
 	 * Returns the last response returned by the Service
-	 * 
+	 *
 	 * @return Last response got from the Service
 	 */
 	public static String getLastResponse() {
@@ -77,7 +80,7 @@ public class Authorization  {
 
 	/**
 	 * Initialize using InputStream(of a Properties file)
-	 * 
+	 *
 	 * @param is
 	 *            InputStream
 	 * @throws PayPalRESTException
@@ -88,7 +91,7 @@ public class Authorization  {
 
 	/**
 	 * Initialize using a File(Properties file)
-	 * 
+	 *
 	 * @param file
 	 *            File object of a properties entity
 	 * @throws PayPalRESTException
@@ -99,7 +102,7 @@ public class Authorization  {
 
 	/**
 	 * Initialize using Properties
-	 * 
+	 *
 	 * @param properties
 	 *            Properties object
 	 */
@@ -120,7 +123,7 @@ public class Authorization  {
 		this.id = id;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for id
 	 */
@@ -136,7 +139,7 @@ public class Authorization  {
 		this.createTime = createTime;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for createTime
 	 */
@@ -152,7 +155,7 @@ public class Authorization  {
 		this.updateTime = updateTime;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for updateTime
 	 */
@@ -168,7 +171,7 @@ public class Authorization  {
 		this.amount = amount;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for amount
 	 */
@@ -184,7 +187,7 @@ public class Authorization  {
 		this.state = state;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for state
 	 */
@@ -200,7 +203,7 @@ public class Authorization  {
 		this.parentPayment = parentPayment;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for parentPayment
 	 */
@@ -216,7 +219,7 @@ public class Authorization  {
 		this.validUntil = validUntil;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for validUntil
 	 */
@@ -232,7 +235,7 @@ public class Authorization  {
 		this.links = links;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for links
 	 */
@@ -254,7 +257,7 @@ public class Authorization  {
 		APIContext apiContext = new APIContext(accessToken);
 		return get(apiContext, authorizationId);
 	}
-	
+
 	/**
 	 * Obtain the Authorization transaction resource for the given identifier.
 	 * @param apiContext
@@ -265,9 +268,17 @@ public class Authorization  {
 	 * @throws PayPalRESTException
 	 */
 	public static Authorization get(APIContext apiContext, String authorizationId) throws PayPalRESTException {
+		if (apiContext == null) {
+			throw new IllegalArgumentException("APIContext cannot be null");
+		}
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
 			throw new IllegalArgumentException("AccessToken cannot be null or empty");
 		}
+		if (apiContext.getHTTPHeaders() == null) {
+			apiContext.setHTTPHeaders(new HashMap<String, String>());
+		}
+		apiContext.getHTTPHeaders().put(Constants.HTTP_CONTENT_TYPE_HEADER, Constants.HTTP_CONTENT_TYPE_JSON);
+		apiContext.setSdkVersion(new SDKVersionImpl());
 		if (authorizationId == null) {
 			throw new IllegalArgumentException("authorizationId cannot be null");
 		}
@@ -277,7 +288,7 @@ public class Authorization  {
 		String payLoad = "";
 		return PayPalResource.configureAndExecute(apiContext, HttpMethod.GET, resourcePath, payLoad, Authorization.class);
 	}
-	
+
 
 	/**
 	 * Creates (and processes) a new Capture Transaction added as a related resource.
@@ -292,7 +303,7 @@ public class Authorization  {
 		APIContext apiContext = new APIContext(accessToken);
 		return capture(apiContext, capture);
 	}
-	
+
 	/**
 	 * Creates (and processes) a new Capture Transaction added as a related resource.
 	 * @param apiContext
@@ -303,9 +314,17 @@ public class Authorization  {
 	 * @throws PayPalRESTException
 	 */
 	public Capture capture(APIContext apiContext, Capture capture) throws PayPalRESTException {
+		if (apiContext == null) {
+			throw new IllegalArgumentException("APIContext cannot be null");
+		}
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
 			throw new IllegalArgumentException("AccessToken cannot be null or empty");
 		}
+		if (apiContext.getHTTPHeaders() == null) {
+			apiContext.setHTTPHeaders(new HashMap<String, String>());
+		}
+		apiContext.getHTTPHeaders().put(Constants.HTTP_CONTENT_TYPE_HEADER, Constants.HTTP_CONTENT_TYPE_JSON);
+		apiContext.setSdkVersion(new SDKVersionImpl());
 		if (this.getId() == null) {
 			throw new IllegalArgumentException("Id cannot be null");
 		}
@@ -318,7 +337,7 @@ public class Authorization  {
 		String payLoad = capture.toJSON();
 		return PayPalResource.configureAndExecute(apiContext, HttpMethod.POST, resourcePath, payLoad, Capture.class);
 	}
-	
+
 
 	/**
 	 * Voids (cancels) an Authorization.
@@ -331,7 +350,7 @@ public class Authorization  {
 		APIContext apiContext = new APIContext(accessToken);
 		return doVoid(apiContext);
 	}
-	
+
 	/**
 	 * Voids (cancels) an Authorization.
 	 * @param apiContext
@@ -340,9 +359,17 @@ public class Authorization  {
 	 * @throws PayPalRESTException
 	 */
 	public Authorization doVoid(APIContext apiContext) throws PayPalRESTException {
+		if (apiContext == null) {
+			throw new IllegalArgumentException("APIContext cannot be null");
+		}
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
 			throw new IllegalArgumentException("AccessToken cannot be null or empty");
 		}
+		if (apiContext.getHTTPHeaders() == null) {
+			apiContext.setHTTPHeaders(new HashMap<String, String>());
+		}
+		apiContext.getHTTPHeaders().put(Constants.HTTP_CONTENT_TYPE_HEADER, Constants.HTTP_CONTENT_TYPE_JSON);
+		apiContext.setSdkVersion(new SDKVersionImpl());
 		if (this.getId() == null) {
 			throw new IllegalArgumentException("Id cannot be null");
 		}
@@ -352,7 +379,7 @@ public class Authorization  {
 		String payLoad = "";
 		return PayPalResource.configureAndExecute(apiContext, HttpMethod.POST, resourcePath, payLoad, Authorization.class);
 	}
-	
+
 
 	/**
 	 * Reauthorizes an expired Authorization.
@@ -365,7 +392,7 @@ public class Authorization  {
 		APIContext apiContext = new APIContext(accessToken);
 		return reauthorize(apiContext);
 	}
-	
+
 	/**
 	 * Reauthorizes an expired Authorization.
 	 * @param apiContext
@@ -374,9 +401,17 @@ public class Authorization  {
 	 * @throws PayPalRESTException
 	 */
 	public Authorization reauthorize(APIContext apiContext) throws PayPalRESTException {
+		if (apiContext == null) {
+			throw new IllegalArgumentException("APIContext cannot be null");
+		}
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
 			throw new IllegalArgumentException("AccessToken cannot be null or empty");
 		}
+		if (apiContext.getHTTPHeaders() == null) {
+			apiContext.setHTTPHeaders(new HashMap<String, String>());
+		}
+		apiContext.getHTTPHeaders().put(Constants.HTTP_CONTENT_TYPE_HEADER, Constants.HTTP_CONTENT_TYPE_JSON);
+		apiContext.setSdkVersion(new SDKVersionImpl());
 		if (this.getId() == null) {
 			throw new IllegalArgumentException("Id cannot be null");
 		}
@@ -386,10 +421,10 @@ public class Authorization  {
 		String payLoad = this.toJSON();
 		return PayPalResource.configureAndExecute(apiContext, HttpMethod.POST, resourcePath, payLoad, Authorization.class);
 	}
-	
+
 	/**
 	 * Returns a JSON string corresponding to object state
-	 * 
+	 *
 	 * @return JSON representation
 	 */
 	public String toJSON() {

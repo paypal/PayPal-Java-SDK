@@ -5,16 +5,6 @@ import com.paypal.api.payments.Sale;
 import com.paypal.api.payments.Authorization;
 import com.paypal.api.payments.Capture;
 import com.paypal.api.payments.Refund;
-import java.util.Map;
-import com.paypal.core.rest.PayPalRESTException;
-import com.paypal.core.rest.PayPalResource;
-import com.paypal.core.rest.HttpMethod;
-import com.paypal.core.rest.RESTUtil;
-import com.paypal.core.rest.QueryParameters;
-import com.paypal.core.rest.APIContext;
-import java.io.File;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class RelatedResources  {
 
@@ -22,22 +12,22 @@ public class RelatedResources  {
 	 * A sale transaction
 	 */
 	private Sale sale;
-	
+
 	/**
 	 * An authorization transaction
 	 */
 	private Authorization authorization;
-	
+
 	/**
 	 * A capture transaction
 	 */
 	private Capture capture;
-	
+
 	/**
 	 * A refund transaction
 	 */
 	private Refund refund;
-	
+
 	/**
 	 * Default Constructor
 	 */
@@ -52,7 +42,7 @@ public class RelatedResources  {
 		this.sale = sale;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for sale
 	 */
@@ -68,7 +58,7 @@ public class RelatedResources  {
 		this.authorization = authorization;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for authorization
 	 */
@@ -84,7 +74,7 @@ public class RelatedResources  {
 		this.capture = capture;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for capture
 	 */
@@ -100,7 +90,7 @@ public class RelatedResources  {
 		this.refund = refund;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for refund
 	 */
@@ -110,7 +100,7 @@ public class RelatedResources  {
 
 	/**
 	 * Returns a JSON string corresponding to object state
-	 * 
+	 *
 	 * @return JSON representation
 	 */
 	public String toJSON() {

@@ -3,16 +3,6 @@ package com.paypal.api.payments;
 import com.paypal.core.rest.JSONFormatter;
 import com.paypal.api.payments.CreditCard;
 import java.util.List;
-import java.util.Map;
-import com.paypal.core.rest.PayPalRESTException;
-import com.paypal.core.rest.PayPalResource;
-import com.paypal.core.rest.HttpMethod;
-import com.paypal.core.rest.RESTUtil;
-import com.paypal.core.rest.QueryParameters;
-import com.paypal.core.rest.APIContext;
-import java.io.File;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class CreditCardHistory  {
 
@@ -20,17 +10,17 @@ public class CreditCardHistory  {
 	 * A list of credit card resources
 	 */
 	private List<CreditCard> creditCards;
-	
+
 	/**
 	 * Number of items returned in each range of results. Note that the last results range could have fewer items than the requested number of items.
 	 */
 	private int count;
-	
+
 	/**
 	 * Identifier of the next element to get the next range of results.
 	 */
 	private String nextId;
-	
+
 	/**
 	 * Default Constructor
 	 */
@@ -45,7 +35,7 @@ public class CreditCardHistory  {
 		this.creditCards = creditCards;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for creditCards
 	 */
@@ -61,7 +51,7 @@ public class CreditCardHistory  {
 		this.count = count;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for count
 	 */
@@ -77,7 +67,7 @@ public class CreditCardHistory  {
 		this.nextId = nextId;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for nextId
 	 */
@@ -87,7 +77,7 @@ public class CreditCardHistory  {
 
 	/**
 	 * Returns a JSON string corresponding to object state
-	 * 
+	 *
 	 * @return JSON representation
 	 */
 	public String toJSON() {

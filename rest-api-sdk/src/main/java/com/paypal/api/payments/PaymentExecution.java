@@ -3,16 +3,6 @@ package com.paypal.api.payments;
 import com.paypal.core.rest.JSONFormatter;
 import com.paypal.api.payments.Transactions;
 import java.util.List;
-import java.util.Map;
-import com.paypal.core.rest.PayPalRESTException;
-import com.paypal.core.rest.PayPalResource;
-import com.paypal.core.rest.HttpMethod;
-import com.paypal.core.rest.RESTUtil;
-import com.paypal.core.rest.QueryParameters;
-import com.paypal.core.rest.APIContext;
-import java.io.File;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class PaymentExecution  {
 
@@ -20,12 +10,12 @@ public class PaymentExecution  {
 	 * PayPal assigned Payer ID returned in the approval return url.
 	 */
 	private String payerId;
-	
+
 	/**
 	 * If the amount needs to be updated after obtaining the PayPal Payer info (eg. shipping address), it can be updated using this element.
 	 */
 	private List<Transactions> transactions;
-	
+
 	/**
 	 * Default Constructor
 	 */
@@ -38,7 +28,7 @@ public class PaymentExecution  {
 	public PaymentExecution(String payerId) {
 		this.payerId = payerId;
 	}
-	
+
 
 	/**
 	 * Setter for payerId
@@ -47,7 +37,7 @@ public class PaymentExecution  {
 		this.payerId = payerId;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for payerId
 	 */
@@ -63,7 +53,7 @@ public class PaymentExecution  {
 		this.transactions = transactions;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for transactions
 	 */
@@ -73,7 +63,7 @@ public class PaymentExecution  {
 
 	/**
 	 * Returns a JSON string corresponding to object state
-	 * 
+	 *
 	 * @return JSON representation
 	 */
 	public String toJSON() {

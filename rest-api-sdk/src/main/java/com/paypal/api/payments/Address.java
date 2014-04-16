@@ -1,16 +1,6 @@
 package com.paypal.api.payments;
 
 import com.paypal.core.rest.JSONFormatter;
-import java.util.Map;
-import com.paypal.core.rest.PayPalRESTException;
-import com.paypal.core.rest.PayPalResource;
-import com.paypal.core.rest.HttpMethod;
-import com.paypal.core.rest.RESTUtil;
-import com.paypal.core.rest.QueryParameters;
-import com.paypal.core.rest.APIContext;
-import java.io.File;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class Address  {
 
@@ -18,37 +8,37 @@ public class Address  {
 	 * Line 1 of the Address (eg. number, street, etc).
 	 */
 	private String line1;
-	
+
 	/**
 	 * Optional line 2 of the Address (eg. suite, apt #, etc.).
 	 */
 	private String line2;
-	
+
 	/**
 	 * City name.
 	 */
 	private String city;
-	
+
 	/**
 	 * 2 letter country code.
 	 */
 	private String countryCode;
-	
+
 	/**
 	 * Zip code or equivalent is usually required for countries that have them. For list of countries that do not have postal codes please refer to http://en.wikipedia.org/wiki/Postal_code.
 	 */
 	private String postalCode;
-	
+
 	/**
 	 * 2 letter code for US states, and the equivalent for other countries.
 	 */
 	private String state;
-	
+
 	/**
 	 * Phone number in E.123 format.
 	 */
 	private String phone;
-	
+
 	/**
 	 * Default Constructor
 	 */
@@ -64,7 +54,7 @@ public class Address  {
 		this.countryCode = countryCode;
 		this.state = state;
 	}
-	
+
 
 	/**
 	 * Setter for line1
@@ -73,7 +63,7 @@ public class Address  {
 		this.line1 = line1;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for line1
 	 */
@@ -89,7 +79,7 @@ public class Address  {
 		this.line2 = line2;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for line2
 	 */
@@ -105,7 +95,7 @@ public class Address  {
 		this.city = city;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for city
 	 */
@@ -121,7 +111,7 @@ public class Address  {
 		this.countryCode = countryCode;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for countryCode
 	 */
@@ -137,7 +127,7 @@ public class Address  {
 		this.postalCode = postalCode;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for postalCode
 	 */
@@ -153,7 +143,7 @@ public class Address  {
 		this.state = state;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for state
 	 */
@@ -169,7 +159,7 @@ public class Address  {
 		this.phone = phone;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for phone
 	 */
@@ -179,7 +169,7 @@ public class Address  {
 
 	/**
 	 * Returns a JSON string corresponding to object state
-	 * 
+	 *
 	 * @return JSON representation
 	 */
 	public String toJSON() {

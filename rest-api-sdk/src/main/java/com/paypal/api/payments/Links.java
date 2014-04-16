@@ -2,16 +2,6 @@ package com.paypal.api.payments;
 
 import com.paypal.core.rest.JSONFormatter;
 import com.paypal.api.payments.HyperSchema;
-import java.util.Map;
-import com.paypal.core.rest.PayPalRESTException;
-import com.paypal.core.rest.PayPalResource;
-import com.paypal.core.rest.HttpMethod;
-import com.paypal.core.rest.RESTUtil;
-import com.paypal.core.rest.QueryParameters;
-import com.paypal.core.rest.APIContext;
-import java.io.File;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class Links  {
 
@@ -19,32 +9,32 @@ public class Links  {
 	 * 
 	 */
 	private String href;
-	
+
 	/**
 	 * 
 	 */
 	private String rel;
-	
+
 	/**
 	 * 
 	 */
 	private HyperSchema targetSchema;
-	
+
 	/**
 	 * 
 	 */
 	private String method;
-	
+
 	/**
 	 * 
 	 */
 	private String enctype;
-	
+
 	/**
 	 * 
 	 */
 	private HyperSchema schema;
-	
+
 	/**
 	 * Default Constructor
 	 */
@@ -58,7 +48,7 @@ public class Links  {
 		this.href = href;
 		this.rel = rel;
 	}
-	
+
 
 	/**
 	 * Setter for href
@@ -67,7 +57,7 @@ public class Links  {
 		this.href = href;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for href
 	 */
@@ -83,7 +73,7 @@ public class Links  {
 		this.rel = rel;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for rel
 	 */
@@ -99,7 +89,7 @@ public class Links  {
 		this.targetSchema = targetSchema;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for targetSchema
 	 */
@@ -115,7 +105,7 @@ public class Links  {
 		this.method = method;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for method
 	 */
@@ -131,7 +121,7 @@ public class Links  {
 		this.enctype = enctype;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for enctype
 	 */
@@ -147,7 +137,7 @@ public class Links  {
 		this.schema = schema;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for schema
 	 */
@@ -157,7 +147,7 @@ public class Links  {
 
 	/**
 	 * Returns a JSON string corresponding to object state
-	 * 
+	 *
 	 * @return JSON representation
 	 */
 	public String toJSON() {

@@ -4,7 +4,7 @@
 
   <groupId>com.paypal.sdk</groupId>
   <artifactId>rest-api</artifactId>
-  <version>0.7.1</version>
+  <version>0.8.0</version>
   <packaging>pom</packaging>
 
   <name>rest-api</name>

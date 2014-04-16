@@ -11,8 +11,12 @@ import com.paypal.core.rest.HttpMethod;
 import com.paypal.core.rest.RESTUtil;
 import com.paypal.core.rest.QueryParameters;
 import com.paypal.core.rest.APIContext;
+import com.paypal.core.Constants;
+import com.paypal.core.SDKVersion;
+import com.paypal.sdk.info.SDKVersionImpl;
 import java.io.File;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Properties;
 
 public class CreditCard  {
@@ -21,70 +25,70 @@ public class CreditCard  {
 	 * ID of the credit card being saved for later use.
 	 */
 	private String id;
-	
+
 	/**
 	 * Card number.
 	 */
 	private String number;
-	
+
 	/**
 	 * Type of the Card (eg. Visa, Mastercard, etc.).
 	 */
 	private String type;
-	
+
 	/**
 	 * card expiry month with value 1 - 12.
 	 */
 	private int expireMonth;
-	
+
 	/**
 	 * 4 digit card expiry year
 	 */
 	private int expireYear;
-	
+
 	/**
 	 * Card validation code. Only supported when making a Payment but not when saving a credit card for future use.
 	 */
 	private String cvv2;
-	
+
 	/**
 	 * Card holder's first name.
 	 */
 	private String firstName;
-	
+
 	/**
 	 * Card holder's last name.
 	 */
 	private String lastName;
-	
+
 	/**
 	 * Billing Address associated with this card.
 	 */
 	private Address billingAddress;
-	
+
 	/**
 	 * A unique identifier of the payer generated and provided by the facilitator. This is required when creating or using a tokenized funding instrument.
 	 */
 	private String payerId;
-	
+
 	/**
 	 * State of the funding instrument.
 	 */
 	private String state;
-	
+
 	/**
 	 * Date/Time until this resource can be used fund a payment.
 	 */
 	private String validUntil;
-	
+
 	/**
 	 * 
 	 */
 	private List<Links> links;
-	
+
 	/**
 	 * Returns the last request sent to the Service
-	 * 
+	 *
 	 * @return Last request sent to the server
 	 */
 	public static String getLastRequest() {
@@ -93,7 +97,7 @@ public class CreditCard  {
 
 	/**
 	 * Returns the last response returned by the Service
-	 * 
+	 *
 	 * @return Last response got from the Service
 	 */
 	public static String getLastResponse() {
@@ -102,7 +106,7 @@ public class CreditCard  {
 
 	/**
 	 * Initialize using InputStream(of a Properties file)
-	 * 
+	 *
 	 * @param is
 	 *            InputStream
 	 * @throws PayPalRESTException
@@ -113,7 +117,7 @@ public class CreditCard  {
 
 	/**
 	 * Initialize using a File(Properties file)
-	 * 
+	 *
 	 * @param file
 	 *            File object of a properties entity
 	 * @throws PayPalRESTException
@@ -124,7 +128,7 @@ public class CreditCard  {
 
 	/**
 	 * Initialize using Properties
-	 * 
+	 *
 	 * @param properties
 	 *            Properties object
 	 */
@@ -146,7 +150,7 @@ public class CreditCard  {
 		this.expireMonth = expireMonth;
 		this.expireYear = expireYear;
 	}
-	
+
 
 	/**
 	 * Setter for id
@@ -155,7 +159,7 @@ public class CreditCard  {
 		this.id = id;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for id
 	 */
@@ -171,7 +175,7 @@ public class CreditCard  {
 		this.number = number;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for number
 	 */
@@ -187,7 +191,7 @@ public class CreditCard  {
 		this.type = type;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for type
 	 */
@@ -203,7 +207,7 @@ public class CreditCard  {
 		this.expireMonth = expireMonth;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for expireMonth
 	 */
@@ -219,7 +223,7 @@ public class CreditCard  {
 		this.expireYear = expireYear;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for expireYear
 	 */
@@ -235,7 +239,7 @@ public class CreditCard  {
 		this.cvv2 = cvv2;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for cvv2
 	 */
@@ -251,7 +255,7 @@ public class CreditCard  {
 		this.firstName = firstName;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for firstName
 	 */
@@ -267,7 +271,7 @@ public class CreditCard  {
 		this.lastName = lastName;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for lastName
 	 */
@@ -283,7 +287,7 @@ public class CreditCard  {
 		this.billingAddress = billingAddress;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for billingAddress
 	 */
@@ -299,7 +303,7 @@ public class CreditCard  {
 		this.payerId = payerId;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for payerId
 	 */
@@ -315,7 +319,7 @@ public class CreditCard  {
 		this.state = state;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for state
 	 */
@@ -331,7 +335,7 @@ public class CreditCard  {
 		this.validUntil = validUntil;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for validUntil
 	 */
@@ -347,7 +351,7 @@ public class CreditCard  {
 		this.links = links;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for links
 	 */
@@ -367,7 +371,7 @@ public class CreditCard  {
 		APIContext apiContext = new APIContext(accessToken);
 		return create(apiContext);
 	}
-	
+
 	/**
 	 * Creates a new Credit Card Resource (aka Tokenize).
 	 * @param apiContext
@@ -376,14 +380,22 @@ public class CreditCard  {
 	 * @throws PayPalRESTException
 	 */
 	public CreditCard create(APIContext apiContext) throws PayPalRESTException {
+		if (apiContext == null) {
+			throw new IllegalArgumentException("APIContext cannot be null");
+		}
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
 			throw new IllegalArgumentException("AccessToken cannot be null or empty");
 		}
+		if (apiContext.getHTTPHeaders() == null) {
+			apiContext.setHTTPHeaders(new HashMap<String, String>());
+		}
+		apiContext.getHTTPHeaders().put(Constants.HTTP_CONTENT_TYPE_HEADER, Constants.HTTP_CONTENT_TYPE_JSON);
+		apiContext.setSdkVersion(new SDKVersionImpl());
 		String resourcePath = "v1/vault/credit-card";
 		String payLoad = this.toJSON();
 		return PayPalResource.configureAndExecute(apiContext, HttpMethod.POST, resourcePath, payLoad, CreditCard.class);
 	}
-	
+
 
 	/**
 	 * Obtain the Credit Card resource for the given identifier.
@@ -398,7 +410,7 @@ public class CreditCard  {
 		APIContext apiContext = new APIContext(accessToken);
 		return get(apiContext, creditCardId);
 	}
-	
+
 	/**
 	 * Obtain the Credit Card resource for the given identifier.
 	 * @param apiContext
@@ -409,9 +421,17 @@ public class CreditCard  {
 	 * @throws PayPalRESTException
 	 */
 	public static CreditCard get(APIContext apiContext, String creditCardId) throws PayPalRESTException {
+		if (apiContext == null) {
+			throw new IllegalArgumentException("APIContext cannot be null");
+		}
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
 			throw new IllegalArgumentException("AccessToken cannot be null or empty");
 		}
+		if (apiContext.getHTTPHeaders() == null) {
+			apiContext.setHTTPHeaders(new HashMap<String, String>());
+		}
+		apiContext.getHTTPHeaders().put(Constants.HTTP_CONTENT_TYPE_HEADER, Constants.HTTP_CONTENT_TYPE_JSON);
+		apiContext.setSdkVersion(new SDKVersionImpl());
 		if (creditCardId == null) {
 			throw new IllegalArgumentException("creditCardId cannot be null");
 		}
@@ -421,10 +441,10 @@ public class CreditCard  {
 		String payLoad = "";
 		return PayPalResource.configureAndExecute(apiContext, HttpMethod.GET, resourcePath, payLoad, CreditCard.class);
 	}
-	
+
 
 	/**
-	 * Delete the Credit Card resource for the given identifier. Returns 204 No Content when the card is deleted successfully.
+	 * Delete the Credit Card resource for the given identifier.
 	 * @param accessToken
 	 *            Access Token used for the API call.
 	 * @return 
@@ -435,22 +455,30 @@ public class CreditCard  {
 		delete(apiContext);
 		return;
 	}
-	
+
 	/**
-	 * Delete the Credit Card resource for the given identifier. Returns 204 No Content when the card is deleted successfully.
+	 * Delete the Credit Card resource for the given identifier.
 	 * @param apiContext
 	 *            {@link APIContext} used for the API call.
 	 * @return 
 	 * @throws PayPalRESTException
 	 */
 	public void delete(APIContext apiContext) throws PayPalRESTException {
+		if (apiContext == null) {
+			throw new IllegalArgumentException("APIContext cannot be null");
+		}
 		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
 			throw new IllegalArgumentException("AccessToken cannot be null or empty");
 		}
+		if (apiContext.getHTTPHeaders() == null) {
+			apiContext.setHTTPHeaders(new HashMap<String, String>());
+		}
+		apiContext.getHTTPHeaders().put(Constants.HTTP_CONTENT_TYPE_HEADER, Constants.HTTP_CONTENT_TYPE_JSON);
+		apiContext.setSdkVersion(new SDKVersionImpl());
 		if (this.getId() == null) {
 			throw new IllegalArgumentException("Id cannot be null");
 		}
-		apiContext.setMaskRequestId(true);
+			apiContext.setMaskRequestId(true);
 		Object[] parameters = new Object[] {this.getId()};
 		String pattern = "v1/vault/credit-card/{0}";
 		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);
@@ -458,10 +486,98 @@ public class CreditCard  {
 		PayPalResource.configureAndExecute(apiContext, HttpMethod.DELETE, resourcePath, payLoad, null);
 		return;
 	}
-	
+
+
+	/**
+	 * Update information in a previously saved card. Only the modified fields need to be passed in the request.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @return CreditCard
+	 * @throws PayPalRESTException
+	 */
+	public CreditCard update(String accessToken) throws PayPalRESTException {
+		APIContext apiContext = new APIContext(accessToken);
+		return update(apiContext);
+	}
+
+	/**
+	 * Update information in a previously saved card. Only the modified fields need to be passed in the request.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @return CreditCard
+	 * @throws PayPalRESTException
+	 */
+	public CreditCard update(APIContext apiContext) throws PayPalRESTException {
+		if (apiContext == null) {
+			throw new IllegalArgumentException("APIContext cannot be null");
+		}
+		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
+			throw new IllegalArgumentException("AccessToken cannot be null or empty");
+		}
+		if (apiContext.getHTTPHeaders() == null) {
+			apiContext.setHTTPHeaders(new HashMap<String, String>());
+		}
+		apiContext.getHTTPHeaders().put(Constants.HTTP_CONTENT_TYPE_HEADER, Constants.HTTP_CONTENT_TYPE_JSON);
+		apiContext.setSdkVersion(new SDKVersionImpl());
+		if (this.getId() == null) {
+			throw new IllegalArgumentException("Id cannot be null");
+		}
+		Object[] parameters = new Object[] {this.getId()};
+		String pattern = "v1/vault/credit-card/{0}";
+		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);
+		String payLoad = this.toJSON();
+		return PayPalResource.configureAndExecute(apiContext, HttpMethod.PATCH, resourcePath, payLoad, CreditCard.class);
+	}
+
+
+	/**
+	 * Retrieves a list of Credit Card resources.
+	 * @param accessToken
+	 *            Access Token used for the API call.
+	 * @param containerMap
+	 *            Map<String, String>
+	 * @return CreditCardHistory
+	 * @throws PayPalRESTException
+	 */
+	public static CreditCardHistory list(String accessToken, Map<String, String> containerMap) throws PayPalRESTException {
+		APIContext apiContext = new APIContext(accessToken);
+		return list(apiContext, containerMap);
+	}
+
+	/**
+	 * Retrieves a list of Credit Card resources.
+	 * @param apiContext
+	 *            {@link APIContext} used for the API call.
+	 * @param containerMap
+	 *            Map<String, String>
+	 * @return CreditCardHistory
+	 * @throws PayPalRESTException
+	 */
+	public static CreditCardHistory list(APIContext apiContext, Map<String, String> containerMap) throws PayPalRESTException {
+		if (apiContext == null) {
+			throw new IllegalArgumentException("APIContext cannot be null");
+		}
+		if (apiContext.getAccessToken() == null || apiContext.getAccessToken().trim().length() <= 0) {
+			throw new IllegalArgumentException("AccessToken cannot be null or empty");
+		}
+		if (apiContext.getHTTPHeaders() == null) {
+			apiContext.setHTTPHeaders(new HashMap<String, String>());
+		}
+		apiContext.getHTTPHeaders().put(Constants.HTTP_CONTENT_TYPE_HEADER, Constants.HTTP_CONTENT_TYPE_JSON);
+		apiContext.setSdkVersion(new SDKVersionImpl());
+		if (containerMap == null) {
+			throw new IllegalArgumentException("containerMap cannot be null");
+		}
+		Object[] parameters = new Object[] {containerMap};
+		String pattern = "v1/vault/credit-card?count={0}&start_id={1}&start_index={2}&start_time={3}&end_time={4}&payer_id={5}";
+		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);
+		String payLoad = "";
+		return PayPalResource.configureAndExecute(apiContext, HttpMethod.GET, resourcePath, payLoad, CreditCardHistory.class);
+	}
+
 	/**
 	 * Returns a JSON string corresponding to object state
-	 * 
+	 *
 	 * @return JSON representation
 	 */
 	public String toJSON() {

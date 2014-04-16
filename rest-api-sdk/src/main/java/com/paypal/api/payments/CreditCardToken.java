@@ -1,16 +1,6 @@
 package com.paypal.api.payments;
 
 import com.paypal.core.rest.JSONFormatter;
-import java.util.Map;
-import com.paypal.core.rest.PayPalRESTException;
-import com.paypal.core.rest.PayPalResource;
-import com.paypal.core.rest.HttpMethod;
-import com.paypal.core.rest.RESTUtil;
-import com.paypal.core.rest.QueryParameters;
-import com.paypal.core.rest.APIContext;
-import java.io.File;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class CreditCardToken  {
 
@@ -18,32 +8,32 @@ public class CreditCardToken  {
 	 * ID of a previously saved Credit Card resource using /vault/credit-card API.
 	 */
 	private String creditCardId;
-	
+
 	/**
 	 * The unique identifier of the payer used when saving this credit card using /vault/credit-card API.
 	 */
 	private String payerId;
-	
+
 	/**
 	 * Last 4 digits of the card number from the saved card.
 	 */
 	private String last4;
-	
+
 	/**
 	 * Type of the Card (eg. visa, mastercard, etc.) from the saved card. Please note that the values are always in lowercase and not meant to be used directly for display.
 	 */
 	private String type;
-	
+
 	/**
 	 * card expiry month from the saved card with value 1 - 12
 	 */
 	private int expireMonth;
-	
+
 	/**
 	 * 4 digit card expiry year from the saved card
 	 */
 	private int expireYear;
-	
+
 	/**
 	 * Default Constructor
 	 */
@@ -56,7 +46,7 @@ public class CreditCardToken  {
 	public CreditCardToken(String creditCardId) {
 		this.creditCardId = creditCardId;
 	}
-	
+
 
 	/**
 	 * Setter for creditCardId
@@ -65,7 +55,7 @@ public class CreditCardToken  {
 		this.creditCardId = creditCardId;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for creditCardId
 	 */
@@ -81,7 +71,7 @@ public class CreditCardToken  {
 		this.payerId = payerId;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for payerId
 	 */
@@ -97,7 +87,7 @@ public class CreditCardToken  {
 		this.last4 = last4;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for last4
 	 */
@@ -113,7 +103,7 @@ public class CreditCardToken  {
 		this.type = type;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for type
 	 */
@@ -129,7 +119,7 @@ public class CreditCardToken  {
 		this.expireMonth = expireMonth;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for expireMonth
 	 */
@@ -145,7 +135,7 @@ public class CreditCardToken  {
 		this.expireYear = expireYear;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for expireYear
 	 */
@@ -155,7 +145,7 @@ public class CreditCardToken  {
 
 	/**
 	 * Returns a JSON string corresponding to object state
-	 * 
+	 *
 	 * @return JSON representation
 	 */
 	public String toJSON() {

@@ -1,5 +1,9 @@
 CHANGELOG
 ========= 
+V0.8.0 (April 16, 2014)
+-----------------------
+   * Added invoicing support
+
 V0.7.1 (July 31, 2013)
 -----------------------
    * Added support for Reauthorization

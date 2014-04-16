@@ -3,16 +3,6 @@ package com.paypal.api.payments;
 import com.paypal.core.rest.JSONFormatter;
 import com.paypal.api.payments.Links;
 import java.util.List;
-import java.util.Map;
-import com.paypal.core.rest.PayPalRESTException;
-import com.paypal.core.rest.PayPalResource;
-import com.paypal.core.rest.HttpMethod;
-import com.paypal.core.rest.RESTUtil;
-import com.paypal.core.rest.QueryParameters;
-import com.paypal.core.rest.APIContext;
-import java.io.File;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class HyperSchema  {
 
@@ -20,32 +10,32 @@ public class HyperSchema  {
 	 * 
 	 */
 	private List<Links> links;
-	
+
 	/**
 	 * 
 	 */
 	private String fragmentResolution;
-	
+
 	/**
 	 * 
 	 */
 	private Boolean readonly;
-	
+
 	/**
 	 * 
 	 */
 	private String contentEncoding;
-	
+
 	/**
 	 * 
 	 */
 	private String pathStart;
-	
+
 	/**
 	 * 
 	 */
 	private String mediaType;
-	
+
 	/**
 	 * Default Constructor
 	 */
@@ -60,7 +50,7 @@ public class HyperSchema  {
 		this.links = links;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for links
 	 */
@@ -76,7 +66,7 @@ public class HyperSchema  {
 		this.fragmentResolution = fragmentResolution;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for fragmentResolution
 	 */
@@ -92,7 +82,7 @@ public class HyperSchema  {
 		this.readonly = readonly;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for readonly
 	 */
@@ -108,7 +98,7 @@ public class HyperSchema  {
 		this.contentEncoding = contentEncoding;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for contentEncoding
 	 */
@@ -124,7 +114,7 @@ public class HyperSchema  {
 		this.pathStart = pathStart;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for pathStart
 	 */
@@ -140,7 +130,7 @@ public class HyperSchema  {
 		this.mediaType = mediaType;
 		return this;
 	}
-	
+
 	/**
 	 * Getter for mediaType
 	 */
@@ -150,7 +140,7 @@ public class HyperSchema  {
 
 	/**
 	 * Returns a JSON string corresponding to object state
-	 * 
+	 *
 	 * @return JSON representation
 	 */
 	public String toJSON() {
