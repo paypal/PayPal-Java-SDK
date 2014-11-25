@@ -1,5 +1,7 @@
 package com.paypal.api.payments;
 
+import java.util.Map;
+
 import com.paypal.core.rest.JSONFormatter;
 
 public class PatchRequest  {
@@ -13,6 +15,9 @@ public class PatchRequest  {
 	 * string containing a JSON-Pointer value that references a location within the target document (the target location) where the operation is performed.
 	 */
 	private String path;
+	
+
+	private Map<String, String> value;
 
 	/**
 	 * Default Constructor
@@ -23,9 +28,10 @@ public class PatchRequest  {
 	/**
 	 * Parameterized Constructor
 	 */
-	public PatchRequest(String op, String path) {
+	public PatchRequest(String op, String path, Map<String, String> value) {
 		this.op = op;
 		this.path = path;
+		this.value = value;
 	}
 
 
@@ -60,6 +66,15 @@ public class PatchRequest  {
 		return this.path;
 	}
 
+	public Map<String, String> getValue() {
+		return value;
+	}
+
+	public PatchRequest setValue(Map<String, String> value) {
+		this.value = value;
+		return this;
+	}
+	
 	/**
 	 * Returns a JSON string corresponding to object state
 	 *
@@ -73,4 +88,6 @@ public class PatchRequest  {
 	public String toString() {
 		return toJSON();
 	}
+
+
 }

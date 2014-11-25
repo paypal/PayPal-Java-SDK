@@ -1,27 +1,21 @@
 package com.paypal.api.payments;
 
-import com.paypal.core.rest.JSONFormatter;
-import com.paypal.api.payments.Payee;
-import com.paypal.api.payments.PaymentDefinition;
-import java.util.List;
-import com.paypal.api.payments.Terms;
-import com.paypal.api.payments.MerchantPreferences;
-import com.paypal.api.payments.Links;
-import com.paypal.core.rest.PayPalRESTException;
-import com.paypal.core.rest.PayPalResource;
-import com.paypal.core.rest.OAuthTokenCredential;
-import com.paypal.core.rest.HttpMethod;
-import com.paypal.core.rest.RESTUtil;
-import com.paypal.core.rest.QueryParameters;
-import com.paypal.core.rest.APIContext;
-import com.paypal.core.Constants;
-import com.paypal.core.SDKVersion;
-import com.paypal.sdk.info.SDKVersionImpl;
 import java.io.File;
 import java.io.InputStream;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+
+import com.paypal.core.Constants;
+import com.paypal.core.rest.APIContext;
+import com.paypal.core.rest.HttpMethod;
+import com.paypal.core.rest.JSONFormatter;
+import com.paypal.core.rest.OAuthTokenCredential;
+import com.paypal.core.rest.PayPalRESTException;
+import com.paypal.core.rest.PayPalResource;
+import com.paypal.core.rest.RESTUtil;
+import com.paypal.sdk.info.SDKVersionImpl;
 
 public class Plan  {
 
@@ -473,7 +467,9 @@ public class Plan  {
 		Object[] parameters = new Object[] {this.getId()};
 		String pattern = "v1/payments/billing-plans/{0}";
 		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);
-		String payLoad = patchRequest.toJSON();
+		// put patchRequest in array
+		PatchRequest[] patchRequestArray = new PatchRequest[] { patchRequest };
+		String payLoad = JSONFormatter.toJSON(patchRequestArray);
 		PayPalResource.configureAndExecute(apiContext, HttpMethod.PATCH, resourcePath, payLoad, null);
 		return;
 	}
@@ -518,7 +514,7 @@ public class Plan  {
 			throw new IllegalArgumentException("containerMap cannot be null");
 		}
 		Object[] parameters = new Object[] {containerMap};
-		String pattern = "v1/plans/billing-plans?start_id={0}&sort_order={1}&status={2}";
+		String pattern = "v1/payments/billing-plans?page_size={0}&status={1}&page={2}&total_required={3}";
 		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);
 		String payLoad = "";
 		return PayPalResource.configureAndExecute(apiContext, HttpMethod.GET, resourcePath, payLoad, PlanList.class);
