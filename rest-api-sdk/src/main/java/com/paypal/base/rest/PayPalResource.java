@@ -8,9 +8,8 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.paypal.base.APICallPreHandler;
 import com.paypal.base.ConfigManager;
@@ -26,7 +25,7 @@ import com.paypal.base.SDKVersion;
  */
 public abstract class PayPalResource extends PayPalModel{
 
-	private static final Logger log = LogManager.getLogger(PayPalResource.class);
+	private static final Logger log = Logger.getLogger(PayPalResource.class.getName());
 	
 	/*
 	 * The class relies on an implementation of APICallPreHandler (here
@@ -73,7 +72,7 @@ public abstract class PayPalResource extends PayPalModel{
 			FileInputStream fis = new FileInputStream(file);
 			return initConfig(fis);
 		} catch (IOException ioe) {
-			log.error(ioe.getMessage(), ioe);
+			log.log(Level.SEVERE, ioe.getMessage(), ioe);
 			throw new PayPalRESTException(ioe.getMessage(), ioe);
 		}
 
@@ -122,7 +121,7 @@ public abstract class PayPalResource extends PayPalModel{
 			configInitialized = true;
 			return getOAuthTokenCredential();
 		} catch (IOException ioe) {
-			log.error(ioe.getMessage(), ioe);
+			log.log(Level.SEVERE, ioe.getMessage(), ioe);
 			throw new PayPalRESTException(ioe.getMessage(), ioe);
 		}
 	}
@@ -200,6 +199,7 @@ public abstract class PayPalResource extends PayPalModel{
 	 * @return T
 	 * @throws PayPalRESTException
 	 */
+	@Deprecated
 	public static <T> T configureAndExecute(String accessToken,
 			HttpMethod httpMethod, String resourcePath, String payLoad,
 			Class<T> clazz) throws PayPalRESTException {
@@ -282,6 +282,7 @@ public abstract class PayPalResource extends PayPalModel{
 	 * @return T
 	 * @throws PayPalRESTException
 	 */
+	@Deprecated
 	public static <T> T configureAndExecute(APIContext apiContext,
 			HttpMethod httpMethod, String resourcePath,
 			Map<String, String> headersMap, String payLoad, Class<T> clazz)

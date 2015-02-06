@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.Proxy;
 import java.net.URL;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.paypal.base.exception.SSLConfigurationException;
 
@@ -19,14 +17,14 @@ import com.paypal.base.exception.SSLConfigurationException;
  */
 public class GoogleAppEngineHttpConnection extends HttpConnection {
 
-	private static final Logger log = LogManager.getLogger(GoogleAppEngineHttpConnection.class);
+	private static final Logger log = Logger.getLogger(GoogleAppEngineHttpConnection.class.getName());
 	
 	@Override
 	public void setupClientSSL(String certPath, String certKey)
 			throws SSLConfigurationException {
 
 		if (certPath != null || certKey != null) {
-			log.warn("The PayPal SDK cannot be used with client SSL on Google App Engine; configure the SDK to use a PayPal API Signature instead");
+			log.warning("The PayPal SDK cannot be used with client SSL on Google App Engine; configure the SDK to use a PayPal API Signature instead");
 		}
 	}
 

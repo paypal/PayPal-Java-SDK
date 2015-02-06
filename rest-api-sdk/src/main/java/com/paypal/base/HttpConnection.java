@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.nio.charset.Charset;
 import java.util.Iterator;
 import java.util.Map;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.paypal.base.exception.ClientActionRequiredException;
 import com.paypal.base.exception.HttpErrorException;
@@ -23,7 +23,7 @@ import com.paypal.base.exception.SSLConfigurationException;
  */
 public abstract class HttpConnection {
 
-	private static final Logger log = LogManager.getLogger(HttpConnection.class);
+	private static final Logger log = Logger.getLogger(HttpConnection.class.getName());
 	
 	/**
 	 * Subclasses must set the http configuration in the
@@ -65,16 +65,16 @@ public abstract class HttpConnection {
 		connection.setRequestProperty("Content-Length", ""
 				+ payload.trim().length());
 		if (headers != null) {
-			log.debug("curl command: ");
-			log.debug("curl -v '" + connection.getURL().toString() + "' \\");
+			log.log(Level.FINE, "curl command: ");
+			log.log(Level.FINE, "curl -v '" + connection.getURL().toString() + "' \\");
 			setHttpHeaders(headers);
 			Iterator<String> keyIter = headers.keySet().iterator();
 			while (keyIter.hasNext()) {
 				String key = keyIter.next();
 				String value = headers.get(key);
-				log.debug("-H \"" + key + ": " + value + "\" \\");
+				log.log(Level.FINE, "-H \"" + key + ": " + value + "\" \\");
 			}
-			log.debug("-d '" + payload + "'");
+			log.log(Level.FINE, "-d '" + payload + "'");
 		}
 		try {
 			// This exception is used to make final log more explicit
@@ -98,7 +98,7 @@ public abstract class HttpConnection {
 							Constants.ENCODING_FORMAT));
 					if (responsecode >= 200 && responsecode < 300) {
 						successResponse = read(reader);
-						log.debug("Response : " + successResponse);
+						log.log(Level.FINE, "Response : " + successResponse);
 						break retryLoop;
 					} else {
 						successResponse = read(reader);
@@ -115,7 +115,7 @@ public abstract class HttpConnection {
 									connection.getErrorStream(),
 									Constants.ENCODING_FORMAT));
 							errorResponse = read(reader);
-							log.error("Error code : " + responsecode
+							log.log(Level.SEVERE, "Error code : " + responsecode
 											+ " with response : " + errorResponse);
 						}
 						if ((errorResponse == null)
@@ -133,12 +133,12 @@ public abstract class HttpConnection {
 						throw ex;
 					} catch (Exception ex) {
 						lastException = ex;
-						log.error("Caught exception while handling error response", ex);
+						log.log(Level.SEVERE, "Caught exception while handling error response", ex);
 					}
 				}
 				retry++;
 				if (retry > 0) {
-					log.error(" Retry  No : " + retry + "...");
+					log.log(Level.SEVERE, " Retry  No : " + retry + "...");
 					Thread.sleep(this.config.getRetryDelay());
 				}
 			} while (retry < this.config.getMaxRetry());

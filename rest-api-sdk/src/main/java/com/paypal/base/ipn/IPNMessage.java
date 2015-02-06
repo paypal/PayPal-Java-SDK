@@ -5,11 +5,10 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import com.paypal.base.ConfigManager;
 import com.paypal.base.ConnectionManager;
@@ -20,17 +19,17 @@ import com.paypal.base.SDKUtil;
 
 public class IPNMessage {
 
-	private static final Logger log = LogManager.getLogger(IPNMessage.class);
+	private static final Logger log = Logger.getLogger(IPNMessage.class.getName());
 	
 	private static final long serialVersionUID = -7187275404183441828L;
 	private static final String ENCODING = "windows-1252";
 
-	private Map<String, String> ipnMap = new HashMap<String, String>();
+	private final Map<String, String> ipnMap = new HashMap<String, String>();
 	private Map<String, String> configurationMap = null;
 	private HttpConfiguration httpConfiguration = null;
 	private String ipnEndpoint = Constants.EMPTY_STRING;
 	private boolean isIpnVerified = false;
-	private StringBuffer payload;
+	private final StringBuffer payload;
 
 	/**
 	 * Populates HttpConfiguration with connection specifics parameters
@@ -116,7 +115,7 @@ public class IPNMessage {
 					payload.append("&").append(name).append("=")
 							.append(URLEncoder.encode(value[0], encoding));
 				} catch (Exception e) {
-					log.debug(e.getMessage());
+					log.log(Level.FINE, e.getMessage());
 				}
 			}
 		}
@@ -143,7 +142,7 @@ public class IPNMessage {
 			}
 
 		} catch (Exception e) {
-			log.debug(e.getMessage());
+			log.log(Level.FINE, e.getMessage());
 		}
 
 		// check notification validation

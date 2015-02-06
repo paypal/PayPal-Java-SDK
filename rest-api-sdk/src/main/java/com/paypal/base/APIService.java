@@ -2,10 +2,8 @@ package com.paypal.base;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import com.paypal.base.credential.CertificateCredential;
 import com.paypal.base.exception.ClientActionRequiredException;
@@ -22,13 +20,14 @@ import com.paypal.base.exception.SSLConfigurationException;
  */
 public class APIService {
 
-	private static final Logger log = LogManager.getLogger(APIService.class);
+	private static final Logger log = Logger.getLogger(APIService.class.getName());
 	
 	/**
 	 * Service Endpoint
 	 * @deprecated
 	 */
-	private String endPoint;
+	@Deprecated
+	private final String endPoint;
 
 	/**
 	 * Map used for to override ConfigManager configurations
@@ -38,6 +37,7 @@ public class APIService {
 	/**
 	 * @deprecated Configuration Manager
 	 */
+	@Deprecated
 	private ConfigManager config = null;
 
 	/**
@@ -50,6 +50,7 @@ public class APIService {
 	 * 
 	 * @deprecated
 	 */
+	@Deprecated
 	public APIService() {
 		httpConfiguration = new HttpConfiguration();
 		config = ConfigManager.getInstance();
@@ -91,35 +92,35 @@ public class APIService {
 		}
 		this.configurationMap = configurationMap;
 		httpConfiguration = new HttpConfiguration();
-		endPoint = (String) this.configurationMap.get(Constants.ENDPOINT);
+		endPoint = this.configurationMap.get(Constants.ENDPOINT);
 		httpConfiguration.setGoogleAppEngine(Boolean
-				.parseBoolean((String) this.configurationMap
+				.parseBoolean(this.configurationMap
 						.get(Constants.GOOGLE_APP_ENGINE)));
-		if (Boolean.parseBoolean((String) this.configurationMap
+		if (Boolean.parseBoolean(this.configurationMap
 				.get(Constants.USE_HTTP_PROXY))) {
 			httpConfiguration.setProxyPort(Integer
-					.parseInt((String) this.configurationMap
+					.parseInt(this.configurationMap
 							.get(Constants.HTTP_PROXY_PORT)));
-			httpConfiguration.setProxyHost((String) this.configurationMap
+			httpConfiguration.setProxyHost(this.configurationMap
 					.get(Constants.HTTP_PROXY_HOST));
-			httpConfiguration.setProxyUserName((String) this.configurationMap
+			httpConfiguration.setProxyUserName(this.configurationMap
 					.get(Constants.HTTP_PROXY_USERNAME));
-			httpConfiguration.setProxyPassword((String) this.configurationMap
+			httpConfiguration.setProxyPassword(this.configurationMap
 					.get(Constants.HTTP_PROXY_PASSWORD));
 		}
 		httpConfiguration.setConnectionTimeout(Integer
-				.parseInt((String) this.configurationMap
+				.parseInt(this.configurationMap
 						.get(Constants.HTTP_CONNECTION_TIMEOUT)));
 		httpConfiguration.setMaxRetry(Integer
-				.parseInt((String) this.configurationMap
+				.parseInt(this.configurationMap
 						.get(Constants.HTTP_CONNECTION_RETRY)));
 		httpConfiguration.setReadTimeout(Integer
-				.parseInt((String) this.configurationMap
+				.parseInt(this.configurationMap
 						.get(Constants.HTTP_CONNECTION_READ_TIMEOUT)));
 		httpConfiguration.setMaxHttpConnection(Integer
-				.parseInt((String) this.configurationMap
+				.parseInt(this.configurationMap
 						.get(Constants.HTTP_CONNECTION_MAX_CONNECTION)));
-		httpConfiguration.setIpAddress((String) this.configurationMap
+		httpConfiguration.setIpAddress(this.configurationMap
 				.get(Constants.DEVICE_IP_ADDRESS));
 	}
 
@@ -194,6 +195,7 @@ public class APIService {
 	 * @deprecated
 	 * @return
 	 */
+	@Deprecated
 	public String getEndPoint() {
 		return endPoint;
 	}
