@@ -7,9 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.paypal.base.exception.ClientActionRequiredException;
 import com.paypal.base.exception.HttpErrorException;
@@ -25,7 +24,7 @@ import com.paypal.base.exception.SSLConfigurationException;
  */
 public abstract class BaseService {
 	
-	private static final Logger log = LogManager.getLogger(BaseService.class);
+	private static final Logger log = Logger.getLogger(BaseService.class.getName());
 
 	/*
 	 * Map used for to override ConfigManager configurations
@@ -111,6 +110,7 @@ public abstract class BaseService {
 	 * @param accessToken
 	 *            the accessToken to set
 	 */
+	@Deprecated
 	public void setAccessToken(String accessToken) {
 		this.accessToken = accessToken;
 	}
@@ -131,6 +131,7 @@ public abstract class BaseService {
 	 * @param tokenSecret
 	 *            the tokenSecret to set
 	 */
+	@Deprecated
 	public void setTokenSecret(String tokenSecret) {
 		this.tokenSecret = tokenSecret;
 	}
@@ -180,11 +181,12 @@ public abstract class BaseService {
 	 * 
 	 * @param is
 	 */
+	@Deprecated
 	protected static void initConfig(InputStream is) throws IOException {
 		try {
 			ConfigManager.getInstance().load(is);
 		} catch (IOException ioe) {
-			log.debug(ioe.getMessage(), ioe);
+			log.log(Level.FINE, ioe.getMessage(), ioe);
 			throw ioe;
 		}
 	}
@@ -196,6 +198,7 @@ public abstract class BaseService {
 	 * 
 	 * @param file
 	 */
+	@Deprecated
 	protected static void initConfig(File file) throws IOException {
 		try {
 			if (!file.exists()) {
@@ -205,7 +208,7 @@ public abstract class BaseService {
 			FileInputStream fis = new FileInputStream(file);
 			initConfig(fis);
 		} catch (IOException ioe) {
-			log.debug(ioe.getMessage(), ioe);
+			log.log(Level.FINE, ioe.getMessage(), ioe);
 			throw ioe;
 		}
 	}
@@ -217,12 +220,13 @@ public abstract class BaseService {
 	 * 
 	 * @param filepath
 	 */
+	@Deprecated
 	protected static void initConfig(String filepath) throws IOException {
 		try {
 			File file = new File(filepath);
 			initConfig(file);
 		} catch (IOException ioe) {
-			log.debug(ioe.getMessage(), ioe);
+			log.log(Level.FINE, ioe.getMessage(), ioe);
 			throw ioe;
 		}
 	}
@@ -236,6 +240,7 @@ public abstract class BaseService {
 	 * @param properties
 	 *            {@link Properties} instance
 	 */
+	@Deprecated
 	protected static void initConfig(Properties properties) {
 		ConfigManager.getInstance().load(properties);
 	}
