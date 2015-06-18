@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.GsonBuilder;
 import com.paypal.base.Constants;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.HttpMethod;
@@ -462,12 +463,14 @@ public class CreditCard  extends PayPalResource {
 	 * Update information in a previously saved card. Only the modified fields need to be passed in the request.
 	 * @param accessToken
 	 *            Access Token used for the API call.
+	 * @param patchRequest
+	 *            PatchRequest
 	 * @return CreditCard
 	 * @throws PayPalRESTException
 	 */
-	public CreditCard update(String accessToken) throws PayPalRESTException {
+	public CreditCard update(String accessToken, List<Patch> patchRequest) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
-		return update(apiContext);
+		return update(apiContext, patchRequest);
 	}
 
 	/**
@@ -477,7 +480,7 @@ public class CreditCard  extends PayPalResource {
 	 * @return CreditCard
 	 * @throws PayPalRESTException
 	 */
-	public CreditCard update(APIContext apiContext) throws PayPalRESTException {
+	public CreditCard update(APIContext apiContext, List<Patch> patchRequest) throws PayPalRESTException {
 		if (apiContext == null) {
 			throw new IllegalArgumentException("APIContext cannot be null");
 		}
@@ -492,10 +495,13 @@ public class CreditCard  extends PayPalResource {
 		if (this.getId() == null) {
 			throw new IllegalArgumentException("Id cannot be null");
 		}
+		if (patchRequest == null) {
+			throw new IllegalArgumentException("patchRequest cannot be null");
+		}
 		Object[] parameters = new Object[] {this.getId()};
 		String pattern = "v1/vault/credit-card/{0}";
 		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);
-		String payLoad = this.toJSON();
+		String payLoad = new GsonBuilder().create().toJson(patchRequest);
 		return configureAndExecute(apiContext, HttpMethod.PATCH, resourcePath, payLoad, CreditCard.class);
 	}
 
