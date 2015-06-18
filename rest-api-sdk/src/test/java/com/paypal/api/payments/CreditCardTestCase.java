@@ -165,7 +165,34 @@ public class CreditCardTestCase {
 				+ retrievedCreditCard.getState());
 
 	}
-	
+
+	@Test(groups = "integration", dependsOnMethods = { "createCreditCardTest" })
+	public void updateCreditCard() throws PayPalRESTException {
+		logger.info("**** Update CreditCard ****");
+		logger.info("Generated Access Token = " + TokenHolder.accessToken);
+
+		int newMonth = 12;
+		Patch patch = new Patch("replace", "/expire_month");
+		patch.setValue(new Integer(newMonth));
+
+		List<Patch> patchRequest = new ArrayList<Patch>();
+		patchRequest.add(patch);
+
+		// execute update
+		CreditCard card = new CreditCard();
+		card.setId(createdCreditCardId);
+
+		CreditCard retrievedCreditCard = card.update(TokenHolder.accessToken, patchRequest);
+		logger.info("Request = " + CreditCard.getLastRequest());
+		logger.info("Response = " + CreditCard.getLastResponse());
+		Assert.assertEquals(
+				retrievedCreditCard.getExpireMonth(),
+				newMonth);
+		logger.info("Retrieved Credit Card status = "
+				+ retrievedCreditCard.getState());
+
+	}
+
 	@Test(groups = "integration", dependsOnMethods = { "getCreditCard" })
 	public void deleteCreditCard() throws PayPalRESTException {
 		logger.info("**** Delete CreditCard ****");
