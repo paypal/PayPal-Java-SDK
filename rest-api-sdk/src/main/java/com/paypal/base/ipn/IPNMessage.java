@@ -43,6 +43,12 @@ public class IPNMessage {
 		httpConfiguration.setMaxHttpConnection(Integer
 				.parseInt(configurationMap
 						.get(Constants.HTTP_CONNECTION_MAX_CONNECTION)));
+		if ("true".equals(configurationMap.get(Constants.USE_HTTP_PROXY))) {
+			httpConfiguration.setProxyHost(configurationMap
+							.get(Constants.HTTP_PROXY_HOST));
+			httpConfiguration.setProxyPort(Integer.parseInt(configurationMap
+							.get(Constants.HTTP_PROXY_PORT)));
+		}		
 	}
 	
 	/**
