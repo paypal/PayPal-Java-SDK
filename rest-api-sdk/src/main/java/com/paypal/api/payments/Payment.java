@@ -8,6 +8,7 @@ import com.paypal.base.rest.JSONFormatter;
 import com.paypal.base.Constants;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.HttpMethod;
+import com.paypal.base.rest.JSONFormatter;
 import com.paypal.base.rest.PayPalRESTException;
 import com.paypal.base.rest.PayPalResource;
 import com.paypal.base.rest.RESTUtil;
@@ -16,29 +17,14 @@ import com.paypal.base.sdk.info.SDKVersionImpl;
 public class Payment  extends PayPalResource {
 
 	/**
-	 * Identifier of the payment resource created.
+	 * ID of the created payment, the 'transaction ID'
 	 */
 	private String id;
 
 	/**
-	 * Time the resource was created in UTC ISO8601 format.
-	 */
-	private String createTime;
-
-	/**
-	 * Time the resource was last updated in UTC ISO8601 format.
-	 */
-	private String updateTime;
-
-	/**
-	 * Intent of the payment - Sale or Authorization or Order.
+	 * Payment intent.
 	 */
 	private String intent;
-
-    /**
-     * Payment Experience Web Profile ID to be used for this payment. Experience profile can be obtained by using the Payment Experience API.
-     */
-    private String experienceProfileId;
 
 	/**
 	 * Source of the funds for this payment represented by a PayPal account or a direct credit card.
@@ -46,34 +32,102 @@ public class Payment  extends PayPalResource {
 	private Payer payer;
 
 	/**
-	 * 
+	 * Information that the merchant knows about the payer.  This information is not definitive and only serves as a hint to the UI or any pre-processing logic.
+	 */
+	private PotentialPayerInfo potentialPayerInfo;
+
+	/**
+	 * Receiver of funds for this payment. **Readonly for PayPal external REST payments.**
 	 */
 	private Payee payee;
 
 	/**
-	 * Cart for which the payment is done.
+	 * ID of the cart to execute the payment.
 	 */
-	private Object cart;
+	private String cart;
 
 	/**
-	 * A payment can have more than one transaction, with each transaction establishing a contract between the payer and a payee
+	 * Transactional details including the amount and item details.
 	 */
 	private List<Transaction> transactions;
 
 	/**
-	 * state of the payment
+	 * Applicable for advanced payments like multi seller payment (MSP) to support partial failures
+	 */
+	private List<Error> failedTransactions;
+
+	/**
+	 * Collection of PayPal generated billing agreement tokens.
+	 */
+	private List<BillingAgreementToken> billingAgreementTokens;
+
+	/**
+	 * Credit financing offered to payer on PayPal side. Returned in payment after payer opts-in
+	 */
+	private CreditFinancingOffered creditFinancingOffered;
+
+	/**
+	 * Instructions for the payer to complete this payment.
+	 */
+	private PaymentInstruction paymentInstruction;
+
+	/**
+	 * Payment state.
 	 */
 	private String state;
 
 	/**
-	 * Redirect urls required only when using payment_method as PayPal - the only settings supported are return and cancel urls.
+	 * PayPal generated identifier for the merchant's payment experience profile. Refer to [this](https://developer.paypal.com/webapps/developer/docs/api/#payment-experience) link to create experience profile ID.
+	 */
+	private String experienceProfileId;
+
+	/**
+	 * free-form field for the use of clients to pass in a message to the payer
+	 */
+	private String noteToPayer;
+
+	/**
+	 * Set of redirect URLs you provide only for PayPal-based payments.
 	 */
 	private RedirectUrls redirectUrls;
+
+	/**
+	 * Failure reason code returned when the payment failed for some valid reasons.
+	 */
+	private String failureReason;
+
+	/**
+	 * Payment creation time as defined in [RFC 3339 Section 5.6](http://tools.ietf.org/html/rfc3339#section-5.6).
+	 */
+	private String createTime;
+
+	/**
+	 * Payment update time as defined in [RFC 3339 Section 5.6](http://tools.ietf.org/html/rfc3339#section-5.6).
+	 */
+	private String updateTime;
 
 	/**
 	 * 
 	 */
 	private List<Links> links;
+
+	/**
+	 * Returns the last request sent to the Service
+	 *
+	 * @return Last request sent to the server
+	 */
+	public static String getLastRequest() {
+		return PayPalResource.getLastRequest();
+	}
+
+	/**
+	 * Returns the last response returned by the Service
+	 *
+	 * @return Last response got from the Service
+	 */
+	public static String getLastResponse() {
+		return PayPalResource.getLastResponse();
+	}
 
 	/**
 	 * Default Constructor
@@ -88,15 +142,7 @@ public class Payment  extends PayPalResource {
 		this.intent = intent;
 		this.payer = payer;
 	}
-	
-	public Payee getPayee() {
-		return payee;
-	}
 
-	public Payment setPayee(Payee payee) {
-		this.payee = payee;
-		return this;
-	}
 
 	/**
 	 * Setter for id
@@ -111,6 +157,246 @@ public class Payment  extends PayPalResource {
 	 */
 	public String getId() {
 		return this.id;
+	}
+
+
+	/**
+	 * Setter for intent
+	 */
+	public Payment setIntent(String intent) {
+		this.intent = intent;
+		return this;
+	}
+
+	/**
+	 * Getter for intent
+	 */
+	public String getIntent() {
+		return this.intent;
+	}
+
+
+	/**
+	 * Setter for payer
+	 */
+	public Payment setPayer(Payer payer) {
+		this.payer = payer;
+		return this;
+	}
+
+	/**
+	 * Getter for payer
+	 */
+	public Payer getPayer() {
+		return this.payer;
+	}
+
+
+	/**
+	 * Setter for potentialPayerInfo
+	 */
+	public Payment setPotentialPayerInfo(PotentialPayerInfo potentialPayerInfo) {
+		this.potentialPayerInfo = potentialPayerInfo;
+		return this;
+	}
+
+	/**
+	 * Getter for potentialPayerInfo
+	 */
+	public PotentialPayerInfo getPotentialPayerInfo() {
+		return this.potentialPayerInfo;
+	}
+
+
+	/**
+	 * Setter for payee
+	 */
+	public Payment setPayee(Payee payee) {
+		this.payee = payee;
+		return this;
+	}
+
+	/**
+	 * Getter for payee
+	 */
+	public Payee getPayee() {
+		return this.payee;
+	}
+
+
+	/**
+	 * Setter for cart
+	 */
+	public Payment setCart(String cart) {
+		this.cart = cart;
+		return this;
+	}
+
+	/**
+	 * Getter for cart
+	 */
+	public String getCart() {
+		return this.cart;
+	}
+
+
+	/**
+	 * Setter for transactions
+	 */
+	public Payment setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
+		return this;
+	}
+
+	/**
+	 * Getter for transactions
+	 */
+	public List<Transaction> getTransactions() {
+		return this.transactions;
+	}
+
+
+	/**
+	 * Setter for failedTransactions
+	 */
+	public Payment setFailedTransactions(List<Error> failedTransactions) {
+		this.failedTransactions = failedTransactions;
+		return this;
+	}
+
+	/**
+	 * Getter for failedTransactions
+	 */
+	public List<Error> getFailedTransactions() {
+		return this.failedTransactions;
+	}
+
+
+	/**
+	 * Setter for billingAgreementTokens
+	 */
+	public Payment setBillingAgreementTokens(List<BillingAgreementToken> billingAgreementTokens) {
+		this.billingAgreementTokens = billingAgreementTokens;
+		return this;
+	}
+
+	/**
+	 * Getter for billingAgreementTokens
+	 */
+	public List<BillingAgreementToken> getBillingAgreementTokens() {
+		return this.billingAgreementTokens;
+	}
+
+
+	/**
+	 * Setter for creditFinancingOffered
+	 */
+	public Payment setCreditFinancingOffered(CreditFinancingOffered creditFinancingOffered) {
+		this.creditFinancingOffered = creditFinancingOffered;
+		return this;
+	}
+
+	/**
+	 * Getter for creditFinancingOffered
+	 */
+	public CreditFinancingOffered getCreditFinancingOffered() {
+		return this.creditFinancingOffered;
+	}
+
+
+	/**
+	 * Setter for paymentInstruction
+	 */
+	public Payment setPaymentInstruction(PaymentInstruction paymentInstruction) {
+		this.paymentInstruction = paymentInstruction;
+		return this;
+	}
+
+	/**
+	 * Getter for paymentInstruction
+	 */
+	public PaymentInstruction getPaymentInstruction() {
+		return this.paymentInstruction;
+	}
+
+
+	/**
+	 * Setter for state
+	 */
+	public Payment setState(String state) {
+		this.state = state;
+		return this;
+	}
+
+	/**
+	 * Getter for state
+	 */
+	public String getState() {
+		return this.state;
+	}
+
+
+	/**
+	 * Setter for experienceProfileId
+	 */
+	public Payment setExperienceProfileId(String experienceProfileId) {
+		this.experienceProfileId = experienceProfileId;
+		return this;
+	}
+
+	/**
+	 * Getter for experienceProfileId
+	 */
+	public String getExperienceProfileId() {
+		return this.experienceProfileId;
+	}
+
+
+	/**
+	 * Setter for noteToPayer
+	 */
+	public Payment setNoteToPayer(String noteToPayer) {
+		this.noteToPayer = noteToPayer;
+		return this;
+	}
+
+	/**
+	 * Getter for noteToPayer
+	 */
+	public String getNoteToPayer() {
+		return this.noteToPayer;
+	}
+
+
+	/**
+	 * Setter for redirectUrls
+	 */
+	public Payment setRedirectUrls(RedirectUrls redirectUrls) {
+		this.redirectUrls = redirectUrls;
+		return this;
+	}
+
+	/**
+	 * Getter for redirectUrls
+	 */
+	public RedirectUrls getRedirectUrls() {
+		return this.redirectUrls;
+	}
+
+
+	/**
+	 * Setter for failureReason
+	 */
+	public Payment setFailureReason(String failureReason) {
+		this.failureReason = failureReason;
+		return this;
+	}
+
+	/**
+	 * Getter for failureReason
+	 */
+	public String getFailureReason() {
+		return this.failureReason;
 	}
 
 
@@ -143,115 +429,6 @@ public class Payment  extends PayPalResource {
 	 */
 	public String getUpdateTime() {
 		return this.updateTime;
-	}
-
-
-	/**
-	 * Setter for intent
-	 */
-	public Payment setIntent(String intent) {
-		this.intent = intent;
-		return this;
-	}
-
-	/**
-	 * Getter for intent
-	 */
-	public String getIntent() {
-		return this.intent;
-	}
-
-    /**
-     * Getter for Experience Profile ID
-     */
-    public String getExperienceProfileId() {
-        return experienceProfileId;
-    }
-
-    /**
-     * Setter for Experience Profile ID
-     */
-    public void setExperienceProfileId(String experienceProfileId) {
-        this.experienceProfileId = experienceProfileId;
-    }
-
-    /**
-	 * Setter for payer
-	 */
-	public Payment setPayer(Payer payer) {
-		this.payer = payer;
-		return this;
-	}
-
-	/**
-	 * Getter for payer
-	 */
-	public Payer getPayer() {
-		return this.payer;
-	}
-
-
-	/**
-	 * Setter for cart
-	 */
-	public Payment setCart(Object cart) {
-		this.cart = cart;
-		return this;
-	}
-
-	/**
-	 * Getter for cart
-	 */
-	public Object getCart() {
-		return this.cart;
-	}
-
-
-	/**
-	 * Setter for transactions
-	 */
-	public Payment setTransactions(List<Transaction> transactions) {
-		this.transactions = transactions;
-		return this;
-	}
-
-	/**
-	 * Getter for transactions
-	 */
-	public List<Transaction> getTransactions() {
-		return this.transactions;
-	}
-
-
-	/**
-	 * Setter for state
-	 */
-	public Payment setState(String state) {
-		this.state = state;
-		return this;
-	}
-
-	/**
-	 * Getter for state
-	 */
-	public String getState() {
-		return this.state;
-	}
-
-
-	/**
-	 * Setter for redirectUrls
-	 */
-	public Payment setRedirectUrls(RedirectUrls redirectUrls) {
-		this.redirectUrls = redirectUrls;
-		return this;
-	}
-
-	/**
-	 * Getter for redirectUrls
-	 */
-	public RedirectUrls getRedirectUrls() {
-		return this.redirectUrls;
 	}
 
 

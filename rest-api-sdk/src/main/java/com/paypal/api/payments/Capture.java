@@ -14,44 +14,44 @@ import com.paypal.base.sdk.info.SDKVersionImpl;
 public class Capture  extends PayPalResource {
 
 	/**
-	 * Identifier of the Capture transaction.
+	 * ID of the capture transaction.
 	 */
 	private String id;
 
 	/**
-	 * Time the resource was created in UTC ISO8601 format.
-	 */
-	private String createTime;
-
-	/**
-	 * Time the resource was last updated in UTC ISO8601 format.
-	 */
-	private String updateTime;
-
-	/**
-	 * Amount being captured. If no amount is specified, amount is used from the authorization being captured. If amount is same as the amount that's authorized for, the state of the authorization changes to captured. If not, the state of the authorization changes to partially_captured. Alternatively, you could indicate a final capture by seting the is_final_capture flag to true.
+	 * Amount being captured. If the amount matches the orginally authorized amount, the state of the authorization changes to `captured`. If not, the state of the authorization changes to `partially_captured`.
 	 */
 	private Amount amount;
 
 	/**
-	 * whether this is a final capture for the given authorization or not. If it's final, all the remaining funds held by the authorization, will be released in the funding instrument.
+	 * If set to `true`, all remaining funds held by the authorization will be released in the funding instrument.
 	 */
 	private Boolean isFinalCapture;
 
 	/**
-	 * State of the capture transaction.
+	 * State of the capture.
 	 */
 	private String state;
 
 	/**
-	 * ID of the Payment resource that this transaction is based on.
+	 * ID of the payment resource on which this transaction is based.
 	 */
 	private String parentPayment;
-	
+
 	/**
 	 * Transaction fee applicable for this payment.
 	 */
 	private Currency transactionFee;
+
+	/**
+	 * Time of capture as defined in [RFC 3339 Section 5.6](http://tools.ietf.org/html/rfc3339#section-5.6).
+	 */
+	private String createTime;
+
+	/**
+	 * Time that the resource was last updated.
+	 */
+	private String updateTime;
 
 	/**
 	 * 
@@ -59,16 +59,27 @@ public class Capture  extends PayPalResource {
 	private List<Links> links;
 
 	/**
-	 * Default Constructor
+	 * Returns the last request sent to the Service
+	 *
+	 * @return Last request sent to the server
 	 */
-	public Capture() {
+	public static String getLastRequest() {
+		return PayPalResource.getLastRequest();
 	}
 
 	/**
-	 * Parameterized Constructor
+	 * Returns the last response returned by the Service
+	 *
+	 * @return Last response got from the Service
 	 */
-	public Capture(Amount amount) {
-		this.amount = amount;
+	public static String getLastResponse() {
+		return PayPalResource.getLastResponse();
+	}
+
+	/**
+	 * Default Constructor
+	 */
+	public Capture() {
 	}
 
 
@@ -85,38 +96,6 @@ public class Capture  extends PayPalResource {
 	 */
 	public String getId() {
 		return this.id;
-	}
-
-
-	/**
-	 * Setter for createTime
-	 */
-	public Capture setCreateTime(String createTime) {
-		this.createTime = createTime;
-		return this;
-	}
-
-	/**
-	 * Getter for createTime
-	 */
-	public String getCreateTime() {
-		return this.createTime;
-	}
-
-
-	/**
-	 * Setter for updateTime
-	 */
-	public Capture setUpdateTime(String updateTime) {
-		this.updateTime = updateTime;
-		return this;
-	}
-
-	/**
-	 * Getter for updateTime
-	 */
-	public String getUpdateTime() {
-		return this.updateTime;
 	}
 
 
@@ -185,6 +164,54 @@ public class Capture  extends PayPalResource {
 
 
 	/**
+	 * Setter for transactionFee
+	 */
+	public Capture setTransactionFee(Currency transactionFee) {
+		this.transactionFee = transactionFee;
+		return this;
+	}
+
+	/**
+	 * Getter for transactionFee
+	 */
+	public Currency getTransactionFee() {
+		return this.transactionFee;
+	}
+
+
+	/**
+	 * Setter for createTime
+	 */
+	public Capture setCreateTime(String createTime) {
+		this.createTime = createTime;
+		return this;
+	}
+
+	/**
+	 * Getter for createTime
+	 */
+	public String getCreateTime() {
+		return this.createTime;
+	}
+
+
+	/**
+	 * Setter for updateTime
+	 */
+	public Capture setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+		return this;
+	}
+
+	/**
+	 * Getter for updateTime
+	 */
+	public String getUpdateTime() {
+		return this.updateTime;
+	}
+
+
+	/**
 	 * Setter for links
 	 */
 	public Capture setLinks(List<Links> links) {
@@ -197,15 +224,6 @@ public class Capture  extends PayPalResource {
 	 */
 	public List<Links> getLinks() {
 		return this.links;
-	}
-
-	public Currency getTransactionFee() {
-		return transactionFee;
-	}
-
-	public Capture setTransactionFee(Currency transactionFee) {
-		this.transactionFee = transactionFee;
-		return this;
 	}
 
 

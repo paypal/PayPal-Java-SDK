@@ -12,9 +12,9 @@ public class Error  extends PayPalModel {
 	private String name;
 
 	/**
-	 * PayPal internal identifier used for correlation purposes.
+	 * Reference ID of the purchase_unit associated with this error
 	 */
-	private String debugId;
+	private String purchaseUnitReferenceId;
 
 	/**
 	 * Message describing the error.
@@ -22,9 +22,9 @@ public class Error  extends PayPalModel {
 	private String message;
 
 	/**
-	 * URI for detailed information related to this error for the developer.
+	 * PayPal internal error code.
 	 */
-	private String informationLink;
+	private String code;
 
 	/**
 	 * Additional details of the error
@@ -32,15 +32,30 @@ public class Error  extends PayPalModel {
 	private List<ErrorDetails> details;
 
 	/**
-	 * Reference ID of the purchase_unit associated with this error
+	 * response codes returned from a payment processor such as avs, cvv, etc. Only supported when the `payment_method` is set to `credit_card`.
 	 */
-	private String purchaseUnitReferenceId;
-	
+	private ProcessorResponse processorResponse;
+
 	/**
-	 * PayPal internal error code.
+	 * Fraud filter details.  Only supported when the `payment_method` is set to `credit_card`
 	 */
-	private String code;
-	
+	private FmfDetails fmfDetails;
+
+	/**
+	 * URI for detailed information related to this error for the developer.
+	 */
+	private String informationLink;
+
+	/**
+	 * PayPal internal identifier used for correlation purposes.
+	 */
+	private String debugId;
+
+	/**
+	 * 
+	 */
+	private List<DefinitionsLinkdescription> links;
+
 	/**
 	 * Default Constructor
 	 */
@@ -50,10 +65,11 @@ public class Error  extends PayPalModel {
 	/**
 	 * Parameterized Constructor
 	 */
-	public Error(String name, String message, String informationLink) {
+	public Error(String name, String message, String informationLink, String debugId) {
 		this.name = name;
 		this.message = message;
 		this.informationLink = informationLink;
+		this.debugId = debugId;
 	}
 
 
@@ -74,18 +90,18 @@ public class Error  extends PayPalModel {
 
 
 	/**
-	 * Setter for debugId
+	 * Setter for purchaseUnitReferenceId
 	 */
-	public Error setDebugId(String debugId) {
-		this.debugId = debugId;
+	public Error setPurchaseUnitReferenceId(String purchaseUnitReferenceId) {
+		this.purchaseUnitReferenceId = purchaseUnitReferenceId;
 		return this;
 	}
 
 	/**
-	 * Getter for debugId
+	 * Getter for purchaseUnitReferenceId
 	 */
-	public String getDebugId() {
-		return this.debugId;
+	public String getPurchaseUnitReferenceId() {
+		return this.purchaseUnitReferenceId;
 	}
 
 
@@ -106,18 +122,18 @@ public class Error  extends PayPalModel {
 
 
 	/**
-	 * Setter for informationLink
+	 * Setter for code
 	 */
-	public Error setInformationLink(String informationLink) {
-		this.informationLink = informationLink;
+	public Error setCode(String code) {
+		this.code = code;
 		return this;
 	}
 
 	/**
-	 * Getter for informationLink
+	 * Getter for code
 	 */
-	public String getInformationLink() {
-		return this.informationLink;
+	public String getCode() {
+		return this.code;
 	}
 
 
@@ -137,22 +153,83 @@ public class Error  extends PayPalModel {
 	}
 
 
-	public String getPurchaseUnitReferenceId() {
-		return purchaseUnitReferenceId;
-	}
-
-	public Error setPurchaseUnitReferenceId(String purchaseUnitReferenceId) {
-		this.purchaseUnitReferenceId = purchaseUnitReferenceId;
+	/**
+	 * Setter for processorResponse
+	 */
+	public Error setProcessorResponse(ProcessorResponse processorResponse) {
+		this.processorResponse = processorResponse;
 		return this;
 	}
 
-	public String getCode() {
-		return code;
+	/**
+	 * Getter for processorResponse
+	 */
+	public ProcessorResponse getProcessorResponse() {
+		return this.processorResponse;
 	}
 
-	public Error setCode(String code) {
-		this.code = code;
+
+	/**
+	 * Setter for fmfDetails
+	 */
+	public Error setFmfDetails(FmfDetails fmfDetails) {
+		this.fmfDetails = fmfDetails;
 		return this;
+	}
+
+	/**
+	 * Getter for fmfDetails
+	 */
+	public FmfDetails getFmfDetails() {
+		return this.fmfDetails;
+	}
+
+
+	/**
+	 * Setter for informationLink
+	 */
+	public Error setInformationLink(String informationLink) {
+		this.informationLink = informationLink;
+		return this;
+	}
+
+	/**
+	 * Getter for informationLink
+	 */
+	public String getInformationLink() {
+		return this.informationLink;
+	}
+
+
+	/**
+	 * Setter for debugId
+	 */
+	public Error setDebugId(String debugId) {
+		this.debugId = debugId;
+		return this;
+	}
+
+	/**
+	 * Getter for debugId
+	 */
+	public String getDebugId() {
+		return this.debugId;
+	}
+
+
+	/**
+	 * Setter for links
+	 */
+	public Error setLinks(List<DefinitionsLinkdescription> links) {
+		this.links = links;
+		return this;
+	}
+
+	/**
+	 * Getter for links
+	 */
+	public List<DefinitionsLinkdescription> getLinks() {
+		return this.links;
 	}
 	
 	public String toString() {

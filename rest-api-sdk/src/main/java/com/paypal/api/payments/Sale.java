@@ -14,19 +14,14 @@ import com.paypal.base.sdk.info.SDKVersionImpl;
 public class Sale  extends PayPalResource {
 
 	/**
-	 * Identifier of the authorization transaction.
+	 * ID of the sale transaction.
 	 */
 	private String id;
 
 	/**
-	 * Time the resource was created.
+	 * Identifier of the purchased unit associated with this object.
 	 */
-	private String createTime;
-
-	/**
-	 * Time the resource was last updated.
-	 */
-	private String updateTime;
+	private String purchaseUnitReferenceId;
 
 	/**
 	 * Amount being collected.
@@ -34,79 +29,117 @@ public class Sale  extends PayPalResource {
 	private Amount amount;
 
 	/**
-	 * specifies payment mode of the transaction
+	 * Specifies payment mode of the transaction. Only supported when the `payment_method` is set to `paypal`.
 	 */
 	private String paymentMode;
 
 	/**
-	 * State of the sale transaction.
+	 * State of the sale.
 	 */
 	private String state;
 
 	/**
-	 * Reason code for the transaction state being Pending or Reversed.
+	 * Reason code for the transaction state being Pending or Reversed. Only supported when the `payment_method` is set to `paypal`.
 	 */
 	private String reasonCode;
 
 	/**
-	 * Protection Eligibility of the Payer 
+	 * The level of seller protection in force for the transaction. Only supported when the `payment_method` is set to `paypal`. 
 	 */
 	private String protectionEligibility;
 
 	/**
-	 * Protection Eligibility Type of the Payer 
+	 * The kind of seller protection in force for the transaction. It is returned only when protection_eligibility is ELIGIBLE or PARTIALLY_ELIGIBLE. Only supported when the `payment_method` is set to `paypal`.
 	 */
 	private String protectionEligibilityType;
 
 	/**
-	 * Expected clearing time for eCheck Transactions
+	 * Expected clearing time for eCheck transactions. Only supported when the `payment_method` is set to `paypal`.
 	 */
 	private String clearingTime;
 
 	/**
-	 * ID of the Payment resource that this transaction is based on.
+	 * Status of the Recipient Fund. For now, it will be returned only when fund status is held
+	 */
+	private String paymentHoldStatus;
+
+	/**
+	 * Reasons for PayPal holding recipient fund. It is set only if payment hold status is held
+	 */
+	private List<String> paymentHoldReasons;
+
+	/**
+	 * Transaction fee charged by PayPal for this transaction.
+	 */
+	private Currency transactionFee;
+
+	/**
+	 * Net amount the merchant receives for this transaction in their receivable currency. Returned only in cross-currency use cases where a merchant bills a buyer in a non-primary currency for that buyer.
+	 */
+	private Currency receivableAmount;
+
+	/**
+	 * Exchange rate applied for this transaction. Returned only in cross-currency use cases where a merchant bills a buyer in a non-primary currency for that buyer.
+	 */
+	private String exchangeRate;
+
+	/**
+	 * Fraud Management Filter (FMF) details applied for the payment that could result in accept, deny, or pending action. Returned in a payment response only if the merchant has enabled FMF in the profile settings and one of the fraud filters was triggered based on those settings. See [Fraud Management Filters Summary](/docs/classic/fmf/integration-guide/FMFSummary/) for more information.
+	 */
+	private FmfDetails fmfDetails;
+
+	/**
+	 * Receipt id is a payment identification number returned for guest users to identify the payment.
+	 */
+	private String receiptId;
+
+	/**
+	 * ID of the payment resource on which this transaction is based.
 	 */
 	private String parentPayment;
+
+	/**
+	 * Response codes returned by the processor concerning the submitted payment. Only supported when the `payment_method` is set to `credit_card`.
+	 */
+	private ProcessorResponse processorResponse;
+
+	/**
+	 * ID of the billing agreement used as reference to execute this transaction.
+	 */
+	private String billingAgreementId;
+
+	/**
+	 * Time of sale as defined in [RFC 3339 Section 5.6](http://tools.ietf.org/html/rfc3339#section-5.6)
+	 */
+	private String createTime;
+
+	/**
+	 * Time the resource was last updated in UTC ISO8601 format.
+	 */
+	private String updateTime;
 
 	/**
 	 * 
 	 */
 	private List<Links> links;
-	
-	/**
-	 * Indicates the credit status of fund to the recipient. It will be returned only when payment status is 'completed'
-	 */
-	private String recipientFundStatus;
 
 	/**
-	 * Reason for holding the funds.
+	 * Returns the last request sent to the Service
+	 *
+	 * @return Last request sent to the server
 	 */
-	private String holdReason;
-	
+	public static String getLastRequest() {
+		return PayPalResource.getLastRequest();
+	}
+
 	/**
-	 * Transaction fee applicable for this payment.
+	 * Returns the last response returned by the Service
+	 *
+	 * @return Last response got from the Service
 	 */
-	private Currency transactionFee;
-	
-	/**
-	 * Net amount payee receives for this transaction after deducting transaction fee.
-	 */
-	private Currency receivableAmount;
-	
-	/**
-	 * Exchange rate applied for this transaction.
-	 */
-	private String exchangeRate;
-	
-	/**
-	 * Fraud Management Filter (FMF) details applied for the payment that could result in accept/deny/pending action.
-	 */
-	private FmfDetails fmfDetails;
-	
-	/**
-	 * Receipt id is 16 digit number payment identification number returned for guest users to identify the payment.
-	 */
-	private String receiptId;
+	public static String getLastResponse() {
+		return PayPalResource.getLastResponse();
+	}
 
 	/**
 	 * Default Constructor
@@ -117,10 +150,12 @@ public class Sale  extends PayPalResource {
 	/**
 	 * Parameterized Constructor
 	 */
-	public Sale(Amount amount, String state, String parentPayment) {
+	public Sale(String id, Amount amount, String state, String parentPayment, String createTime) {
+		this.id = id;
 		this.amount = amount;
 		this.state = state;
 		this.parentPayment = parentPayment;
+		this.createTime = createTime;
 	}
 
 
@@ -141,34 +176,18 @@ public class Sale  extends PayPalResource {
 
 
 	/**
-	 * Setter for createTime
+	 * Setter for purchaseUnitReferenceId
 	 */
-	public Sale setCreateTime(String createTime) {
-		this.createTime = createTime;
+	public Sale setPurchaseUnitReferenceId(String purchaseUnitReferenceId) {
+		this.purchaseUnitReferenceId = purchaseUnitReferenceId;
 		return this;
 	}
 
 	/**
-	 * Getter for createTime
+	 * Getter for purchaseUnitReferenceId
 	 */
-	public String getCreateTime() {
-		return this.createTime;
-	}
-
-
-	/**
-	 * Setter for updateTime
-	 */
-	public Sale setUpdateTime(String updateTime) {
-		this.updateTime = updateTime;
-		return this;
-	}
-
-	/**
-	 * Getter for updateTime
-	 */
-	public String getUpdateTime() {
-		return this.updateTime;
+	public String getPurchaseUnitReferenceId() {
+		return this.purchaseUnitReferenceId;
 	}
 
 
@@ -285,6 +304,118 @@ public class Sale  extends PayPalResource {
 
 
 	/**
+	 * Setter for paymentHoldStatus
+	 */
+	public Sale setPaymentHoldStatus(String paymentHoldStatus) {
+		this.paymentHoldStatus = paymentHoldStatus;
+		return this;
+	}
+
+	/**
+	 * Getter for paymentHoldStatus
+	 */
+	public String getPaymentHoldStatus() {
+		return this.paymentHoldStatus;
+	}
+
+
+	/**
+	 * Setter for paymentHoldReasons
+	 */
+	public Sale setPaymentHoldReasons(List<String> paymentHoldReasons) {
+		this.paymentHoldReasons = paymentHoldReasons;
+		return this;
+	}
+
+	/**
+	 * Getter for paymentHoldReasons
+	 */
+	public List<String> getPaymentHoldReasons() {
+		return this.paymentHoldReasons;
+	}
+
+
+	/**
+	 * Setter for transactionFee
+	 */
+	public Sale setTransactionFee(Currency transactionFee) {
+		this.transactionFee = transactionFee;
+		return this;
+	}
+
+	/**
+	 * Getter for transactionFee
+	 */
+	public Currency getTransactionFee() {
+		return this.transactionFee;
+	}
+
+
+	/**
+	 * Setter for receivableAmount
+	 */
+	public Sale setReceivableAmount(Currency receivableAmount) {
+		this.receivableAmount = receivableAmount;
+		return this;
+	}
+
+	/**
+	 * Getter for receivableAmount
+	 */
+	public Currency getReceivableAmount() {
+		return this.receivableAmount;
+	}
+
+
+	/**
+	 * Setter for exchangeRate
+	 */
+	public Sale setExchangeRate(String exchangeRate) {
+		this.exchangeRate = exchangeRate;
+		return this;
+	}
+
+	/**
+	 * Getter for exchangeRate
+	 */
+	public String getExchangeRate() {
+		return this.exchangeRate;
+	}
+
+
+	/**
+	 * Setter for fmfDetails
+	 */
+	public Sale setFmfDetails(FmfDetails fmfDetails) {
+		this.fmfDetails = fmfDetails;
+		return this;
+	}
+
+	/**
+	 * Getter for fmfDetails
+	 */
+	public FmfDetails getFmfDetails() {
+		return this.fmfDetails;
+	}
+
+
+	/**
+	 * Setter for receiptId
+	 */
+	public Sale setReceiptId(String receiptId) {
+		this.receiptId = receiptId;
+		return this;
+	}
+
+	/**
+	 * Getter for receiptId
+	 */
+	public String getReceiptId() {
+		return this.receiptId;
+	}
+
+
+	/**
 	 * Setter for parentPayment
 	 */
 	public Sale setParentPayment(String parentPayment) {
@@ -301,6 +432,70 @@ public class Sale  extends PayPalResource {
 
 
 	/**
+	 * Setter for processorResponse
+	 */
+	public Sale setProcessorResponse(ProcessorResponse processorResponse) {
+		this.processorResponse = processorResponse;
+		return this;
+	}
+
+	/**
+	 * Getter for processorResponse
+	 */
+	public ProcessorResponse getProcessorResponse() {
+		return this.processorResponse;
+	}
+
+
+	/**
+	 * Setter for billingAgreementId
+	 */
+	public Sale setBillingAgreementId(String billingAgreementId) {
+		this.billingAgreementId = billingAgreementId;
+		return this;
+	}
+
+	/**
+	 * Getter for billingAgreementId
+	 */
+	public String getBillingAgreementId() {
+		return this.billingAgreementId;
+	}
+
+
+	/**
+	 * Setter for createTime
+	 */
+	public Sale setCreateTime(String createTime) {
+		this.createTime = createTime;
+		return this;
+	}
+
+	/**
+	 * Getter for createTime
+	 */
+	public String getCreateTime() {
+		return this.createTime;
+	}
+
+
+	/**
+	 * Setter for updateTime
+	 */
+	public Sale setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+		return this;
+	}
+
+	/**
+	 * Getter for updateTime
+	 */
+	public String getUpdateTime() {
+		return this.updateTime;
+	}
+
+
+	/**
 	 * Setter for links
 	 */
 	public Sale setLinks(List<Links> links) {
@@ -313,69 +508,6 @@ public class Sale  extends PayPalResource {
 	 */
 	public List<Links> getLinks() {
 		return this.links;
-	}
-
-	public String getRecipientFundStatus() {
-		return recipientFundStatus;
-	}
-
-	public Sale setRecipientFundStatus(String recipientFundStatus) {
-		this.recipientFundStatus = recipientFundStatus;
-		return this;
-	}
-
-	public String getHoldReason() {
-		return holdReason;
-	}
-
-	public Sale setHoldReason(String holdReason) {
-		this.holdReason = holdReason;
-		return this;
-	}
-
-	public Currency getTransactionFee() {
-		return transactionFee;
-	}
-
-	public Sale setTransactionFee(Currency transactionFee) {
-		this.transactionFee = transactionFee;
-		return this;
-	}
-
-	public Currency getReceivableAmount() {
-		return receivableAmount;
-	}
-
-	public Sale setReceivableAmount(Currency receivableAmount) {
-		this.receivableAmount = receivableAmount;
-		return this;
-	}
-
-	public String getExchangeRate() {
-		return exchangeRate;
-	}
-
-	public Sale setExchangeRate(String exchangeRate) {
-		this.exchangeRate = exchangeRate;
-		return this;
-	}
-
-	public FmfDetails getFmfDetails() {
-		return fmfDetails;
-	}
-
-	public Sale setFmfDetails(FmfDetails fmfDetails) {
-		this.fmfDetails = fmfDetails;
-		return this;
-	}
-
-	public String getReceiptId() {
-		return receiptId;
-	}
-
-	public Sale setReceiptId(String receiptId) {
-		this.receiptId = receiptId;
-		return this;
 	}
 
 

@@ -7,12 +7,17 @@ import com.paypal.base.rest.PayPalModel;
 public class PaymentExecution  extends PayPalModel {
 
 	/**
-	 * PayPal assigned Payer ID returned in the approval return url.
+	 * The ID of the Payer, passed in the `return_url` by PayPal.
 	 */
 	private String payerId;
 
 	/**
-	 * If the amount needs to be updated after obtaining the PayPal Payer info (eg. shipping address), it can be updated using this element.
+	 * Carrier account id for a carrier billing payment. For a carrier billing payment, payer_id is not applicable.
+	 */
+	private String carrierAccountId;
+
+	/**
+	 * Transactional details including the amount and item details.
 	 */
 	private List<Transactions> transactions;
 
@@ -20,13 +25,6 @@ public class PaymentExecution  extends PayPalModel {
 	 * Default Constructor
 	 */
 	public PaymentExecution() {
-	}
-
-	/**
-	 * Parameterized Constructor
-	 */
-	public PaymentExecution(String payerId) {
-		this.payerId = payerId;
 	}
 
 
@@ -43,6 +41,22 @@ public class PaymentExecution  extends PayPalModel {
 	 */
 	public String getPayerId() {
 		return this.payerId;
+	}
+
+
+	/**
+	 * Setter for carrierAccountId
+	 */
+	public PaymentExecution setCarrierAccountId(String carrierAccountId) {
+		this.carrierAccountId = carrierAccountId;
+		return this;
+	}
+
+	/**
+	 * Getter for carrierAccountId
+	 */
+	public String getCarrierAccountId() {
+		return this.carrierAccountId;
 	}
 
 

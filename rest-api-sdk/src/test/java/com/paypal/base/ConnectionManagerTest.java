@@ -29,11 +29,18 @@ public class ConnectionManagerTest {
 	}
 
 	@Test
-	public void getConnectionWithHttpConfigurationForDefauktTest() {
+	public void getConnectionWithHttpConfigurationForDefauktTest() throws Exception {
 		HttpConfiguration httpConfig = new HttpConfiguration();
 
 		Assert.assertEquals(conn.getConnection(httpConfig).getClass(),
 				DefaultHttpConnection.class);
+		
+		conn.configureCustomSslContext(SSLUtil.getSSLContext(null));
+		
+		Assert.assertEquals(conn.getConnection(httpConfig).getClass(),
+			DefaultHttpConnection.class);
+		
+		conn.configureCustomSslContext(null);
 	}
 
 	@AfterClass

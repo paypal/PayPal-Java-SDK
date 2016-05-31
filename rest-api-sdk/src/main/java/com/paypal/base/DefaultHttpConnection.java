@@ -38,6 +38,10 @@ public class DefaultHttpConnection extends HttpConnection {
 		}
 	}
 
+	public DefaultHttpConnection(SSLContext sslContext) {
+	    this.sslContext = sslContext;
+	}
+
 	@Override
 	public void setupClientSSL(String certPath, String certKey)
 			throws SSLConfigurationException {

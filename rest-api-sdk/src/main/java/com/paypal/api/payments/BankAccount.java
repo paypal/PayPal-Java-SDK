@@ -92,7 +92,7 @@ public class BankAccount  extends PayPalModel {
 	private String confirmationStatus;
 
 	/**
-	 * Deprecated - Use external_customer_id instead.
+	 * [DEPRECATED] Use external_customer_id instead.
 	 */
 	private String payerId;
 
@@ -124,7 +124,7 @@ public class BankAccount  extends PayPalModel {
 	/**
 	 * 
 	 */
-	private List<Links> links;
+	private List<DefinitionsLinkdescription> links;
 
 	/**
 	 * Default Constructor
@@ -512,7 +512,7 @@ public class BankAccount  extends PayPalModel {
 	/**
 	 * Setter for links
 	 */
-	public BankAccount setLinks(List<Links> links) {
+	public BankAccount setLinks(List<DefinitionsLinkdescription> links) {
 		this.links = links;
 		return this;
 	}
@@ -520,9 +520,10 @@ public class BankAccount  extends PayPalModel {
 	/**
 	 * Getter for links
 	 */
-	public List<Links> getLinks() {
+	public List<DefinitionsLinkdescription> getLinks() {
 		return this.links;
 	}
+
 
 
 }

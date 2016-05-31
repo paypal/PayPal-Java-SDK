@@ -24,27 +24,27 @@ public class PaymentCard  extends PayPalModel {
 	/**
 	 * 2 digit card expiry month.
 	 */
-	private int expireMonth;
+	private String expireMonth;
 
 	/**
 	 * 4 digit card expiry year
 	 */
-	private int expireYear;
+	private String expireYear;
 
 	/**
-	 * 2 digit card start month.
+	 * 2 digit card start month. Needed for UK Maestro Card.
 	 */
-	private int startMonth;
+	private String startMonth;
 
 	/**
-	 * 4 digit card start year.
+	 * 4 digit card start year. Needed for UK Maestro Card. 
 	 */
-	private int startYear;
+	private String startYear;
 
 	/**
 	 * Card validation code. Only supported when making a Payment but not when saving a payment card for future use.
 	 */
-	private int cvv2;
+	private String cvv2;
 
 	/**
 	 * Card holder's first name.
@@ -55,6 +55,11 @@ public class PaymentCard  extends PayPalModel {
 	 * Card holder's last name.
 	 */
 	private String lastName;
+
+	/**
+	 * 2 letter country code
+	 */
+	private String billingCountry;
 
 	/**
 	 * Billing Address associated with this card.
@@ -77,24 +82,24 @@ public class PaymentCard  extends PayPalModel {
 	private String validUntil;
 
 	/**
+	 * 1-2 digit card issue number. Needed for UK Maestro Card.
+	 */
+	private String issueNumber;
+
+	/**
+	 * Fields required to support 3d secure information when processing credit card payments. Only supported when the `payment_method` is set to `credit_card`.
+	 */
+	private Card3dSecureInfo card3dSecureInfo;
+
+	/**
 	 * 
 	 */
-	private List<Links> links;
+	private List<DefinitionsLinkdescription> links;
 
 	/**
 	 * Default Constructor
 	 */
 	public PaymentCard() {
-	}
-
-	/**
-	 * Parameterized Constructor
-	 */
-	public PaymentCard(String number, String type, int expireMonth, int expireYear) {
-		this.number = number;
-		this.type = type;
-		this.expireMonth = expireMonth;
-		this.expireYear = expireYear;
 	}
 
 
@@ -149,7 +154,7 @@ public class PaymentCard  extends PayPalModel {
 	/**
 	 * Setter for expireMonth
 	 */
-	public PaymentCard setExpireMonth(int expireMonth) {
+	public PaymentCard setExpireMonth(String expireMonth) {
 		this.expireMonth = expireMonth;
 		return this;
 	}
@@ -157,7 +162,7 @@ public class PaymentCard  extends PayPalModel {
 	/**
 	 * Getter for expireMonth
 	 */
-	public int getExpireMonth() {
+	public String getExpireMonth() {
 		return this.expireMonth;
 	}
 
@@ -165,7 +170,7 @@ public class PaymentCard  extends PayPalModel {
 	/**
 	 * Setter for expireYear
 	 */
-	public PaymentCard setExpireYear(int expireYear) {
+	public PaymentCard setExpireYear(String expireYear) {
 		this.expireYear = expireYear;
 		return this;
 	}
@@ -173,7 +178,7 @@ public class PaymentCard  extends PayPalModel {
 	/**
 	 * Getter for expireYear
 	 */
-	public int getExpireYear() {
+	public String getExpireYear() {
 		return this.expireYear;
 	}
 
@@ -181,7 +186,7 @@ public class PaymentCard  extends PayPalModel {
 	/**
 	 * Setter for startMonth
 	 */
-	public PaymentCard setStartMonth(int startMonth) {
+	public PaymentCard setStartMonth(String startMonth) {
 		this.startMonth = startMonth;
 		return this;
 	}
@@ -189,7 +194,7 @@ public class PaymentCard  extends PayPalModel {
 	/**
 	 * Getter for startMonth
 	 */
-	public int getStartMonth() {
+	public String getStartMonth() {
 		return this.startMonth;
 	}
 
@@ -197,7 +202,7 @@ public class PaymentCard  extends PayPalModel {
 	/**
 	 * Setter for startYear
 	 */
-	public PaymentCard setStartYear(int startYear) {
+	public PaymentCard setStartYear(String startYear) {
 		this.startYear = startYear;
 		return this;
 	}
@@ -205,7 +210,7 @@ public class PaymentCard  extends PayPalModel {
 	/**
 	 * Getter for startYear
 	 */
-	public int getStartYear() {
+	public String getStartYear() {
 		return this.startYear;
 	}
 
@@ -213,7 +218,7 @@ public class PaymentCard  extends PayPalModel {
 	/**
 	 * Setter for cvv2
 	 */
-	public PaymentCard setCvv2(int cvv2) {
+	public PaymentCard setCvv2(String cvv2) {
 		this.cvv2 = cvv2;
 		return this;
 	}
@@ -221,7 +226,7 @@ public class PaymentCard  extends PayPalModel {
 	/**
 	 * Getter for cvv2
 	 */
-	public int getCvv2() {
+	public String getCvv2() {
 		return this.cvv2;
 	}
 
@@ -255,6 +260,22 @@ public class PaymentCard  extends PayPalModel {
 	 */
 	public String getLastName() {
 		return this.lastName;
+	}
+
+
+	/**
+	 * Setter for billingCountry
+	 */
+	public PaymentCard setBillingCountry(String billingCountry) {
+		this.billingCountry = billingCountry;
+		return this;
+	}
+
+	/**
+	 * Getter for billingCountry
+	 */
+	public String getBillingCountry() {
+		return this.billingCountry;
 	}
 
 
@@ -323,9 +344,41 @@ public class PaymentCard  extends PayPalModel {
 
 
 	/**
+	 * Setter for issueNumber
+	 */
+	public PaymentCard setIssueNumber(String issueNumber) {
+		this.issueNumber = issueNumber;
+		return this;
+	}
+
+	/**
+	 * Getter for issueNumber
+	 */
+	public String getIssueNumber() {
+		return this.issueNumber;
+	}
+
+
+	/**
+	 * Setter for 3dSecureInfo
+	 */
+	public PaymentCard set3dSecureInfo(Card3dSecureInfo card3dSecureInfo) {
+		this.card3dSecureInfo = card3dSecureInfo;
+		return this;
+	}
+
+	/**
+	 * Getter for 3dSecureInfo
+	 */
+	public Card3dSecureInfo get3dSecureInfo() {
+		return this.card3dSecureInfo;
+	}
+
+
+	/**
 	 * Setter for links
 	 */
-	public PaymentCard setLinks(List<Links> links) {
+	public PaymentCard setLinks(List<DefinitionsLinkdescription> links) {
 		this.links = links;
 		return this;
 	}
@@ -333,7 +386,7 @@ public class PaymentCard  extends PayPalModel {
 	/**
 	 * Getter for links
 	 */
-	public List<Links> getLinks() {
+	public List<DefinitionsLinkdescription> getLinks() {
 		return this.links;
 	}
 

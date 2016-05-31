@@ -11,9 +11,24 @@ public class Payee  extends PayPalModel {
 	private String email;
 
 	/**
-	 * Encrypted PayPal Account identifier for the Payee.
+	 * Encrypted PayPal account identifier for the Payee.
 	 */
 	private String merchantId;
+
+	/**
+	 * First Name of the Payee.
+	 */
+	private String firstName;
+
+	/**
+	 * Last Name of the Payee.
+	 */
+	private String lastName;
+
+	/**
+	 * Unencrypted PayPal account Number of the Payee
+	 */
+	private String accountNumber;
 
 	/**
 	 * Information related to the Payer. In case of PayPal Wallet payment, this information will be filled in by PayPal after the user approves the payment using their PayPal Wallet. 
@@ -24,14 +39,6 @@ public class Payee  extends PayPalModel {
 	 * Default Constructor
 	 */
 	public Payee() {
-	}
-
-	/**
-	 * Parameterized Constructor
-	 */
-	public Payee(String email, String merchantId) {
-		this.email = email;
-		this.merchantId = merchantId;
 	}
 
 
@@ -68,6 +75,54 @@ public class Payee  extends PayPalModel {
 
 
 	/**
+	 * Setter for firstName
+	 */
+	public Payee setFirstName(String firstName) {
+		this.firstName = firstName;
+		return this;
+	}
+
+	/**
+	 * Getter for firstName
+	 */
+	public String getFirstName() {
+		return this.firstName;
+	}
+
+
+	/**
+	 * Setter for lastName
+	 */
+	public Payee setLastName(String lastName) {
+		this.lastName = lastName;
+		return this;
+	}
+
+	/**
+	 * Getter for lastName
+	 */
+	public String getLastName() {
+		return this.lastName;
+	}
+
+
+	/**
+	 * Setter for accountNumber
+	 */
+	public Payee setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+		return this;
+	}
+
+	/**
+	 * Getter for accountNumber
+	 */
+	public String getAccountNumber() {
+		return this.accountNumber;
+	}
+
+
+	/**
 	 * Setter for phone
 	 */
 	public Payee setPhone(Phone phone) {
@@ -81,6 +136,5 @@ public class Payee  extends PayPalModel {
 	public Phone getPhone() {
 		return this.phone;
 	}
-
 
 }

@@ -6,12 +6,12 @@ import com.paypal.base.rest.PayPalModel;
 public class FundingInstrument  extends PayPalModel {
 
 	/**
-	 * Credit Card information.
+	 * Credit Card instrument.
 	 */
 	private CreditCard creditCard;
 
 	/**
-	 * Credit Card information.
+	 * PayPal vaulted credit Card instrument.
 	 */
 	private CreditCardToken creditCardToken;
 
@@ -21,24 +21,54 @@ public class FundingInstrument  extends PayPalModel {
 	private PaymentCard paymentCard;
 
 	/**
-	 * Payment card token information.
-	 */
-	private PaymentCardToken paymentCardToken;
-
-	/**
 	 * Bank Account information.
 	 */
 	private ExtendedBankAccount bankAccount;
 
 	/**
-	 * Bank Account information.
+	 * Vaulted bank account instrument.
 	 */
 	private BankToken bankAccountToken;
 
 	/**
-	 * Credit funding information.
+	 * PayPal credit funding instrument.
 	 */
 	private Credit credit;
+
+	/**
+	 * Incentive funding instrument.
+	 */
+	private Incentive incentive;
+
+	/**
+	 * External funding instrument.
+	 */
+	private ExternalFunding externalFunding;
+
+	/**
+	 * Carrier account token instrument.
+	 */
+	private CarrierAccountToken carrierAccountToken;
+
+	/**
+	 * Carrier account instrument
+	 */
+	private CarrierAccount carrierAccount;
+
+	/**
+	 * Private Label Card funding instrument. These are store cards provided by merchants to drive business with value to customer with convenience and rewards.
+	 */
+	private PrivateLabelCard privateLabelCard;
+
+	/**
+	 * Billing instrument that references pre-approval information for the payment
+	 */
+	private Billing billing;
+
+	/**
+	 * Alternate Payment  information - Mostly regional payment providers. For e.g iDEAL in Netherlands
+	 */
+	private AlternatePayment alternatePayment;
 
 	/**
 	 * Default Constructor
@@ -96,22 +126,6 @@ public class FundingInstrument  extends PayPalModel {
 
 
 	/**
-	 * Setter for paymentCardToken
-	 */
-	public FundingInstrument setPaymentCardToken(PaymentCardToken paymentCardToken) {
-		this.paymentCardToken = paymentCardToken;
-		return this;
-	}
-
-	/**
-	 * Getter for paymentCardToken
-	 */
-	public PaymentCardToken getPaymentCardToken() {
-		return this.paymentCardToken;
-	}
-
-
-	/**
 	 * Setter for bankAccount
 	 */
 	public FundingInstrument setBankAccount(ExtendedBankAccount bankAccount) {
@@ -156,6 +170,118 @@ public class FundingInstrument  extends PayPalModel {
 	 */
 	public Credit getCredit() {
 		return this.credit;
+	}
+
+
+	/**
+	 * Setter for incentive
+	 */
+	public FundingInstrument setIncentive(Incentive incentive) {
+		this.incentive = incentive;
+		return this;
+	}
+
+	/**
+	 * Getter for incentive
+	 */
+	public Incentive getIncentive() {
+		return this.incentive;
+	}
+
+
+	/**
+	 * Setter for externalFunding
+	 */
+	public FundingInstrument setExternalFunding(ExternalFunding externalFunding) {
+		this.externalFunding = externalFunding;
+		return this;
+	}
+
+	/**
+	 * Getter for externalFunding
+	 */
+	public ExternalFunding getExternalFunding() {
+		return this.externalFunding;
+	}
+
+
+	/**
+	 * Setter for carrierAccountToken
+	 */
+	public FundingInstrument setCarrierAccountToken(CarrierAccountToken carrierAccountToken) {
+		this.carrierAccountToken = carrierAccountToken;
+		return this;
+	}
+
+	/**
+	 * Getter for carrierAccountToken
+	 */
+	public CarrierAccountToken getCarrierAccountToken() {
+		return this.carrierAccountToken;
+	}
+
+
+	/**
+	 * Setter for carrierAccount
+	 */
+	public FundingInstrument setCarrierAccount(CarrierAccount carrierAccount) {
+		this.carrierAccount = carrierAccount;
+		return this;
+	}
+
+	/**
+	 * Getter for carrierAccount
+	 */
+	public CarrierAccount getCarrierAccount() {
+		return this.carrierAccount;
+	}
+
+
+	/**
+	 * Setter for privateLabelCard
+	 */
+	public FundingInstrument setPrivateLabelCard(PrivateLabelCard privateLabelCard) {
+		this.privateLabelCard = privateLabelCard;
+		return this;
+	}
+
+	/**
+	 * Getter for privateLabelCard
+	 */
+	public PrivateLabelCard getPrivateLabelCard() {
+		return this.privateLabelCard;
+	}
+
+
+	/**
+	 * Setter for billing
+	 */
+	public FundingInstrument setBilling(Billing billing) {
+		this.billing = billing;
+		return this;
+	}
+
+	/**
+	 * Getter for billing
+	 */
+	public Billing getBilling() {
+		return this.billing;
+	}
+
+
+	/**
+	 * Setter for alternatePayment
+	 */
+	public FundingInstrument setAlternatePayment(AlternatePayment alternatePayment) {
+		this.alternatePayment = alternatePayment;
+		return this;
+	}
+
+	/**
+	 * Getter for alternatePayment
+	 */
+	public AlternatePayment getAlternatePayment() {
+		return this.alternatePayment;
 	}
 
 

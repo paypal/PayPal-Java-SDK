@@ -50,36 +50,4 @@ public class Credit  extends PayPalModel {
 	}
 
 
-	/**
-	 * Setter for type
-	 */
-	public Credit setType(String type) {
-		this.type = type;
-		return this;
-	}
-
-	/**
-	 * Getter for type
-	 */
-	public String getType() {
-		return this.type;
-	}
-
-
-	/**
-	 * Setter for terms
-	 */
-	public Credit setTerms(String terms) {
-		this.terms = terms;
-		return this;
-	}
-
-	/**
-	 * Getter for terms
-	 */
-	public String getTerms() {
-		return this.terms;
-	}
-
-
 }

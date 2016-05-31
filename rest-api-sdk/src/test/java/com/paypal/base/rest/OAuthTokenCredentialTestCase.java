@@ -24,7 +24,7 @@ public class OAuthTokenCredentialTestCase {
 		clientSecret = "EO422dn3gQLgDbuwqTjzrFgFtaRLRR5BdHEESmha49TM";
 	}
 
-	@Test(priority = 20)
+	@Test(priority = 20, groups = "integration")
 	public void testGetAccessToken() throws PayPalRESTException {
 		Map<String, String> configurationMap = new HashMap<String, String>();
 		configurationMap.put("service.EndPoint",
@@ -37,7 +37,7 @@ public class OAuthTokenCredentialTestCase {
 		Assert.assertEquals(true, merchantTokenCredential.expiresIn() > 0);
 	}
 
-	@Test(dependsOnMethods = { "testGetAccessToken" })
+	@Test(dependsOnMethods = { "testGetAccessToken" }, groups = "integration")
 	public void testErrorAccessToken() {
 		try {
 			Map<String, String> configurationMap = new HashMap<String, String>();

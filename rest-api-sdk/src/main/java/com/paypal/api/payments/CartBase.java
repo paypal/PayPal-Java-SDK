@@ -1,9 +1,16 @@
 package com.paypal.api.payments;
 
+import java.util.List;
+
 import com.paypal.base.rest.PayPalModel;
 
 
 public class CartBase  extends PayPalModel {
+
+	/**
+	 * Merchant identifier to the purchase unit. Optional parameter
+	 */
+	private String referenceId;
 
 	/**
 	 * Amount being collected.
@@ -16,7 +23,7 @@ public class CartBase  extends PayPalModel {
 	private Payee payee;
 
 	/**
-	 * Description of what is being paid for.
+	 * Description of transaction.
 	 */
 	private String description;
 
@@ -26,19 +33,24 @@ public class CartBase  extends PayPalModel {
 	private String noteToPayee;
 
 	/**
-	 * free-form field for the use of clients
+	 * Free-form field for the use of clients. Only supported when the `payment_method` is set to `paypal`.
 	 */
 	private String custom;
 
 	/**
-	 * invoice number to track this payment
+	 * Invoice number used to track the payment. Only supported when the `payment_method` is set to `paypal`.
 	 */
 	private String invoiceNumber;
 
 	/**
-	 * Soft descriptor used when charging this funding source.
+	 * Soft descriptor used when charging this funding source. If length exceeds max length, the value will be truncated
 	 */
 	private String softDescriptor;
+
+	/**
+	 * Soft descriptor city used when charging this funding source. If length exceeds max length, the value will be truncated. Only supported when the `payment_method` is set to `credit_card`
+	 */
+	private String softDescriptorCity;
 
 	/**
 	 * Payment options requested for this purchase unit
@@ -46,10 +58,10 @@ public class CartBase  extends PayPalModel {
 	private PaymentOptions paymentOptions;
 
 	/**
-	 * List of items being paid for.
+	 * Items and related shipping address within a transaction.
 	 */
 	private ItemList itemList;
-	
+
 	/**
 	 * URL to send payment notifications
 	 */
@@ -61,9 +73,37 @@ public class CartBase  extends PayPalModel {
 	private String orderUrl;
 
 	/**
+	 * List of external funding being applied to the purchase unit. Each external_funding unit should have a unique reference_id
+	 */
+	private List<ExternalFunding> externalFunding;
+
+	/**
 	 * Default Constructor
 	 */
 	public CartBase() {
+	}
+
+	/**
+	 * Parameterized Constructor
+	 */
+	public CartBase(Amount amount) {
+		this.amount = amount;
+	}
+
+
+	/**
+	 * Setter for referenceId
+	 */
+	public CartBase setReferenceId(String referenceId) {
+		this.referenceId = referenceId;
+		return this;
+	}
+
+	/**
+	 * Getter for referenceId
+	 */
+	public String getReferenceId() {
+		return this.referenceId;
 	}
 
 
@@ -180,6 +220,22 @@ public class CartBase  extends PayPalModel {
 
 
 	/**
+	 * Setter for softDescriptorCity
+	 */
+	public CartBase setSoftDescriptorCity(String softDescriptorCity) {
+		this.softDescriptorCity = softDescriptorCity;
+		return this;
+	}
+
+	/**
+	 * Getter for softDescriptorCity
+	 */
+	public String getSoftDescriptorCity() {
+		return this.softDescriptorCity;
+	}
+
+
+	/**
 	 * Setter for paymentOptions
 	 */
 	public CartBase setPaymentOptions(PaymentOptions paymentOptions) {
@@ -210,26 +266,52 @@ public class CartBase  extends PayPalModel {
 		return this.itemList;
 	}
 
-	
-	public String getNotifyUrl() {
-		return notifyUrl;
-	}
 
-
+	/**
+	 * Setter for notifyUrl
+	 */
 	public CartBase setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
 		return this;
 	}
 
-
-	public String getOrderUrl() {
-		return orderUrl;
+	/**
+	 * Getter for notifyUrl
+	 */
+	public String getNotifyUrl() {
+		return this.notifyUrl;
 	}
 
 
+	/**
+	 * Setter for orderUrl
+	 */
 	public CartBase setOrderUrl(String orderUrl) {
 		this.orderUrl = orderUrl;
 		return this;
+	}
+
+	/**
+	 * Getter for orderUrl
+	 */
+	public String getOrderUrl() {
+		return this.orderUrl;
+	}
+
+
+	/**
+	 * Setter for externalFunding
+	 */
+	public CartBase setExternalFunding(List<ExternalFunding> externalFunding) {
+		this.externalFunding = externalFunding;
+		return this;
+	}
+
+	/**
+	 * Getter for externalFunding
+	 */
+	public List<ExternalFunding> getExternalFunding() {
+		return this.externalFunding;
 	}
 
 }

@@ -14,29 +14,24 @@ import com.paypal.base.sdk.info.SDKVersionImpl;
 public class Refund  extends PayPalResource {
 
 	/**
-	 * Identifier of the refund transaction in UTC ISO8601 format.
+	 * ID of the refund transaction. 17 characters max.
 	 */
 	private String id;
 
 	/**
-	 * Time the resource was created in UTC ISO8601 format.
-	 */
-	private String createTime;
-
-	/**
-	 * Time the resource was last updated in UTC ISO8601 format.
-	 */
-	private String updateTime;
-
-	/**
-	 * Details including both refunded amount (to Payer) and refunded fee (to Payee).If amount is not specified, it's assumed to be full refund.
+	 * Details including both refunded amount (to payer) and refunded fee (to payee). 10 characters max.
 	 */
 	private Amount amount;
 
 	/**
-	 * State of the refund transaction.
+	 * State of the refund.
 	 */
 	private String state;
+
+	/**
+	 * Reason description for the Sale transaction being refunded.
+	 */
+	private String reason;
 
 	/**
 	 * ID of the Sale transaction being refunded. 
@@ -44,12 +39,12 @@ public class Refund  extends PayPalResource {
 	private String saleId;
 
 	/**
-	 * ID of the Capture transaction being refunded. 
+	 * ID of the sale transaction being refunded.
 	 */
 	private String captureId;
 
 	/**
-	 * ID of the Payment resource that this transaction is based on.
+	 * ID of the payment resource on which this transaction is based.
 	 */
 	private String parentPayment;
 
@@ -59,9 +54,37 @@ public class Refund  extends PayPalResource {
 	private String description;
 
 	/**
+	 * Time of refund as defined in [RFC 3339 Section 5.6](http://tools.ietf.org/html/rfc3339#section-5.6).
+	 */
+	private String createTime;
+
+	/**
+	 * Time that the resource was last updated.
+	 */
+	private String updateTime;
+
+	/**
 	 * 
 	 */
 	private List<Links> links;
+
+	/**
+	 * Returns the last request sent to the Service
+	 *
+	 * @return Last request sent to the server
+	 */
+	public static String getLastRequest() {
+		return PayPalResource.getLastRequest();
+	}
+
+	/**
+	 * Returns the last response returned by the Service
+	 *
+	 * @return Last response got from the Service
+	 */
+	public static String getLastResponse() {
+		return PayPalResource.getLastResponse();
+	}
 
 	/**
 	 * Default Constructor
@@ -83,38 +106,6 @@ public class Refund  extends PayPalResource {
 	 */
 	public String getId() {
 		return this.id;
-	}
-
-
-	/**
-	 * Setter for createTime
-	 */
-	public Refund setCreateTime(String createTime) {
-		this.createTime = createTime;
-		return this;
-	}
-
-	/**
-	 * Getter for createTime
-	 */
-	public String getCreateTime() {
-		return this.createTime;
-	}
-
-
-	/**
-	 * Setter for updateTime
-	 */
-	public Refund setUpdateTime(String updateTime) {
-		this.updateTime = updateTime;
-		return this;
-	}
-
-	/**
-	 * Getter for updateTime
-	 */
-	public String getUpdateTime() {
-		return this.updateTime;
 	}
 
 
@@ -147,6 +138,22 @@ public class Refund  extends PayPalResource {
 	 */
 	public String getState() {
 		return this.state;
+	}
+
+
+	/**
+	 * Setter for reason
+	 */
+	public Refund setReason(String reason) {
+		this.reason = reason;
+		return this;
+	}
+
+	/**
+	 * Getter for reason
+	 */
+	public String getReason() {
+		return this.reason;
 	}
 
 
@@ -211,6 +218,38 @@ public class Refund  extends PayPalResource {
 	 */
 	public String getDescription() {
 		return this.description;
+	}
+
+
+	/**
+	 * Setter for createTime
+	 */
+	public Refund setCreateTime(String createTime) {
+		this.createTime = createTime;
+		return this;
+	}
+
+	/**
+	 * Getter for createTime
+	 */
+	public String getCreateTime() {
+		return this.createTime;
+	}
+
+
+	/**
+	 * Setter for updateTime
+	 */
+	public Refund setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+		return this;
+	}
+
+	/**
+	 * Getter for updateTime
+	 */
+	public String getUpdateTime() {
+		return this.updateTime;
 	}
 
 

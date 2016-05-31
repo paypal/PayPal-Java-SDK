@@ -53,7 +53,7 @@ public class CreditCardTestCase {
 	public static final Address BILLINGADDRESS = AddressTestCase
 			.createAddress();
 
-	@BeforeTest
+	@BeforeTest(groups = "integration")
 	public void beforeClass() throws PayPalRESTException {
 		File testFile = new File(".",
 				"src/test/resources/sdk_config.properties");

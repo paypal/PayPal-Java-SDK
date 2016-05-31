@@ -14,44 +14,49 @@ import com.paypal.base.sdk.info.SDKVersionImpl;
 public class Authorization  extends PayPalResource {
 
 	/**
-	 * Identifier of the authorization transaction.
+	 * ID of the authorization transaction.
 	 */
 	private String id;
 
 	/**
-	 * Time the resource was created in UTC ISO8601 format.
-	 */
-	private String createTime;
-
-	/**
-	 * Time the resource was last updated in UTC ISO8601 format.
-	 */
-	private String updateTime;
-
-	/**
-	 * Amount being authorized for.
+	 * Amount being authorized.
 	 */
 	private Amount amount;
 
 	/**
-	 * specifies payment mode of the transaction
+	 * Specifies the payment mode of the transaction.
 	 */
 	private String paymentMode;
 
 	/**
-	 * State of the authorization transaction.
+	 * State of the authorization.
 	 */
 	private String state;
 
 	/**
-	 * Protection Eligibility of the Payer 
+	 * Reason code, `AUTHORIZATION`, for a transaction state of `pending`.
+	 */
+	private String reasonCode;
+
+	/**
+	 * [DEPRECATED] Reason code for the transaction state being Pending.Obsolete. use reason_code field instead.
+	 */
+	private String pendingReason;
+
+	/**
+	 * The level of seller protection in force for the transaction. Only supported when the `payment_method` is set to `paypal`. Allowed values:<br>  `ELIGIBLE`- Merchant is protected by PayPal's Seller Protection Policy for Unauthorized Payments and Item Not Received.<br> `PARTIALLY_ELIGIBLE`- Merchant is protected by PayPal's Seller Protection Policy for Item Not Received or Unauthorized Payments. Refer to `protection_eligibility_type` for specifics. <br> `INELIGIBLE`- Merchant is not protected under the Seller Protection Policy.
 	 */
 	private String protectionEligibility;
 
 	/**
-	 * Protection Eligibility Type of the Payer 
+	 * The kind of seller protection in force for the transaction. This property is returned only when the `protection_eligibility` property is set to `ELIGIBLE`or `PARTIALLY_ELIGIBLE`. Only supported when the `payment_method` is set to `paypal`. Allowed values:<br> `ITEM_NOT_RECEIVED_ELIGIBLE`- Sellers are protected against claims for items not received.<br> `UNAUTHORIZED_PAYMENT_ELIGIBLE`- Sellers are protected against claims for unauthorized payments.<br> One or both of the allowed values can be returned.
 	 */
 	private String protectionEligibilityType;
+
+	/**
+	 * Fraud Management Filter (FMF) details applied for the payment that could result in accept, deny, or pending action. Returned in a payment response only if the merchant has enabled FMF in the profile settings and one of the fraud filters was triggered based on those settings. See [Fraud Management Filters Summary](https://developer.paypal.com/docs/classic/fmf/integration-guide/FMFSummary/) for more information.
+	 */
+	private FmfDetails fmfDetails;
 
 	/**
 	 * ID of the Payment resource that this transaction is based on.
@@ -59,34 +64,54 @@ public class Authorization  extends PayPalResource {
 	private String parentPayment;
 
 	/**
-	 * Date/Time until which funds may be captured against this resource.
+	 * Authorization expiration time and date as defined in [RFC 3339 Section 5.6](http://tools.ietf.org/html/rfc3339#section-5.6).
 	 */
 	private String validUntil;
+
+	/**
+	 * Time of authorization as defined in [RFC 3339 Section 5.6](http://tools.ietf.org/html/rfc3339#section-5.6).
+	 */
+	private String createTime;
+
+	/**
+	 * Time that the resource was last updated.
+	 */
+	private String updateTime;
 
 	/**
 	 * 
 	 */
 	private List<Links> links;
-	
+
 	/**
-	 * [DEPRECATED] Reason code for the transaction state being Pending.Obsolete. use reason_code field instead.
+	 * Returns the last request sent to the Service
+	 *
+	 * @return Last request sent to the server
 	 */
-	private String pendingReason;
-	
+	public static String getLastRequest() {
+		return PayPalResource.getLastRequest();
+	}
+
 	/**
-	 * Reason code for the transaction state being Pending. This field will replace pending_reason field eventually
+	 * Returns the last response returned by the Service
+	 *
+	 * @return Last response got from the Service
 	 */
-	private String reasonCode;
-	
-	/**
-	 * Fraud Management Filter (FMF) details applied for the payment that could result in accept/deny/pending action.
-	 */
-	private FmfDetails fmfDetails;
+	public static String getLastResponse() {
+		return PayPalResource.getLastResponse();
+	}
 
 	/**
 	 * Default Constructor
 	 */
 	public Authorization() {
+	}
+
+	/**
+	 * Parameterized Constructor
+	 */
+	public Authorization(Amount amount) {
+		this.amount = amount;
 	}
 
 
@@ -103,38 +128,6 @@ public class Authorization  extends PayPalResource {
 	 */
 	public String getId() {
 		return this.id;
-	}
-
-
-	/**
-	 * Setter for createTime
-	 */
-	public Authorization setCreateTime(String createTime) {
-		this.createTime = createTime;
-		return this;
-	}
-
-	/**
-	 * Getter for createTime
-	 */
-	public String getCreateTime() {
-		return this.createTime;
-	}
-
-
-	/**
-	 * Setter for updateTime
-	 */
-	public Authorization setUpdateTime(String updateTime) {
-		this.updateTime = updateTime;
-		return this;
-	}
-
-	/**
-	 * Getter for updateTime
-	 */
-	public String getUpdateTime() {
-		return this.updateTime;
 	}
 
 
@@ -187,6 +180,38 @@ public class Authorization  extends PayPalResource {
 
 
 	/**
+	 * Setter for reasonCode
+	 */
+	public Authorization setReasonCode(String reasonCode) {
+		this.reasonCode = reasonCode;
+		return this;
+	}
+
+	/**
+	 * Getter for reasonCode
+	 */
+	public String getReasonCode() {
+		return this.reasonCode;
+	}
+
+
+	/**
+	 * Setter for pendingReason
+	 */
+	public Authorization setPendingReason(String pendingReason) {
+		this.pendingReason = pendingReason;
+		return this;
+	}
+
+	/**
+	 * Getter for pendingReason
+	 */
+	public String getPendingReason() {
+		return this.pendingReason;
+	}
+
+
+	/**
 	 * Setter for protectionEligibility
 	 */
 	public Authorization setProtectionEligibility(String protectionEligibility) {
@@ -215,6 +240,22 @@ public class Authorization  extends PayPalResource {
 	 */
 	public String getProtectionEligibilityType() {
 		return this.protectionEligibilityType;
+	}
+
+
+	/**
+	 * Setter for fmfDetails
+	 */
+	public Authorization setFmfDetails(FmfDetails fmfDetails) {
+		this.fmfDetails = fmfDetails;
+		return this;
+	}
+
+	/**
+	 * Getter for fmfDetails
+	 */
+	public FmfDetails getFmfDetails() {
+		return this.fmfDetails;
 	}
 
 
@@ -251,6 +292,38 @@ public class Authorization  extends PayPalResource {
 
 
 	/**
+	 * Setter for createTime
+	 */
+	public Authorization setCreateTime(String createTime) {
+		this.createTime = createTime;
+		return this;
+	}
+
+	/**
+	 * Getter for createTime
+	 */
+	public String getCreateTime() {
+		return this.createTime;
+	}
+
+
+	/**
+	 * Setter for updateTime
+	 */
+	public Authorization setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+		return this;
+	}
+
+	/**
+	 * Getter for updateTime
+	 */
+	public String getUpdateTime() {
+		return this.updateTime;
+	}
+
+
+	/**
 	 * Setter for links
 	 */
 	public Authorization setLinks(List<Links> links) {
@@ -263,38 +336,6 @@ public class Authorization  extends PayPalResource {
 	 */
 	public List<Links> getLinks() {
 		return this.links;
-	}
-
-	
-	public String getPendingReason() {
-		return pendingReason;
-	}
-
-	public Authorization setPendingReason(String pendingReason) {
-		this.pendingReason = pendingReason;
-		return this;
-	}
-
-
-	public String getReasonCode() {
-		return reasonCode;
-	}
-
-
-	public Authorization setReasonCode(String reasonCode) {
-		this.reasonCode = reasonCode;
-		return this;
-	}
-
-
-	public FmfDetails getFmfDetails() {
-		return fmfDetails;
-	}
-
-
-	public Authorization setFmfDetails(FmfDetails fmfDetails) {
-		this.fmfDetails = fmfDetails;
-		return this;
 	}
 
 

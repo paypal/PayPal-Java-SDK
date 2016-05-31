@@ -33,7 +33,7 @@ public class CaptureTestCase {
 
 	private Capture retrievedCapture = null;
 
-	@BeforeTest
+	@BeforeTest(groups = "integration")
 	public void beforeClass() throws PayPalRESTException {
 		File testFile = new File(".",
 				"src/test/resources/sdk_config.properties");

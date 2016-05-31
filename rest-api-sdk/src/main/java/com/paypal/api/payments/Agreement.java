@@ -14,6 +14,7 @@ import com.google.gson.GsonBuilder;
 import com.paypal.base.Constants;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.HttpMethod;
+import com.paypal.base.rest.JSONFormatter;
 import com.paypal.base.rest.PayPalRESTException;
 import com.paypal.base.rest.PayPalResource;
 import com.paypal.base.rest.RESTUtil;
@@ -549,7 +550,7 @@ public class Agreement  extends PayPalResource {
 		Object[] parameters = new Object[] {this.getId()};
 		String pattern = "v1/payments/billing-agreements/{0}";
 		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);
-		String payLoad = new GsonBuilder().create().toJson(patchRequest);
+		String payLoad = JSONFormatter.toJSON(patchRequest);
 		return configureAndExecute(apiContext, HttpMethod.PATCH, resourcePath, payLoad, Agreement.class);
 	}
 

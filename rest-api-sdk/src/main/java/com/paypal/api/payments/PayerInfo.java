@@ -6,37 +6,52 @@ import com.paypal.base.rest.PayPalModel;
 public class PayerInfo  extends PayPalModel {
 
 	/**
-	 * Email address representing the Payer.
+	 * Email address representing the payer. 127 characters max.
 	 */
 	private String email;
 
 	/**
-	 * External Remember Me id representing the Payer
+	 * External Remember Me id representing the payer
 	 */
 	private String externalRememberMeId;
 
 	/**
 	 * Account Number representing the Payer
 	 */
-	private String buyerAccountNumber;
+	private String accountNumber;
 
 	/**
-	 * First Name of the Payer.
+	 * Salutation of the payer.
+	 */
+	private String salutation;
+
+	/**
+	 * First name of the payer.
 	 */
 	private String firstName;
 
 	/**
-	 * Last Name of the Payer.
+	 * Middle name of the payer.
+	 */
+	private String middleName;
+
+	/**
+	 * Last name of the payer.
 	 */
 	private String lastName;
 
 	/**
-	 * PayPal assigned Payer ID.
+	 * Suffix of the payer.
+	 */
+	private String suffix;
+
+	/**
+	 * PayPal assigned encrypted Payer ID.
 	 */
 	private String payerId;
 
 	/**
-	 * Phone number representing the Payer.
+	 * Phone number representing the payer. 20 characters max.
 	 */
 	private String phone;
 
@@ -46,19 +61,24 @@ public class PayerInfo  extends PayPalModel {
 	private String phoneType;
 
 	/**
-	 * Birth date of the Payer in ISO8601 format (YYYY-MM-DD).
+	 * Birth date of the Payer in ISO8601 format (yyyy-mm-dd).
 	 */
 	private String birthDate;
 
 	/**
-	 * Payer's tax ID.
+	 * Payer’s tax ID. Only supported when the `payment_method` is set to `paypal`.
 	 */
 	private String taxId;
 
 	/**
-	 * Payer's tax ID type.
+	 * Payer’s tax ID type. Allowed values: `BR_CPF` or `BR_CNPJ`. Only supported when the `payment_method` is set to `paypal`.
 	 */
 	private String taxIdType;
+
+	/**
+	 * Two-letter registered country code of the payer to identify the buyer country.
+	 */
+	private String countryCode;
 
 	/**
 	 * Billing address of the Payer.
@@ -66,30 +86,10 @@ public class PayerInfo  extends PayPalModel {
 	private Address billingAddress;
 
 	/**
-	 * Obsolete. Use shipping address present in purchase unit.
+	 * Shipping address of payer PayPal account.
 	 */
 	private ShippingAddress shippingAddress;
 
-	/**
-	 * Salutation of the Payer.
-	 */
-	private String salutation;
-	
-	/**
-	 * Middle Name of the Payer.
-	 */
-	private String middleName;
-	
-	/**
-	 * Suffix of the Payer.
-	 */
-	private String suffix;
-	
-	/**
-	 * 2 letter registered country code of the payer to identify the buyer country
-	 */
-	private String countryCode;
-	
 	/**
 	 * Default Constructor
 	 */
@@ -130,18 +130,34 @@ public class PayerInfo  extends PayPalModel {
 
 
 	/**
-	 * Setter for buyerAccountNumber
+	 * Setter for accountNumber
 	 */
-	public PayerInfo setBuyerAccountNumber(String buyerAccountNumber) {
-		this.buyerAccountNumber = buyerAccountNumber;
+	public PayerInfo setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
 		return this;
 	}
 
 	/**
-	 * Getter for buyerAccountNumber
+	 * Getter for accountNumber
 	 */
-	public String getBuyerAccountNumber() {
-		return this.buyerAccountNumber;
+	public String getAccountNumber() {
+		return this.accountNumber;
+	}
+
+
+	/**
+	 * Setter for salutation
+	 */
+	public PayerInfo setSalutation(String salutation) {
+		this.salutation = salutation;
+		return this;
+	}
+
+	/**
+	 * Getter for salutation
+	 */
+	public String getSalutation() {
+		return this.salutation;
 	}
 
 
@@ -162,6 +178,22 @@ public class PayerInfo  extends PayPalModel {
 
 
 	/**
+	 * Setter for middleName
+	 */
+	public PayerInfo setMiddleName(String middleName) {
+		this.middleName = middleName;
+		return this;
+	}
+
+	/**
+	 * Getter for middleName
+	 */
+	public String getMiddleName() {
+		return this.middleName;
+	}
+
+
+	/**
 	 * Setter for lastName
 	 */
 	public PayerInfo setLastName(String lastName) {
@@ -174,6 +206,22 @@ public class PayerInfo  extends PayPalModel {
 	 */
 	public String getLastName() {
 		return this.lastName;
+	}
+
+
+	/**
+	 * Setter for suffix
+	 */
+	public PayerInfo setSuffix(String suffix) {
+		this.suffix = suffix;
+		return this;
+	}
+
+	/**
+	 * Getter for suffix
+	 */
+	public String getSuffix() {
+		return this.suffix;
 	}
 
 
@@ -274,6 +322,22 @@ public class PayerInfo  extends PayPalModel {
 
 
 	/**
+	 * Setter for countryCode
+	 */
+	public PayerInfo setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+		return this;
+	}
+
+	/**
+	 * Getter for countryCode
+	 */
+	public String getCountryCode() {
+		return this.countryCode;
+	}
+
+
+	/**
 	 * Setter for billingAddress
 	 */
 	public PayerInfo setBillingAddress(Address billingAddress) {
@@ -302,49 +366,6 @@ public class PayerInfo  extends PayPalModel {
 	 */
 	public ShippingAddress getShippingAddress() {
 		return this.shippingAddress;
-	}
-
-
-	public String getSalutation() {
-		return salutation;
-	}
-
-
-	public PayerInfo setSalutation(String salutation) {
-		this.salutation = salutation;
-		return this;
-	}
-
-
-	public String getMiddleName() {
-		return middleName;
-	}
-
-
-	public PayerInfo setMiddleName(String middleName) {
-		this.middleName = middleName;
-		return this;
-	}
-
-
-	public String getSuffix() {
-		return suffix;
-	}
-
-
-	public PayerInfo setSuffix(String suffix) {
-		this.suffix = suffix;
-		return this;
-	}
-
-
-	public String getCountryCode() {
-		return countryCode;
-	}
-
-
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
 	}
 
 }

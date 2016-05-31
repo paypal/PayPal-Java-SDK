@@ -141,14 +141,14 @@ public abstract class HttpConnection {
 						break retryLoop;
 					} else if (responsecode >= 300 && responsecode < 500) {
 						reader = new BufferedReader(new InputStreamReader(
-								connection.getErrorStream(),
+								connection.getInputStream(),
 								Constants.ENCODING_FORMAT));
 						errorResponse = read(reader);
 						String msg = "Response code: " + responsecode + "\tError response: " + errorResponse;
 						throw new ClientActionRequiredException(responsecode, errorResponse, msg, new IOException(msg));
 					} else if (responsecode >= 500) {
 						reader = new BufferedReader(new InputStreamReader(
-								connection.getErrorStream(),
+								connection.getInputStream(),
 								Constants.ENCODING_FORMAT));
 						errorResponse = read(reader);
 						String msg = "Response code: " + responsecode + "\tError response: " + errorResponse;

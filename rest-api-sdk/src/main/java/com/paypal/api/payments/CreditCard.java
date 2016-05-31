@@ -76,16 +76,16 @@ public class CreditCard  extends PayPalResource {
 	private String validUntil;
 
 	/**
-	 * 
+	 *
 	 */
 	private List<Links> links;
-	
+
 	/**
 	 * Payer ID
 	 */
 	private String payerId;
 
-	
+
 	/**
 	 * Default Constructor
 	 */
@@ -548,14 +548,14 @@ public class CreditCard  extends PayPalResource {
 			throw new IllegalArgumentException("containerMap cannot be null");
 		}
 		Object[] parameters = new Object[] {containerMap};
-		String pattern = "v1/vault/credit-cards?merchant_id={0}&external_card_id={1}&external_customer_id={2}&start_time={3}&end_time={4}&page={5}&page_size={6}&sort_order={7}&sort_by={8}";
+		String pattern = "v1/vault/credit-cards?merchant_id={0}&external_card_id={1}&external_customer_id={2}&start_time={3}&end_time={4}&page={5}&page_size={6}&sort_order={7}&sort_by={8}&total_required={9}";
 		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);
 		String payLoad = "";
 		CreditCardHistory creditCardHistory = configureAndExecute(apiContext, HttpMethod.GET, resourcePath, payLoad, CreditCardHistory.class);
 //		if (creditCardHistory == null) {
 //			creditCardHistory = new CreditCardHistory();
 //		}
-		
+
 		return creditCardHistory;
 	}
 
@@ -570,7 +570,7 @@ public class CreditCard  extends PayPalResource {
 	 */
 	public static CreditCardHistory list(String accessToken) throws PayPalRESTException {
 		APIContext apiContext = new APIContext(accessToken);
-		
+
 		Map<String, String> parameters = new HashMap<String, String>();
 		parameters.put("merchant_id", "");
 		parameters.put("external_card_id", "");
@@ -581,7 +581,8 @@ public class CreditCard  extends PayPalResource {
 		parameters.put("page_size", "10");
 		parameters.put("sort_order", "asc");
 		parameters.put("sort_by", "create_time");
-		
+		parameters.put("total_required", "true");
+
 		return list(apiContext, parameters);
 	}
 

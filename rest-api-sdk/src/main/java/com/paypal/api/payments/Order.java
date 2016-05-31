@@ -1,6 +1,7 @@
 package com.paypal.api.payments;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.paypal.base.Constants;
 import com.paypal.base.rest.APIContext;
@@ -18,19 +19,9 @@ public class Order  extends PayPalResource {
 	private String id;
 
 	/**
-	 * Identifier to the purchase unit associated with this object
+	 * Identifier to the purchase unit associated with this object. Obsolete. Use one in cart_base.
 	 */
 	private String purchaseUnitReferenceId;
-
-	/**
-	 * Time the resource was created in UTC ISO8601 format.
-	 */
-	private String createTime;
-
-	/**
-	 * Time the resource was last updated in UTC ISO8601 format.
-	 */
-	private String updateTime;
 
 	/**
 	 * Amount being collected.
@@ -48,26 +39,68 @@ public class Order  extends PayPalResource {
 	private String state;
 
 	/**
-	 * Protection Eligibility of the Payer 
+	 * Reason code for the transaction state being Pending or Reversed. Only supported when the `payment_method` is set to `paypal`.
+	 */
+	private String reasonCode;
+
+	/**
+	 * [DEPRECATED] Reason the transaction is in pending state. Use reason_code field above instead. 
+	 */
+	private String pendingReason;
+
+	/**
+	 * The level of seller protection in force for the transaction.
 	 */
 	private String protectionEligibility;
 
 	/**
-	 * Protection Eligibility Type of the Payer 
+	 * The kind of seller protection in force for the transaction. This property is returned only when the `protection_eligibility` property is set to `ELIGIBLE`or `PARTIALLY_ELIGIBLE`. Only supported when the `payment_method` is set to `paypal`. Allowed values:<br> `ITEM_NOT_RECEIVED_ELIGIBLE`- Sellers are protected against claims for items not received.<br> `UNAUTHORIZED_PAYMENT_ELIGIBLE`- Sellers are protected against claims for unauthorized payments.<br> One or both of the allowed values can be returned.
 	 */
 	private String protectionEligibilityType;
-	
+
 	/**
-	 * Reason code for the transaction state being Pending. This field will replace pending_reason field eventually
+	 * ID of the Payment resource that this transaction is based on.
 	 */
-	private String reasonCode;
-	
+	private String parentPayment;
+
 	/**
 	 * Fraud Management Filter (FMF) details applied for the payment that could result in accept/deny/pending action.
 	 */
 	private FmfDetails fmfDetails;
 
+	/**
+	 * Time the resource was created in UTC ISO8601 format.
+	 */
+	private String createTime;
 
+	/**
+	 * Time the resource was last updated in UTC ISO8601 format.
+	 */
+	private String updateTime;
+
+	/**
+	 * 
+	 */
+	private List<Links> links;
+
+	/**
+	 * Returns the last request sent to the Service
+	 *
+	 * @return Last request sent to the server
+	 */
+	public static String getLastRequest() {
+		return PayPalResource.getLastRequest();
+	}
+
+	/**
+	 * Returns the last response returned by the Service
+	 *
+	 * @return Last response got from the Service
+	 */
+	public static String getLastResponse() {
+		return PayPalResource.getLastResponse();
+	}
+	
 	/**
 	 * Default Constructor
 	 */
@@ -77,10 +110,8 @@ public class Order  extends PayPalResource {
 	/**
 	 * Parameterized Constructor
 	 */
-	public Order(String id, Amount amount, String state) {
-		this.id = id;
+	public Order(Amount amount) {
 		this.amount = amount;
-		this.state = state;
 	}
 
 
@@ -113,38 +144,6 @@ public class Order  extends PayPalResource {
 	 */
 	public String getPurchaseUnitReferenceId() {
 		return this.purchaseUnitReferenceId;
-	}
-
-
-	/**
-	 * Setter for createTime
-	 */
-	public Order setCreateTime(String createTime) {
-		this.createTime = createTime;
-		return this;
-	}
-
-	/**
-	 * Getter for createTime
-	 */
-	public String getCreateTime() {
-		return this.createTime;
-	}
-
-
-	/**
-	 * Setter for updateTime
-	 */
-	public Order setUpdateTime(String updateTime) {
-		this.updateTime = updateTime;
-		return this;
-	}
-
-	/**
-	 * Getter for updateTime
-	 */
-	public String getUpdateTime() {
-		return this.updateTime;
 	}
 
 
@@ -197,6 +196,38 @@ public class Order  extends PayPalResource {
 
 
 	/**
+	 * Setter for reasonCode
+	 */
+	public Order setReasonCode(String reasonCode) {
+		this.reasonCode = reasonCode;
+		return this;
+	}
+
+	/**
+	 * Getter for reasonCode
+	 */
+	public String getReasonCode() {
+		return this.reasonCode;
+	}
+
+
+	/**
+	 * Setter for pendingReason
+	 */
+	public Order setPendingReason(String pendingReason) {
+		this.pendingReason = pendingReason;
+		return this;
+	}
+
+	/**
+	 * Getter for pendingReason
+	 */
+	public String getPendingReason() {
+		return this.pendingReason;
+	}
+
+
+	/**
 	 * Setter for protectionEligibility
 	 */
 	public Order setProtectionEligibility(String protectionEligibility) {
@@ -228,25 +259,83 @@ public class Order  extends PayPalResource {
 	}
 
 
-	public String getReasonCode() {
-		return reasonCode;
-	}
-
-
-	public Order setReasonCode(String reasonCode) {
-		this.reasonCode = reasonCode;
+	/**
+	 * Setter for parentPayment
+	 */
+	public Order setParentPayment(String parentPayment) {
+		this.parentPayment = parentPayment;
 		return this;
 	}
 
-
-	public FmfDetails getFmfDetails() {
-		return fmfDetails;
+	/**
+	 * Getter for parentPayment
+	 */
+	public String getParentPayment() {
+		return this.parentPayment;
 	}
 
 
+	/**
+	 * Setter for fmfDetails
+	 */
 	public Order setFmfDetails(FmfDetails fmfDetails) {
 		this.fmfDetails = fmfDetails;
 		return this;
+	}
+
+	/**
+	 * Getter for fmfDetails
+	 */
+	public FmfDetails getFmfDetails() {
+		return this.fmfDetails;
+	}
+
+
+	/**
+	 * Setter for createTime
+	 */
+	public Order setCreateTime(String createTime) {
+		this.createTime = createTime;
+		return this;
+	}
+
+	/**
+	 * Getter for createTime
+	 */
+	public String getCreateTime() {
+		return this.createTime;
+	}
+
+
+	/**
+	 * Setter for updateTime
+	 */
+	public Order setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+		return this;
+	}
+
+	/**
+	 * Getter for updateTime
+	 */
+	public String getUpdateTime() {
+		return this.updateTime;
+	}
+
+
+	/**
+	 * Setter for links
+	 */
+	public Order setLinks(List<Links> links) {
+		this.links = links;
+		return this;
+	}
+
+	/**
+	 * Getter for links
+	 */
+	public List<Links> getLinks() {
+		return this.links;
 	}
 
 

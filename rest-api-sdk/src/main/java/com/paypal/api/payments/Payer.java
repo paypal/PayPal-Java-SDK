@@ -12,29 +12,39 @@ public class Payer  extends PayPalModel {
 	private String paymentMethod;
 
 	/**
-	 * Status of Payer PayPal Account.
+	 * Status of payer's PayPal Account.
 	 */
 	private String status;
-	
+
 	/**
 	 * Type of account relationship payer has with PayPal.
 	 */
 	private String accountType;
-	
+
 	/**
 	 * Duration since the payer established account relationship with PayPal in days.
 	 */
 	private String accountAge;
 
 	/**
-	 * List of funding instruments from where the funds of the current payment come from. Typically a credit card.
+	 * List of funding instruments to fund the payment. 'OneOf' funding_instruments,funding_option_id to be used to identify the specifics of payment method passed.
 	 */
 	private List<FundingInstrument> fundingInstruments;
 
 	/**
-	 * Id of user selected funding option for the payment. 'OneOf' funding_instruments or funding_option_id to be present 
+	 * Id of user selected funding option for the payment.'OneOf' funding_instruments,funding_option_id to be used to identify the specifics of payment method passed.
 	 */
 	private String fundingOptionId;
+
+	/**
+	 * Default funding option available for the payment 
+	 */
+	private FundingOption fundingOption;
+
+	/**
+	 * Funding option related to default funding option.
+	 */
+	private FundingOption relatedFundingOption;
 
 	/**
 	 * Information related to the Payer. 
@@ -45,13 +55,6 @@ public class Payer  extends PayPalModel {
 	 * Default Constructor
 	 */
 	public Payer() {
-	}
-
-	/**
-	 * Parameterized Constructor
-	 */
-	public Payer(String paymentMethod) {
-		this.paymentMethod = paymentMethod;
 	}
 
 
@@ -86,20 +89,36 @@ public class Payer  extends PayPalModel {
 		return this.status;
 	}
 
-	public String getAccountType() {
-		return accountType;
-	}
 
-	public void setAccountType(String accountType) {
+	/**
+	 * Setter for accountType
+	 */
+	public Payer setAccountType(String accountType) {
 		this.accountType = accountType;
+		return this;
 	}
 
-	public String getAccountAge() {
-		return accountAge;
+	/**
+	 * Getter for accountType
+	 */
+	public String getAccountType() {
+		return this.accountType;
 	}
 
-	public void setAccountAge(String accountAge) {
+
+	/**
+	 * Setter for accountAge
+	 */
+	public Payer setAccountAge(String accountAge) {
 		this.accountAge = accountAge;
+		return this;
+	}
+
+	/**
+	 * Getter for accountAge
+	 */
+	public String getAccountAge() {
+		return this.accountAge;
 	}
 
 
@@ -132,6 +151,38 @@ public class Payer  extends PayPalModel {
 	 */
 	public String getFundingOptionId() {
 		return this.fundingOptionId;
+	}
+
+
+	/**
+	 * Setter for fundingOption
+	 */
+	public Payer setFundingOption(FundingOption fundingOption) {
+		this.fundingOption = fundingOption;
+		return this;
+	}
+
+	/**
+	 * Getter for fundingOption
+	 */
+	public FundingOption getFundingOption() {
+		return this.fundingOption;
+	}
+
+
+	/**
+	 * Setter for relatedFundingOption
+	 */
+	public Payer setRelatedFundingOption(FundingOption relatedFundingOption) {
+		this.relatedFundingOption = relatedFundingOption;
+		return this;
+	}
+
+	/**
+	 * Getter for relatedFundingOption
+	 */
+	public FundingOption getRelatedFundingOption() {
+		return this.relatedFundingOption;
 	}
 
 

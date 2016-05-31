@@ -3,9 +3,10 @@ This repository contains Java SDK and samples for REST API. For PayPal mobile(An
 
 Prerequisites:
 ---------------
-*	Java JDK-1.5 or higher
+*	Java JDK 6 or higher
 *	Apache Maven 3 or higher
 *	Please refer http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html for any help in Maven.
+*	An environment which supports TLS 1.2 (see the [TLS-update site](https://github.com/paypal/TLS-update#java) for more information)
 
 SDK Integration:
 ----------------
@@ -56,7 +57,9 @@ To make an API call:
 *	Alternatively, create `accesstoken` from `clientID` and `clientSecret` using `OAuthTokenCredential` 
 
 	```java
-	String accessToken = new OAuthTokenCredential(clientID, clientSecret).getAccessToken();
+	Map<String, String> map = new HashMap<String, String>();
+	map.put("mode", "sandbox");
+	String accessToken = new OAuthTokenCredential(clientID, clientSecret, map).getAccessToken();
 	```
 		
 *	Depending on the context of API calls, calling method may be static or non-static (For example, most `GET` http methods are created as `static` methods within the resource). In all API calls, we need to pass `accessToken` created above as argument as shown below,
@@ -148,3 +151,9 @@ The SDK uses Java properties format configuration file. Sample of this file is a
 ```
 		
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/paypal/rest-api-sdk-java/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
+## License
+Code released under [SDK LICENSE](LICENSE)  
+
+## Contributions 
+ Pull requests and new issues are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for details. 

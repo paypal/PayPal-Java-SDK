@@ -91,7 +91,7 @@ public abstract class SSLUtil {
 			try {
 				ctx = SSLContext.getInstance("TLSv1.2");
 			} catch (NoSuchAlgorithmException e) {
-				log.warn("SECURITY WARNING: TLSv1.2 is not supported on this system. Please update your Java runtime to a version that supports TLSv1.2.");
+				log.warn("WARNING: Your system does not support TLSv1.2. Per PCI Security Council mandate (https://github.com/paypal/TLS-update), you MUST update to latest security library.");
 				ctx = SSLContext.getInstance(protocol);
 			}
 			ctx.init(keymanagers, null, null);
@@ -220,7 +220,16 @@ public abstract class SSLUtil {
 						cert.checkValidity();
 						// Check for CN name matching
 						String dn = cert.getSubjectX500Principal().getName();
-						if (!dn.contains("CN=messageverificationcerts")) {
+						String[] tokens = dn.split(",");
+						boolean hasPaypalCn = false;
+						
+						for (String token: tokens) {
+							if (token.startsWith("CN=messageverificationcerts") && token.endsWith(".paypal.com")) {
+								hasPaypalCn = true;
+							}
+						}
+						
+						if (!hasPaypalCn) {
 							throw new PayPalRESTException("CN of client certificate does not match with trusted CN");
 						}
 					}
