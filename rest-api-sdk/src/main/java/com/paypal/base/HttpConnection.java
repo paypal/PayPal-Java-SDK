@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -63,11 +64,10 @@ public abstract class HttpConnection {
 	 */
 	public String execute(String url, String payload,
 			Map<String, String> headers) throws InvalidResponseDataException,
-			IOException, InterruptedException, HttpErrorException,
-			ClientActionRequiredException {
+			IOException, InterruptedException, HttpErrorException {
 
-		BufferedReader reader = null;
-		String successResponse = Constants.EMPTY_STRING;
+		BufferedReader reader;
+		String successResponse;
 		InputStream result = executeWithStream(url, payload, headers);
 		reader = new BufferedReader(new InputStreamReader(result,
 				Constants.ENCODING_FORMAT));
@@ -79,9 +79,9 @@ public abstract class HttpConnection {
 	/**
 	 * Executes HTTP request
 	 * 
-	 * @param url
-	 * @param payload
-	 * @param headers
+	 * @param url URL for the connection
+	 * @param payload Request payload
+	 * @param headers Headers map
 	 * @return String response
 	 * @throws InvalidResponseDataException
 	 * @throws IOException
@@ -91,30 +91,20 @@ public abstract class HttpConnection {
 	 */
 	public InputStream executeWithStream(String url, String payload,
 			Map<String, String> headers) throws InvalidResponseDataException,
-			IOException, InterruptedException, HttpErrorException,
-			ClientActionRequiredException {
+			IOException, InterruptedException, HttpErrorException {
 		InputStream successResponse = null;
-		String errorResponse = Constants.EMPTY_STRING;
-		int responsecode = -1;
+		String errorResponse = null;
+		int responseCode = -1;
 		BufferedReader reader = null;
 		OutputStreamWriter writer = null;
-		connection.setRequestProperty("Content-Length", ""
-				+ payload.trim().length());
+		connection.setRequestProperty("Content-Length", String.valueOf(payload.trim().length()));
 		try {
+			setHttpHeaders(headers);
 			String mode = ConfigManager.getInstance().getConfigurationMap()
 					.get(Constants.MODE);
-			if (headers != null && !Constants.LIVE.equalsIgnoreCase(mode)) {
-				String cmd = "curl command: \n";
-				cmd += "curl -v '" + connection.getURL().toString() + "' \\\n";
-				setHttpHeaders(headers);
-				Iterator<String> keyIter = headers.keySet().iterator();
-				while (keyIter.hasNext()) {
-					String key = keyIter.next();
-					String value = headers.get(key);
-					cmd += "-H \"" + key + ": " + value + "\" \\\n";
-				}
-				cmd += "-d '" + payload + "'";
-				log.debug(cmd);
+			// Print if on live
+			if (!Constants.LIVE.equalsIgnoreCase(mode)) {
+				logCurlRequest(payload, headers);
 			}
 
 			// This exception is used to make final log more explicit
@@ -122,11 +112,7 @@ public abstract class HttpConnection {
 			int retry = 0;
 			retryLoop: do {
 				try {
-					if ("POST".equalsIgnoreCase(connection.getRequestMethod())
-							|| "PUT".equalsIgnoreCase(connection
-									.getRequestMethod())
-							|| "PATCH".equalsIgnoreCase(connection
-									.getRequestMethod())) {
+					if (Arrays.asList("POST", "PUT", "PATCH").contains(connection.getRequestMethod().toUpperCase())) {
 						writer = new OutputStreamWriter(
 								this.connection.getOutputStream(),
 								Charset.forName(Constants.ENCODING_FORMAT));
@@ -134,52 +120,53 @@ public abstract class HttpConnection {
 						writer.flush();
 					}
 
-					responsecode = connection.getResponseCode();
-					
-					if (responsecode >= 200 && responsecode < 300) {
+					responseCode = connection.getResponseCode();
+
+					// SUCCESS
+					if (responseCode >= 200 && responseCode < 300) {
+
 						try {
 							successResponse = connection.getInputStream();
 						} catch (IOException e) {
 							successResponse = connection.getErrorStream();
 						}
 						break retryLoop;
-					} else if (responsecode >= 300 && responsecode < 500) {
-						reader = new BufferedReader(new InputStreamReader(
-								connection.getInputStream(),
-								Constants.ENCODING_FORMAT));
-						errorResponse = read(reader);
-						String msg = "Response code: " + responsecode + "\tError response: " + errorResponse;
-						throw new ClientActionRequiredException(responsecode, errorResponse, msg, new IOException(msg));
-					} else if (responsecode >= 500) {
-						reader = new BufferedReader(new InputStreamReader(
-								connection.getInputStream(),
-								Constants.ENCODING_FORMAT));
-						errorResponse = read(reader);
-						String msg = "Response code: " + responsecode + "\tError response: " + errorResponse;
-						throw new HttpErrorException(responsecode, errorResponse, msg, new IOException(msg));
+					}
+
+					// FAILURE
+					reader = new BufferedReader(new InputStreamReader(
+							connection.getInputStream(),
+							Constants.ENCODING_FORMAT));
+					errorResponse = read(reader);
+					String msg = "Response code: " + responseCode + "\tError response: " + errorResponse;
+
+					if (responseCode >= 300 && responseCode < 500) {
+						// CLIENT SIDE EXCEPTION
+						throw new ClientActionRequiredException(responseCode, errorResponse, msg, new IOException(msg));
+					} else if (responseCode >= 500) {
+						// SERVER SIDE EXCEPTION
+						throw new HttpErrorException(responseCode, errorResponse, msg, new IOException(msg));
 					}
 				} catch (IOException e) {
 					lastException = e;
 					try {
-						responsecode = connection.getResponseCode();
+						responseCode = connection.getResponseCode();
 						if (connection.getErrorStream() != null) {
 							reader = new BufferedReader(new InputStreamReader(
 									connection.getErrorStream(),
 									Constants.ENCODING_FORMAT));
 							errorResponse = read(reader);
-							log.error("Error code : " + responsecode
-									+ " with response : " + errorResponse);
+							log.error("Response code: " + responseCode
+									+ "\tError response: " + errorResponse);
 						}
 						if ((errorResponse == null)
 								|| (errorResponse.length() == 0)) {
 							errorResponse = e.getMessage();
 						}
-						if (responsecode <= 500) {
-							throw new HttpErrorException(responsecode,
-									errorResponse, "Error code : "
-											+ responsecode
-											+ " with response : "
-											+ errorResponse, e);
+						if (responseCode <= 500) {
+							String msg = "Response code: " + responseCode + "\tError response: " + errorResponse;
+							throw new HttpErrorException(responseCode,
+									errorResponse, msg, e);
 						}
 					} catch (HttpErrorException ex) {
 						throw ex;
@@ -190,14 +177,16 @@ public abstract class HttpConnection {
 								ex);
 					}
 				}
+				// RETRY LOGIC
 				retry++;
 				if (retry > 0) {
 					log.error(" Retry  No : " + retry + "...");
 					Thread.sleep(this.config.getRetryDelay());
 				}
 			} while (retry < this.config.getMaxRetry());
+
 			if (successResponse == null
-					|| (successResponse.available() <= 0 && !(responsecode >= 200 && responsecode < 300))) {
+					|| (successResponse.available() <= 0 && !(responseCode >= 200 && responseCode < 300))) {
 				throw new HttpErrorException(
 						"retry fails..  check log for more information",
 						lastException);
@@ -216,6 +205,25 @@ public abstract class HttpConnection {
 			}
 		}
 		return successResponse;
+	}
+
+	/**
+	 * Logs the curl format based request, which could be helpful for debugging purposes.
+	 *
+	 * @param payload Payload Data
+	 * @param headers Headers Map
+     */
+	private void logCurlRequest(String payload, Map<String, String> headers) {
+		String cmd = "curl command: \n";
+		cmd += "curl -v '" + connection.getURL().toString() + "' \\\n";
+		if (headers != null) {
+			for (String key : headers.keySet()) {
+				String value = headers.get(key);
+				cmd += "-H \"" + key + ": " + value + "\" \\\n";
+			}
+		}
+		cmd += "-d '" + payload + "'";
+		log.debug(cmd);
 	}
 
 	/**
@@ -238,7 +246,7 @@ public abstract class HttpConnection {
 			HttpConfiguration clientConfiguration) throws IOException;
 
 	protected String read(BufferedReader reader) throws IOException {
-		String inputLine = Constants.EMPTY_STRING;
+		String inputLine;
 		StringBuilder response = new StringBuilder();
 		while ((inputLine = reader.readLine()) != null) {
 			response.append(inputLine);
@@ -252,12 +260,14 @@ public abstract class HttpConnection {
 	 * @param headers
 	 */
 	protected void setHttpHeaders(Map<String, String> headers) {
-		Iterator<Map.Entry<String, String>> itr = headers.entrySet().iterator();
-		while (itr.hasNext()) {
-			Map.Entry<String, String> pairs = itr.next();
-			String key = pairs.getKey();
-			String value = pairs.getValue();
-			this.connection.setRequestProperty(key, value);
+		if (headers != null && !headers.isEmpty()) {
+			Iterator<Map.Entry<String, String>> itr = headers.entrySet().iterator();
+			while (itr.hasNext()) {
+				Map.Entry<String, String> pairs = itr.next();
+				String key = pairs.getKey();
+				String value = pairs.getValue();
+				this.connection.setRequestProperty(key, value);
+			}
 		}
 	}
 

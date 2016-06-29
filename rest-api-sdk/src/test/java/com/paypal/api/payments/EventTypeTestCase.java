@@ -73,7 +73,7 @@ public class EventTypeTestCase {
 		logger.info("Response = " + eventTypeList.toJSON());
 
 		Assert.assertNotNull(eventTypeList.getEventTypes());
-		Assert.assertEquals(eventTypeList.getEventTypes().size(), WebhooksInputData.availableEvents.length);
+		Assert.assertTrue(eventTypeList.getEventTypes().size() > WebhooksInputData.availableEvents.length);
 	}
 
 }
