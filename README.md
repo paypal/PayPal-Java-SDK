@@ -1,4 +1,4 @@
-## PayPal REST API Java SDK [![Build Status](https://travis-ci.org/paypal/PayPal-Java-SDK.svg?branch=master)](https://travis-ci.org/paypal/PayPal-Java-SDK)
+## PayPal REST API Java SDK [![Build Status](https://travis-ci.org/paypal/PayPal-Java-SDK.svg?branch=master)](https://travis-ci.org/paypal/PayPal-Java-SDK) [![Coverage Status](https://coveralls.io/repos/github/paypal/PayPal-Java-SDK/badge.svg?branch=master)](https://coveralls.io/github/paypal/PayPal-Java-SDK?branch=master)
 This repository contains Java SDK and samples for REST API. For PayPal mobile(Android) SDK, please go to [PayPal Android SDK](https://github.com/paypal/PayPal-Android-SDK)
 
 ## Please Note

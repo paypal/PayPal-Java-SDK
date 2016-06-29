@@ -2,6 +2,8 @@ sudo: false
 language: java
 jdk:
   - oraclejdk7
+after_success:
+- ./gradlew check cobertura coveralls
 after_script: ./gradlew clean test
 notifications:
   recipients:
