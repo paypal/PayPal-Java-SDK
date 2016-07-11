@@ -25,6 +25,11 @@ public class Invoice extends PayPalResource {
 	private String number;
 
 	/**
+	 * The template ID used for the invoice. Useful for copy functionality.
+	 */
+	private String templateId;
+
+	/**
 	 * URI of the invoice resource.
 	 */
 	private String uri;
@@ -43,6 +48,11 @@ public class Invoice extends PayPalResource {
 	 * Email address of invoice recipient (required) and optional billing information. (Note: We currently only allow one recipient).
 	 */
 	private List<BillingInfo> billingInfo;
+
+	/**
+	 * Email address of invoice recipient (required) and optional billing information. (Note: We currently only allow one recipient).
+	 */
+	private List<Participant> ccInfo;
 
 	/**
 	 * Shipping information for entities to whom items are being shipped.
