@@ -50,6 +50,11 @@ public class Invoice extends PayPalResource {
 	private List<BillingInfo> billingInfo;
 
 	/**
+	 * Email address of invoice recipient (required) and optional billing information. (Note: We currently only allow one recipient).
+	 */
+	private List<Participant> ccInfo;
+
+	/**
 	 * Shipping information for entities to whom items are being shipped.
 	 */
 	private ShippingInfo shippingInfo;
