@@ -1,13 +1,19 @@
 package com.paypal.base;
 
 import com.paypal.base.exception.SSLConfigurationException;
+import com.paypal.base.exception.HttpErrorException;
+import com.paypal.base.exception.InvalidResponseDataException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.InputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.Proxy;
 import java.net.URL;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * A special HttpConnection for use on Google App Engine.
@@ -19,6 +25,8 @@ import java.net.URL;
 public class GoogleAppEngineHttpConnection extends HttpConnection {
 
 	private static final Logger log = LoggerFactory.getLogger(GoogleAppEngineHttpConnection.class);
+
+  private String requestMethod = null;
 
 	@Override
 	public void setupClientSSL(String certPath, String certKey)
@@ -55,9 +63,27 @@ public class GoogleAppEngineHttpConnection extends HttpConnection {
 				.openConnection(Proxy.NO_PROXY);
 		this.connection.setDoInput(true);
 		this.connection.setDoOutput(true);
-		this.connection.setRequestMethod(config.getHttpMethod());
+
+		if ("PATCH".equals(config.getHttpMethod().toUpperCase())) {
+			this.connection.setRequestMethod("POST");
+      this.requestMethod = "PATCH";
+		} else { 
+		  this.connection.setRequestMethod(config.getHttpMethod());
+    }
 		this.connection.setConnectTimeout(this.config.getConnectionTimeout());
 		this.connection.setReadTimeout(this.config.getReadTimeout());
 	}
 
+	@Override
+	public InputStream executeWithStream(String url, String payload,
+			Map<String, String> headers) throws InvalidResponseDataException,
+			IOException, InterruptedException, HttpErrorException {
+
+		Map<String, String> headersCopy = new HashMap<String, String>(headers);
+		if (requestMethod != null) {
+			headersCopy.put("X-HTTP-Method-Override", requestMethod);
+		}
+
+		return super.executeWithStream(url, payload, headersCopy);
+	}
 }
