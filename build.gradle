@@ -62,6 +62,7 @@ project(':rest-api-sdk') {
 
         // Test
         testCompile 'org.testng:testng:6.3.1'
+        testCompile "org.mockito:mockito-core:2.+"
     }
 
     test {

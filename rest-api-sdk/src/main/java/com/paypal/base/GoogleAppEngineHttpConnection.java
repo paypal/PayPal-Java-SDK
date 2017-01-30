@@ -17,16 +17,16 @@ import java.util.HashMap;
 
 /**
  * A special HttpConnection for use on Google App Engine.
- * 
+ *
  * In order to activate this feature, set 'http.GoogleAppEngine = true' in the
  * SDK config file.
- * 
+ *
  */
 public class GoogleAppEngineHttpConnection extends HttpConnection {
 
 	private static final Logger log = LoggerFactory.getLogger(GoogleAppEngineHttpConnection.class);
 
-  private String requestMethod = null;
+	private String requestMethod = null;
 
 	@Override
 	public void setupClientSSL(String certPath, String certKey)
@@ -66,10 +66,10 @@ public class GoogleAppEngineHttpConnection extends HttpConnection {
 
 		if ("PATCH".equals(config.getHttpMethod().toUpperCase())) {
 			this.connection.setRequestMethod("POST");
-      this.requestMethod = "PATCH";
-		} else { 
-		  this.connection.setRequestMethod(config.getHttpMethod());
-    }
+			this.requestMethod = "PATCH";
+		} else {
+			this.connection.setRequestMethod(config.getHttpMethod());
+		}
 		this.connection.setConnectTimeout(this.config.getConnectionTimeout());
 		this.connection.setReadTimeout(this.config.getReadTimeout());
 	}
