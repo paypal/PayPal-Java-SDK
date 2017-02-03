@@ -253,17 +253,10 @@ public abstract class SSLUtil {
 		}
 		try {
 			Map<String, String> headerMap = new HashMap<String, String>();
-			HttpConfiguration httpConfiguration = new HttpConfiguration();
-			httpConfiguration.setEndPointUrl(urlPath);
-			httpConfiguration.setConnectionTimeout(Integer
-					.parseInt(configurations.get(Constants.HTTP_CONNECTION_TIMEOUT)));
-			httpConfiguration.setMaxRetry(Integer.parseInt(configurations.get(Constants.HTTP_CONNECTION_RETRY)));
-			httpConfiguration.setReadTimeout(Integer.parseInt(configurations.get(Constants.HTTP_CONNECTION_READ_TIMEOUT)));
-			httpConfiguration.setMaxHttpConnection(Integer
-					.parseInt(configurations.get(Constants.HTTP_CONNECTION_MAX_CONNECTION)));
-			httpConfiguration.setHttpMethod("GET");
-			HttpConnection connection = ConnectionManager.getInstance()
-					.getConnection();
+			HttpConfiguration httpConfiguration = generateHttpConfiguration(urlPath, configurations);
+
+			HttpConnection connection = ConnectionManager.getInstance().getConnection();
+
 			connection.createAndconfigureHttpConnection(httpConfiguration);
 			URL url = new URL(urlPath);
 			headerMap.put("Host", url.getHost());
@@ -271,6 +264,32 @@ public abstract class SSLUtil {
 		} catch (Exception ex) {
 			throw new PayPalRESTException(ex);
 		}
+	}
+
+	private static HttpConfiguration generateHttpConfiguration(final String urlPath, final Map<String, String> configurations) {
+		HttpConfiguration httpConfiguration = new HttpConfiguration();
+
+		httpConfiguration.setEndPointUrl(urlPath);
+		httpConfiguration.setConnectionTimeout(Integer.parseInt(configurations.get(Constants.HTTP_CONNECTION_TIMEOUT)));
+		httpConfiguration.setMaxRetry(Integer.parseInt(configurations.get(Constants.HTTP_CONNECTION_RETRY)));
+		httpConfiguration.setReadTimeout(Integer.parseInt(configurations.get(Constants.HTTP_CONNECTION_READ_TIMEOUT)));
+		httpConfiguration.setMaxHttpConnection(Integer.parseInt(configurations.get(Constants.HTTP_CONNECTION_MAX_CONNECTION)));
+		httpConfiguration.setHttpMethod("GET");
+
+		boolean useProxy = Boolean.parseBoolean(configurations.get(Constants.USE_HTTP_PROXY));
+
+		if(useProxy) {
+			httpConfiguration.setProxySet(useProxy);
+			httpConfiguration.setProxyHost(configurations.get(Constants.HTTP_PROXY_HOST));
+			httpConfiguration.setProxyPort(Integer.parseInt(configurations.get(Constants.HTTP_PROXY_PORT)));
+
+			String proxyUserName = configurations.get(Constants.HTTP_PROXY_USERNAME);
+			if(proxyUserName != null) {
+				httpConfiguration.setProxyUserName(proxyUserName);
+				httpConfiguration.setProxyPassword(configurations.get(Constants.HTTP_PROXY_PASSWORD));
+			}
+		}
+		return httpConfiguration;
 	}
 
 	/**
