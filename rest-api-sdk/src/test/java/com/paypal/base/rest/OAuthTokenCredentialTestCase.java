@@ -1,14 +1,20 @@
 package com.paypal.base.rest;
 
+import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.paypal.base.Constants;
+import com.paypal.base.HttpConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.log4testng.Logger;
 
 import com.paypal.base.exception.HttpErrorException;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 public class OAuthTokenCredentialTestCase {
 
@@ -49,6 +55,32 @@ public class OAuthTokenCredentialTestCase {
 		} catch (PayPalRESTException e) {
 			Assert.assertEquals(true, e.getCause() instanceof HttpErrorException);
 		}
+	}
+
+	@Test
+	public void getOAuthHttpConfiguration_returnsServiceEndpointIfSet() throws MalformedURLException {
+		Map<String, String> configurationMap = new HashMap<String, String>();
+		configurationMap.put(Constants.OAUTH_ENDPOINT,
+				"https://oauth.example.com/abc");
+
+		HttpConfiguration result = new OAuthTokenCredential("abc", "def", configurationMap).getOAuthHttpConfiguration();
+		assertNotNull(result);
+		assertEquals(result.getEndPointUrl(), "https://oauth.example.com/abc/v1/oauth2/token");
+	}
+
+	@Test
+	public void getOAuthHttpConfiguration_usesModeEndpointIfServiceEndpointNotSet() throws MalformedURLException {
+		Map<String, String> configurationMap = new HashMap<String, String>();
+		configurationMap.put(Constants.MODE, "sandbox");
+
+		HttpConfiguration result = new OAuthTokenCredential("abc", "def", configurationMap).getOAuthHttpConfiguration();
+		assertNotNull(result);
+		assertEquals(result.getEndPointUrl(), "https://api.sandbox.paypal.com/v1/oauth2/token");
+	}
+
+	@Test(expectedExceptions = MalformedURLException.class, expectedExceptionsMessageRegExp = "oauth\\.Endpoint, mode or service\\.EndPoint not set not configured to sandbox\\/live ")
+	public void getOAuthHttpConfiguration_throwsExceptionIfBothModeAndServiceEndpointNotSet() throws MalformedURLException {
+		new OAuthTokenCredential("abc", "def", new HashMap<String, String>()).getOAuthHttpConfiguration();
 	}
 
 }
