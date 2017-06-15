@@ -468,7 +468,7 @@ public final class OAuthTokenCredential {
 			}
 		}
 		// If none of the option works, throw exception.
-		if (endPointUrl == null || endPointUrl.length() <= 0) {
+		if (endPointUrl == null || endPointUrl.trim().length() <= 0) {
 			throw new MalformedURLException(
 					"oauth.Endpoint, mode or service.EndPoint not set not configured to sandbox/live ");
 		}

@@ -208,11 +208,15 @@ public class RESTAPICallPreHandler implements APICallPreHandler {
 					urlString = Constants.REST_SANDBOX_ENDPOINT;
 				} else if (Constants.LIVE.equalsIgnoreCase(mode)) {
 					urlString = Constants.REST_LIVE_ENDPOINT;
-				} else if (urlString == null || urlString.length() <= 0) {
-					throw new MalformedURLException(
-							"service.EndPoint not set (OR) mode not configured to sandbox/live ");
 				}
 			}
+
+			// If none of the option works, throw exception.
+			if (urlString == null || urlString.trim().length() <= 0) {
+				throw new MalformedURLException(
+						"service.EndPoint not set (OR) mode not configured to sandbox/live ");
+			}
+
 			if (!urlString.endsWith("/")) {
 				urlString += "/";
 			}
