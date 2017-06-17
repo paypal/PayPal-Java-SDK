@@ -4,6 +4,7 @@ buildscript {
     }
     dependencies {
         classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3"
+        classpath 'org.akhikhl.gretty:gretty:1.4.2'
     }
 }
 apply plugin: 'io.codearte.nexus-staging'
@@ -149,7 +150,7 @@ project(':rest-api-sdk') {
 
 // ## REST API SAMPLE PROJECT
 project(':rest-api-sample') {
-    apply plugin: 'jetty'
+    apply plugin: 'org.akhikhl.gretty'
 
     dependencies {
         compile project(':rest-api-sdk')
