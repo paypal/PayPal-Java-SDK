@@ -3,11 +3,20 @@ REST API Samples
 
 This project contains a set of samples that you can explore to understand what the REST APIs can do for you. The sample comes pre-configured with a test account but in case you need to try them against your account, you must obtain your client id and client secret from the developer portal.
 
-Build and run the samples
---------------------------
+Build, run and debug the samples
+--------------------------------
 
   * Simply run `./gradlew clean jettyRun` to start jetty server.
+    * Run `./gradlew clean jettyRunDebug` to start jetty server in debug mode.
+    See [Debugger support](http://akhikhl.github.io/gretty-doc/Debugger-support.html)
+    and [Gretty tasks](http://akhikhl.github.io/gretty-doc/Gretty-tasks) for more info.
+
   * Access `http://localhost:<jetty-port>/rest-api-sample/` in your browser to view samples.
+    * to assign a custom port for _Jetty_ server set gradle project property
+    `jettyRunHttpPort` (in your custom `gradle.properties` file) or run
+    the build gradle command with `-DjettyRunHttpPort` java argument:
+
+      `./gradlew clean jettyRunDebug -DjettyRunHttpPort=9090`
 
 Test Account
 ------------
