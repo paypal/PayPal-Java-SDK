@@ -209,7 +209,9 @@ public abstract class HttpConnection {
      */
 	private void logCurlRequest(String payload, Map<String, String> headers) {
 		String cmd = "curl command: \n";
-		cmd += "curl -v '" + connection.getURL().toString() + "' \\\n";
+		cmd += "curl -v ";
+		cmd += "-X " + connection.getRequestMethod().toUpperCase();
+		cmd += " '" + connection.getURL().toString() + "' \\\n";
 		if (headers != null) {
 			for (String key : headers.keySet()) {
 				String value = headers.get(key);
