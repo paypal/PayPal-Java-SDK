@@ -209,18 +209,18 @@ public abstract class HttpConnection {
      */
 	private void logCurlRequest(String payload, Map<String, String> headers) {
 		StringBuilder cmdBuilder = new StringBuilder("curl command: \n");
-		cmdBuilder.append("curl -v");
-		cmdBuilder.append(" -X ").append(connection.getRequestMethod().toUpperCase());
+		cmdBuilder.append("curl --verbose");
+		cmdBuilder.append(" --request ").append(connection.getRequestMethod().toUpperCase());
 		cmdBuilder.append(" '").append(connection.getURL().toString()).append("'");
 
 		if (headers != null) {
 			for (String key : headers.keySet()) {
 				String value = headers.get(key);
-				cmdBuilder.append(String.format(" \\\n  -H \"%s:%s\"", key, value));
+				cmdBuilder.append(String.format(" \\\n  --header \"%s:%s\"", key, value));
 			}
 		}
 
-		cmdBuilder.append(String.format(" \\\n  -d '%s'", payload));
+		cmdBuilder.append(String.format(" \\\n  --data '%s'", payload));
 
 		log.debug(cmdBuilder.toString());
 	}
