@@ -114,6 +114,26 @@ public class Userinfo extends PayPalResource{
 	private String payerId;
 
 	/**
+	 * @return End-User's birthday, represented as an YYYY-MM-DD format
+	 *
+	 * @deprecated PayPal API returns 'birthday', use that instead
+	 */
+	@Deprecated
+	public String getBirthdate() {
+		return this.birthday;
+	}
+
+	/**
+	 * @param birthdate End-User's birthday, represented as an YYYY-MM-DD format
+	 *
+	 * @deprecated PayPal API returns 'birthday', use that instead
+	 */
+	@Deprecated
+	public void setBirthdate(String birthdate) {
+		this.birthday = birthdate;
+	}
+
+	/**
 	 * Returns user details
 	 * @deprecated Please use {@link #getUserinfo(APIContext)} instead.
 	 *
