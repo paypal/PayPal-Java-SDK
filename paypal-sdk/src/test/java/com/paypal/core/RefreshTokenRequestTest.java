@@ -26,8 +26,9 @@ public class RefreshTokenRequestTest {
 		}
 
 		PayPalEnvironment environment = new PayPalEnvironment.Sandbox(clientId, clientSecret);
+		PayPalHttpClient client = new PayPalHttpClient(environment);
 
-		RefreshToken customerScopedRefreshToken = AuthorizationProvider.sharedInstance().exchange(environment, authorizationCode);
+		RefreshToken customerScopedRefreshToken = AuthorizationProvider.sharedInstance().exchange(client, authorizationCode);
 		assertNotNull(customerScopedRefreshToken);
 
 		PayPalHttpClient customerScopedClient = new PayPalHttpClient(environment, customerScopedRefreshToken.getRefreshToken());

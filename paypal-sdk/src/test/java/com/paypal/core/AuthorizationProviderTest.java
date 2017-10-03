@@ -32,7 +32,8 @@ public class AuthorizationProviderTest extends PayPalWireMockHarness {
 		HttpRequest<Void> request = new HttpRequest<>("/", "GET", Void.class);
 		stub(request, null);
 
-		AuthorizationProvider.sharedInstance().authorize(environment(), null);
+		PayPalHttpClient client = new PayPalHttpClient(environment());
+		AuthorizationProvider.sharedInstance().authorize(client, null);
 
 		verify(1, postRequestedFor(urlEqualTo("/v1/oauth2/token")));
 	}
@@ -43,15 +44,16 @@ public class AuthorizationProviderTest extends PayPalWireMockHarness {
 
 		CountDownLatch latch = new CountDownLatch(1);
 		AccessTokenHolder async = new AccessTokenHolder();
+		PayPalHttpClient client = new PayPalHttpClient(environment());
 
 		new Thread(() -> {
 			try {
-				async.accessToken = AuthorizationProvider.sharedInstance().authorize(environment(), null);
+				async.accessToken = AuthorizationProvider.sharedInstance().authorize(client, null);
 			} catch (IOException e) {}
 			latch.countDown();
 		}).run();
 
-		AccessToken sync = AuthorizationProvider.sharedInstance().authorize(environment(), null);
+		AccessToken sync = AuthorizationProvider.sharedInstance().authorize(client, null);
 
 		latch.await();
 
@@ -67,7 +69,8 @@ public class AuthorizationProviderTest extends PayPalWireMockHarness {
 
 		stubRefreshTokenRequest(authCode, simpleRefreshToken());
 
-		RefreshToken refreshToken = AuthorizationProvider.sharedInstance().exchange(environment(), authCode);
+		PayPalHttpClient client = new PayPalHttpClient(environment());
+		RefreshToken refreshToken = AuthorizationProvider.sharedInstance().exchange(client, authCode);
 		verify(postRequestedFor(urlEqualTo("/v1/identity/openidconnect/tokenservice")));
 
 		assertEquals(simpleRefreshToken().getRefreshToken(), refreshToken.getRefreshToken());

@@ -1,6 +1,5 @@
 package com.paypal.core;
 
-import com.braintreepayments.http.HttpClient;
 import com.paypal.core.object.AccessToken;
 import com.paypal.core.object.RefreshToken;
 import com.paypal.core.request.AccessTokenRequest;
@@ -9,8 +8,6 @@ import com.paypal.core.request.RefreshTokenRequest;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import static com.paypal.core.UserAgent.USER_AGENT;
 
 public class AuthorizationProvider {
 
@@ -27,14 +24,13 @@ public class AuthorizationProvider {
 		authorizationMap = new ConcurrentHashMap<>();
 	}
 
-	public RefreshToken exchange(PayPalEnvironment environment, String authorizationCode) throws IOException {
-		HttpClient client = new HttpClient(environment);
-		RefreshTokenRequest refreshTokenRequest = new RefreshTokenRequest(environment, authorizationCode);
+	public RefreshToken exchange(PayPalHttpClient client, String authorizationCode) throws IOException {
+		RefreshTokenRequest refreshTokenRequest = new RefreshTokenRequest(client.getPayPalEnvironment(), authorizationCode);
 		return client.execute(refreshTokenRequest).result();
 	}
 
-	public AccessToken authorize(PayPalEnvironment environment, String refreshToken) throws IOException {
-		String mapKey = mapKey(environment, refreshToken);
+	public AccessToken authorize(PayPalHttpClient client, String refreshToken) throws IOException {
+		String mapKey = mapKey(client.getPayPalEnvironment(), refreshToken);
 		AccessToken existingToken = authorizationMap.get(mapKey);
 
 		if (existingToken == null || existingToken.isExpired()) {
@@ -42,7 +38,7 @@ public class AuthorizationProvider {
 				existingToken = authorizationMap.get(mapKey);
 
 				if (existingToken == null || existingToken.isExpired()) {
-					existingToken = fetchAccessToken(environment, refreshToken);
+					existingToken = fetchAccessToken(client, refreshToken);
 					authorizationMap.put(mapKey, existingToken);
 				}
 			}
@@ -51,15 +47,12 @@ public class AuthorizationProvider {
 		return authorizationMap.get(mapKey);
 	}
 
-	private AccessToken fetchAccessToken(PayPalEnvironment environment, String refreshToken) throws IOException {
-		HttpClient client = new HttpClient(environment);
-		client.setUserAgent(USER_AGENT);
-
+	private AccessToken fetchAccessToken(PayPalHttpClient client, String refreshToken) throws IOException {
 		AccessTokenRequest request;
 		if (refreshToken == null) {
-			request = new AccessTokenRequest(environment);
+			request = new AccessTokenRequest(client.getPayPalEnvironment());
 		} else {
-			request = new AccessTokenRequest(environment, refreshToken);
+			request = new AccessTokenRequest(client.getPayPalEnvironment(), refreshToken);
 		}
 
 		return client.execute(request).result();

@@ -33,7 +33,7 @@ public class PayPalHttpClient extends HttpClient {
 
 	private void signRequest(HttpRequest request) throws IOException {
 		if (!isAuthRequest(request)) {
-			AccessToken accessToken = AuthorizationProvider.sharedInstance().authorize((PayPalEnvironment) getEnvironment(), refreshToken);
+			AccessToken accessToken = AuthorizationProvider.sharedInstance().authorize(this, refreshToken);
 			request.header(Headers.AUTHORIZATION, accessToken.authorizationString());
 		}
 	}
@@ -44,5 +44,9 @@ public class PayPalHttpClient extends HttpClient {
 
 	private boolean isAuthRequest(HttpRequest request) {
 		return request instanceof AccessTokenRequest || request instanceof RefreshTokenRequest;
+	}
+
+	PayPalEnvironment getPayPalEnvironment() {
+		return (PayPalEnvironment) super.getEnvironment();
 	}
 }
