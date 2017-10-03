@@ -1,27 +1,36 @@
 package com.paypal.core;
 
+import com.paypal.core.cache.MemoryCache;
 import com.paypal.core.object.AccessToken;
 import com.paypal.core.object.RefreshToken;
 import com.paypal.core.request.AccessTokenRequest;
 import com.paypal.core.request.RefreshTokenRequest;
 
+import java.awt.*;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+import static java.lang.Thread.currentThread;
+import static java.lang.Thread.sleep;
 
 public class AuthorizationProvider {
 
 	private static final AuthorizationProvider sharedInstance = new AuthorizationProvider();
-	private static final Object authLock = new Object();
+	private static final Map<String, Object> locks = Collections.synchronizedMap(new HashMap<>());
 
-	public static AuthorizationProvider sharedInstance() {
+    public static AuthorizationProvider sharedInstance() {
 		return sharedInstance;
 	}
 
-	private Map<String, AccessToken> authorizationMap;
+	private MemoryCache<AccessToken> authorizationCache;
 
 	private AuthorizationProvider() {
-		authorizationMap = new ConcurrentHashMap<>();
+		authorizationCache = new MemoryCache<>();
 	}
 
 	public RefreshToken exchange(PayPalHttpClient client, String authorizationCode) throws IOException {
@@ -29,23 +38,25 @@ public class AuthorizationProvider {
 		return client.execute(refreshTokenRequest).result();
 	}
 
-	public AccessToken authorize(PayPalHttpClient client, String refreshToken) throws IOException {
-		String mapKey = mapKey(client.getPayPalEnvironment(), refreshToken);
-		AccessToken existingToken = authorizationMap.get(mapKey);
+    public AccessToken authorize(PayPalHttpClient client, String refreshToken) throws IOException {
+        String mapKey = mapKey(client.getPayPalEnvironment(), refreshToken);
+        AccessToken existingToken = authorizationCache.get(mapKey);
+        if (existingToken == null || existingToken.isExpired()) {
+            Object lock = getLock(mapKey);
+            synchronized (lock) {
+                existingToken = authorizationCache.get(mapKey);
+                if (existingToken == null || existingToken.isExpired()) {
+                    existingToken = fetchAccessToken(client, refreshToken);
+                    authorizationCache.put(mapKey, existingToken);
+                }
+            }
+        }
+        return authorizationCache.get(mapKey);
+    }
 
-		if (existingToken == null || existingToken.isExpired()) {
-			synchronized (authLock) {
-				existingToken = authorizationMap.get(mapKey);
-
-				if (existingToken == null || existingToken.isExpired()) {
-					existingToken = fetchAccessToken(client, refreshToken);
-					authorizationMap.put(mapKey, existingToken);
-				}
-			}
-		}
-
-		return authorizationMap.get(mapKey);
-	}
+    private Object getLock(String key) {
+        return locks.computeIfAbsent(key, k -> new Object());
+    }
 
 	private AccessToken fetchAccessToken(PayPalHttpClient client, String refreshToken) throws IOException {
 		AccessTokenRequest request;

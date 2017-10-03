@@ -1,15 +1,16 @@
 package com.paypal.core;
 
 import com.braintreepayments.http.HttpRequest;
+import com.paypal.core.cache.MemoryCache;
 import com.paypal.core.object.AccessToken;
 import com.paypal.core.object.RefreshToken;
 import com.paypal.core.utils.PayPalWireMockHarness;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.paypal.core.utils.ReflectionHelper.setField;
@@ -22,10 +23,10 @@ public class AuthorizationProviderTest extends PayPalWireMockHarness {
 		AccessToken override = simpleAccessToken();
 		setField("expiresIn", override, 0);
 
-		Map<PayPalEnvironment, AccessToken> accessTokenMap = new HashMap<>();
-		accessTokenMap.put(environment(), override);
+		MemoryCache<AccessToken> memoryCache = new MemoryCache<>();
+		memoryCache.put(environment().authorizationString(), override);
 
-		setField("authorizationMap", AuthorizationProvider.sharedInstance(), accessTokenMap);
+		setField("authorizationCache", AuthorizationProvider.sharedInstance(), memoryCache);
 
 		stubAccessTokenRequest(simpleAccessToken());
 
@@ -42,21 +43,25 @@ public class AuthorizationProviderTest extends PayPalWireMockHarness {
 	public void authorize_concurrentWithSameCredentials_onlyMakesOneCall() throws IOException, InterruptedException {
 		stubAccessTokenRequest(simpleAccessToken());
 
-		CountDownLatch latch = new CountDownLatch(1);
+		CountDownLatch latch = new CountDownLatch(20);
 		AccessTokenHolder async = new AccessTokenHolder();
 		PayPalHttpClient client = new PayPalHttpClient(environment());
+		ExecutorService executor = Executors.newFixedThreadPool(20);
 
-		new Thread(() -> {
-			try {
-				async.accessToken = AuthorizationProvider.sharedInstance().authorize(client, null);
-			} catch (IOException e) {}
-			latch.countDown();
-		}).run();
+		for(int i = 0; i < 20; i++) {
+			executor.execute(() -> {
+				try {
+					async.accessToken = AuthorizationProvider.sharedInstance().authorize(client, null);
+				} catch (IOException e) {
+				}
+				latch.countDown();
+			});
+		}
 
 		AccessToken sync = AuthorizationProvider.sharedInstance().authorize(client, null);
 
 		latch.await();
-
+		executor.shutdown();
 		verify(1, postRequestedFor(urlEqualTo("/v1/oauth2/token")));
 
 		assertEquals(async.accessToken.accessToken(), sync.accessToken());

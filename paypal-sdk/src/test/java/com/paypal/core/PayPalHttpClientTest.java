@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import static com.braintreepayments.http.Headers.ACCEPT_ENCODING;
+import static com.braintreepayments.http.Headers.AUTHORIZATION;
 import static com.braintreepayments.http.Headers.CONTENT_TYPE;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.testng.Assert.assertEquals;
@@ -85,6 +86,20 @@ public class PayPalHttpClientTest extends PayPalWireMockHarness {
 
 		verify(getRequestedFor(urlEqualTo("/"))
 				.withHeader("Authorization", equalTo("Bearer sample-access-token")));
+	}
+
+	@Test
+	public void testPayPalHttpClient_execute_doesNotSignsRequestIfAuthorizationHeaderAlreadyPresent() throws IOException {
+		stubAccessTokenRequest(simpleAccessToken());
+
+		HttpRequest<Void> request = new HttpRequest<>("/", "GET", Void.class);
+		request.header(AUTHORIZATION, "something else");
+		stub(request, null);
+
+		client.execute(request);
+
+		verify(getRequestedFor(urlEqualTo("/"))
+				.withHeader("Authorization", equalTo("something else")));
 	}
 
 	@Test

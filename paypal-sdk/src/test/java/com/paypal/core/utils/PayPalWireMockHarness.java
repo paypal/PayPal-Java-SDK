@@ -90,7 +90,7 @@ public class PayPalWireMockHarness extends WireMockHarness {
 	protected RefreshToken simpleRefreshToken() {
 		RefreshToken refreshToken = new RefreshToken();
 		try {
-			setField("refreshToken", refreshToken, "sample-refresht-token");
+			setField("refreshToken", refreshToken, "sample-refresh-token");
 		} catch (NoSuchFieldException | IllegalAccessException ignored) {}
 
 		return refreshToken;
