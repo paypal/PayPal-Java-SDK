@@ -6,9 +6,11 @@ import com.braintreepayments.http.HttpResponse;
 import com.braintreepayments.http.exceptions.JsonSerializeException;
 import com.braintreepayments.http.serializer.Json;
 import com.braintreepayments.http.testutils.WireMockHarness;
-import com.paypal.core.authorization.PayPalEnvironment;
+import com.paypal.core.PayPalEnvironment;
 import com.paypal.core.object.AccessToken;
+import com.paypal.core.object.RefreshToken;
 import com.paypal.core.request.AccessTokenRequest;
+import com.paypal.core.request.RefreshTokenRequest;
 import org.testng.annotations.BeforeMethod;
 
 import java.lang.reflect.Field;
@@ -80,9 +82,18 @@ public class PayPalWireMockHarness extends WireMockHarness {
 			setField("accessToken", accessToken, "sample-access-token");
 			setField("expiresIn", accessToken, 3600);
 			setField("tokenType", accessToken, "accessToken");
-		} catch (NoSuchFieldException |IllegalAccessException ignored) {}
+		} catch (NoSuchFieldException | IllegalAccessException ignored) {}
 
 		return accessToken;
+	}
+
+	protected RefreshToken simpleRefreshToken() {
+		RefreshToken refreshToken = new RefreshToken();
+		try {
+			setField("refreshToken", refreshToken, "sample-refresht-token");
+		} catch (NoSuchFieldException | IllegalAccessException ignored) {}
+
+		return refreshToken;
 	}
 
 	/**
@@ -111,5 +122,17 @@ public class PayPalWireMockHarness extends WireMockHarness {
 				.build();
 
 		stub(request, accessTokenResponse);
+	}
+
+	protected void stubRefreshTokenRequest(String authCode, RefreshToken refreshToken) {
+		RefreshTokenRequest refreshTokenRequest = new RefreshTokenRequest(environment(), authCode);
+
+		HttpResponse<RefreshToken> refreshTokenHttpResponse = HttpResponse.<RefreshToken>builder()
+				.headers(new Headers().header("Content-Type", "application/json"))
+				.statusCode(200)
+				.result(refreshToken)
+				.build();
+
+		stub(refreshTokenRequest, refreshTokenHttpResponse);
 	}
 }

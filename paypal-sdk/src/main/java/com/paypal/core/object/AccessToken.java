@@ -2,7 +2,7 @@ package com.paypal.core.object;
 
 import com.braintreepayments.http.serializer.Deserializable;
 import com.braintreepayments.http.serializer.Serializable;
-import com.paypal.core.authorization.Authorization;
+import com.paypal.core.Authorization;
 
 import java.util.Date;
 import java.util.Map;

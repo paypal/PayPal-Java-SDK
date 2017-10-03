@@ -2,7 +2,7 @@ package com.paypal.sdk;
 
 import com.braintreepayments.http.HttpClient;
 import com.paypal.core.PayPalHttpClient;
-import com.paypal.core.authorization.PayPalEnvironment;
+import com.paypal.core.PayPalEnvironment;
 import org.testng.annotations.BeforeMethod;
 
 public class TestHarness {

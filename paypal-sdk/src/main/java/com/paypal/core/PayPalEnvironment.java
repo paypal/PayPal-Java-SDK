@@ -1,4 +1,4 @@
-package com.paypal.core.authorization;
+package com.paypal.core;
 
 import com.braintreepayments.http.Environment;
 
@@ -40,4 +40,9 @@ public class PayPalEnvironment implements Authorization, Environment {
 
 	protected String clientId() { return clientId; }
 	protected String clientSecret() { return clientSecret; }
+
+	@Override
+	public int hashCode() {
+		return (clientId + clientSecret).hashCode();
+	}
 }

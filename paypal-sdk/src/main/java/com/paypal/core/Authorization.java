@@ -1,4 +1,4 @@
-package com.paypal.core.authorization;
+package com.paypal.core;
 
 public interface Authorization {
 	String authorizationString();
