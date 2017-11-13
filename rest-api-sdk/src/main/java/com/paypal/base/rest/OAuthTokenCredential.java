@@ -454,7 +454,7 @@ public final class OAuthTokenCredential {
 		 * endpoint to PayPal sandbox or live endpoints. Throw exception if the
 		 * above rules fail
 		 */
-		String mode = this.configurationMap.get(Constants.MODE);
+		final String mode = this.configurationMap.get(Constants.MODE);
 		// Default to Endpoint param.
 		String endPointUrl = this.configurationMap.get(Constants.OAUTH_ENDPOINT);
 		if (endPointUrl == null || endPointUrl.trim().isEmpty()) {
