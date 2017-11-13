@@ -99,7 +99,6 @@ public class Template extends PayPalResource {
 		if (this.getTemplateId() == null) {
 			throw new IllegalArgumentException("Id cannot be null");
 		}
-		apiContext.setMaskRequestId(true);
 		Object[] parameters = new Object[] {this.getTemplateId()};
 		String pattern = "v1/invoicing/templates/{0}";
 		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);

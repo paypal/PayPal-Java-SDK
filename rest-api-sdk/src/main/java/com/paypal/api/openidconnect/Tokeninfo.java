@@ -157,7 +157,7 @@ public class Tokeninfo extends PayPalResource {
 	/**
 	 * @deprecated Please use {@link #createFromAuthorizationCode(APIContext, String)} instead.
 	 * There is no more need for passing clientId and secret in the params object anymore.
-	 * 
+	 *
 	 * @param createFromAuthorizationCodeParameters
 	 *            Query parameters used for API call
 	 * @return Tokeninfo
@@ -173,7 +173,7 @@ public class Tokeninfo extends PayPalResource {
 	/**
 	 * @deprecated Please use {@link #createFromAuthorizationCode(APIContext, String)} instead.
 	 * There is no more need for passing clientId and secret in the params object anymore.
-	 * 
+	 *
 	 * @param apiContext
 	 *            {@link APIContext} to be used for the call.
 	 * @param createFromAuthorizationCodeParameters
@@ -216,7 +216,7 @@ public class Tokeninfo extends PayPalResource {
 
 	/**
 	 * Creates an Access and a Refresh Tokens from an Authorization Code for future payment.
-	 * 
+	 *
 	 * @param apiContext
 	 *            {@link APIContext} to be used for the call.
 	 * @param createFromAuthorizationCodeParameters
@@ -246,7 +246,6 @@ public class Tokeninfo extends PayPalResource {
 		if (apiContext == null) {
 			apiContext = new APIContext();
 		}
-		apiContext.setRequestId(null);
 		if (createFromAuthorizationCodeParameters.getClientID() == null
 				|| createFromAuthorizationCodeParameters.getClientID().trim()
 				.length() <= 0
@@ -256,7 +255,6 @@ public class Tokeninfo extends PayPalResource {
 			throw new PayPalRESTException(
 					"ClientID and ClientSecret not set in CreateFromAuthorizationCodeParameters");
 		}
-		apiContext.setRequestId(null);
 		OAuthTokenCredential oauthTokenCredential = new OAuthTokenCredential(
 				createFromAuthorizationCodeParameters.getClientID(),
 				createFromAuthorizationCodeParameters.getClientSecret(),
@@ -271,13 +269,12 @@ public class Tokeninfo extends PayPalResource {
 		apiContext.addHTTPHeaders(headersMap);
 		Tokeninfo tokeninfo = configureAndExecute(apiContext, HttpMethod.POST,
 				resourcePath, payLoad, Tokeninfo.class, authorizationHeader);
-		apiContext.setRequestId(null);
 		return tokeninfo;
 	}
 
 	/**
 	 * Creates an Access Token from an Refresh Token.
-	 * 
+	 *
 	 * @param createFromRefreshTokenParameters
 	 *            Query parameters used for API call
 	 * @return Tokeninfo
@@ -291,7 +288,7 @@ public class Tokeninfo extends PayPalResource {
 
 	/**
 	 * Creates an Access Token from an Refresh Token.
-	 * 
+	 *
 	 * @param apiContext
 	 *            {@link APIContext} to be used for the call.
 	 * @param createFromRefreshTokenParameters
@@ -318,7 +315,6 @@ public class Tokeninfo extends PayPalResource {
 		if (apiContext == null) {
 			apiContext = new APIContext();
 		}
-		apiContext.setRequestId(null);
 		Map<String, String> headersMap = new HashMap<String, String>();
 		if (createFromRefreshTokenParameters.getClientID() == null
 				|| createFromRefreshTokenParameters.getClientID().trim()
@@ -342,14 +338,12 @@ public class Tokeninfo extends PayPalResource {
 		apiContext.addHTTPHeaders(headersMap);
 		Tokeninfo tokeninfo = configureAndExecute(apiContext, HttpMethod.POST,
 				resourcePath, payLoad, Tokeninfo.class, authorizationHeader);
-		apiContext.setRequestId(null);
 		return tokeninfo;
-
 	}
 
 	/**
 	 * Creates an Access Token from an Refresh Token for future payment.
-	 * 
+	 *
 	 * @param apiContext
 	 *            {@link APIContext} to be used for the call.
 	 * @return Tokeninfo
@@ -375,7 +369,6 @@ public class Tokeninfo extends PayPalResource {
 		if (apiContext == null) {
 			apiContext = new APIContext();
 		}
-		apiContext.setRequestId(null);
 		Map<String, String> headersMap = new HashMap<String, String>();
 		headersMap.put(Constants.HTTP_CONTENT_TYPE_HEADER,
 				Constants.HTTP_CONFIG_DEFAULT_CONTENT_TYPE);
@@ -383,7 +376,6 @@ public class Tokeninfo extends PayPalResource {
 		apiContext.addHTTPHeaders(headersMap);
 		Tokeninfo tokeninfo = configureAndExecute(apiContext, HttpMethod.POST,
 				resourcePath, payLoad, Tokeninfo.class);
-		apiContext.setRequestId(null);
 		return tokeninfo;
 	}
 }

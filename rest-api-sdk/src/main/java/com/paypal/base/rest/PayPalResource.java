@@ -253,7 +253,7 @@ public abstract class PayPalResource extends PayPalModel{
 			Class<T> clazz, String accessToken) throws PayPalRESTException {
 		T t = null;
 		Map<String, String> cMap;
-		String requestId;
+		String requestId = null;
 		Map<String, String> headersMap;
 		if (apiContext != null) {
 			if (apiContext.getHTTPHeader(Constants.HTTP_CONTENT_TYPE_HEADER) == null) {
@@ -285,7 +285,9 @@ public abstract class PayPalResource extends PayPalModel{
 			if (accessToken == null) {
 				throw new IllegalArgumentException("AccessToken cannot be null or empty");
 			}
-			requestId = apiContext.getRequestId();
+			if (apiContext.isRequestIdSet()) {
+				requestId = apiContext.getRequestId();
+			}
 
 			APICallPreHandler apiCallPreHandler = createAPICallPreHandler(cMap,
 					payLoad, resourcePath, headersMap, accessToken, requestId,

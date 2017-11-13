@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * Base HttpConnection class
- * 
+ *
  */
 public abstract class HttpConnection {
 
@@ -46,7 +46,7 @@ public abstract class HttpConnection {
 
 	/**
 	 * Executes HTTP request
-	 * 
+	 *
 	 * @param url
 	 * @param payload
 	 * @param headers
@@ -72,7 +72,7 @@ public abstract class HttpConnection {
 
 	/**
 	 * Executes HTTP request
-	 * 
+	 *
 	 * @param url URL for the connection
 	 * @param payload Request payload
 	 * @param headers Headers map
@@ -103,29 +103,27 @@ public abstract class HttpConnection {
 
 			// This exception is used to make final log more explicit
 			Exception lastException = null;
-			int retry = 0;
-			retryLoop: do {
-				try {
-					if (Arrays.asList("POST", "PUT", "PATCH").contains(connection.getRequestMethod().toUpperCase())) {
-						writer = new OutputStreamWriter(
-								this.connection.getOutputStream(),
-								Charset.forName(Constants.ENCODING_FORMAT));
-						writer.write(payload);
-						writer.flush();
+
+			try {
+				if (Arrays.asList("POST", "PUT", "PATCH").contains(connection.getRequestMethod().toUpperCase())) {
+					writer = new OutputStreamWriter(
+							this.connection.getOutputStream(),
+							Charset.forName(Constants.ENCODING_FORMAT));
+					writer.write(payload);
+					writer.flush();
+				}
+
+				responseCode = connection.getResponseCode();
+
+				// SUCCESS
+				if (responseCode >= 200 && responseCode < 300) {
+
+					try {
+						successResponse = connection.getInputStream();
+					} catch (IOException e) {
+						successResponse = connection.getErrorStream();
 					}
-
-					responseCode = connection.getResponseCode();
-
-					// SUCCESS
-					if (responseCode >= 200 && responseCode < 300) {
-
-						try {
-							successResponse = connection.getInputStream();
-						} catch (IOException e) {
-							successResponse = connection.getErrorStream();
-						}
-						break retryLoop;
-					}
+				} else {
 
 					// FAILURE
 					reader = new BufferedReader(new InputStreamReader(
@@ -141,43 +139,37 @@ public abstract class HttpConnection {
 						// SERVER SIDE EXCEPTION
 						throw new HttpErrorException(responseCode, errorResponse, msg, new IOException(msg));
 					}
-				} catch (IOException e) {
-					lastException = e;
-					try {
-						responseCode = connection.getResponseCode();
-						if (connection.getErrorStream() != null) {
-							reader = new BufferedReader(new InputStreamReader(
-									connection.getErrorStream(),
-									Constants.ENCODING_FORMAT));
-							errorResponse = read(reader);
-							log.error("Response code: " + responseCode
-									+ "\tError response: " + errorResponse);
-						}
-						if ((errorResponse == null)
-								|| (errorResponse.length() == 0)) {
-							errorResponse = e.getMessage();
-						}
-						if (responseCode <= 500) {
-							String msg = "Response code: " + responseCode + "\tError response: " + errorResponse;
-							throw new HttpErrorException(responseCode,
-									errorResponse, msg, e);
-						}
-					} catch (HttpErrorException ex) {
-						throw ex;
-					} catch (Exception ex) {
-						lastException = ex;
-						log.error(
-								"Caught exception while handling error response",
-								ex);
+				}
+			} catch (IOException e) {
+				lastException = e;
+				try {
+					responseCode = connection.getResponseCode();
+					if (connection.getErrorStream() != null) {
+						reader = new BufferedReader(new InputStreamReader(
+								connection.getErrorStream(),
+								Constants.ENCODING_FORMAT));
+						errorResponse = read(reader);
+						log.error("Response code: " + responseCode
+								+ "\tError response: " + errorResponse);
 					}
+					if ((errorResponse == null)
+							|| (errorResponse.length() == 0)) {
+						errorResponse = e.getMessage();
+					}
+					if (responseCode <= 500) {
+						String msg = "Response code: " + responseCode + "\tError response: " + errorResponse;
+						throw new HttpErrorException(responseCode,
+								errorResponse, msg, e);
+					}
+				} catch (HttpErrorException ex) {
+					throw ex;
+				} catch (Exception ex) {
+					lastException = ex;
+					log.error(
+							"Caught exception while handling error response",
+							ex);
 				}
-				// RETRY LOGIC
-				retry++;
-				if (retry > 0) {
-					log.error(" Retry  No : " + retry + "...");
-					Thread.sleep(this.config.getRetryDelay());
-				}
-			} while (retry < this.config.getMaxRetry());
+			}
 
 			if (successResponse == null
 					|| (successResponse.available() <= 0 && !(responseCode >= 200 && responseCode < 300))) {
@@ -227,7 +219,7 @@ public abstract class HttpConnection {
 
 	/**
 	 * Set ssl parameters for client authentication
-	 * 
+	 *
 	 * @param certPath
 	 * @param certKey
 	 * @throws SSLConfigurationException
@@ -237,7 +229,7 @@ public abstract class HttpConnection {
 
 	/**
 	 * create and configure HttpsURLConnection object
-	 * 
+	 *
 	 * @param clientConfiguration
 	 * @throws IOException
 	 */
@@ -255,7 +247,7 @@ public abstract class HttpConnection {
 
 	/**
 	 * Set headers for HttpsURLConnection object
-	 * 
+	 *
 	 * @param headers
 	 */
 	protected void setHttpHeaders(Map<String, String> headers) {

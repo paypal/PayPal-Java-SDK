@@ -44,7 +44,7 @@ public class Sale extends PayPalResource {
 	private String reasonCode;
 
 	/**
-	 * The level of seller protection in force for the transaction. Only supported when the `payment_method` is set to `paypal`. 
+	 * The level of seller protection in force for the transaction. Only supported when the `payment_method` is set to `paypal`.
 	 */
 	private String protectionEligibility;
 
@@ -119,7 +119,7 @@ public class Sale extends PayPalResource {
 	private String updateTime;
 
 	/**
-	 * 
+	 *
 	 */
 	private List<Links> links;
 
@@ -218,7 +218,6 @@ public class Sale extends PayPalResource {
 		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);
 		String payLoad = refund.toJSON();
 		Refund refundResponse = configureAndExecute(apiContext, HttpMethod.POST, resourcePath, payLoad, Refund.class);
-		apiContext.setRequestId(null);
 		return refundResponse;
 	}
 
