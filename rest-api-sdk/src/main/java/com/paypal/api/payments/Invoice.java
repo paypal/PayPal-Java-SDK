@@ -598,27 +598,25 @@ public class Invoice extends PayPalResource {
 		if (this.getId() == null) {
 			throw new IllegalArgumentException("Id cannot be null");
 		}
-		apiContext.setRequestId(null);
 		Object[] parameters = new Object[] {this.getId()};
 		String pattern = "v1/invoicing/invoices/{0}";
 		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);
 		String payLoad = "";
 		configureAndExecute(apiContext, HttpMethod.DELETE, resourcePath, payLoad, null);
-		apiContext.setRequestId(null);
 	}
 
 	/**
 	 * Delete external payment.
 	 * @param apiContext
 	 *            {@link APIContext} used for the API call.
-	 * @return 
+	 * @return
 	 * @throws PayPalRESTException
 	 */
 	public void deleteExternalPayment(APIContext apiContext) throws PayPalRESTException {
 		if (this.getId() == null) {
 			throw new IllegalArgumentException("Id cannot be null");
 		}
-			apiContext.setMaskRequestId(true);
+
 		Object[] parameters = new Object[] {this.getId()};
 		String pattern = "v1/invoicing/invoices/{0}/payment-records/{1}";
 		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);
@@ -630,14 +628,13 @@ public class Invoice extends PayPalResource {
 	 * Delete external refund.
 	 * @param apiContext
 	 *            {@link APIContext} used for the API call.
-	 * @return 
+	 * @return
 	 * @throws PayPalRESTException
 	 */
 	public void deleteExternalRefund(APIContext apiContext) throws PayPalRESTException {
 		if (this.getId() == null) {
 			throw new IllegalArgumentException("Id cannot be null");
 		}
-			apiContext.setMaskRequestId(true);
 		Object[] parameters = new Object[] {this.getId()};
 		String pattern = "v1/invoicing/invoices/{0}/refund-records/{1}";
 		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);

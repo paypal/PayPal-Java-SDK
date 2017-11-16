@@ -28,6 +28,11 @@ public class APIContext {
 	private boolean maskRequestId;
 
 	/**
+	 * Determine if a method was called that set the request ID.
+	 */
+	private boolean isRequestIdSet = false;
+
+	/**
 	 * {@link SDKVersion} instance
 	 */
 	private SDKVersion sdkVersion;
@@ -41,7 +46,7 @@ public class APIContext {
 	 * Default Constructor
 	 * @deprecated Please use {@link #APIContext(String, String, String)} instead.
 	 * APIContext ideally needs more information than just accessToken to operate correctly. Now, you do not need
-	 * to fetch accessToken from {@link OAuthTokenCredential} separately. Instead, just initialize {@link APIContext} with 
+	 * to fetch accessToken from {@link OAuthTokenCredential} separately. Instead, just initialize {@link APIContext} with
 	 * clientId, clientSecret and mode, with optional configurations, as shown below, and pass the context to paypal API methods:
 	 * <pre>
 	 * {@code
@@ -57,7 +62,7 @@ public class APIContext {
 	/**
 	 * Pass the clientID, secret and mode. The easiest, and most widely used
 	 * option.
-	 * 
+	 *
 	 * @param clientID
 	 * @param clientSecret
 	 * @param mode
@@ -68,7 +73,7 @@ public class APIContext {
 
 	/**
 	 * Pass the clientID, secret and mode along with additional configurations.
-	 * 
+	 *
 	 * @param clientID
 	 * @param clientSecret
 	 * @param mode
@@ -85,14 +90,14 @@ public class APIContext {
 	/**
 	 * @deprecated Please use {@link #APIContext(String, String, String)} instead.
 	 * APIContext ideally needs more information than just accessToken to operate correctly. Now, you do not need
-	 * to fetch accessToken from {@link OAuthTokenCredential} separately. Instead, just initialize {@link APIContext} with 
+	 * to fetch accessToken from {@link OAuthTokenCredential} separately. Instead, just initialize {@link APIContext} with
 	 * clientId, clientSecret and mode, with optional configurations, as shown below, and pass the context to paypal API methods:
 	 * <pre>
 	 * {@code
 	 * APIContext context = new APIContext(clientId, clientSecret, "sandbox");
 	 * }
 	 * </pre>
-	 * 
+	 *
 	 * @param accessToken
 	 *            OAuthToken required for the call. OAuth token used by the REST
 	 *            API service. The token should be of the form 'Bearer xxxx..'.
@@ -109,23 +114,20 @@ public class APIContext {
 	/**
 	 * @deprecated Please use {@link #APIContext(String, String, String)} instead.
 	 * APIContext ideally needs more information than just accessToken to operate correctly. Now, you do not need
-	 * to fetch accessToken from {@link OAuthTokenCredential} separately. Instead, just initialize {@link APIContext} with 
+	 * to fetch accessToken from {@link OAuthTokenCredential} separately. Instead, just initialize {@link APIContext} with
 	 * clientId, clientSecret and mode, with optional configurations, as shown below, and pass the context to paypal API methods:
 	 * <pre>
 	 * {@code
 	 * APIContext context = new APIContext(clientId, clientSecret, "sandbox");
 	 * }
 	 * </pre>
-	 * 
+	 *
 	 * @param accessToken
 	 *            OAuthToken required for the call. OAuth token used by the REST
 	 *            API service. The token should be of the form 'Bearer xxxx..'.
 	 *            See {@link OAuthTokenCredential} to generate OAuthToken
 	 * @param requestId
-	 *            Unique requestId required for the call. Idempotency id,
-	 *            Calling setMaskRequestId(true) will override the requestId
-	 *            getter to return null, which can be used by the client (null
-	 *            check) to forcibly not sent requestId in the API call.
+	 *            Unique requestId required for the call. The requestId is an idempotency id used by some PayPal services.
 	 */
 	public APIContext(String accessToken, String requestId) {
 		this(accessToken);
@@ -136,9 +138,9 @@ public class APIContext {
 	}
 
 	/**
-	 * Sets refresh token to be used for third party OAuth operations. This is commonly used for 
+	 * Sets refresh token to be used for third party OAuth operations. This is commonly used for
 	 * third party invoicing and future payments.
-	 * 
+	 *
 	 * @param refreshToken
 	 * @return {@link APIContext}
 	 */
@@ -151,7 +153,7 @@ public class APIContext {
 		}
 		return this;
 	}
-	
+
 	/**
 	 * Sets mode to either `live` or `sandbox`.
 	 * @param mode
@@ -164,20 +166,20 @@ public class APIContext {
 		this.credential.addConfiguration(Constants.MODE, mode);
 		return this;
 	}
-	
+
 	/**
 	 * Enables settings for Google App Engine. Please set to `true` if using SDK in Google App Engine.
-	 * 
+	 *
 	 * @param usingGoogleAppEngine
 	 * @return {@link APIContext}
 	 */
 	public APIContext usingGoogleAppEngine(boolean usingGoogleAppEngine) {
 		return this.addConfiguration(Constants.GOOGLE_APP_ENGINE, String.valueOf(usingGoogleAppEngine));
 	}
-	
+
 	/**
 	 * Returns HTTP Headers.
-	 * 
+	 *
 	 * @return the hTTPHeaders
 	 */
 	public Map<String, String> getHTTPHeaders() {
@@ -190,7 +192,7 @@ public class APIContext {
 	}
 	/**
 	 * Replaces existing headers with provided one.
-	 * 
+	 *
 	 * @param httpHeaders
 	 *            the httpHeaders to set
 	 */
@@ -201,7 +203,7 @@ public class APIContext {
 
 	/**
 	 * Adds HTTP Headers to existing list
-	 * 
+	 *
 	 * @param httpHeaders
 	 *            the httpHeaders to set
 	 */
@@ -209,11 +211,11 @@ public class APIContext {
 		this.credential.addHeaders(httpHeaders);
 		return this;
 	}
-	
+
 
 	/**
 	 * Adds HTTP Header to existing list
-	 * 
+	 *
 	 * @param key
 	 * @param value
 	 */
@@ -224,7 +226,7 @@ public class APIContext {
 
 	/**
 	 * Returns Configuration Map
-	 * 
+	 *
 	 * @return {@link Map} of configurations
 	 */
 	public Map<String, String> getConfigurationMap() {
@@ -233,7 +235,7 @@ public class APIContext {
 
 	/**
 	 * Replaces the existing configurations with provided one
-	 * 
+	 *
 	 * @param configurationMap
 	 *            the configurationMap to set
 	 * @return {@link APIContext}
@@ -245,7 +247,7 @@ public class APIContext {
 
 	/**
 	 * Adds configurations
-	 * 
+	 *
 	 * @param configurations {@link Map} of configurations.
 	 * @return {@link APIContext}
 	 */
@@ -253,10 +255,10 @@ public class APIContext {
 		this.credential.addConfigurations(configurations);
 		return this;
 	}
-	
+
 	/**
 	 * Adds configuration
-	 * 
+	 *
 	 * @param key key
 	 * @param value value
 	 * @return {@link APIContext}
@@ -265,10 +267,10 @@ public class APIContext {
 		this.credential.addConfiguration(key, value);
 		return this;
 	}
-	
+
 	/**
 	 * Returns string value of specific configuration.
-	 * 
+	 *
 	 * @param key key
 	 * @return {@link String} value of specific configuration.
 	 */
@@ -280,7 +282,7 @@ public class APIContext {
 	 * @deprecated Please use {@link #fetchAccessToken()} instead.
 	 * Previously, this was a dumb getter method. However, we enabled the feature to re-generate the access Token if null, or expired.
 	 * This required us to throw proper PayPalRESTException, with error information on failure.
-	 * 
+	 *
 	 * @return Access Token
 	 */
 	public String getAccessToken() {
@@ -291,10 +293,10 @@ public class APIContext {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Returns the access Token. Regenerates if null or expired.
-	 * 
+	 *
 	 * @return {@link String} of AccessToken
 	 * @throws PayPalRESTException
 	 */
@@ -306,9 +308,9 @@ public class APIContext {
 	}
 
 	/**
-	 * Returns the unique requestId set during creation, if not available and if
-	 * maskRequestId is set to false returns a generated one, else returns null.
-	 * 
+	 * Returns the unique requestId set during creation. If there is not an existing value,
+	 * sets and returns a generated one
+	 *
 	 * @return requestId
 	 */
 	public String getRequestId() {
@@ -316,30 +318,41 @@ public class APIContext {
 		if (!maskRequestId) {
 			if (requestId == null || requestId.length() <= 0) {
 				requestId = UUID.randomUUID().toString();
+				isRequestIdSet = true;
 			}
 			reqId = requestId;
 		}
 		return reqId;
 	}
-	
+
 	/**
 	 * Sets the requestId to be sent on each request. Used for idempotency purposes.
-	 * requestId is auto generated if not passed explicitly.
-	 * 
+	 *
 	 * @param requestId request Id
 	 * @return APIContext
 	 */
 	public APIContext setRequestId(String requestId) {
 		this.requestId = requestId;
+		isRequestIdSet = true;
 		return this;
 	}
 
 	/**
+	 * @deprecated Set the request ID to null instead.
 	 * @param maskRequestId
 	 *            the maskRequestId to set
 	 */
 	public void setMaskRequestId(boolean maskRequestId) {
 		this.maskRequestId = maskRequestId;
+	}
+
+	/**
+	 * Determine if the request ID was set either manually or automatically.
+	 *
+	 * @return true if the request ID was set, false otherwise
+	 */
+	public boolean isRequestIdSet() {
+		return isRequestIdSet;
 	}
 
 	/**

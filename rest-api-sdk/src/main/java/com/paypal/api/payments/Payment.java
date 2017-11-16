@@ -147,7 +147,6 @@ public class Payment extends PayPalResource {
 		String resourcePath = "v1/payments/payment";
 		String payLoad = this.toJSON();
 		Payment payment = configureAndExecute(apiContext, HttpMethod.POST, resourcePath, payLoad, Payment.class);
-		apiContext.setRequestId(null);
 		return payment;
 	}
 
@@ -299,7 +298,6 @@ public class Payment extends PayPalResource {
 		String resourcePath = RESTUtil.formatURIPath(pattern, parameters);
 		String payLoad = "";
 		PaymentHistory paymentHistory = configureAndExecute(apiContext, HttpMethod.GET, resourcePath, payLoad, PaymentHistory.class);
-		apiContext.setRequestId(null);
 		return paymentHistory;
 	}
 
