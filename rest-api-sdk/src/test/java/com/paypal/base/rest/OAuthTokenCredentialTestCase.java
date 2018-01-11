@@ -13,6 +13,7 @@ import org.testng.log4testng.Logger;
 
 import com.paypal.base.exception.HttpErrorException;
 
+import static com.paypal.base.Constants.HTTP_CONNECTION_TIMEOUT;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
@@ -83,4 +84,14 @@ public class OAuthTokenCredentialTestCase {
 		new OAuthTokenCredential("abc", "def", new HashMap<String, String>()).getOAuthHttpConfiguration();
 	}
 
+	@Test
+	public void getOAuthHttpConfiguration_setsTimeoutConfigurationIfPresent() throws MalformedURLException {
+		Map<String, String> configurationMap = new HashMap<String, String>();
+		configurationMap.put(Constants.MODE, "sandbox");
+		configurationMap.put(HTTP_CONNECTION_TIMEOUT, "99");
+
+		HttpConfiguration httpConfiguration = new OAuthTokenCredential("abc", "def", configurationMap).getOAuthHttpConfiguration();
+		Assert.assertNotNull(httpConfiguration);
+		Assert.assertEquals(httpConfiguration.getConnectionTimeout(), 99);
+	}
 }

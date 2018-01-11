@@ -498,6 +498,19 @@ public final class OAuthTokenCredential {
 		httpConfiguration
 				.setGoogleAppEngine(Boolean.parseBoolean(configurationMap
 						.get(Constants.GOOGLE_APP_ENGINE)));
+
+		httpConfiguration.setConnectionTimeout(Integer
+				.parseInt(configurationMap
+						.get(Constants.HTTP_CONNECTION_TIMEOUT)));
+		httpConfiguration.setMaxRetry(Integer.parseInt(configurationMap
+				.get(Constants.HTTP_CONNECTION_RETRY)));
+		httpConfiguration.setReadTimeout(Integer.parseInt(configurationMap
+				.get(Constants.HTTP_CONNECTION_READ_TIMEOUT)));
+		httpConfiguration.setMaxHttpConnection(Integer
+				.parseInt(configurationMap
+						.get(Constants.HTTP_CONNECTION_MAX_CONNECTION)));
+		httpConfiguration.setIpAddress(configurationMap
+				.get(Constants.DEVICE_IP_ADDRESS));
 		return httpConfiguration;
 	}
 
