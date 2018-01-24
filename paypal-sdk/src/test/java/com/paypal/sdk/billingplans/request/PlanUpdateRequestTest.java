@@ -24,7 +24,7 @@ public class PlanUpdateRequestTest extends TestHarness {
     public void testActivatePlan() throws IOException
     {
         HttpResponse<Plan> response = PlanCreateRequestTest.createPlan(client());
-        assertEquals(201, response.statusCode());
+        assertEquals(response.statusCode(), 201);
         Plan createdPlan = response.result();
 
         Plan plan = new Plan();
