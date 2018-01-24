@@ -21,8 +21,7 @@ import static org.testng.Assert.assertTrue;
 public class PlanUpdateRequestTest extends TestHarness {
 
     @Test
-    public void testActivatePlan() throws IOException
-    {
+    public void testActivatePlan() throws IOException {
         HttpResponse<Plan> response = PlanCreateRequestTest.createPlan(client());
         assertEquals(response.statusCode(), 201);
         Plan createdPlan = response.result();
@@ -46,8 +45,7 @@ public class PlanUpdateRequestTest extends TestHarness {
     }
 
     @Test
-    public void testPlanUpdateRequest() throws IOException
-    {
+    public void testPlanUpdateRequest() throws IOException {
         HttpResponse<Plan> response = PlanCreateRequestTest.createPlan(client());
         assertEquals(201, response.statusCode());
         Plan createdPlan = response.result();

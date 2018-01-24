@@ -46,5 +46,4 @@ public class AgreementUpdateTest extends TestHarness {
         Agreement retrievedAgreement = retrievedAgreementResponse.result();
         assertEquals(retrievedAgreement.description(), "Updated description");
     }
-
 }

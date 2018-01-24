@@ -15,8 +15,7 @@ import static org.testng.Assert.assertNotNull;
 public class PlanGetRequestTest extends TestHarness {
 
     @Test
-    public void testPlanCreateRequest() throws IOException
-    {
+    public void testPlanCreateRequest() throws IOException {
         HttpResponse<Plan> response = PlanCreateRequestTest.createPlan(client());
         assertEquals(response.statusCode(), 201);
         assertNotNull(response.result());

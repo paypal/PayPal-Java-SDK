@@ -56,8 +56,7 @@ public class PlanCreateRequestTest extends TestHarness {
     }
 
     @Test
-    public void testPlanCreateRequest() throws IOException
-    {
+    public void testPlanCreateRequest() throws IOException {
         HttpResponse<Plan> response = createPlan(client());
         assertEquals(response.statusCode(), 201);
         assertNotNull(response.result());
