@@ -1,6 +1,6 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // RedirectUrls.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
 // @data H4sIAAAAAAAC/8SRwUr0MBSF9/9TXO6y9B9cdzfgTtFhGN2IyJ321AYySb1JlCDz7hKGVsssXCi4zEk4nO/LO+/yCG5Y0RlFG5+S2sA134sa2VvcyKFcc81XyJ+HS4RWzRiNd9zwmgIi+Z6mFrrbXgeKg0TKPtGo/tV0oN4rbSRvxP7fS0BHo+QDXAwrrnmtKvm05qLmLaS7dTZz04sNKMFLMopuDjbqR2g0CNw8zBwhqnHP5wCtuBa20C1QFvESajegYNDbAAXFAWUtlEyYMdGR9BFKA8grhQF0KgzT+0K3oqqa1n9RQNK2Prk4S6iqn2pwydpj/a0LRUzqzlws4t9wIWP5ePyljMfjvw8AAAD//w==
 // DO NOT EDIT

@@ -1,8 +1,8 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // JsonPatch.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
-// @data H4sIAAAAAAAC/7STT4vbQAzF7/0UYs4m9OxboKcWktKGXsqyUcZKPGE8mtXIWcyS777M5B/eLIT9d9STRvyen/xkFkMkU5tt4nAfUW1rKvMPxeHK0wy73DOV+UXDpfhByYqL6jiY2kzh59/5DMpb4NWWrIIyYIx+gIiiDj30sUGllBtCiXuxlCamMlMRHA4I3yvzh7CZBz+Yeo0+URYeeifUnIXfwpFEHSVT/z/DJxUXNtfga+FuBH8UXjfALihJRtSWwLPFPAAulFpRNqTQsO07Cgp5FTy2zrb5Rcc7KmM79D1N4AQOa5aiL/PEEjJ9WftR86H3fl/d/AIcR/5LOXa/aOlCla1Y7qInpTcRqvTvA4yo7QjxKNyKCG8GhHqJ5+SpDH5VBofbv7ZYTmLk8aRcJ1E6599nAllbCr04HmiYEgRWkAMf4PHwPsPR3f7bMwAAAP//
+// @data H4sIAAAAAAAC/7STwYrbQAyG730KMWcTevat0FMLSWlDL6U0yliJJ4xHU42cYkrefZlJ4uA1y7Kb3eP8ksz3Ifm/WQ+RTG0OicOfiGpbU5mfKA63npbY5ZqpzFcabo/PlKy4qI6Dqc26JfjyY7WEMg28PZBVUAaM0Q8QUdShhz42qJRyQShxL5bSwlTmkwgOZ4iPlflO2KyCH0y9Q58oB397J9SMwTfhSKKOkql/jfhJxYX9HH0n3E3wL8FTCuyCkmRIbQkUZU8KDdu+o6Dg2WIegfwV+Nc62+bWjo9U+o/oe1rAlRl2LCXf5I4NZPAyf6936L0/Vc/Kc5yol+dcfKTKKpa76EnpRYQq/esAI2o7QbwEd24H9babq1CZeK8FnG9+7lfuYSJ4TeaGpTL+NgvI2Ubo0eVAw5QgsIKc+QAvV/cWRr9PHx4AAAD//w==
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.braintreepayments.http.annotations.*;
 /**
- * A JSON patch object to apply partial updates to resources.
+ * The JSON patch object to apply partial updates to resources.
  */
 @Model
 public class JsonPatch {
@@ -21,7 +21,7 @@ public class JsonPatch {
     public JsonPatch() {}
 
 	/**
-	* A JSON pointer to the location in the target document from which to move the value. Required for the `move` operation.
+	* The JSON pointer to the target document location from which to move the value. Required for the `move` operation.
 	*/
 	@SerializedName("from")
 	private String from;
@@ -48,7 +48,7 @@ public class JsonPatch {
 	}
 
 	/**
-	* A JSON pointer to a location in the target document at which to complete the operation.
+	* The JSON pointer to the target document location at which to complete the operation.
 	*/
 	@SerializedName("path")
 	private String path;

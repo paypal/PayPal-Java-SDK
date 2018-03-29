@@ -1,8 +1,8 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // Currency.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
-// @data H4sIAAAAAAAC/6zSQYsTQRAF4Lu/ouiTLp2MiiDkJoggwm7QxUvYQ6X7TVLS091W14iD7H+XiWazaw6ysMd5U/TM+6p/ueupwq1cGFWRw+S8+8oqvE245GF+47z7hOn08B4tqFSTkt3KXe9BW26g4wFUtt8QjPqixClRL5lzEE70g9OIhSKxIVIvSLEt6UNRwk8eaoKnLSfOAZ4qTwOyURzhiXOkVqjkpfPunSpPf376pXefwfEqp8mtek4Nc/B9FEW8C9ZaKtQEza02d3WbqeTdedl7DKfS98Lz8hvbK7AIe1YOBqWPX64Wb16/ensSCSXi5nkXS2idZMNOeT6gi6II1imadcfhxTzcuhdLWvO05kSxoFEuRm2stagdUP9OC9qjSEzHf0TymNKt/y/LYXUPTI7JOQgPZczmaaxkhS4uLyjKTqwR9zOP7UERQQZO1FBZ2Yp64kYRvWREkkybI+Jj2Q7Xbv4E16qlqrDh4SKeAuzm9tlvAAAA//8=
+// @data H4sIAAAAAAAC/6yR0WsUMRDG3/0rhvhiYW+jIgj7VvDlELzDFl+OUqbJ7O1gLomTSWWR/u+Slu2dHiKCj/Nlvsk3v/lhrudMZjCuilB0s+nMFxTGu0Cf8NBeTGc+0nwsPlBxwlk5RTOY64lg8QJGD3hINSqMSQBBBWNB13p705lLEZyfPnzdmc+EfhPDbIYRQ6EmfKss5J+FraRMokzFDLvnqEWF4/486MkKx8An4nnwnU5CtHITCjolgfXVZvXu7Zv3x5Vc8nTzyvrkiuWotBdsA6xnIadWqKhdmletudiLHrY4bzGAT1QgJoVSc06igCEso5nKPyFRqb8RiTWEh+6vWO4xVPqFyaKcA3k6Xg/r6EL1VEAngpLJ8cjkIdbDHQmkETzvWQvg2Kh5cnzAAIUyCmqSx+s36+5PQCfVXAZrKfbf+Stn8ox9kr1tlV1fbW6b6+WlU76n20euF/8D183Di58AAAD//w==
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.braintreepayments.http.annotations.*;
 /**
- * The base currency object for all financial value-related fields. For example, balance, payment due, and so on.
+ * The currency and amount for a transaction.
  */
 @Model
 public class Currency {
@@ -36,7 +36,7 @@ public class Currency {
 
 	/**
 	* REQUIRED
-	* The amount, up to *N* digits after the decimal separator, as defined in [ISO-4217](/docs/integration/direct/rest/currency-codes/) for the appropriate currency code.
+	* The amount. Includes the specified number of digits after decimal separator for the [ISO-4217 currency code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes).
 	*/
 	@SerializedName("value")
 	private String value;

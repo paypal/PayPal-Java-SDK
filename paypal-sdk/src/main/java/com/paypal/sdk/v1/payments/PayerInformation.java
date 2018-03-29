@@ -1,8 +1,8 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // PayerInformation.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
-// @data H4sIAAAAAAAC/+xZzXLbRgy+9ykwyqHxjChKcpJOfEucn7qZxB7/tAfXI6+4kIhmucvsgpGVTmb6Gn29Pklnl9QPTamxEo+agy6ZCMC3BEAQWHz+s3U+zbF10MrFFO2A9MjYTDAZ3Wq3fhWWxFDhO5F5k1a79Qanix8v0CWW8mB80DpPEcIhsHRIp9VuPbNWTMundNutUxTyWKtp62AklEMv+FCQRTkXnFiTo2VC1zq4nPsnpLToXNOrISlFejxYGCycbOqaPlc2UNkAaRA+kAw1d+BQaBgi4A2jlihhZCy4lPJ8CXJ/QTq2pMfNGBPiaS2wStCMxitAiwy/1SldKPW5/WXPTKHZTgeJkVj3sK5oenrJExMlqbAiYbRwdHYM+70nT6IeeMjVw1iaxMWkGcc21FIsyWLCsUXHcXV85G1dvAecCgaSqJlGhA7Y56K0AWPB4thX4+9Ft7ufDJVJ3n8oDGP4Xf6bOLZGj0vJO8N4UIrjZTmcLx3rHx3q4bVFwfDcEgvSQA5KpNeXsNfPq7MWIhBagjbcsL14s8LWQeFQ+tL0cbHJI4UfUYE0mX+kf98uuBLSUDnYgQuHAXB92L9uun2YkhYwMVbJCVWyxGS5sP79QqETo9kapVBCbilBeHh4cbIHGXJqZBuGQr+HRFjZDsEk1jgXDY2VaIGt0E4k/rW5Kuvx7bRvUqBsi6+rT0Uae7XCnEmaFTki6xi8HswoJG72gcMrYwFvRJYrbIMusiHaNji2iFxG7wxs2O2+KaR+I6R+I6Tj8B+hOqFqHSZGyztE5wpibIPIhWXfA+fhfl2YX99atB8iij6Fj3/gWHBR7+5rDJovdtbaawAoAR04RS6sRglGq2n4CsIYczCyJoPnVnwitaWQ89ToehudSVbMWq+ZvxzScPmy0+vvQzl7rx6mzLk7iOPJZNIhLjqkfetM4vPo9OVhFGyjfrfb6/ajoxj1XgfeihvKigwU6jGnvpE97sK8Q7tt5cA4Fqo5UOryFfkI+tDe2jBJKQkR+Dr/RHnZ9XyZfyjoo1Bhtp9Pc0qEUlOwld9VD/SN0g+RCXHqLwOLk/0RQtdOOUOEy5OFySLzqDsTek85ShIdY8ex/xWfLOLY21JKfaXXkzmTrBjLd5m+AT6fvT5pAi7OwhcVUuSzvshRMDCc4lJu/We3lPPleQFUa0/+LZIGM+9bDhfHHMDlMzv2U1+LTZx+IGaovTZclt/4RvhhgHjwodBCbvbwJEA8+EhL2gxLHhGgLNR0M6hHeOgvIhd6I+gfHuGhb/GGErMRNgsQDz5PBSmh5UZwrkB7bV9ZlxeaGCWceRO30UGFEyub3KMuONJjhdFwyrj9hrdist1hllXTazsuslcvO1gJmu55hf9OV98trn8+fvtycHw6+O349M11G65fH706v77vq8XVHSIakuV0IG/3xZp41a5oOQUZulzZpMJVoRy/R5rRauRSf3sMszHKdQh5FEZBypmK7SjZ399/+sBh6HzR486TvdsZ6z192o26j6Je//q7X+lCMn50zdWuG81Xu8USsuGKt6XoMROkamHPJOvjDRaLkm+2mF7/p+33lbDODPxuWAunJl4fU7kMbZFJUGKVt8vS9c56q236mpGUCpve1uXr/S3ttulxRe/J+pV6IWz6eiKmJ0JFwjka++0IdWKnuZ+9Jct39OJ7XIqqBC8vR6s+yP7/sdh4nwaNUVoTr1vzvHpb1xGhCp4xwEtXkmXx+sQvzO7b3Yp0HawlgldYLLnfVDaDmLO8ldHSHhn4N1Huk7f53zplvCODd2TwjgzekcE7MnhHBu/I4B0Z/L2RwRYTygn1imWroWom1itmLWNuDoKBU3L39QfxHa29o7V3tPaO1t7R2pvS2q4YjeimnvSZ6D+W9mCyraSLm9s81Fy0xsV//vrbAYsbOHrRgbMiz43lWYedM1WzBbxaScIFbqshNamduvzLwZU0z/YjvPr8w78AAAD//w==
+// @data H4sIAAAAAAAC/+xaW2/buBJ+P79i4D6cBrAs22l70Ly16eVkizZBLrsP2cChxbE1W4pUyVEdddH/viAlXxTZ27ot3MXCLwE8Mx81Mxx+Qw7yZ+eyzLFz1MlFiXZEemJsJpiM7nQ7vwpLYqzwnci8SafbeYPl8scLdImlPBgfdS5ThLAIrCzS63Q7z6wVZfWVfrdzjkKealV2jiZCOfSCDwVZlAvBmTU5WiZ0naPrhX9CSovOtb0ak1Kkp6OlwdLJtq7tc20DtQ0YCy6lPF+VTYwF4aPLUPOPi8mxJT1th5QQl404akHbea8ALTL8Xqd0odTn7pc9M4VmW44SI7HpYVPR9vSaZyZKUmFFwmjh5OIUDgdPnkQD8JCbh7E0iYtJM05tKJ1YksWEY4uO43r5yNu6+AA4FQwkUTNNCB2wz0Vl4zfQ4tQX3+9Fv3+YjJVJ3n8oDGP4Xf1NHFujp5XknWE8qsTxqhwuV5b1nw6F8NqiYHhuiQVpIAcV0usr2Ovn9VpLEQgtQRtu2V69WWProHAogXSIi00eKfyICqTJ/Cf9flc1GdJQO9iDK4cBcHs8vG27fZySFjAzVskZ1bLEZLmwfn+h0InRbI1SKCG3lCA8PL46O4AMOTWyC2Oh30MirOyGYBJrnIvGxkq0wFZoJxK/ba7Oenw/7dsUKNvi2+pTkcZBozDnknZFTsg6Bq8HMwmJq497D14ZC3gnslxhF3SRjdF2wbFF5Cp6Z2BLcvuukIatkIZrQ3KYGC2/IiZXEKM/KSIXlj2r1WHuiEe0bxCKPoWTPnIsuGgy9waDdshzim4AoAL04By5sBolGK3KUPKhRTmYWJPBcys+kdpRyHlqdJMz55I1fdRrFoVHGq5f9gbDQ6j66s3DlDl3R3E8m816xEWPtOfJJL6Mzl8eR8E2Gvb7g/4wOolRH/TgrbijrMhAoZ5y6lnrcR8WdOx2lQPjWKh292jK1+Qj6AOXdWGWUhIi8OX9ifKK4nx1fyjoo1C+RcNlmVMilCrB1n7XhOdZ0XeMGXHqe/py5XAcdGOVC0S4XjFZZh51b0bvKUdJomfsNPa/4rNlHAc7Sqmv9GYy55I1PfhrWm2ALxptdfO5uggnKqTIZ32Zo2BgOMWV3Ppjt5Lz1eYA1GAlv4ukwSzoyuFymSO4fmanvsVrsY3TD8QcddCF6+qMb4UfB4gHHwst5HYfTwLEg0+0pO2w5BEBykKV20E9wkN/EbnQW0H/8AgPfYt3lJitsFmAePBlKkgJLbeCcw066PrKur7SxCjhwpu4rRYqnFhLco/64EhPFUbjknH3hMdevXo4a0H7bHqFPwTr+/Xt/0/fvhydno9+Oz1/c9uF29cnry5vv/Uusimem6+IaEyW05G8TzoN8bpHluUUZKCQigFCH65624lmtBq50t/vcWyMcj1CngSeTTlTsZ0kh4eHTx84DLQSPe49ObifscHTp/2o/ygaDG//8Y+jkIz/uvYjqR8tHknL6/yWj6UdRY+ZINUIey7ZHG+wWJZ8+/wOhv/b/aEND4ORf2U1wmmIN8dUPSt2+CZXYp23q9LNznqrXfqakZQK29425Zv9rex26XE9F5PN++pS2Pb1TJRnQkXCOZr6pwfqxJa5b2zVeOzkxa6uhkIVPJ/lrdwPV8WbU700+9Hu1tO10caR3hqLFffbyjUP4fsTPIksSLn97G4/u9vP7vazu/3sbj+728/u9rO7nzu7s5hQTqjXXN9bqnZivWLOFAtzEAyckltwx34KuZ9C7qeQ+ynkv2sK6YrJhO6ahDMX/c2TNpjsKuni7v7YYCHa7CKLOzh50YOLIs+N5Tl5LcYK839Cqa/24W6004BG7WJqyL8UWiixnxDfzef//AUAAP//
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -21,7 +21,7 @@ public class PayerInformation {
     public PayerInformation() {}
 
 	/**
-	* The billing address in a payment. Can be extended for shipping address.
+	* The billing address or shipping address for a payment.
 	*/
 	@SerializedName("billing_address")
 	private Address billingAddress;
@@ -164,7 +164,7 @@ public class PayerInformation {
 	}
 
 	/**
-	* The extended address, which is used as the shipping address in a payment.
+	* The shipping address details.
 	*/
 	@SerializedName("shipping_address")
 	private ShippingAddress shippingAddress;
@@ -190,7 +190,7 @@ public class PayerInformation {
 	}
 
 	/**
-	* The payer’s tax ID. Supported for the PayPal payment method only.
+	* The payer's tax ID. Supported for the PayPal payment method only.
 	*/
 	@SerializedName("tax_id")
 	private String taxId;
@@ -203,7 +203,7 @@ public class PayerInformation {
 	}
 
 	/**
-	* The payer’s tax ID type. Supported for the PayPal payment method only.
+	* The payer's tax ID type. Supported for the PayPal payment method only.
 	*/
 	@SerializedName("tax_id_type")
 	private String taxIdType;

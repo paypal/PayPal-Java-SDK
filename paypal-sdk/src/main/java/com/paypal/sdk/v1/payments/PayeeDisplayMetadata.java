@@ -1,6 +1,6 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // PayeeDisplayMetadata.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
 // @data H4sIAAAAAAAC/7SUTY/TMBCG7/yKkS9lpThpFlSk3hDsYYX40FJxqVbVNJ42lhzbjB1KhPjvyN0m/QhISJRj3vHMPPOOnR9i0XkSc+GxI1opHbzBbtVQRIURRSa+IGtcG/qATTonMvGOuuPHWwoVax+1s2IuFjXBoYZ01nTQF4KNY4g1wb5PLjLxmhm7p+bTTDwQqo/WdGK+QRMoCV9bzaQG4RM7Txw1BTFfDtghsrbbMeaa0aqVTR+nwGfyGD3B8STAug3aUgiQTv4rrG2N+ZkNxL3FvnaWxuCX4SP7ZeT3+DQJsD8Btm3WxP/f6sq1NnK3qpw6B74IjHmXcedkVSNjFYnh/vNUvihnM1nCIRVS6uPzOkYf5kWh6BuZhJZ77DyavHJNoVwVCm0jbRlT7UJppioWTCEWhzoy1QnFDbjN8RJOQt/myhv+k1FPCzmzaJDG5mgrexdO95mBtrC8y8vZy4Oi7Ra8QZueWIPxaNdut8t1bHNtkxtVsZAPd2/kPlXeTstpWcr7m6vM/vgX01OD2pwN3yvj2fcRQKU4PcLTXwfn8B6/66ZtwJDdxhp0gPL2FQzXKFxpome/AAAA//8=
 // DO NOT EDIT

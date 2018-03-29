@@ -1,8 +1,8 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // Refund.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
-// @data H4sIAAAAAAAC/+xYT3PbuA6/v0+BUd+hydhS+tK/uWWm7009r7vNJO5eshkbpmCLG4pUSSiOZ6fffYeiZEuW26bTrLcHnzwCQBrADwR/xJ/ReFVQdBZZmpc6jQbRb2glzhT9irmXR4Po/7TafLwlJ6wsWBodnUXnENYBW9QOhRfH0SA6txZXYeeTQXRJmH7QahWdzVE58oJPpbSUrgUX1hRkWZKLzq7XPmFuSs19n9byjWdrUde/cUZQ4ConzRBMBrCUnMHMEt4Oy8I9nreOrdSLvreitJa0WHX8bQn7Hl9zZomGIkOLgsnC6OrD8Pl/nr2CZhkIk9LN0yQ1wiVSMy0s+g2SVFoSnFhynDTGQ2/skqMYLnB1gQpSQw60YXBlURjLgEo1W0v6vpSwLbcyokulPg+2QJykxCiV66dno9hkZyPrJwfTVPpPH0cwA5yZkoF7WP/92C7knCdLi0XH/ba0H4DXgtfCnCiGX/Be5mUOivSCM5AOnp3AGno3gGUmRQZSC1Wm5M5+L09OTkWpql8KX0qGryu6Iw2pXEh2MKO5sVSlJSUhc1RQGKk5DmuSZlF3i/F3mi9N838496X6wL9LmgB+EKKtYvsSThnqVEm9mMyJOlBtKfpoNQYHsLzLoV9QCnMTVtcdpTl3OXFmUjBareL9ICu1Ky1q0YW1Le1jutYeQO2A6mH7OrJ7AtVlsiiCZoNpS9iHtFEeEN1bT21SPkmlEz1Ctkv7ddigsTycyJ+vzbpyxoZRdTHeCHdAWytrLrYORTLlLobRvPqy9Kkkx2soQUld2wyAM+mgCM6ufBUcH9s6luPjwynfC/CM9x3Mw3cfbsb7AyKPgMjNQzDpncQvH8POGfRQLCgFNs1riQhmq/WHjeF/xtZvejcAS4UlR5pdZVLvwhlya31t3WxqrFxIHZqV3/BQEz/6ln5ISQgsuLQ0kWl3zNAW94tj9BZM6MMOFbWHODAjfy0HbGlfvE9YQqYJy7xL57vyfhwpMgHqFLwFLDPS9eVSzaaW6CDskA5AargeaSaribfWzY3NkW+eZsyFO0sSNka5WBLPY2MXSca5SuxcnJ6evnniqErT8EX88mhPyUlbYXeHJW15Pzl1Flpm+3qadWvxmzW4Y5S4q3u8anWPvT0y74wUNNFlPiO79dLcUu16blYm4AmQRXHrD9boLYQVjxyBkvp20oJ6YmZ/kNgxQ/WG3aFbI9ma8GpA754HqSZrQ0vKHya4fnc+/u+H8yuoljbjSCxkYu7I3klaJk8yZDLohpXJ9lF5+fgTuczSvDvhCYI+LMLkhSL21MUuiOHj5fsYxgZyvKW6HkOYApUaePOZ56ZeU/PvapJckVQfXegtHy9HwJQXfulDO8rLF69OjmIYhSuw+ofpv6cDmD6dDqr2ND2atoq+otKFpWFhjSDnpF7E4COa+lin/pD4LW5pBQ1APlajqbm8KzAA1ykIMYZ40DN355H2hAGV2tMZCzntQLcW9cF7Nx5fNDA0bwLPQHaCt6cILHVJWfjeMd736Q8O+puWVwV9s0RevHn9en3pPD9qWJMje0cO0AFq31N8ZWAFbwC61JjP5KI0pVOr+gqYUagPRzlqlsI1/dcvi+GKCK7f+x0uaw/dxrvlchlL1Fj5hs7JhfYPUpf4tcMmpO3P+N6H8Tj35EPIUIGWNE/q13IHk57qaxdS89w2uk53ddbbLEk6mKHbGz+yhG7r9l+Ldl38XrWh69uO/xMMz/PMbZK6kf38DNUxcpebNpIdExCv6ZKbPXlZFulOHt2VfwePdqa0giomrdAxhI1+Yjp98/lffwEAAP//
+// @data H4sIAAAAAAAC/+xZT2/buBK/v08xcN+hCWQpfenf3AL0PTR43W2QuL1kA3skjS1uKFIlR3GERb/7gqIkW5abpmjW7cEngzNDamZ+M+SP9F+jSVXQ6GRkaF6qdBSMPqERGEv6HXMnHwWj/1O1GrwlmxhRsNBqdDKaZAR+JqTEKKQNR8Ho1Bis/LpHweiCMP2gZDU6maO05ASfS2Eo7QTnRhdkWJAdnVx1HmGuS8VDjzr5yq9ONPSuwConxeBNAlgKzh7fV8tGqMXQ16Q0hlRS9bxdEw79veLMEI2TDA0mTAbOLj+Mn//n2Stop0GiU7p+GqU6sZFQTAuDboEoFYYSjgxZjlrjsTO20UEI51ido4RUkwWlGWxZFNowoJTt0oK+LyVsyo2MqFLKL8EGhNMm3cP0rBSr7Kxkw+Rgmgo3dHF4M8BYlww8QPqfx3Yh5jxdGix67q9LhwE4LTgtzIlC+A3vRF7mIEktOANh4dkRdNDbAJaZSDIQKpFlSvbkj/Lo6DgpZf1LfiSFH13SLSlIxUKwhZjm2lCdlpQSkaOEQgvFoZ8TtZP6S0y+03yp2+/h3JXqAz8XtQH8IEQbxfY1nDJUqRRqMZ0T9aDaUAzRag32YDmX/X5BKcy1n93sKG3f5cSZTkErWYW7QVYoWxpUSR/WdekQ0067B7UHqoPtfmR3BKrNRFF4zQrTNeEQ0la5R3Rne2qb8mkqbDKgY9u098MGreW+I3+9bdaWMWtG2cd4JdwCbaNsuFgXimDKbQhn83pk6HNJljsoQQrV2ATAmbBQeGcrVwWHh6aJ5fBw3+U7AZ7xroe5Hw/hZrzbI/IIiFw/BJNBJ369DXs96KBYUAqs29sSEcRVNzAh/E+b5jZvAzBUGLKk2NYmzSqcIa/Nb6zbRbURC6H8ZuUW3NfEj96lH1ISCRZcGpqKtP/MsC4eFsfZW9B+H7YoCdigspg4A4jJHcseW9oV70sMIdOURd6n8335MI4UmQBVCs4Clhmp5nCpX6WWaMGvkAYgFFydKSajiDfmzbXJka+fZsyFPYki1lraUBDPQ20WUca5jMw8OT4+fvPEUp2m8Yvw5cGOkpOuhd1/LFmX3/M21ylC+ISyJMhLyxATWKEWksZx5bIhiwxVmZMRyVqb7uo21y/fb5ZtE9ta4W7dcF79hEjUrRYJTVWZx2Q2Lqcbqm031NoEHGcymNy4Xjx7C37GI0cghbqZrlXHVMd/UrLl0dUZ9t/pWkk/gFMF6NxzIDX8bmxIuv6Dq3enk/9+OL2Eemr7gomFiPQtmVtBy+hJhkwa7bg22eyul4//iJcZmvcfhbxgCEui80ISO7ZjFsTw8eJ9CBMNOd5QU48+zASlDJx57Ois0zSUvX56rnnt1ceLM5hQXrgZY7/3MKXf3H5evnh1dFCnzx/WhaFxYXRC1rVx0B6k9Udn/54FMHs6C+pNbnYwW+8DcBHNXKwz1yTO/oYqaAFysWpF7XlfgwHYpcDH6ONBR/atQ9pxDJRyRz3mc9qDrhMNwXs3mZy3MLTXCEdatoK3owgM9XmcH2/5R8Cl3zvoDmeuCvpmobx48/p1d049P2iJliVzSxbQAiq3p7h7GdbweqBLhXksFqUurayaUyMmXx+WclQsEtvuv74ML4ng6r1b4aLx0K68Wy6XoUCFtW9orVgod4e1kZs7bkPaHIZ3LozHOVofwp8KNKR42lywe5gMVPcdSO0NXasm3XWvrxMrYSFGuzNKZQjtBmHoRNu4glOtGP6m4z+DFDpquslrV7Jfn9RaRu7T2Vay5dHEafrkZkdelkW6lXr35d9Bva0uTUI1+ZZoGfxCvzADv/7yr78BAAD//w==
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.braintreepayments.http.annotations.*;
 /**
- * A refund transaction.
+ * The refund details.
  */
 @Model
 public class Refund {
@@ -21,7 +21,7 @@ public class Refund {
     public Refund() {}
 
 	/**
-	* The payment amount, with break-ups.
+	* The payment amount, with details.
 	*/
 	@SerializedName("amount")
 	private Amount amount;
@@ -60,7 +60,7 @@ public class Refund {
 	}
 
 	/**
-	* The refund description.
+	* The refund description. Value must be single-byte alphanumeric characters.
 	*/
 	@SerializedName("description")
 	private String description;

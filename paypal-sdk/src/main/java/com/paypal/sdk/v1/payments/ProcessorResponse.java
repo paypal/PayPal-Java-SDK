@@ -1,8 +1,8 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // ProcessorResponse.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
-// @data H4sIAAAAAAAC/8SUz27bMAzG73sKQpe1gBvvnJvR3QZsQVP4UhQBIzG1AFlSSdmBO/TdBzXNH9cFNqxbe+RHwubvI8Wf6nqIpOYqctAkEnjFJDF4IVWoGtni2tF3bHONKtQ3Go7BVxLNNiYbvJqrCnRwjnQOIWwg4tCST7D/3gWTw0QGNpacEWBKHfscc2gBT+rvO5I0U4WqmHHYNfilUFeE5od3g5pv0All4b6zTOYgLDhE4mRJ1PzmgCaJrb+b4qDpraaVDoZGZGN9DHndELTEukGfYFcIwUMTtpACNOiNIzCknfUksAkMTLrj3MAeUN5K5jvnHovf4/XyCttRnILdVMYwiUBNbDdW49Mol4MkauGsqpfnt2dNSlHmZWmoJ5d7mkUcIrqZDm25pTXGKMdkaYKWUjsUsbrEaMuqXl49L8RlMCTl+WFBIDf2Tubovp+acyK+Ys5lXf8XfNn5+xEukLYr6datTYnMyIqXmakfh4NxETn01pAB7FIT2D7s9mYP9E4s+99Nx/oyM2VZ4LBABz5wi84+kBlPo4BtY3UDVuCOPPHuiuWrlU6N+CwgkXR+OW+YZuLu7wzoI8qI+1n4o9HVVjDbQAxVlxry6fD8iZ+unCRM3b+5XbePn34BAAD//w==
+// @data H4sIAAAAAAAC/8SUQW8aPxDF7/9PMfLln0iU7ZkbSm+VWhSivUQRDPYQW/La7ox30abKd68MYVPYSI2aNj3yZvD6/TzzvqubPpGaqcRRk0jkFZOkGITURNXIDjeevmBTetREfab++ccnEs0uZReDmqkbSzCc8iFx7JwhA8fjQEdDAtliBrP/44YgWwJpN43LmQwk7BsKeQrLNqXIRYrB97CzFPat66eOVUPZRrMGJ7DWTMbllUY266maqDkz9gdXHyfqmtB8Db5Xsy16oSJ8ax2TGYQFx0ScHYma3Q48JLML92MGaDqnaVXMnOA41cdkGmJtMWQ4NEIMYOMOcgSLwXgCQ9q7QALbyMCkWy4XODKRtzoLrfePk1/b6+QFb8/i2Njt3BgmEaiJ3dZpLDVY9pKpgYt5vby8u7A5J5lVlaGOfLnTNGGf0E91bKodbTAleS5WJmqptEcRpytMrprXy+unMboqU1Rdno7VO8HRXTeG85P4Apyruv4r9uXA919QIO1Ww86eoDivvCofsM02sns4zM3R0Dt5OX5u/KznlbGXBfYL9BAiN+jdw3nUTWBnnbYlou4pEGOJsy3HZp9kA4j/BSSRLpvzhtfM3P4egC6hnPh+El71dLUTLBiIYd5mSyEP60+8T7mLejFfXoJkzO2fibC7x/9+AAAA//8=
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.braintreepayments.http.annotations.*;
 /**
- * A collection of payment response-related fields returned from a payment request.
+ * The processor-provided response codes that describe the submitted payment. Supported only when the `payment_method` is `credit_card`.
  */
 @Model
 public class ProcessorResponse {
@@ -87,7 +87,7 @@ public class ProcessorResponse {
 	}
 
 	/**
-	* The processor-provided Visa Payer Authentication Service status.
+	* The processor-provided Visa Payer Authentication Service (VPAS) status.
 	*/
 	@SerializedName("vpas")
 	private String vpas;

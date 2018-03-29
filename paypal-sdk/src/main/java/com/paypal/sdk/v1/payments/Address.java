@@ -1,8 +1,8 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // Address.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
-// @data H4sIAAAAAAAC/7xWTXPbRgy991dg2Es8Q5Gy0+agW+ImqZtJ7LHl9qBmLIgLiWiWu8wuGJnp5L93dkV9leo0Sju6aEQAD8R7iwX4ZzJua0pGCSrlyPskTX5FxzjT9A6r4EjS5A2124efyBeOa2FrklEyLglmrDWbBXQpgA0g1NhWZCSDSzQwI6BHIaNIwdw68CXX9Q4kS9LkuXPYrooZpsktobo2uk1Gc9SeguFjw47UxnDjbE1OmHwymmxoeHFsFn0WBUu7x6Qz9NkEBxis6L8WZRqtv6T/XpltjLj2obCK9ivcd/QrncjSDooSHRZCDq7uruHp+bNng3MIkPdPcmULn7MRWjgMuFyxo0JyR17yLv0gxPr8DKREAVZkhOdMHiRosYoB68DRgq3Jfm+Gw6fFTNviw8fGCsXn1W/hxVmzWFneWaHRypzv2mG8kza8OvbDa0co8MKxIBtgDytk8K9gr190ubYmQKPAWOnF3r85EOuh8aRCawZeYuuBpk+kQdkqvDKct4+lRBm6AjO49xQB08uLab/sy5INwtI6rZbc2Qpb1ejC+UJjCmvEWa1JQe24IHhyeX9zBhVJaVUKMzQfoECn0kimcNb7wcw6RQ7EofFYhGPzner532U/pkHFNd/Wn5oNne815trS78g5Oy8Q/GDnUbj1BYdX1gE9YlVrSsE01YxcCl4ckazYewvWZCejdNGjdNGjdB3/oM5i13oqrFFfwc43LJQC1ugkzMAN3W+j+e2jxVhXoebP8fI/eEFp/B7tfwjoH+x6tO8BYAXI4JakcYYUWKPbeAtqbMl5mDtbwQuHn1mfiHJdWrM/RteWPqno2RwOG5i8zM4vngYCFcr7J6VI7Ud5vlwuM5YmYxNGZ5GPB7cvLwcxdnAxHJ4PLwZXOZmzDN7iI1dNBZrMQsowyH4cwmZC+1NpYL2g7i+UffsBPaI/jrcUliUXkUHo889cr6ZeaPOPDX9CHXf7uK25QK1bcF3d3QwMgzIskSVLGT4GtplDCjR7We6IYHKzDdkqTyZb8geuSTFm1i3y8JTfbHmcnUjS0On7Yq4tB9by12zfCN/s3iAawv1dvFFRoqD6VqMYYKWkHW3DtdvRfHdfAO+Np3CKbMBu5panbZoRTJ67Rdj6Bo8p+ntco85SmKzu+FH4WYQE8CUaVMe9vIiQAL4yio/DckBEqKBuj4MGRID+gjWao6B/BESAvqVHLuxR2CpCAnhcIms06ii4dKCzNHTW5N6wkIK7EOKPStR4PDjkfhiCZ7PQNJi1QqcfeAc221fssm57naZECe7dAjtDv7zgCPf08LfF9Ofrty8frm8ffru+fTNNYfr66tV4+n9/Wrz/8t1fAAAA//8=
+// @data H4sIAAAAAAAC/7xW32/bRgx+319BaC81IEuOu/XBb23WdlmQJkic7cELYlqiLS6nO+WOqqMM/d+HOyn+MbtY3QF+MSCS3x0/HvnRf0fjpqJoFGGeW3IuiqPf0TLOFH3C0juiODqnZv3xC7nMciVsdDSKxgXBjJVivYDuCDAWXMFVtWmbGwsIFTYlaUmiOHprLTbt3YM4uibML7VqotEclSNveKzZUr4yXFlTkRUmF40mq6ydWNaL3aQzlmYr8c6wm7x3gMaS/m9SulbqS/zfmZlai23uM5PTdobbjt1MJ7I0/axAi5mQhbObS3h98uZN/wQ85O5VmpvMpayFFhY9Ls3ZUiapJSdpd3zfx7q0B1KgAOekhedMDsTXoo3xD2hpwUYnf9aDwetspkz28FgbofDd/mZOrNGL1vLJCI1ac7pph/HGsf7q0AgfLaHAO8uCrIEdtEjvb2Ef33VnrU2AOgdtZCf29nxPrIPaUQ6sAy8xVV/RZ1KQm9Jf6d+77clQhi7BBG4dBcD0dDjdTfu0YI2wNFblS+5smSkrtP59odaZ0WKNUpRDZTkjeHV6e9WDkqQweQwz1A+Qoc3jQCazxrn+zNicLIhF7TDzz+a6qqf/LvshDSq2/r7+VKzpZKsxXyy7HTln6wS8H8w8FK4b9wQ+GAv0hGWlKAZdlzOyMTixRNKydwaMTo5GabhDabiXkqPM6PwbOLmahfykYIVWvKp1NI+kI9rYEhU/h0m/d4JSuy2OXwnYpfwi0VsAaAEJXJPUVlMORqsmtHyFDVkHc2tKeGfxmdWRKFeF0dua+WLZJRU8q8ZjDZP3ycnwtSdQoty9KkQqN0rT5XKZsNQJa6+TWTruX78/7YfY/nAwOBkM+2cp6V4CF/jEZV2CIr2QwqvWzwNYybE7Vg2ME1S722PbvqcewR+0LIZlwVlg4Nv7matW4nx3P9b8GZVf0TBuKs5QqQZsl3cneF4V/cZYshR+p69PDuOgt065IYLJRsi68qSTJT9wRTljYuwi9V/p1ZpH70gl9Z2+XcwXy54d/C2rNsBXi7b953N7EyYqlMhXfV2jEGCkoI3a+rHbqPnmcgDeUiX/iqzBrOTK0fqYEUze2oVf8RoPSfpHfEH1Ypi0M34QfhYgHnyKGvPDLs8CxIPPdM6HYdkjAlRQNYdBPcJDf8MK9UHQvzzCQy/oiTNzELYMEA8eF8gKdX4QXDpQL/adNbnVLJTDjQ9xBx1UO9wrcj8NwLFeKOrPGqHjC5549+Zwdobd2fQOPwT79/X018uL9/eX1/d/XF6fT2OYfjz7MJ5+73+Rr/G5+/LDPwAAAP//
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.braintreepayments.http.annotations.*;
 /**
- * The billing address in a payment. Can be extended for shipping address.
+ * The billing address or shipping address for a payment.
  */
 @Model
 public class Address {
@@ -62,7 +62,7 @@ public class Address {
 	}
 
 	/**
-	* Optional. The second line of the address. For example, suite, apartment number, and so on.
+	* The second line of the address. For example, suite or apartment number.
 	*/
 	@SerializedName("line2")
 	private String line2;
@@ -101,7 +101,7 @@ public class Address {
 	}
 
 	/**
-	* The postal code, which is the zip code or equivalent. Typically required for countries with a postal code or an equivalent. See [Postal code](https://en.wikipedia.org/wiki/Postal_code).
+	* The postal code, which is the zip code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code).
 	*/
 	@SerializedName("postal_code")
 	private String postalCode;

@@ -1,8 +1,8 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // FmfDetails.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
-// @data H4sIAAAAAAAC/7zRwUoDMRAG4LtPscyphdV43ptQAiJV0eKllDJuJutAktZJclik7y6hpW6pRaTiadl/huT7yQfM+jVBA9bbpaGE7CLU8ILC+OroHn0ZQg131H/9TCi2wuvEqwANzN6ommvBbKopBuzIU0iVZpdIqpGe6vFipMyqjap1GCO3ynqrOCTqBMsZl11mQ0pP9XP2HqVX42pnuYIabkSw3zKva3giNA/B9dBYdJFK8J5ZyOyDR1mtSRJThGa+LxiTcOiOu5lBl2HNw/y4sd32G6ydaw3ZuU39I3h78ZLNAXeYnsTeTn5lTJLPIqay9Q1yl59klvn/QEP5DIW74CStzP/knRebi08AAAD//w==
+// @data H4sIAAAAAAAC/7ySwWrcQAyG730KMacE3HXPeysEQynbljT0EkJQPLItGGtcSaaYkncv4102G9KllJSejH/9kj6N9DPcLBOFbejG7j6SIycLVfiGyviQ6BOOJRiq8JGWp58rslZ5cs4StuFmIGgU5wg7FOxpJHFoODkpXDS75hIOhcEHdEAlwGlKTBE8gw8EEy5r0hpXsjk5sAAKYNvS5BVEkqWCrDCRRJYesC3dN3BNPqtQXP3HQko2ZTGCLGkB7tYuI2k7oDgMaEBS5ovQ7JqSulJo7jgRGLmz9AYoEbIQ5H1+t87YrYMZ/EADV+57UorwgEbFDD5keyqxgSYrjFkJWLqsIxbqCowIbs+8mcHXeRxRl7uLOubW6jahGbd1N3Y1i1Ova5W3/cyR6mbXHPz15SZU4b0qLvulvqvCNWH8LGkJ2w6TURG+z6wUj8IXzROpM1nY3h7PwVxZ+peXEE82f3oUz/WX97F/NTixvZZV5pQeqz8C7xvfc3yGe6qehf1w9VeMrvOrEL24fgN50M9ilvj/AZXyOSU8CGfRSvyf7Pnu8c0vAAAA//8=
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.braintreepayments.http.annotations.*;
 /**
- * The [Fraud Management Filter (FMF)](/docs/classic/fmf/integration-guide/FMFSummary/) details.
+ * The Fraud Management Filter (FMF) details that are applied to the payment that result in an accept, deny, or pending action. Returned in a payment response only if the merchant has enabled FMF in the profile settings and one of the fraud filters was triggered based on those settings. For more information, see [Fraud Management Filters Summary](/docs/classic/fmf/integration-guide/FMFSummary/).
  */
 @Model
 public class FmfDetails {

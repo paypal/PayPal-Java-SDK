@@ -1,8 +1,8 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // Payee.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
-// @data H4sIAAAAAAAC/7xVT2vbThC9/z7FsJf8ApZkpyUF30qTgyltQxraQwhmvDu2Flaz6uwqrij57mXlf5GdkNKaHPXmj+a92X37S920NamxqrElUgP1DcXizNFnrBKsBuojtbuPCwpabB2tZzVWNyVBVwjL0oOQJntPAWJJMG/YBEA2MG/c3Dq3gr0YklwN1HsRbFf/Hg7UNaH5wq5V4zm6QAn40VghswWuxNck0VJQ49vt1CGK5cXh2FShdb3ZN8ghgS4CaIxQCIAheG0xkoGljWU3dEfxJMAVtlfoALX2DcccJvNVWPy9NWT2OtkA7ONBQ+R2r9Fg9xPQyODZtRsxN6nf0TmKKakijiGHCyukI2ghYyNoFLMNAgqBIbZkwDQE0a/i2le1s8iaQFbyrnr94za4ce5h8OJKKhJdIsepNb3F9PEn1sNa2jrJ11cNJhcw97LT7sg8up5TY0PtsJ1WFNFgxENez+btKD6bcsh2nZR1Z2CTeVyeL9+emSCbKaePxzR68NNGICcBZk2wnC5AyjzyUjYa1qXnJ9xqP7ybfT/yjI+dBOgygJtq9hpG1R1laafam/7Ae4HDeW/j0me6REEdSWDydZi9GZ2fZyNYl0Iqvfu/jLEO46IwdE8ujZbX2Nbocu2rwngdCsuRFoKpd2E6WymEQizWfbLUJxSn4Oc9N1yHX8k+VgvpSbSFDsWxnG1UeLzPAViG28t8dP52jVheQO2Q0xWrMO7kWi6XuY1NbjmpoYub7PryQ9aVZmfD0XA0yianR+F+9wfs//49e2wdksMn/GmrpgJHvIhleqNGZ+9ge4zCkRjdPfz3GwAA//8=
+// @data H4sIAAAAAAAC/7xVQW/bPAy9f7+C0KVfgdhO2qEDctvWDiiGdUVX7NIVASMxsQBZ8ii5mTf0vw9y4iSOG7TYgp4CkdTjexT98lvc1iWJsSixJhID8Q1Z49TQFRYxLAbiE9Wbwzl5yboM2lkxFrc5QXMRFrkDJkn6gTyEnGBWWeUBrYJZZWbamGXYsSJOxUC8Y8Z62Xs4EDeE6os1tRjP0HiKgR+VZlLrwDW7kjho8mJ8t2btA2s779OmArXpcG8jfQFNBlApJu8BvXdSYyAFCx3yhnQj8cjDNdbXaACldJUNKXx0DGhB20A2gJsBViF3rH9FnUupgwag26KofIAp9VohSGdnmgtSbatp5bVtaO3t6dHQdheJFkiHnHj8vRoOT2Vlml9anoxent6/qH9J7J1FE/X0uCwBsxaxi3/l9mjcGeKTIFnL+R8XxVbGPA6e3ZaCWOZow0Srzs504/3N6UqBy3OYOd5sTHpY9g3mRGlfGqwnBQVUGLCvZm/dRtjekr7GVVHirKmhrTyszuc/5ymjVRMbD9syOuGnnYmP/GZxY+WBH6WdYZk7+4R97qY33Hcze4z1yENTAbYqpq/hnM0qcz2RTnUJ7yT6fO/CwiUyR0YZiOHy6zA5HZ2dJSNYXYV49f7/PITSj7NM0QOZSC0tsS7RpNIVmXLSZ9Hc5owRO1OaSYaMyYdshZNEHJ8dR/fbtudVOn0d01g+SGdE61B/ONom7RS233MA2sLdRTo6e7OKaDuH0qCNn1iBYTOuxWKR6lCl2sZpyOw2ubn4kDRXk5PhaDgaJZfHB9F+/wL1f/8Hu20dnMJn/KmLqgBDdh5y0B5GJ29hvUb+QIruH//7AwAA//8=
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -21,7 +21,7 @@ public class Payee {
     public Payee() {}
 
 	/**
-	* The email address associated with the payee's PayPal account. If the provided email address is not associated with any PayPal account, the payee can only receive PayPal Wallet payments. Direct credit card payments are denied due to card compliance requirements.
+	* The email address associated with the payee's PayPal account. For an intent of authorize or order, the email address must be associated with a confirmed PayPal business account. For an intent of sale, the email can either:<ul><li>Be associated with a confirmed PayPal personal or business account.</li><li>Not be associated with a PayPal account.</li></ul>
 	*/
 	@SerializedName("email")
 	private String email;
@@ -34,7 +34,7 @@ public class Payee {
 	}
 
 	/**
-	* The encrypted PayPal account ID for the payee.
+	* The PayPal account ID for the payee.
 	*/
 	@SerializedName("merchant_id")
 	private String merchantId;

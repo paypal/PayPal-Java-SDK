@@ -1,8 +1,8 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // Capture.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
-// @data H4sIAAAAAAAC/+xaX3Mjtw1/76fAKH04e1Yrp5e7JH676fUmnqa5G9vJi3sjQSRWy5pLbkiuZbWT797Bcv9otTr/mTiadkZPGgIgCeAHgiBW/5lcb0qanE8ElqFyNEkmv6BTuNT0ExbMmCSTv9OmH7wnL5wqg7Jmcj55B81ECA6NR8H0dJJM3jmHm7j2WTK5JJQfjd5MzjPUnpjwa6UcyY7wydmSXFDkJ+c3nVZY2MqEsVIdvVetIw0VvM4JStwUZAJEkQTWKuSwdIS306r0L6etD06Z1VhbUTlHRmwG+m4RxxrfhNwRTUWODkUgBxdXH6ff/OXrb6GdBsJK+vxqJq3wM2UCrRzyAjOpHIkwc+TDrBWesrCfnaTwCTefUIO05MHYAL4qS+sCoNbt0oqe55Lgqh2PmErr35IdEOeSAirtx+7pGb13etrYOSil4iHbEcUAl7YKEEZY//HYrlQW5muH5UD9berYAOYCcyEjSuEfeK+KqgBNZhVyUB6+PoMOep/AOlciB2WEriT5839WZ2evRaXrX4ojreLoiu7IgFQrFTwsKbN8MnMCSUIVqKG0yoQ0zpm1k4ZLXD9TfG3b/TDjUH3idrPWgN8J0U6wfQmnHI3UyqzmGdEAqh3GGK1W4AgWqxzzBUnIbJzdZJT23BUUcivBGr1JD4OsMr5yaMQQ1m3qGNOOewR1ACrD9jCyBwLV56osI6fHdIs4hrRlHhE9WE5tXT6XyotRQbaP+zBs0EoeT+T/Xpr11TLYgHqIcU/cA23DbGqxzhQVqPApXGT1yNGvFfnQQQlamUYmgZArD2VUdsNRcHrqGltOT4+n/CDAB7wfYB7HY7gD3h8ReQFEPj8Fk9FJ/PIxHJxBhmJFEoJtX0tEsNx0A5fCB+vAUVYZ6RNwVDryZIKvRZpVQo5ha34j3S5qnVopE5MVL3iMid/7ln5KSAhHGGgeVDEshIf0cXhIDARoJLAErHMytYVtW8eKui0gE1AGLkwgZyjsTMqsKzAAepCUKUOSZW8uP/wVXr9+/T1cUd0Vgjfp28+v8hBKfz6bBWu1TxWFLLVuNctDoWcuEzzhKx8nTN+kb08O9YiQw9eD3Ouri/dgs4F7XrDr9eTnzp1VguamKpbkdt48O6x9D59aBKJIfWIditvmoo3FxQsbsrRWE5o9lvh5xnli3vcet2wZM4fWXBipBAbyHLMhj8Y40oSe6naWowKVqUvLmJ3apIVVyK1T/677ZZBbLT0HLLNYkmco44Or6krr1YeLkxTeU4aVDpy8FrXJixf2klbmdi57C+d2+S8Se1qfLDjslbWUnc6sAWT1OGKbGmvqSCMXlTc/vLv+28d3V1BPbbuIWKqZvSN3p2g9+yrHQBb9tBbZPYZvX76RljvKho2ZSBjHsLBFqSlwxeFWFODnyx9TuLZQ4C01JWU0U6DWCYsvuaRkTlM21w3gOuTZujq13fx8eQGBipKnNhnt0Wz19s23ZycpXMSbq95h8edFAotXi6ROj4uTxdZNV1fApaNp6awg75VZpcAWLdjWBQcXL3FLG2gBYlutofbOrcEA7FwQbYz2IBfcnpHmex61PlBCij4dQNeRxuD9cH39qYWhLeX55O4F70AWOBrWUnG8pyvP7o8KcuYIm5IeDZE333/3XXehfXPSFjue3B15vjLR8LXCkYE1vBHoymCxVKvKVl5vIOaFJcX48FSgCUr49jLiaSlcEcHNj7zCZaOh77Vbr9epQoO1bui9WhnObn7Gc6etSbvD9J7NeJk7+Ck1TImOTJg399AAkxHrodu5fSVb07i7PutbdzUftSV6kgeLMPTWzIWVtBNp2/SxSZFff+uJcdFHwjqPVfu2VT5w8uKbnOI9Vpfyd+QOZ2mtwrBH0FD2JPKmiKolUvgFdcXaP/gAiCN2SBw3ljY1d0+PibXdoXfJw8X+7updnn1k/Rw9+EpwUs8qrTd9gn7efvEl9eh2a/QQ92knPG+bEl1QqPVm/owNu0mPbPoHtSe2vpfuPob7EzD6ujPmjcOQE0H/XTXWXTEhaw1chBqhUMMdh2dXQmWKtPTxtUz3yGgnsESNRlDSJSBZUSwEvIWX/C5+/NL8rKRUQzfwSUvZ83W5+ZNAVXJZcvrT6Zdf/54PEgbrkt23b+vE57qt65FiWTpbOsX5fABEeqB2QlXKve2EIf3J7QRH3lZOxEyi0QeIC/1/9xU+//an/wIAAP//
+// @data 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
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.braintreepayments.http.annotations.*;
 /**
- * A capture transaction.
+ * The capture transaction details.
  */
 @Model
 public class Capture {
@@ -21,7 +21,7 @@ public class Capture {
     public Capture() {}
 
 	/**
-	* The payment amount, with break-ups.
+	* The payment amount, with details.
 	*/
 	@SerializedName("amount")
 	private Amount amount;
@@ -34,7 +34,7 @@ public class Capture {
 	}
 
 	/**
-	* The date and time when the capture occurred, in Internet date and time format as defined in [RFC 3339 Section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
+	* The date and time of the capture, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
 	*/
 	@SerializedName("create_time")
 	private String createTime;
@@ -73,7 +73,7 @@ public class Capture {
 	}
 
 	/**
-	* Indicates whether to release all remaining funds that the authorization holds in the funding instrument (FI). Default is `false`.
+	* Indicates whether to release all remaining held funds.
 	*/
 	@SerializedName("is_final_capture")
 	private Boolean isFinalCapture;
@@ -125,7 +125,7 @@ public class Capture {
 	}
 
 	/**
-	* The capture state. Value is:<ul><li><code>pending</code>. The capture is pending.</li><li><code>completed</code>. The capture has successfully completed.</li><li><code>refunded</code>. The capture was fully refunded.</li><li><code>partially_refunded</code>. The capture was partially refunded.</li></ul>
+	* The capture state. Value is:<ul><li><code>pending</code>. The capture is pending.</li><li><code>completed</code>. The capture has successfully completed.</li><li><code>refunded</code>. The capture was fully refunded.</li><li><code>partially_refunded</code>. The capture was partially refunded.</li><li><code>denied</code>. PayPal has declined to process this transaction.</li></ul>
 	*/
 	@SerializedName("state")
 	private String state;
@@ -138,7 +138,7 @@ public class Capture {
 	}
 
 	/**
-	* The base currency object for all financial value-related fields. For example, balance, payment due, and so on.
+	* The currency and amount for a transaction.
 	*/
 	@SerializedName("transaction_fee")
 	private Currency transactionFee;
@@ -151,7 +151,7 @@ public class Capture {
 	}
 
 	/**
-	* The date and time when the resource was last updated, in Internet date and time format as defined in [RFC 3339 Section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
+	* The date and time when the resource was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
 	*/
 	@SerializedName("update_time")
 	private String updateTime;

@@ -1,8 +1,8 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // LinkDescriptionObject.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
-// @data H4sIAAAAAAAC/6yUQU/bThDF7/9PMVr+ByI5NofS0tyQqAQqKiiEXiKEJ+tJvGW9a3bGpFbFd6/WC0EhqmjVHvd5Z+f95o38Q836ltREWePubitiHUwrxrtbv/hGWlSmvmIwuLD0BZt4UWXqM/Uvh5OXGjVRs5og0H1HLONAFoUqmJ8ezz5dHF9B7ME3+0XlNRfYmsI/UHgwtC72ahTyyOPhyihXmToOAftk7iBTU8LqwtleTZZomaJw35lA1Ua4DL6lIIZYTeYbLJZg3GqXog603CJ5EnZptG9aS0IgGFYkcD09z2HmocE7AhlwE6ZGa7N4fWFc+tKQ1L6CtZEapDY8DCAD42B+PT0DoaaNpbD0oUG52a9FWp4UhXhvOTcky9yHVVFLY4uw1O8PPxyMcjhz2nZV6lD+X2ZQ7pcZoKugHJWgawyohQLHZ6ENNG6D18Rs3CqHSFRG1hIMD0/cUQ/PAUVW78gJSI2S8gLcjCAxJh4E7hYck3YyyH+UmYTuVWSus/YxezO3NNKt5DbSbnans9nlcwrhqTnIL7L726X7TYJAdst+Ou96n8fpJ4PGO5C+pTc35PDj0dEek44V43ejDNa10TUwhQdiQAZ0cHYyLAYO6aacO4fNwqw637HtIf0EFpTWg6lBJ0Yz+OUgxLIcrohgfh5fmD455Bd36/U6N+hw8IbMZuUacsJFrB0/I70+5t8jxuhf7NHN438/AQAA//8=
+// @data H4sIAAAAAAAC/6yUwU7cQAyG730Ka+iBlbIJh9LSvSHRClRU0BJ6WSHiTZzNlMlMGDtso4p3ryYDi2BV0ao92rHH/+ffyk+VDx2pmTLa3lxXxKXXnWhnr93yO5WiEvUNvcaloa/YhkKVqC80PAVHTz1qpvKGwNNtTyxTTwaFKlgcH+afzg4vIMy42s0qV3KGnc7cHfk7Tetsp0EhhzwNFTwBbWvnWwxvpipRh97jEHXuJWpOWJ1ZM6hZjYYpJG577anaJM6968iLJlazxYaQxWu72gZqPNXPoB4S22ClaztDQiDoVyRwOT9NIXfQ4g2BjOSRuERjklC+1DZ+aUkaV8FaSwPSaIbF5fwEcmq70DGNuELV1W4j0vEsy8Q5w6kmqVPnV1kjrcl8Xb7f/7A3GTeZwmfnofM07bwriVnbVQLalqav4tDibZFAsVskgLaCYlJA2aDHUshzCoGoCKwFaB7rb2iAR68Cq7NkBaRBGQcy4GYFkTHyIHC/5GC6lTH9V56J719YZntj7pNXfYsrfebcJrXt3XGenz+64B+Gg/zGu389uj8k8GSeyY/xtvZF2H4UqJ0FGTp69U72Px4c7DCVoWP6bpLAutFlA0z+jhiQAS2cHEHtPODobvS5t9gu9ap3PZsB4v9gSfE8mFq0oksGV4+JeIUXRLA4DS/MHxTyk7r1ep1qtDhqQ2a9si1Z4Sz0Th+RXobpj4Ax+R93dHX/5hcAAAD//w==
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.braintreepayments.http.annotations.*;
 /**
- * The request-related [HATEOAS links](/docs/api/overview/#hateoas-links).
+ * The request-related [HATEOAS link](/docs/api/overview/#hateoas-links) information.
  */
 @Model
 public class LinkDescriptionObject {
@@ -22,7 +22,7 @@ public class LinkDescriptionObject {
 
 	/**
 	* REQUIRED
-	* The complete target URL. To make the related call, combine the method with this link, in [URI template format](https://tools.ietf.org/html/rfc6570). Include the `$`, `(`, and `)` characters for pre-processing. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+	* The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
 	*/
 	@SerializedName("href")
 	private String href;

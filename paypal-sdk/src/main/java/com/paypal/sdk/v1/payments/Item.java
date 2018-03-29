@@ -1,8 +1,8 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // Item.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
-// @data H4sIAAAAAAAC/8yUQWvbQBCF7/0Vw54SsK0kFAK+BXopaRsTJ72EHKarsTV4tavMzhYvJf+9bFW7Vl3TlhaTk3hvZ4f3aTT6Yu5yR2ZqWKk1I/MRhfGTow/YFteMzDXlH+INRSvcKQdvpuauISj3oCZFdnFiRuZKBHPf82xkbgnrG++ymS7QRSrGU2KhemvMJHQkyhTN9GGbJqqwX+7nsUmEvM2DXDvmfr4HbYRobBsUtEoCb+c349cX55ewuQY21PR4UtXBxoq90lKwNKhqFrJaCUWtNsXjUhyr079CVUk/kfrk3PPot7j1Ds4u8dA/OJStPYF56rogSjUE7zIsgoA2BDPMM3TQYW7JK7SkTaj/dYx/COfLY5fqu3EAp5xO4D2uuU0tOPJLbYAjnF9cwna68Thz6YTtMPvGORDehqi/DH929OxPCb2yDldoxzxAsKl4IRRxlQYAvd7PHjXYFayIOvZLSJ4VTubX96fbDShwR/rgFdeDzL0+8L4V1y9ya5O4AUSv9yHub9+Bhp6F/SJIi/2f6OozsisNy3Gh6TCTAPtvQgV9RFtKoeGoQfJ/AXt8fvUVAAD//w==
+// @data H4sIAAAAAAAC/8yUwWobMRCG732KQacEbG8TCgHfAr2UNI2Jk15CDmPt2DtYK21Go8ZLybsXdeutt8a0pcXkZObfkfg+jeSv5q5tyEwNK9VmZD6jMC4cfcI6p2Zkrqj9WbynaIUb5eDN1NxVBHkdlKTILk7MyFyKYNvt+XZkbgnLG+9aM12ii5SDp8RCZR/MJDQkyhTN9KGniSrsV/s8NomQt+2Aayfc53vQSojGtkJBqyTwYX4zfnd+dgHbZWBDSY8nRRlsLNgrrQTzBkXJQlYLoajFtnmcm2Nx+leqKukXU5+cexn9Vrfc0dk1HuYHh9LHE5inpgmiVELwroVlENCKYIbtDB002NbkFWrSKpT/OsY/lPP5Z9fqR3BAJ3+dwDVuuE41OPIrrYAjnJ1fQD/deCT2RtgO4bfJAXobovZTiKDPAUqyXOfDd2gpHudCPSX0yjp8PzvhAfptxwSuU1RYECA8V8ER+FQvSI4DH9dpwN3V+8hRg13Dmqhhv4LkWeFkfnV/2t/67HSki6K4GTB39YFjVty8ypeaxA0kunpf4v72I2joXNgvg9TY/ftcfkF2ecP8Ods02JIA+++FCvqINrdCxVGDtP9F7PHlzTcAAAD//w==
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -48,7 +48,6 @@ public class Item {
 	}
 
 	/**
-	* REQUIRED
 	* The item name. Maximum length is 127 characters.
 	*/
 	@SerializedName("name")
@@ -63,7 +62,7 @@ public class Item {
 
 	/**
 	* REQUIRED
-	* The item cost. Maximum length is 10 characters.
+	* The item cost. Supports two decimal places.
 	*/
 	@SerializedName("price")
 	private String price;
@@ -77,7 +76,7 @@ public class Item {
 
 	/**
 	* REQUIRED
-	* The item quantity. Maximum length is 10 characters.
+	* The item quantity. Must be a whole number.
 	*/
 	@SerializedName("quantity")
 	private String quantity;

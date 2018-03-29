@@ -1,8 +1,8 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // Order.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
-// @data 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
+// @data H4sIAAAAAAAC/+xaS3PbOPK//z9Fl+Z/iFOylNlMMjO+edf2RrV+lSOnatabklpkU8QGBDgAKEW7Nd99qwE+RFGy44mjysEnFRsNsLt/jX5R/+2NVzn1jnraxGR6/d4HNAJnki4xY3Kv3/sHrZqHE7KREbkTWvWOeuOUwG8EZ1BZjJgOMTkU0g56/d6xMbgKb3jV790QxldKrnpHCUpLTPi9EIbimnBtdE7GCbK9o7taNsx0oVxXuJreiFiTuoLmuMpIOQgsfVgKl/4pWZ0pdopqnRFq3hU1KowhFa1awq4Ru+LeudQQHUYpGowcGRi9vzr86S8//gzVNoh0TB9fDGMd2aFQjuYG+YBhLAxFbmjIumHFfMjMdngwgGtcXaOEWJMFpR3YIs+1cYBSVkcL+lqLqELKP/obCE5Ka3fN0yw01mloXeNgHAt+ZD0CG+BMFw5cB+inc8Nd2M5F4iZLg3lL/HVqVwFeBV6FhGgAF/hZZEUGktTcpSAs/PgKauhtH5apiFIQKpJFTPboX8WrV6+jQvpfCk9ShKf3tCAFsZgLZ2FGiTbkzRJTJDKUkGuh3CDsGVab2keMH8m+1NX7MGFX/cLXDSsFvhKiDWfbhVOKKpZCzScJUQuqjYUuWhXDM1gscogXFEOiw+4yolT3LiOX6hi0kqvBfpAVyhYGVdSGdZ3axbRefQa1BSrDdj+yewLVpiLPw0qD6RqxC2m1+Izo3mJqZfJJLGzUqca2rd4PG1Sczzfy+wuztpg57VC2MW6IW6AtF8tarFZFOMrsAEaJfzL0e0HW1VCCFKrk6YNLhYU8CLtiL3j50pS6vHz5fMv3ArzDzy3Mw3MXboefnxF5AkQ+fgkmnZu4+xq27iBDMacYnK66JSKYreoHM4AzbcBQUqjY9sFQbsiSctazlKe4FN3a/pK7OlQbMRcqBCs+8NknvraX/hKXiAyho4kTWbsQbtO77hGjI0AVA3PAMiVVhmWrCxMRLNFCOCPug1BwN1KOjCK3sTPRJkP38UXqXG6PhkOntbQDQS4ZaDMfpi6TQ5NEr1+//vUHS35YdPhm8PbgidNXkiW7Jw3txcZGbXrXRmcGixguUOGcfPo9E5Jd4cXZxdlBPYTwtwINAea5FK1L5jf5dUO2kJztABVgFFHu+hCTWvVBG8hJxVwMhWHaAG7IFUZR7PnrgwzZXCtLoVwXIY9mZKIUlYMULZBirWM4uzjjrV4KoxMhCSw5J9TceuS0ItBhf+J1TLxi1qPujJjPyVAMM7S+OQCXatscEWJFxndQqIC/0KoPlgjudtjMwvsiy9CsqtlVJNFaEQ2TLFmfYx3OCxHT8OzirOQfHnz7YU68hnx7GrVO7/pHsBqsse2pKAsvnoi47c5r1J3Cjk6edsr3gIiOubYIWdJ3isnr+xFU4UbkLAk7ReP1wb4y/gbEO7AdnVTXuTOZf2KPlEJ9mqw5/ETP/k3Rljk9M7ajbUVpi3+sAFk8VqDsCQ4NSc47cPfueHx6dfwe/NYqcmAuhnpBZiFoOfwhRUca7aFn2YwVb58+VqSGkvYgMRC6oEQ6yyU5rpDNnBzc3pwPYKwhw09U5tqgZoRS9pl9xi1QCOq+zfNfK3wvdHd7M4IxZTnvOAwx11H8YNp9++bnVwfefCFo54YOc6Mjslaoeb8qvvxLp/8/7cP0xbTvU8T0YLpWrA2ANZqyrlOu5Jj/E62gAoh11arOdh4MwNoEQcegD3KDaBlprktRyj3FzGDTFnQ1qQveu/H4uoKhaj05sW8Fb08aGGrX/uF5y1ckNn8QUHDyXuX0oKO8+fWXX+r67KeDqji3ZBZkAbls4CjDvTx6eAPQhcJsJuaFLqxclYlwRsE/LGWonIhsFZuCG77nKuGcT7gpJbSNdMvlciBQoZeNC4S54iLCDnnvYaXS5uPgM6txsLegnKMh5SZlXdbCpLN0X7CuCjutSnP7u77+WVXYUITtycNKgSaZjmlDrdbClm5zTeh6WKVj2pfgoYCeGEK7UcR1ltrCn3CnG/FVDjEusPnPrPXkqirP15W0Dh0N4GpmNUe4AdxagmnYPeHdUxDKOsK9YWe0C/d3QlLMxUxI4drfnneydPGUtCDJfmpJSuLEUW3lxoKShKJmsvftyo3HKdutNu/n66r9SXB39Hitm47N92Z1Oz3dLsC0Ndycnp6P/j766/nplHvB6fXxzXh0fH7+26SmD2DLt5r2aNgO4Iq7OgMz7dIywliCBcqCLESoYMbeHcS8d9gSntiHw/NofHoxubwaT25O/3Y6+nB6UgtWjjwaVg7vbDnrG+JSeYoB58i3ASKJIrNefD/q9X9GMBSRWFB8/0BmU6rby+Pb8burm9E/T08m18e/XZxejp9EsEJh4VJtxH8obqz7PYxk16LLRiGwTu969XpM82m7SdTLdLXpzCG0sWNWcc9PBhdkOBHB6YKUK1DKVTWnR4MZcWe0FFKCoVxiVJaU7eA7bXi/yKP3ZdWEDKmINvvpjYV7M3lhohQtQaFEWQMLLpusjoQvE5tSPjRMG5mjNIJQMI3QuAkn/em+vvAw3O3POyXlS/74VebBDxxmQNhHBZbSO7Zc1uZda3NImBUOlIbqepa1YIS5Kwz7MhmCDGOqb3XdET8utDT3/17RUrQBthmRgmbTAC41lFJ5+Z9CpvK8hyXi9ovQOj/kq6QQSjjviI98adW/3ftWYZteF33b96Du4T5svk7YSSIUykl5QOetYMlxF7a5cXxzuy3kX+owpdzlMGVS3BCR7+jj8VloET9gJzZHYPs2ou05GxV5vPXLQ5v+5748SHbgcNB3/Pnh4x//9z8AAAD//w==
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.braintreepayments.http.annotations.*;
 /**
- * An order transaction.
+ * The order transaction details.
  */
 @Model
 public class Order {
@@ -22,7 +22,7 @@ public class Order {
 
 	/**
 	* REQUIRED
-	* The payment amount, with break-ups.
+	* The payment amount, with details.
 	*/
 	@SerializedName("amount")
 	private Amount amount;
@@ -48,7 +48,7 @@ public class Order {
 	}
 
 	/**
-	* The [Fraud Management Filter (FMF)](/docs/classic/fmf/integration-guide/FMFSummary/) details.
+	* The Fraud Management Filter (FMF) details that are applied to the payment that result in an accept, deny, or pending action. Returned in a payment response only if the merchant has enabled FMF in the profile settings and one of the fraud filters was triggered based on those settings. For more information, see [Fraud Management Filters Summary](/docs/classic/fmf/integration-guide/FMFSummary/).
 	*/
 	@SerializedName("fmf_details")
 	private FmfDetails fmfDetails;
@@ -113,7 +113,7 @@ public class Order {
 	}
 
 	/**
-	* [DEPRECATED] The reason code for the pending transaction state. Obsolete. Use `reason_code` instead.
+	* Deprecated. The reason code for the pending transaction state. Obsolete. Use `reason_code` instead.
 	*/
 	@SerializedName("pending_reason")
 	private String pendingReason;
@@ -139,7 +139,7 @@ public class Order {
 	}
 
 	/**
-	* The kind of seller protection in effect for the transaction. Returned only when the `protection_eligibility` property is `ELIGIBLE` or `PARTIALLY_ELIGIBLE`. Supported only when the `payment_method` is `paypal`. One or both of these values can be returned:<ul><li><code>ITEM_NOT_RECEIVED_ELIGIBLE</code>. Sellers are protected against claims for items not received.</li><li><code>UNAUTHORIZED_PAYMENT_ELIGIBLE</code>. Sellers are protected against claims for unauthorized payments.</li></ul>
+	* The kind of seller protection in effect for the transaction. Returned only when the `protection_eligibility` property is `ELIGIBLE` or `PARTIALLY_ELIGIBLE`. Supported only for PayPal payments. One or both of these values can be returned:<ul><li><code>ITEM_NOT_RECEIVED_ELIGIBLE</code>. Sellers are protected against claims for items not received.</li><li><code>UNAUTHORIZED_PAYMENT_ELIGIBLE</code>. Sellers are protected against claims for unauthorized payments.</li></ul>
 	*/
 	@SerializedName("protection_eligibility_type")
 	private String protectionEligibilityType;
@@ -152,7 +152,7 @@ public class Order {
 	}
 
 	/**
-	* The reason code that describes why the transaction state is pending or reversed. Eventually, this parameter will replace the `pending_reason` parameter. Supported only when the `payment_method` is `paypal`.
+	* The reason code that describes why the transaction state is pending or reversed. Eventually, this parameter will replace the `pending_reason` parameter. Supported only for PayPal payments.
 	*/
 	@SerializedName("reason_code")
 	private String reasonCode;

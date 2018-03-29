@@ -1,8 +1,8 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // CreditCardToken.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
-// @data H4sIAAAAAAAC/7yUwW7bMAyG73sKwsfAC9Zhp+xUoJdiwFYMbS/DUDMRExOVJZeUnLpD332QkrR2vB6KFb3ZlET9H/lTf4rLvqViUayEDIebFYq5Cf6WXFEW1yiMS0vfsUlbirL4Rv3zzxnpSrgN7F2xKE4hH+MHMrBLBikZhBrTl4MlQVQyEDysozOA0GLfkAvzoixORbDfSflUFj8JzQ9n+2KxRquUAneRhcxT4EJ8SxKYtFj8eoLQIOw2U+VDODYjjsnSmOqyJjg/A7+eMrGCBi9kgB2EmuAC+wu00GG0r2MKEo+QXLT2sXziYhdoQzIFo/uWhW4a70I9wjpamELlDZgCkDfBlkMNzoMlNOw28EDi53CNNlJCXYtvoDqpUvuqk8/V/zbtlYQ9ofwLcB+f8q19lI+GNxyGqGn7Gyt/yXMWNXwZST5EpmLTSlYMWbEmvyVH7f01tJ6LzZLei6HFnuR4YgbB4xcgOr6LeWDyhPQ+5slHVd44QGcgCK5uYVuTy6sZEHBEuJ+mPEbgJT0agLvfcS3mcFmzptvSJTXZNpkTO88mKXGBXFKGNqfwAg1r/hoNs47TLAnQ9dBl3yeJWx+tAcu3lLOr+hVjoN285CZhl3ShmBI0rmpABYSrq/OzMl0s4LChMt1PDbIFNEZIdQ6z2aFHzwV5ERZ4DQjVofgVbFHBC2/YobU9tOI7NsNUhyRJ47Bqs9n7mCek5aFx9oGp/UdPa9/S4NmpOlasSqga1ECStqQ/w7ryHUmV61phQ/fV/pQCCiUTWb9NB5S+gvHgfMjFDTUp7dqrsPZp4rS12L/JRP1+/PAXAAD//w==
+// @data H4sIAAAAAAAC/7xWwW7jNhC99ysG6i1wpGzbk4EeUrgojAJtsM0uUDRFNBbHFhGKVDhDe7XF/ntBSnIke1M02GAvBjhDDd97HL7xP9lt11K2zCpPSst9hV7di3sgmy2y9+g1bgz9hk3cki2yX6l7WqyIK69b0c5my+y2Jkgf6o+koC8HsRwoEtSGc/jTBajQQmACqTWDtiw+NGQFxME2WAUILXYxkmeL7Np77HqAV4vsLaH63ZouW27RMMXAY9Ce1DFw411LXjRxtvzrSI3Fa7s75zOlrNWM3VnqnOt6BW474yk1CmgGFudJgbYgNcENdjdoYI/BSH4Xrq6+rzbGVQ+PwQmldf9bsXhnd31k3bTOC1pZ9rlimoR4fNTQbacnvP35j1vot1dODaWLQU0e6jxl4PpmzVF2rCpqZcZk/Ciy8RT1q4RUDmvLQqgW0A03+V/fHrTUA/xgpkSNnq4Qak/bH++yQrmKC22Fdh6j0IXSnio5Uih2gVguj8u7rK/zSwzDCVEcWEYUgPDZs7DVRbqX4tuewWW68MoTCo3VX3bD89OH1ZzwM/RrkZaXRXE4HPKNR23FE42k8so1ReudCpVwcUxf9gqNUH8a47Dq468CpsWuRZMQBC4OtMG25aJp26IhX9Voj+cPQmwCa0vMMAL+HziKeYsUp0/kJWYgPpx4gQ3GfFocDSH1GPlzR6APrfZ03zgr9cwPThLnbpA2pK6FtKnvO+vAECptd/CRvMvhPZpAsYO23jVQvinjAyzffFd+qdu9kGFH6D9HcIif89u64C+V3mmZUo3bXxn5c2ZtkOWHGeQxcg42ZhJiSIh5NMrh2U5ftA3Nhr4WhxY78qejZhKcM7mGYPVjSJMmGc/RdJn1zgJaBeKxeoBDTTZlE0HAGcPBpJI7gfNpcGC/nGuRw22cyetVOqQm06bpsHdaRSRWyEZkaPrZ46HRPEyhSRVOuGKFDQHaDvax5RfAoaoBGRDevVuvFrGGB4sNLWIpalAbQKU8MedwcTHKfXHxxO5Z5OlIvQWEclSzhAMyOK932qIxXfSivVaknsqNhaI6Uxm+Ti9ITE/7YAicd/NsAHUtTVyk3GvGcgFlgyzk45a4UportydfJm1LbOhDmcPKgXUy/PkiJjDuEL9h6u+IYevii+HWYPcqKvz96Zt/AQAA//8=
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.braintreepayments.http.annotations.*;
 /**
- * A tokenized credit card that can be used to fund a payment.
+ * The tokenized credit card details. You can use this instrument to fund a payment.
  */
 @Model
 public class CreditCardToken {
@@ -22,7 +22,7 @@ public class CreditCardToken {
 
 	/**
 	* REQUIRED
-	* The ID of credit card that is stored in the PayPal vault.
+	* The ID of credit card that is stored in the PayPal vault.<blockquote><strong>Important:</strong> The use of the PayPal REST <code>/payments</code> APIs to accept credit card payments is restricted. Instead, you can accept credit card payments with:<ul><li><a href="/docs/integration/direct/payments/guest-payments/">Guest payments</a> with a <a href="/docs/api/vault/#credit-card_create">credit card that is stored in the PayPal vault</a></li><li><a href="https://www.braintreepayments.com/products/braintree-direct">Braintree Direct</a></li><li><a href="https://www.paypal.com/us/webapps/mpp/merchant">PayPal business products</a></li></ul></blockquote>
 	*/
 	@SerializedName("credit_card_id")
 	private String creditCardId;
@@ -74,7 +74,7 @@ public class CreditCardToken {
 	}
 
 	/**
-	* A unique ID that you can assign and track when you store a credit card in the vault or use a vaulted credit card. This ID can help to avoid unintentional use or misuse of credit cards. This ID can be any value you would like to associate with the saved card, such as a UUID, user name, or email address. **Required when you use a vaulted credit card if a `payer_id` was originally provided when you vaulted the credit card.**
+	* A unique ID that you can assign and track when you store a credit card in the vault or use a vaulted credit card. This ID can help to avoid unintentional use or misuse of credit cards and can be any value, such as a UUID, user name, or email address. **Required** when you use a vaulted credit card and if a `payer_id` was originally provided when you vaulted the credit card.
 	*/
 	@SerializedName("payer_id")
 	private String payerId;
@@ -87,7 +87,7 @@ public class CreditCardToken {
 	}
 
 	/**
-	* The credit card type. Value is `visa`, `mastercard`, `discover`, or `amex`. Values are in lowercase; do not use these values for display.
+	* The credit card type. Value is `visa`, `mastercard`, `discover`, or `amex`. Do not use these lowercase values for display.
 	*/
 	@SerializedName("type")
 	private String type;

@@ -1,8 +1,8 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // Authorization.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
-// @data 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
+// @data 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
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.braintreepayments.http.annotations.*;
 /**
- * An authorization.
+ * The authorization details.
  */
 @Model
 public class Authorization {
@@ -22,7 +22,7 @@ public class Authorization {
 
 	/**
 	* REQUIRED
-	* The payment amount, with break-ups.
+	* The payment amount, with details.
 	*/
 	@SerializedName("amount")
 	private Amount amount;
@@ -48,7 +48,7 @@ public class Authorization {
 	}
 
 	/**
-	* The [Fraud Management Filter (FMF)](/docs/classic/fmf/integration-guide/FMFSummary/) details.
+	* The Fraud Management Filter (FMF) details that are applied to the payment that result in an accept, deny, or pending action. Returned in a payment response only if the merchant has enabled FMF in the profile settings and one of the fraud filters was triggered based on those settings. For more information, see [Fraud Management Filters Summary](/docs/classic/fmf/integration-guide/FMFSummary/).
 	*/
 	@SerializedName("fmf_details")
 	private FmfDetails fmfDetails;
@@ -113,7 +113,7 @@ public class Authorization {
 	}
 
 	/**
-	* [DEPRECATED] The reason code for the pending transaction state. Obsolete. Use `reason_code` instead.
+	* Deprecated. The reason code for the pending transaction state. Obsolete. Use `reason_code` instead.
 	*/
 	@SerializedName("pending_reason")
 	private String pendingReason;
@@ -126,7 +126,7 @@ public class Authorization {
 	}
 
 	/**
-	* A collection of payment response-related fields returned from a payment request.
+	* The processor-provided response codes that describe the submitted payment. Supported only when the `payment_method` is `credit_card`.
 	*/
 	@SerializedName("processor_response")
 	private ProcessorResponse processorResponse;

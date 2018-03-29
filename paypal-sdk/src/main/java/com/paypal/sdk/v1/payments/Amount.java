@@ -1,8 +1,8 @@
-// This class was generated on Mon, 29 Jan 2018 12:12:02 PST by version 0.1.0-dev+ecea6f of Braintree SDK Generator
+// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
 // Amount.java
-// @version 0.1.0-dev+ecea6f
+// @version 0.1.0-dev+2136c8
 // @type object
-// @data H4sIAAAAAAAC/+yXX2vbSBDA3+9TDHq6M7Ll3B0c+O2gFEJpE5rQlzSYtXYkDV3tKrOzdUTJdy+yJNuympCQ1vTBT2b+7OzM/HYG61t0XVcYLSJVumAliqNPikmtDH5QZaOP4ugd1jvhDfqUqRJyNlpE1wVCpeoSrUAbIYY1SQErRvVlGio/i+Lof2ZVt/fM4+gjKn1hTR0tMmU8Noq7QIx6q7hkVyELoY8WN9sMvTDZfJxhGpjRpvUg0z3lOOMbKRhxmhaKVSrIcH51Mf3377P/oD8GqdN4+2eiXeoTsoI5qyZAookxlYTRS9I7Txtnn/w1g0tVXyoD2qEH6wR8qCrHAsqYPjThy1oiHA46YoMxD/EBuKVGUWT8uD07w647O924OUprasSmjtYN1MoFARmx/vVsc8pkuWZVDdLf144LaKzQWCFDnMF7dU9lKMGgzaUA8nA2hy16H8O6oLQAsqkJGv3ic5jP/0mD2fxiKxlqpSv8ihY05SQeVpg5xk1bNKZUKgOVIyuz9kzSHxqGuH6h+9r196msearPvC7pC3glooPH9hinQlltyObLDHGA6sAwptU7nGA1Kbf7AjVkrj3dbZR+7kqUwmlw1tSz45Al6wMrmw6x7mvHTLfWE9QB1Abb02SPBNUXVFWtZcd0TzlG2htPRI+2U/uWLzX5tPtzNqa1b30aG/Sep4n8/dasDytxosyQ8U75A7Sdsfsvti2FBEs/g/NsIzHeBfSyRQmGbOcTgxTkoWqTrZtXMJlwV8tkcpryo4AXdT9g3spj3KLuT0R+ApHb5zAZTeLjYziYwQZFjhrE9V9LiLCqtwLP4K1jYMyC1T4GxorRoxW/cemiSKFk73zn3Qd1TDnZdlk1AU9v4rXf0rcPf3wHAAD//w==
+// @data H4sIAAAAAAAC/+yX32vbTgzA379/hfDTd8GN020wyNtgDMrYWtayl66Ei0+2Bec7V6dbakb/9+HYTuJ4LS3dwh7yFPTjdJI+JxH/jK7qCqN5pEoXrERx9E0xqaXBL6ps9FEcfcJ6K3xAnzJVQs5G8+iqQKhUXaIVaCPEsCIpQKMoMn4axdF7ZlW3t8zi6CsqfW5NHc0zZTw2ittAjHqjuGBXIQuhj+bXm/y8MNl8nF8amNGm9SDPHeU432spGPEkLRSrVJDh7PL85O3r03fQH4PUabz5P9Eu9QlZwZxVEyDRxJhKwugl6Z1PGmefvJrChaovlAHt0IN1Aj5UlWMBZUwfmvB5LREOex2xwZj7eA/bomv3uD1bw7Y7W924OUprasSmjtYN1NIFARmR/vtsc8pksWJVDdLf1Y4LaKzQWCFDnMJndUdlKMGgzaUA8nA6gw16H8OqoLQAsqkJGv38e5jN3qTBrH+xlQy10iX+QAuachIPS8wc47otGlMqlYHKkZVpeybpDw1DXD3TfeX6+1TWPNUnXpf0BbwQ0d5je4hToaw2ZPNFhjhAtWcY0+odjrCalNt9gRoy157uNko/dyVK4TQ4a+rpYciS9YGVTYdYd7VjphvrEeoAaoPtcbIHguoLqqrWsmW6oxwj7Y1HogfbqX3LF5p82v01G9PatT6ODXrP40T+e2vWh6U4UWbIeKv8DdrO2P0X25RCgqWfwlm2lhhvA3rZoARDtvOJQQryULXJ1s0rmEy4q2UyOU75QcCLuhswb+UxblF3RyJ/gMjNU5iMJvHhMRzMYIMiRw3i+q8lRFjWG4Gn8NExMGbBah8DY8Xo0Ypfu3RRpFCyc77z7oM6ppxsu6yagMc38dJv6Zv7/34BAAD//w==
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.braintreepayments.http.annotations.*;
 /**
- * The payment amount, with break-ups.
+ * The payment amount, with details.
  */
 @Model
 public class Amount {
