@@ -1,8 +1,8 @@
-// This class was generated on Sat, 07 Apr 2018 21:37:44 UTC by version 0.1.0-dev+843c6b-dirty of Braintree SDK Generator
+// This class was generated on Mon, 09 Apr 2018 18:13:17 UTC by version 0.1.0-dev+291f3f of Braintree SDK Generator
 // PaymentHoldReason.java
-// @version 0.1.0-dev+843c6b-dirty
+// @version 0.1.0-dev+291f3f
 // @type object
-// @data H4sIAAAAAAAC/6RSwW4TMRC98xUjc6HSNuGcW6QUtQLRiEZIKKqyU3vSNTj2MjOmLKj/jry73RDaG0f7vZl57+n9NpuuJbMwLXYHirprUnA7JpQUTWU+I3u8C/QRD4VkKvOeuuNjRWLZt+pTNAuzaQjGNedMAZUc7H3EaD0GUMYoaAtXKnhovG3ARxuyIxAMJBVg1iax/4UjyWKrmXskOmDa5+hkBpsE0qQHYJKU2RI4UvRBKshCoA0dkavVDN4lBvqJhzZQBZpg2w+PM7BPDAhPck8U3L6Zu2Rljq2fj75k/vqEsrsnPTvevVoBk2aO5MDH/qs+4deQ7r6S1Rl8SRksRsAgaZrfXi43F9fLGwg+fpO/7zeolFDOe2B+NskefWoCm4pDJUgt8ZBgz9IGdSL+kwZCXaJ/UgUtpx/ekRRgiLvupQxLKJYqCHQpl4MDodddlsxMZZbM2A2FeluZT4TuOobOLPYYhMrH9+yZ3PSx5iJWPYlZbKcqirKP98/b93JFj4V8GX/e0QEaPK2xW2OAMiJjdaxvPUWF4m4GN6SQYujA73t8PNJPgChqFvAC9eXFh1X9vxnEHMLj7eOrPwAAAP//
+// @data H4sIAAAAAAAC/6RSwW4TMRC98xUjc6HSNuGcW6QUtQLRiEZIKKqyU3vSNTj2MjOmLKj/jry73RDKrUf7vTfz3uj9NpuuJbMwLXYHirprUnA7JpQUTWU+I3u8C/QRD4VkKvOeuuNjRWLZt+pTNAuzaQjGMedMAZUc7H3EaD0GUMYoaAtXKnhovG3ARxuyIxAMJBVg1iax/4UjyWKrmXskOmDa5+hkBpsE0qQHYJKU2RI4UvRBKshCoA0dkavVDN4lBvqJhzZQBZpg24tHDewTA8KT3RMHt2/mLlmZY+vnYy6Zvz6h7O5Jz457r1bApJkjOfCx/6pP+DWku69kdQZfUgaLETBImvTby+Xm4np5A8HHb/L3/gaVEsp5D8zPJttjTk1gU0moBKklHi7Ys7RBnYj/XAOhLqd/cgUtpx/ekRRgOHfdWxmGUCxVEOhSLgsHQu+7DJmZyiyZsRsK9bYynwjddQydWewxCJWP79kzueljzcWsehKz2E5VFGUf75+3b2rlsYP/b+3zWg7QEGON3RoDFImMbbG+9RQVSqAZ3JBCiqEDv+/xcUmvAFHULOAF6suLD6v6pbFjDuHx9vHVHwAAAP//
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -24,12 +24,12 @@ public class PaymentHoldReason {
 	* The reason that PayPal holds the recipient fund. Set only if the payment hold status is `HELD`.
 	*/
 	@SerializedName("payment_hold_reason")
-	private String paymentHoldReason;
+	private String reason;
 
-	public String paymentHoldReason() { return paymentHoldReason; }
+	public String reason() { return reason; }
 	
-	public PaymentHoldReason paymentHoldReason(String paymentHoldReason) {
-	    this.paymentHoldReason = paymentHoldReason;
+	public PaymentHoldReason reason(String reason) {
+	    this.reason = reason;
 	    return this;
 	}
 }

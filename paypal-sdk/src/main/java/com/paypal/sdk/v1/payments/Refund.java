@@ -1,8 +1,8 @@
-// This class was generated on Sat, 07 Apr 2018 21:37:44 UTC by version 0.1.0-dev+843c6b-dirty of Braintree SDK Generator
+// This class was generated on Mon, 09 Apr 2018 18:13:17 UTC by version 0.1.0-dev+291f3f of Braintree SDK Generator
 // Refund.java
-// @version 0.1.0-dev+843c6b-dirty
+// @version 0.1.0-dev+291f3f
 // @type object
-// @data H4sIAAAAAAAC/+xZT2/buBK/v08xcN+hCWQpfenf3AL0PTR43W2QuL1kA3skjS1uKFIlR3GERb/7gqIkW5abpmjW7cEngzNDamZ+M+SP9F+jSVXQ6GRkaF6qdBSMPqERGEv6HXMnHwWj/1O1GrwlmxhRsNBqdDKaZAR+JqTEKKQNR8Ho1Bis/LpHweiCMP2gZDU6maO05ASfS2Eo7QTnRhdkWJAdnVx1HmGuS8VDjzr5yq9ONPSuwConxeBNAlgKzh7fV8tGqMXQ16Q0hlRS9bxdEw79veLMEI2TDA0mTAbOLj+Mn//n2Stop0GiU7p+GqU6sZFQTAuDboEoFYYSjgxZjlrjsTO20UEI51ido4RUkwWlGWxZFNowoJTt0oK+LyVsyo2MqFLKL8EGhNMm3cP0rBSr7Kxkw+Rgmgo3dHF4M8BYlww8QPqfx3Yh5jxdGix67q9LhwE4LTgtzIlC+A3vRF7mIEktOANh4dkRdNDbAJaZSDIQKpFlSvbkj/Lo6DgpZf1LfiSFH13SLSlIxUKwhZjm2lCdlpQSkaOEQgvFoZ8TtZP6S0y+03yp2+/h3JXqAz8XtQH8IEQbxfY1nDJUqRRqMZ0T9aDaUAzRag32YDmX/X5BKcy1n93sKG3f5cSZTkErWYW7QVYoWxpUSR/WdekQ0067B7UHqoPtfmR3BKrNRFF4zQrTNeEQ0la5R3Rne2qb8mkqbDKgY9u098MGreW+I3+9bdaWMWtG2cd4JdwCbaNsuFgXimDKbQhn83pk6HNJljsoQQrV2ATAmbBQeGcrVwWHh6aJ5fBw3+U7AZ7xroe5Hw/hZrzbI/IIiFw/BJNBJ369DXs96KBYUAqs29sSEcRVNzAh/E+b5jZvAzBUGLKk2NYmzSqcIa/Nb6zbRbURC6H8ZuUW3NfEj96lH1ISCRZcGpqKtP/MsC4eFsfZW9B+H7YoCdigspg4A4jJHcseW9oV70sMIdOURd6n8335MI4UmQBVCs4Clhmp5nCpX6WWaMGvkAYgFFydKSajiDfmzbXJka+fZsyFPYki1lraUBDPQ20WUca5jMw8OT4+fvPEUp2m8Yvw5cGOkpOuhd1/LFmX3/M21ylC+ISyJMhLyxATWKEWksZx5bIhiwxVmZMRyVqb7uo21y/fb5ZtE9ta4W7dcF79hEjUrRYJTVWZx2Q2Lqcbqm031NoEHGcymNy4Xjx7C37GI0cghbqZrlXHVMd/UrLl0dUZ9t/pWkk/gFMF6NxzIDX8bmxIuv6Dq3enk/9+OL2Eemr7gomFiPQtmVtBy+hJhkwa7bg22eyul4//iJcZmvcfhbxgCEui80ISO7ZjFsTw8eJ9CBMNOd5QU48+zASlDJx57Ois0zSUvX56rnnt1ceLM5hQXrgZY7/3MKXf3H5evnh1dFCnzx/WhaFxYXRC1rVx0B6k9Udn/54FMHs6C+pNbnYwW+8DcBHNXKwz1yTO/oYqaAFysWpF7XlfgwHYpcDH6ONBR/atQ9pxDJRyRz3mc9qDrhMNwXs3mZy3MLTXCEdatoK3owgM9XmcH2/5R8Cl3zvoDmeuCvpmobx48/p1d049P2iJliVzSxbQAiq3p7h7GdbweqBLhXksFqUurayaUyMmXx+WclQsEtvuv74ML4ng6r1b4aLx0K68Wy6XoUCFtW9orVgod4e1kZs7bkPaHIZ3LozHOVofwp8KNKR42lywe5gMVPcdSO0NXasm3XWvrxMrYSFGuzNKZQjtBmHoRNu4glOtGP6m4z+DFDpquslrV7Jfn9RaRu7T2Vay5dHEafrkZkdelkW6lXr35d9Bva0uTUI1+ZZoGfxCvzADv/7yr78BAAD//w==
+// @data H4sIAAAAAAAC/+xZ32/bthN///4VB/X70ASylC79mbcA3dBg3RokboEhC+yzdLa4UKRKnuIIQ//3gaJkS5bbpmjm9cFPBo9H6u4+x+OH57+DcVVQcBIYmpcqDcLgAxqBM0m/Y+7kQRj8StV68JpsYkTBQqvgJBhnBCkxCmlhrg0g+H2ADSqLiVOLgjA4NQYr/6WjMLggTN8pWQUnc5SWnOBjKQylK8G50QUZFmSDk6uVjZjrUvHQxpV8belKNLS3wConxeBVQlgKzlonHs5Wy0aoxdDWpDSGVFL1rO0Ih/ZecWaIRkmGBhMmA2eX70ZPf3ryAtplkOiUrh/HqU5sLBTTwqDbIE6FoYRjQ5bjVnnklG18EME5VucoIdVkQWkGWxaFNgwoZbu1oG8LCZtyIyKqlPJTuAHhpAn3MDzriXV01rJhcDBNhRs6P5o8xJkuGXiA9L+P7ULMebI0WPTM70qHDrhZcLMwJ4rgN7wTeZmDJLXgDISFJ0ewgt6GsMxEkoFQiSxTsid/lkdHx0kp61/yIyn86JJuSUEqFoItzGiuDdVhSSkROUootFAc+TVxu6i/xfgb1Ze6/R7OXare83Nx68B3QrSRbJ/DKUOVSqEWkzlRD6qNiSFarcIeLGeyrxeU1qXfrW4qSnvucuJMp6CVrKLdICuULQ2qpA9rVzrEdDW7B7UHqoPty8juCFSbiaLwM2tMO8IhpO3kHtGd1dQ25JNU2GRAx7bNfhk2aDX3J/LHK7O2nLFmlH2M18It0DaTDRdbuSKYchvB2bweGfpYkuUVlCCFanRC4ExYKLyxlcuCw0PT+HJ4uD/lOwGe8a6HuR8P4Wa82yPyAIhc3weTwUn8/DHsnUEHxYJSYN2+lohgVq0GJoJftGle9DYEQ4UhS4ptrdLswhlyZ32j3W6qjVgI5YuV23CfE9/7lr5PSiRYcGloItJ+m6ErHibH2WvQvg5blNRt4cCM3LXssaVd8b7EEDJNWOR9Ot+Xb2lIIROgSsFpwDIj1VwudWdqiRb8DmkIQsHVmWIyinhj3VybHPn6ccZc2JM4Zq2ljQTxPNJmEWecy9jMk+Pj41ePLNVhGj2Lnh/sKDhpx+1+s6QrHwaniUJHbVdPs34ufjUHH76ReO835K0WCU1Umc/IbDwkN6b6DvyhSwN6qaDRA0dyDCY37vCcvQa/LIIPKEtytQ/BG+F8tkItJI1mlUtCWWSoypyMSDrV8YEDIIW6mXQSYaJnf1Gypb/qFPstuVbS9/9UATrznDsNlRsZku6owdWb0/HP704voV7aNiuxELG+JXMraBk/ypBJox3VKpsH6fnD9+syQ/N+/8cLhmmZ6LyQxI7YmAUxvL94G8FYQ4431GSrdzNBKUOnPnPM1c007LzuMtcU9ur9xRmMKS/cipEvM0zpVyvN82cvjg7q8Pl7uTA0KoxOyLrUCds7s/7o9P/TEKaPp2Fdz6YH024WgfNo6nyduiR0+jdUQQuQ81Uraq/2GgzAVQi8j94fdLzeOqQdnUApd3REfUx70K1EQ/DejMfnLQzti8Hxk63g7cgDQ33K5sdbmv8u/N5Adw9zVdBXE+XZq5cvV1fS04OWU1kyt2QBLaBy1cj/X1PvXwNdKsxnYlHq0sqquSBm5PPDUo6KRWLb6uzT8JIIrt66HS4aC+3auuVyGQlUWNuG1oqFcs9VG7u1o9alzWF059x4mFv0PlSpQEOKJ81buofJYOpL11X7GNeqCXd91rscSliYod0ZezKEdoMbrETbaIGbWpP5TcP/C/7nWOgmhV3Lfnz+ahm5z1xbyZb+iJvpU58dWVkW6VaW3Zd/A8u2ujQJ1TxbomXwG/3AZPv60//+AQAA//8=
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.braintreepayments.http.annotations.*;
 /**
- * The refund details.
+ * The details for a refund transaction.
  */
 @Model
 public class Refund {
@@ -60,7 +60,7 @@ public class Refund {
 	}
 
 	/**
-	* The refund description. Value must be single-byte alphanumeric characters.
+	* The refund description.
 	*/
 	@SerializedName("description")
 	private String description;
@@ -73,7 +73,7 @@ public class Refund {
 	}
 
 	/**
-	* The ID of the refund transaction. Maximum length is 17 characters.
+	* The ID of the refund transaction.
 	*/
 	@SerializedName("id")
 	private String id;
@@ -86,7 +86,7 @@ public class Refund {
 	}
 
 	/**
-	* The invoice or tracking ID number.
+	* Your own invoice or tracking ID number. Value is a string of single-byte alphanumeric characters.
 	*/
 	@SerializedName("invoice_number")
 	private String invoiceNumber;

@@ -1,8 +1,8 @@
-// This class was generated on Sat, 07 Apr 2018 21:37:44 UTC by version 0.1.0-dev+843c6b-dirty of Braintree SDK Generator
+// This class was generated on Mon, 09 Apr 2018 18:13:17 UTC by version 0.1.0-dev+291f3f of Braintree SDK Generator
 // Currency.java
-// @version 0.1.0-dev+843c6b-dirty
+// @version 0.1.0-dev+291f3f
 // @type object
-// @data H4sIAAAAAAAC/6yR0WsUMRDG3/0rhvhiYW+jIgj7VvDlELzDFl+OUqbJ7O1gLomTSWWR/u+Slu2dHiKCj/Nlvsk3v/lhrudMZjCuilB0s+nMFxTGu0Cf8NBeTGc+0nwsPlBxwlk5RTOY64lg8QJGD3hINSqMSQBBBWNB13p705lLEZyfPnzdmc+EfhPDbIYRQ6EmfKss5J+FraRMokzFDLvnqEWF4/486MkKx8An4nnwnU5CtHITCjolgfXVZvXu7Zv3x5Vc8nTzyvrkiuWotBdsA6xnIadWqKhdmletudiLHrY4bzGAT1QgJoVSc06igCEso5nKPyFRqb8RiTWEh+6vWO4xVPqFyaKcA3k6Xg/r6EL1VEAngpLJ8cjkIdbDHQmkETzvWQvg2Kh5cnzAAIUyCmqSx+s36+5PQCfVXAZrKfbf+Stn8ox9kr1tlV1fbW6b6+WlU76n20euF/8D183Di58AAAD//w==
+// @data H4sIAAAAAAAC/6SS0WsUMRDG3/0rhvhiYW+jIgj7VvDlELzDFl+OUqbJ7O1gNomTSWWR/u+Slm0tp4j4OLPzffvNb/LDXC6ZzGBcFaHoFtOZLyiMN4E+4dy+mM58pOWp+EDFCWflFM1gLieCVQsYPeCcalQYkwCCCsaCrs32pjPnIrg8/PB1Zz4T+l0MixlGDIVa41tlIf/Y2EvKJMpUzHB4jFpUOB5Pg64xrl3y9Cz1L8udpj/oJEQbN6GgUxLYXuw2796+ef+0VzO8emV9csVyVDoKNgPrWcipFSpq1+FNGy72rIc9LnsM4BMViEmh1JyTKGAIqzVT+V8usYZw1/0Vzi2G+hzK2jkl8nDCHrbRheqpgE4EJZPjkclDrPMNCaQRPB9ZC+DYsHlyPGOAQhkFNcn9G2jSw5+ITqq5DNZS7L/zV87kGfskR9squ73YXTfVy3OnfEv3Zy1n/8RLpf4O19Xdi58AAAD//w==
 // DO NOT EDIT
 package com.paypal.sdk.v1.payments;
 
@@ -21,16 +21,15 @@ public class Currency {
     public Currency() {}
 
 	/**
-	* REQUIRED
 	* The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/). PayPal does not support all currencies.
 	*/
 	@SerializedName("currency")
-	private String currency;
+	private String currencyCode;
 
-	public String currency() { return currency; }
+	public String currencyCode() { return currencyCode; }
 	
-	public Currency currency(String currency) {
-	    this.currency = currency;
+	public Currency currencyCode(String currencyCode) {
+	    this.currencyCode = currencyCode;
 	    return this;
 	}
 
