@@ -1,6 +1,6 @@
-// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
+// This class was generated on Sat, 07 Apr 2018 21:37:44 UTC by version 0.1.0-dev+843c6b-dirty of Braintree SDK Generator
 // CreditCardToken.java
-// @version 0.1.0-dev+2136c8
+// @version 0.1.0-dev+843c6b-dirty
 // @type object
 // @data H4sIAAAAAAAC/7xWwW7jNhC99ysG6i1wpGzbk4EeUrgojAJtsM0uUDRFNBbHFhGKVDhDe7XF/ntBSnIke1M02GAvBjhDDd97HL7xP9lt11K2zCpPSst9hV7di3sgmy2y9+g1bgz9hk3cki2yX6l7WqyIK69b0c5my+y2Jkgf6o+koC8HsRwoEtSGc/jTBajQQmACqTWDtiw+NGQFxME2WAUILXYxkmeL7Np77HqAV4vsLaH63ZouW27RMMXAY9Ce1DFw411LXjRxtvzrSI3Fa7s75zOlrNWM3VnqnOt6BW474yk1CmgGFudJgbYgNcENdjdoYI/BSH4Xrq6+rzbGVQ+PwQmldf9bsXhnd31k3bTOC1pZ9rlimoR4fNTQbacnvP35j1vot1dODaWLQU0e6jxl4PpmzVF2rCpqZcZk/Ciy8RT1q4RUDmvLQqgW0A03+V/fHrTUA/xgpkSNnq4Qak/bH++yQrmKC22Fdh6j0IXSnio5Uih2gVguj8u7rK/zSwzDCVEcWEYUgPDZs7DVRbqX4tuewWW68MoTCo3VX3bD89OH1ZzwM/RrkZaXRXE4HPKNR23FE42k8so1ReudCpVwcUxf9gqNUH8a47Dq468CpsWuRZMQBC4OtMG25aJp26IhX9Voj+cPQmwCa0vMMAL+HziKeYsUp0/kJWYgPpx4gQ3GfFocDSH1GPlzR6APrfZ03zgr9cwPThLnbpA2pK6FtKnvO+vAECptd/CRvMvhPZpAsYO23jVQvinjAyzffFd+qdu9kGFH6D9HcIif89u64C+V3mmZUo3bXxn5c2ZtkOWHGeQxcg42ZhJiSIh5NMrh2U5ftA3Nhr4WhxY78qejZhKcM7mGYPVjSJMmGc/RdJn1zgJaBeKxeoBDTTZlE0HAGcPBpJI7gfNpcGC/nGuRw22cyetVOqQm06bpsHdaRSRWyEZkaPrZ46HRPEyhSRVOuGKFDQHaDvax5RfAoaoBGRDevVuvFrGGB4sNLWIpalAbQKU8MedwcTHKfXHxxO5Z5OlIvQWEclSzhAMyOK932qIxXfSivVaknsqNhaI6Uxm+Ti9ITE/7YAicd/NsAHUtTVyk3GvGcgFlgyzk45a4UportydfJm1LbOhDmcPKgXUy/PkiJjDuEL9h6u+IYevii+HWYPcqKvz96Zt/AQAA//8=
 // DO NOT EDIT

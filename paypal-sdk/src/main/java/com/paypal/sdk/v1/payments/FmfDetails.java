@@ -1,6 +1,6 @@
-// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
+// This class was generated on Sat, 07 Apr 2018 21:37:44 UTC by version 0.1.0-dev+843c6b-dirty of Braintree SDK Generator
 // FmfDetails.java
-// @version 0.1.0-dev+2136c8
+// @version 0.1.0-dev+843c6b-dirty
 // @type object
 // @data H4sIAAAAAAAC/7ySwWrcQAyG730KMacE3HXPeysEQynbljT0EkJQPLItGGtcSaaYkncv4102G9KllJSejH/9kj6N9DPcLBOFbejG7j6SIycLVfiGyviQ6BOOJRiq8JGWp58rslZ5cs4StuFmIGgU5wg7FOxpJHFoODkpXDS75hIOhcEHdEAlwGlKTBE8gw8EEy5r0hpXsjk5sAAKYNvS5BVEkqWCrDCRRJYesC3dN3BNPqtQXP3HQko2ZTGCLGkB7tYuI2k7oDgMaEBS5ovQ7JqSulJo7jgRGLmz9AYoEbIQ5H1+t87YrYMZ/EADV+57UorwgEbFDD5keyqxgSYrjFkJWLqsIxbqCowIbs+8mcHXeRxRl7uLOubW6jahGbd1N3Y1i1Ova5W3/cyR6mbXHPz15SZU4b0qLvulvqvCNWH8LGkJ2w6TURG+z6wUj8IXzROpM1nY3h7PwVxZ+peXEE82f3oUz/WX97F/NTixvZZV5pQeqz8C7xvfc3yGe6qehf1w9VeMrvOrEL24fgN50M9ilvj/AZXyOSU8CGfRSvyf7Pnu8c0vAAAA//8=
 // DO NOT EDIT

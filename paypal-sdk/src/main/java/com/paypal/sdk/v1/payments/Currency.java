@@ -1,6 +1,6 @@
-// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
+// This class was generated on Sat, 07 Apr 2018 21:37:44 UTC by version 0.1.0-dev+843c6b-dirty of Braintree SDK Generator
 // Currency.java
-// @version 0.1.0-dev+2136c8
+// @version 0.1.0-dev+843c6b-dirty
 // @type object
 // @data H4sIAAAAAAAC/6yR0WsUMRDG3/0rhvhiYW+jIgj7VvDlELzDFl+OUqbJ7O1gLomTSWWR/u+Slu2dHiKCj/Nlvsk3v/lhrudMZjCuilB0s+nMFxTGu0Cf8NBeTGc+0nwsPlBxwlk5RTOY64lg8QJGD3hINSqMSQBBBWNB13p705lLEZyfPnzdmc+EfhPDbIYRQ6EmfKss5J+FraRMokzFDLvnqEWF4/486MkKx8An4nnwnU5CtHITCjolgfXVZvXu7Zv3x5Vc8nTzyvrkiuWotBdsA6xnIadWqKhdmletudiLHrY4bzGAT1QgJoVSc06igCEso5nKPyFRqb8RiTWEh+6vWO4xVPqFyaKcA3k6Xg/r6EL1VEAngpLJ8cjkIdbDHQmkETzvWQvg2Kh5cnzAAIUyCmqSx+s36+5PQCfVXAZrKfbf+Stn8ox9kr1tlV1fbW6b6+WlU76n20euF/8D183Di58AAAD//w==
 // DO NOT EDIT

@@ -1,6 +1,6 @@
-// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
+// This class was generated on Sat, 07 Apr 2018 21:37:44 UTC by version 0.1.0-dev+843c6b-dirty of Braintree SDK Generator
 // ProcessorResponse.java
-// @version 0.1.0-dev+2136c8
+// @version 0.1.0-dev+843c6b-dirty
 // @type object
 // @data H4sIAAAAAAAC/8SUQW8aPxDF7/9PMfLln0iU7ZkbSm+VWhSivUQRDPYQW/La7ox30abKd68MYVPYSI2aNj3yZvD6/TzzvqubPpGaqcRRk0jkFZOkGITURNXIDjeevmBTetREfab++ccnEs0uZReDmqkbSzCc8iFx7JwhA8fjQEdDAtliBrP/44YgWwJpN43LmQwk7BsKeQrLNqXIRYrB97CzFPat66eOVUPZRrMGJ7DWTMbllUY266maqDkz9gdXHyfqmtB8Db5Xsy16oSJ8ax2TGYQFx0ScHYma3Q48JLML92MGaDqnaVXMnOA41cdkGmJtMWQ4NEIMYOMOcgSLwXgCQ9q7QALbyMCkWy4XODKRtzoLrfePk1/b6+QFb8/i2Njt3BgmEaiJ3dZpLDVY9pKpgYt5vby8u7A5J5lVlaGOfLnTNGGf0E91bKodbTAleS5WJmqptEcRpytMrprXy+unMboqU1Rdno7VO8HRXTeG85P4Apyruv4r9uXA919QIO1Ww86eoDivvCofsM02sns4zM3R0Dt5OX5u/KznlbGXBfYL9BAiN+jdw3nUTWBnnbYlou4pEGOJsy3HZp9kA4j/BSSRLpvzhtfM3P4egC6hnPh+El71dLUTLBiIYd5mSyEP60+8T7mLejFfXoJkzO2fibC7x/9+AAAA//8=
 // DO NOT EDIT

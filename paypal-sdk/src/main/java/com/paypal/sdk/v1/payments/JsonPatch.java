@@ -1,6 +1,6 @@
-// This class was generated on Thu, 29 Mar 2018 19:06:15 UTC by version 0.1.0-dev+2136c8 of Braintree SDK Generator
+// This class was generated on Sat, 07 Apr 2018 21:37:44 UTC by version 0.1.0-dev+843c6b-dirty of Braintree SDK Generator
 // JsonPatch.java
-// @version 0.1.0-dev+2136c8
+// @version 0.1.0-dev+843c6b-dirty
 // @type object
 // @data H4sIAAAAAAAC/7STwYrbQAyG730KMWcTevat0FMLSWlDL6U0yliJJ4xHU42cYkrefZlJ4uA1y7Kb3eP8ksz3Ifm/WQ+RTG0OicOfiGpbU5mfKA63npbY5ZqpzFcabo/PlKy4qI6Dqc26JfjyY7WEMg28PZBVUAaM0Q8QUdShhz42qJRyQShxL5bSwlTmkwgOZ4iPlflO2KyCH0y9Q58oB397J9SMwTfhSKKOkql/jfhJxYX9HH0n3E3wL8FTCuyCkmRIbQkUZU8KDdu+o6Dg2WIegfwV+Nc62+bWjo9U+o/oe1rAlRl2LCXf5I4NZPAyf6936L0/Vc/Kc5yol+dcfKTKKpa76EnpRYQq/esAI2o7QbwEd24H9babq1CZeK8FnG9+7lfuYSJ4TeaGpTL+NgvI2Ubo0eVAw5QgsIKc+QAvV/cWRr9PHx4AAAD//w==
 // DO NOT EDIT
