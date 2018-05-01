@@ -436,7 +436,12 @@ public final class OAuthTokenCredential {
 		if (this.refreshToken != null) {
 			return String.format("grant_type=refresh_token&refresh_token=%s", this.refreshToken);
 		} else {
-			return "grant_type=client_credentials";
+			String payload = "grant_type=client_credentials";
+			String targetClientID = this.configurationMap.get(Constants.TARGET_CLIENT_ID);
+			if (targetClientID != null && targetClientID.trim().length() > 0) {
+				payload = String.format("%s&target_client_id=%s", payload, targetClientID);
+			}
+			return payload;
 		}
 	}
 
