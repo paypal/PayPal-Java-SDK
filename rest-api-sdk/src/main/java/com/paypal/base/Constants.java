@@ -245,5 +245,8 @@ public final class Constants {
 
 	// Webhook Id to be set for validation purposes
 	public static final String PAYPAL_WEBHOOK_CERTIFICATE_AUTHTYPE = "webhook.authType";
+	
+	// Target Client Id used on Access Token Retrieval for connected Merchant
+	public static final String TARGET_CLIENT_ID = "target_client_id";
 
 }
