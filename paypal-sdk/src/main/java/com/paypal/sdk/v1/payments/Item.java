@@ -79,11 +79,11 @@ public class Item {
 	* The item quantity. Must be a whole number.
 	*/
 	@SerializedName("quantity")
-	private String quantity;
+	private int quantity;
 
-	public String quantity() { return quantity; }
+	public int quantity() { return quantity; }
 	
-	public Item quantity(String quantity) {
+	public Item quantity(int quantity) {
 	    this.quantity = quantity;
 	    return this;
 	}
