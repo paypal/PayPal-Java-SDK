@@ -60,15 +60,15 @@ public class ApplicationContext {
 	}
 
 	/**
-	* Specify Shipping Preferences:<ul><li><code>NO_SHIPPING</code>  Redacts shipping address fields from the PayPal pages. Recommended value to use for digital goods.</li><li><code>GET_FROM_FILE</code> (default) Get the shipping address selected by the buyer on PayPal pages.</li><li><code>SET_PROVIDED_ADDRESS</code>  Use the address provided by the merchant. Buyer is not able to change the address on the PayPal pages. If merchant doesn't pass an address buyer has the option to choose the address on PayPal pages.</li></ul>.
+	* Specify Shipping Preference:<ul><li><code>NO_SHIPPING</code>  Redacts shipping address fields from the PayPal pages. Recommended value to use for digital goods.</li><li><code>GET_FROM_FILE</code> (default) Get the shipping address selected by the buyer on PayPal pages.</li><li><code>SET_PROVIDED_ADDRESS</code>  Use the address provided by the merchant. Buyer is not able to change the address on the PayPal pages. If merchant doesn't pass an address buyer has the option to choose the address on PayPal pages.</li></ul>.
 	*/
-	@SerializedName("shipping_preferences")
-	private String shippingPreferences;
+	@SerializedName("shipping_preference")
+	private String shippingPreference;
 
-	public String shippingPreferences() { return shippingPreferences; }
+	public String shippingPreference() { return shippingPreference; }
 	
-	public ApplicationContext shippingPreferences(String shippingPreferences) {
-	    this.shippingPreferences = shippingPreferences;
+	public ApplicationContext shippingPreference(String shippingPreference) {
+	    this.shippingPreference = shippingPreference;
 	    return this;
 	}
 
