@@ -17,16 +17,16 @@ import com.paypal.api.payments.Search;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
 
+import static com.paypal.api.payments.util.SampleConstants.*;
+
 /**
  * This class shows code samples for invoicing.
- * l
- * https://developer.paypal.com/webapps/developer/docs/api/#invoicing
- *
+ * 
+ * https://developer.paypal.com/docs/api/invoicing/v1/
+ * 
  */
 public class InvoiceSample extends SampleBase<Invoice> {
 	
-	public static final String clientID = "AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS";
-	public static final String clientSecret = "EGnHDxD_qRPdaLdZz8iCr8N7_MzF-YHPTkjs6NKYQvQSBngp4PTTVWkPZRbL";
 
 	/**
 	 * Initialize and instantiate an Invoice object
@@ -43,7 +43,7 @@ public class InvoiceSample extends SampleBase<Invoice> {
 	/**
 	 * Create an invoice.
 	 * 
-	 * https://developer.paypal.com/webapps/developer/docs/api/#create-an-invoice
+	 * https://developer.paypal.com/docs/api/invoicing/v1/#invoices_create
 	 * 
 	 * @return newly created Invoice instance
 	 * @throws PayPalRESTException
@@ -58,7 +58,7 @@ public class InvoiceSample extends SampleBase<Invoice> {
 	/**
 	 * Send an invoice.
 	 * 
-	 * https://developer.paypal.com/webapps/developer/docs/api/#send-an-invoice
+	 * https://developer.paypal.com/docs/api/invoicing/v1/#invoices_send
 	 * 
 	 * @throws PayPalRESTException
 	 */
@@ -69,7 +69,7 @@ public class InvoiceSample extends SampleBase<Invoice> {
 	/**
 	 * Update an invoice.
 	 * 
-	 * https://developer.paypal.com/webapps/developer/docs/api/#update-an-invoice
+	 * https://developer.paypal.com/docs/api/invoicing/v1/#invoices_update
 	 * 
 	 * @return updated Invoice instance
 	 * @throws PayPalRESTException
@@ -87,7 +87,7 @@ public class InvoiceSample extends SampleBase<Invoice> {
 	/**
 	 * Retrieve an invoice.
 	 * 
-	 * https://developer.paypal.com/webapps/developer/docs/api/#retrieve-an-invoice
+	 * https://developer.paypal.com/docs/api/invoicing/v1/#invoices_get
 	 * 
 	 * @return retrieved Invoice instance
 	 * @throws PayPalRESTException
@@ -100,7 +100,7 @@ public class InvoiceSample extends SampleBase<Invoice> {
 	/**
 	 * Get invoices of an merchant.
 	 * 
-	 * https://developer.paypal.com/webapps/developer/docs/api/#get-invoices-of-a-merchant
+	 * https://developer.paypal.com/docs/api/invoicing/v1/#invoices_get_all
 	 * 
 	 * @return Invoices instance that contains invoices for merchant
 	 * @throws PayPalRESTException
@@ -116,7 +116,7 @@ public class InvoiceSample extends SampleBase<Invoice> {
 	/**
 	 * Search for invoices.
 	 * 
-	 * https://developer.paypal.com/webapps/developer/docs/api/#search-for-invoices
+	 * https://developer.paypal.com/docs/api/invoicing/v1/#search
 	 * 
 	 * @return Invoices instance that contains found invoices
 	 * @throws PayPalRESTException
@@ -134,7 +134,7 @@ public class InvoiceSample extends SampleBase<Invoice> {
 	/**
 	 * Send an invoice reminder.
 	 * 
-	 * https://developer.paypal.com/webapps/developer/docs/api/#send-an-invoice-reminder
+	 * https://developer.paypal.com/docs/api/invoicing/v1/#invoices_remind
 	 * 
 	 * @throws PayPalRESTException
 	 */
@@ -149,7 +149,7 @@ public class InvoiceSample extends SampleBase<Invoice> {
 	/**
 	 * Cancel an invoice.
 	 * 
-	 * https://developer.paypal.com/webapps/developer/docs/api/#cancel-an-invoice
+	 * https://developer.paypal.com/docs/api/invoicing/v1/#invoices_cancel
 	 * 
 	 * @throws PayPalRESTException
 	 */
@@ -165,7 +165,7 @@ public class InvoiceSample extends SampleBase<Invoice> {
 	/**
 	 * Delete an invoice.
 	 * 
-	 * https://developer.paypal.com/webapps/developer/docs/api/#delete-an-invoice
+	 * https://developer.paypal.com/docs/api/invoicing/v1/#invoices_delete
 	 * 
 	 * @throws PayPalRESTException
 	 */
