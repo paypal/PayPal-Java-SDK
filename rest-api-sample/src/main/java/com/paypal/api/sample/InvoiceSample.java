@@ -17,6 +17,8 @@ import com.paypal.api.payments.Search;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
 
+import static com.paypal.api.payments.util.SampleConstants.*;
+
 /**
  * This class shows code samples for invoicing.
  * 
@@ -25,8 +27,6 @@ import com.paypal.base.rest.PayPalRESTException;
  */
 public class InvoiceSample extends SampleBase<Invoice> {
 	
-	public static final String clientID = "AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS";
-	public static final String clientSecret = "EGnHDxD_qRPdaLdZz8iCr8N7_MzF-YHPTkjs6NKYQvQSBngp4PTTVWkPZRbL";
 
 	/**
 	 * Initialize and instantiate an Invoice object
