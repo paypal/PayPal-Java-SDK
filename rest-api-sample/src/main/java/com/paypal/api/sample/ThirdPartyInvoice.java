@@ -13,10 +13,10 @@ import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
 
+import static com.paypal.api.payments.util.SampleConstants.*;
+
 public class ThirdPartyInvoice extends SampleBase<Invoice> {
 
-	public static final String clientID = "AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS";
-	public static final String clientSecret = "EGnHDxD_qRPdaLdZz8iCr8N7_MzF-YHPTkjs6NKYQvQSBngp4PTTVWkPZRbL";
 
 	private static final Logger log = LogManager.getLogger(ThirdPartyInvoice.class);
 
