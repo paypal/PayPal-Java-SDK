@@ -54,7 +54,7 @@ public class GetCreditCardServlet extends HttpServlet {
 			// static `get` method on the CreditCard class,
 			// and pass the APIContext and CreditCard ID
 			CreditCard creditCard = CreditCard.get(apiContext,
-					"CARD-5BT058015C739554AKE2GCEI");
+					"CARD-97V664610B248771HLVYN3NQ");
 			LOGGER.info("Credit Card retrieved ID = " + creditCard.getId()
 					+ ", status = " + creditCard.getState());
 			ResultPrinter.addResult(req, resp, "Got Credit Card from Vault", CreditCard.getLastRequest(), CreditCard.getLastResponse(), null);
