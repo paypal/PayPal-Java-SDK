@@ -18,7 +18,9 @@ import com.paypal.api.payments.Plan;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
 
-import static com.paypal.api.payments.util.SampleConstants.*;
+import static com.paypal.api.payments.util.SampleConstants.clientID;
+import static com.paypal.api.payments.util.SampleConstants.clientSecret;
+import static com.paypal.api.payments.util.SampleConstants.mode;
 
 public class SubscriptionSample{
 
@@ -125,7 +127,7 @@ public class SubscriptionSample{
 		try {
 			SubscriptionSample subscriptionSample = new SubscriptionSample();
 
-			APIContext context = new APIContext(clientID, clientSecret, "sandbox");
+			APIContext context = new APIContext(clientID, clientSecret, mode);
 			
 			subscriptionSample.create(context);
 			System.out.println("create response:\n" + Plan.getLastResponse());

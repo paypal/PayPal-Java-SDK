@@ -11,7 +11,9 @@ import com.paypal.api.payments.Templates;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
 
-import static com.paypal.api.payments.util.SampleConstants.*;
+import static com.paypal.api.payments.util.SampleConstants.clientID;
+import static com.paypal.api.payments.util.SampleConstants.clientSecret;
+import static com.paypal.api.payments.util.SampleConstants.mode;
 
 /**
  * This class shows code samples for invoicing templates.
@@ -113,7 +115,7 @@ public class InvoiceTemplateSample extends SampleBase<Template> {
 		try {
 			InvoiceTemplateSample invoiceSample = new InvoiceTemplateSample();
 			
-			APIContext context = new APIContext(clientID, clientSecret, "sandbox");
+			APIContext context = new APIContext(clientID, clientSecret, mode);
 
 			Template template = invoiceSample.create(context);
 			System.out.println("create response:\n" + Template.getLastResponse());

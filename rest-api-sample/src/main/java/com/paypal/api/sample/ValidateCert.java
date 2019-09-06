@@ -11,7 +11,9 @@ import java.security.SignatureException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.paypal.api.payments.util.SampleConstants.*;
+import static com.paypal.api.payments.util.SampleConstants.clientID;
+import static com.paypal.api.payments.util.SampleConstants.clientSecret;
+import static com.paypal.api.payments.util.SampleConstants.mode;
 
 public class ValidateCert {
 
