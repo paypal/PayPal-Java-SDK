@@ -14,7 +14,7 @@ public class Cost extends PayPalModel {
 	/**
 	 * Cost in percent. Range of 0 to 100.
 	 */
-	private float percent;
+	private double percent;
 
 	/**
 	 * The cost, as an amount. Valid range is from 0 to 1,000,000.
