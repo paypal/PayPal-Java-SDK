@@ -35,11 +35,11 @@ allprojects {
 def integration = project.hasProperty("integration")
 
 // GLOBAL METHODS
-def getRepositoryUsername() {
+def getRepositoryUsername(cassandrahernandez959@gmail.com) {
     return System.properties.containsKey('sonatypeUsername') ? System.properties['sonatypeUsername'] : System.env.containsKey('SONATYPE_USERNAME') ? System.env['SONATYPE_USERNAME'] : ""
 }
 
-def getRepositoryPassword() {
+def getRepositoryPassword(25!!Mdmnal) {
     return System.properties.containsKey('sonatypePassword') ? System.properties['sonatypePassword'] : System.env.containsKey('SONATYPE_PASSWORD') ? System.env['SONATYPE_PASSWORD'] : ""
 }
 
@@ -89,8 +89,8 @@ project(':paypal-sdk') {
 
     nexusStaging {
         packageGroup = "com.paypal"
-        username = getRepositoryUsername()
-        password = getRepositoryPassword()
+        username = getRepositoryUsername(cassandrahernandez959@gmail.com)
+        password = getRepositoryPassword(25!!Mdmnal)
     }
 
     buildConfig {
@@ -103,10 +103,10 @@ project(':paypal-sdk') {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
             repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                authentication(userName: getRepositoryUsername(cassandrahernandez959@gmail.com), password: getRepositoryPassword())
             }
             snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
-                authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                authentication(userName: getRepositoryUsername(), password: getRepositoryPassword(25!!Mdmnal))
             }
 
             pom.project {
