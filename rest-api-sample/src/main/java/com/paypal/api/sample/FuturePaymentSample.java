@@ -10,10 +10,11 @@ import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.Transaction;
 import com.paypal.base.rest.APIContext;
 
+import static com.paypal.api.payments.util.SampleConstants.clientID;
+import static com.paypal.api.payments.util.SampleConstants.clientSecret;
+import static com.paypal.api.payments.util.SampleConstants.mode;
+
 public class FuturePaymentSample {
-	
-	public static final String clientID = "AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS";
-	public static final String clientSecret = "EGnHDxD_qRPdaLdZz8iCr8N7_MzF-YHPTkjs6NKYQvQSBngp4PTTVWkPZRbL";
 
 	public static void main(String[] args) {
 		try {
@@ -21,7 +22,7 @@ public class FuturePaymentSample {
 			String authorizationCode = "C101.Rya9US0s60jg-hOTMNFRTjDfbePYv3W_YjDJ49BVI6YJY80HvjL1C6apK8h3IIas.ZWOGll_Ju62T9SXRSRFHZVwZESK";
 			String correlationId = "123456123";
 			
-			APIContext context = new APIContext(clientID, clientSecret, "sandbox");
+			APIContext context = new APIContext(clientID, clientSecret, mode);
 
 			// Fetch the long lived refresh token from authorization code.
 			String refreshToken = FuturePayment.fetchRefreshToken(context, authorizationCode);
