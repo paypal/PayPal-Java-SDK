@@ -24,7 +24,7 @@ public class Tax extends PayPalModel {
 	/**
 	 * The rate of the specified tax. Valid range is from 0.001 to 99.999.
 	 */
-	private double percent;
+	private float percent;
 
 	/**
 	 * The tax as a monetary amount. Cannot be specified in a request.
