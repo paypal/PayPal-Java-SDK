@@ -32,7 +32,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * have a entry by the name "mode" with values sandbox or live wherein the
  * corresponding endpoints are default to PayPal endpoints.
  */
-public final class OAuthTokenCredential {
+public class OAuthTokenCredential {
 
 	private static final Logger log = LoggerFactory.getLogger(OAuthTokenCredential.class);
 
