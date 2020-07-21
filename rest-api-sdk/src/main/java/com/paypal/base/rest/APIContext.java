@@ -64,6 +64,7 @@ public class APIContext {
 	 */
 	public APIContext(String clientID, String clientSecret, String mode) {
 		this(clientID, clientSecret, mode, null);
+		addConfiguration(Constants.CLIENT_ID, clientID);
 	}
 
 	/**
